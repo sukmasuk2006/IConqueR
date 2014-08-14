@@ -147,6 +147,8 @@ public class ActiveAnimation : IgnoreTimeScale
 
 	void Play (string clipName, Direction playDirection)
 	{
+		Debug.Log("play");
+
 		if (mAnim != null)
 		{
 			// We will sample the animation manually so that it works when the time is paused

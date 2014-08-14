@@ -6,7 +6,7 @@ public class GameplayController : MonoBehaviour {
 	/*
 	 * Gameplay
 	 */
-	private bool isWin = true;
+	private bool isWin = false;
 
 	/*
      * Report
@@ -22,7 +22,7 @@ public class GameplayController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		CheckWin ();
+	//	CheckWin ();
 	}
 
 	void CheckWin(){
