@@ -1,9 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\NGUI\Scripts\Internal\ActiveAnimation.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\InputNameHandler.cs">
     <Files>
-      <File FileName="Assets\Script\characterMove.cs" Line="36" Column="4" />
-      <File FileName="Assets\NGUI\Scripts\Internal\ActiveAnimation.cs" Line="150" Column="18" />
+      <File FileName="Assets\Script\LogoSceneController.cs" Line="16" Column="2" />
+      <File FileName="Assets\Script\InputNameHandler.cs" Line="6" Column="1" />
+      <File FileName="Assets\Script\GameData.cs" Line="61" Column="8" />
+      <File FileName="Assets\Script\InputNameDone.cs" Line="21" Column="73" />
+      <File FileName="Assets\Script\Utility\SimpleButtonTween.cs" Line="31" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
