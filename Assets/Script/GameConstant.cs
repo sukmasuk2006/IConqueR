@@ -1,5 +1,8 @@
 ﻿public class GameConstant  {
 
+	/*	 CONSTANT   */
+	public static int BASE_PRICE = 500;
+
 	/*Screen state*/
 	public const string LOGO_STATE = "LOGO";
 	public const string MAIN_MENU = "MAIN_MENU";

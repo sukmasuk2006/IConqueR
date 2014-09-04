@@ -1,0 +1,6 @@
+DESC
+TIPE ATK SKILL: 1 [SELF] / 2 [ENEMY]
+EFFECT TIPE SKILL : 1 [DIRECT DAMAGE ] 
+                    2 [HEAL]
+                    3 [ABILITY UP]
+AMOUNT

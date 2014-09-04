@@ -1,0 +1,4 @@
+fireball
+iceball
+waterball
+thunderball

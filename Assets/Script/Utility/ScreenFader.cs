@@ -5,10 +5,12 @@ public class ScreenFader : MonoBehaviour {
 
 	public Texture2D blackScreen; // add a black texture here
 	public float fadeTime; // how long you want it to fade?
-	
+	public bool changeScene = true;
+
 	private bool fadeIn; // false for fade out
 	private Color color = Color.black;
 	private float timer;
+
 	
 	public void FadeIn()
 	{
@@ -45,6 +47,7 @@ public class ScreenFader : MonoBehaviour {
 	
 	public IEnumerator alp(string scene){
 		yield return new WaitForSeconds(fadeTime);
+		if ( changeScene)
 		Application.LoadLevel (scene);
 		
 	}

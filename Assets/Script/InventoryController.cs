@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 
 public class InventoryController : MonoBehaviour {
@@ -67,30 +67,30 @@ public class InventoryController : MonoBehaviour {
 	}
 
 	void ShowItem(){
-		if (GameData.inventoryList [GameData.index * SLOT_ZERO] != null) {
+		if (GameData.inventoryList [GameData.selectedToViewProfileId * SLOT_ZERO] != null) {
 			item = null;
-			item = GameData.inventoryList [GameData.index * SLOT_ZERO];
+			item = GameData.inventoryList [GameData.selectedToViewProfileId * SLOT_ZERO];
 			item0.GetComponent<SpriteRenderer> ().sprite = (Sprite)Resources.Load ("Sprite/Gems/Common Gems/" +
                        item.Name, typeof(Sprite));
 			item0Name.text = item.Name;
 		}
-		if (GameData.inventoryList [GameData.index * SLOT_ONE] != null) {
+		if (GameData.inventoryList [GameData.selectedToViewProfileId * SLOT_ONE] != null) {
 			item = null;
-			item = GameData.inventoryList [GameData.index * SLOT_ONE];
+			item = GameData.inventoryList [GameData.selectedToViewProfileId * SLOT_ONE];
 			item1.GetComponent<SpriteRenderer> ().sprite = (Sprite)Resources.Load ("Sprite/Gems/Common Gems/" +
                        item.Name, typeof(Sprite));
 			item1Name.text = item.Name;
 		}
-		if (GameData.inventoryList [GameData.index * SLOT_TWO] != null) {
+		if (GameData.inventoryList [GameData.selectedToViewProfileId * SLOT_TWO] != null) {
 			item = null;
-			item = GameData.inventoryList [GameData.index * SLOT_TWO];
+			item = GameData.inventoryList [GameData.selectedToViewProfileId * SLOT_TWO];
 			item2.GetComponent<SpriteRenderer> ().sprite = (Sprite)Resources.Load ("Sprite/Gems/Common Gems/" +
                        item.Name, typeof(Sprite));
 			item2Name.text = item.Name;
 		}
-		if (GameData.inventoryList [GameData.index * SLOT_THREE] != null) {
+		if (GameData.inventoryList [GameData.selectedToViewProfileId * SLOT_THREE] != null) {
 			item = null;
-			item = GameData.inventoryList [GameData.index * SLOT_THREE];
+			item = GameData.inventoryList [GameData.selectedToViewProfileId * SLOT_THREE];
 			item3.GetComponent<SpriteRenderer> ().sprite = (Sprite)Resources.Load ("Sprite/Gems/Common Gems/" +
 		               item.Name, typeof(Sprite));
 			item3Name.text = item.Name;

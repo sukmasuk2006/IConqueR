@@ -5,9 +5,17 @@ public class LogoSceneController : MonoBehaviour {
 
 	private const int DELAY = 2;
 	public GameObject tweenedObject;
+	public GameObject inputNameScreen;
 	public GameObject removedObject;
+	public float time;
 	// Use this for initialization
 	void Start () {
+		Debug.Log ("di logo " + GameData.isFirstPlay);
+		if (GameData.isFirstPlay) {
+			TweenInputName();
+		}
+		else
+			TweenMainMenu ();
 	}
 	
 	// Update is called once per frame
@@ -15,20 +23,23 @@ public class LogoSceneController : MonoBehaviour {
 	
 	}
 
-	
-	public void Go(){
-		//TweenPosition.Begin (removedObject, 1, tweenedObject.transform.position);
-		
-		TweenAlpha.Begin (removedObject,0.5f, 0).onFinished += OnFinishAlpha;
-//		TweenAlpha.OnFinished +=  
+	private void TweenInputName(){
+		iTween.MoveTo (inputNameScreen, iTween.Hash ("delay", 1f, "position", removedObject.transform.position, "time", time));
+		iTween.MoveTo (removedObject, iTween.Hash ("delay", 1f, "position", inputNameScreen.transform.position, "time", time));
+	}
+
+	public void TweenMainMenu(){
 
 		Debug.Log ("GO");
-//		iTween.MoveTo (tweenedObject, iTween.Hash ("position", removedObject.transform.position, "time", 1f));/
-	//	iTween.MoveTo (removedObject, iTween.Hash ("position", tweenedObject.transform.position, "time", 1f,"EaseType","linear"));
+		
+		iTween.MoveTo (tweenedObject, iTween.Hash ("delay",1f,"position", removedObject.transform.position, "time",time));
+		iTween.MoveTo (removedObject, iTween.Hash ("delay",1f,"position", tweenedObject.transform.position, "time", time,"EaseType","linear"));
 	}
 
-	void OnFinishAlpha (UITweener tween)
-	{
-		TweenPosition.Begin (tweenedObject, 0.1f, removedObject.transform.position);
+	void MoveTarget(){
+		Debug.Log ("GO2");
+	
 	}
+
+
 }

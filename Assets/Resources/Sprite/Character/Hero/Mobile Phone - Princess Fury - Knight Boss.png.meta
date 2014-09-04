@@ -1,6 +1,31 @@
 fileFormatVersion: 2
 guid: 98c3345cee8e8ba42aa98761ff557b38
 TextureImporter:
+  fileIDToRecycleName:
+    21300000: Mobile Phone - Princess Fury - Knight Boss_0
+    21300002: Mobile Phone - Princess Fury - Knight Boss_1
+    21300004: Mobile Phone - Princess Fury - Knight Boss_2
+    21300006: Mobile Phone - Princess Fury - Knight Boss_3
+    21300008: Mobile Phone - Princess Fury - Knight Boss_4
+    21300010: Mobile Phone - Princess Fury - Knight Boss_5
+    21300012: Mobile Phone - Princess Fury - Knight Boss_6
+    21300014: Mobile Phone - Princess Fury - Knight Boss_7
+    21300016: Mobile Phone - Princess Fury - Knight Boss_8
+    21300018: Mobile Phone - Princess Fury - Knight Boss_9
+    21300020: Mobile Phone - Princess Fury - Knight Boss_10
+    21300022: Mobile Phone - Princess Fury - Knight Boss_11
+    21300024: Mobile Phone - Princess Fury - Knight Boss_12
+    21300026: Mobile Phone - Princess Fury - Knight Boss_13
+    21300028: Mobile Phone - Princess Fury - Knight Boss_14
+    21300030: Mobile Phone - Princess Fury - Knight Boss_15
+    21300032: Mobile Phone - Princess Fury - Knight Boss_16
+    21300034: Mobile Phone - Princess Fury - Knight Boss_17
+    21300036: Mobile Phone - Princess Fury - Knight Boss_18
+    21300038: Mobile Phone - Princess Fury - Knight Boss_19
+    21300040: Mobile Phone - Princess Fury - Knight Boss_20
+    21300042: Mobile Phone - Princess Fury - Knight Boss_21
+    21300044: Mobile Phone - Princess Fury - Knight Boss_22
+    21300046: Mobile Phone - Princess Fury - Knight Boss_23
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -35,7 +60,8 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
-  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 125
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings:
@@ -54,6 +80,7 @@ TextureImporter:
         height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Mobile Phone - Princess Fury - Knight Boss_1
       rect:
         serializedVersion: 2
@@ -63,6 +90,7 @@ TextureImporter:
         height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Mobile Phone - Princess Fury - Knight Boss_2
       rect:
         serializedVersion: 2
@@ -72,6 +100,7 @@ TextureImporter:
         height: 140
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Mobile Phone - Princess Fury - Knight Boss_3
       rect:
         serializedVersion: 2
@@ -81,6 +110,7 @@ TextureImporter:
         height: 168
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Mobile Phone - Princess Fury - Knight Boss_4
       rect:
         serializedVersion: 2
@@ -90,6 +120,7 @@ TextureImporter:
         height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Mobile Phone - Princess Fury - Knight Boss_5
       rect:
         serializedVersion: 2
@@ -99,6 +130,7 @@ TextureImporter:
         height: 124
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Mobile Phone - Princess Fury - Knight Boss_6
       rect:
         serializedVersion: 2
@@ -108,6 +140,7 @@ TextureImporter:
         height: 124
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Mobile Phone - Princess Fury - Knight Boss_7
       rect:
         serializedVersion: 2
@@ -117,6 +150,7 @@ TextureImporter:
         height: 124
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Mobile Phone - Princess Fury - Knight Boss_8
       rect:
         serializedVersion: 2
@@ -126,6 +160,7 @@ TextureImporter:
         height: 124
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Mobile Phone - Princess Fury - Knight Boss_9
       rect:
         serializedVersion: 2
@@ -135,6 +170,7 @@ TextureImporter:
         height: 124
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Mobile Phone - Princess Fury - Knight Boss_10
       rect:
         serializedVersion: 2
@@ -144,6 +180,7 @@ TextureImporter:
         height: 124
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Mobile Phone - Princess Fury - Knight Boss_11
       rect:
         serializedVersion: 2
@@ -153,6 +190,7 @@ TextureImporter:
         height: 124
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Mobile Phone - Princess Fury - Knight Boss_12
       rect:
         serializedVersion: 2
@@ -162,6 +200,7 @@ TextureImporter:
         height: 124
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Mobile Phone - Princess Fury - Knight Boss_13
       rect:
         serializedVersion: 2
@@ -171,6 +210,7 @@ TextureImporter:
         height: 119
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Mobile Phone - Princess Fury - Knight Boss_14
       rect:
         serializedVersion: 2
@@ -180,6 +220,7 @@ TextureImporter:
         height: 121
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Mobile Phone - Princess Fury - Knight Boss_15
       rect:
         serializedVersion: 2
@@ -189,6 +230,7 @@ TextureImporter:
         height: 123
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Mobile Phone - Princess Fury - Knight Boss_16
       rect:
         serializedVersion: 2
@@ -198,6 +240,7 @@ TextureImporter:
         height: 123
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Mobile Phone - Princess Fury - Knight Boss_17
       rect:
         serializedVersion: 2
@@ -207,6 +250,7 @@ TextureImporter:
         height: 121
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Mobile Phone - Princess Fury - Knight Boss_18
       rect:
         serializedVersion: 2
@@ -216,6 +260,7 @@ TextureImporter:
         height: 118
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Mobile Phone - Princess Fury - Knight Boss_19
       rect:
         serializedVersion: 2
@@ -225,6 +270,7 @@ TextureImporter:
         height: 117
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Mobile Phone - Princess Fury - Knight Boss_20
       rect:
         serializedVersion: 2
@@ -234,6 +280,7 @@ TextureImporter:
         height: 118
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Mobile Phone - Princess Fury - Knight Boss_21
       rect:
         serializedVersion: 2
@@ -243,6 +290,7 @@ TextureImporter:
         height: 149
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Mobile Phone - Princess Fury - Knight Boss_22
       rect:
         serializedVersion: 2
@@ -252,6 +300,7 @@ TextureImporter:
         height: 222
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Mobile Phone - Princess Fury - Knight Boss_23
       rect:
         serializedVersion: 2
@@ -261,5 +310,6 @@ TextureImporter:
         height: 153
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

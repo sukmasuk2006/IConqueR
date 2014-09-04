@@ -16,7 +16,7 @@ public class SimpleButton : MonoBehaviour {
 	
 	}
 
-	void OnClick(){
+	void OnMouseDown(){
 		camera.GetComponent<ScreenFader> ().FadeOut (targetScene);
 		GameData.gameState = targetScene;
 	}

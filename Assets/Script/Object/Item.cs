@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Item {
 
-	protected Status status;
 	protected string name;
 
 	public string Name {
@@ -18,6 +17,6 @@ public class Item {
 	public Item(string name,float str,float agi,float intel,
 	            float dex, float vit){
 		this.name = name;
-		status = new Status (str, agi, intel, dex, vit);
+	//	status = new Status (str, agi, intel, dex, vit);
 	}
 }

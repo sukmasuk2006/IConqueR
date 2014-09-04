@@ -22,7 +22,7 @@ public class FirstPlayChecker : MonoBehaviour {
 		Debug.Log ("pressed");
 			if (GameData.isFirstPlay) {
 				Debug.Log ("first");
-				TweenScale.Begin(removedObject,0.1f,Vector3.zero).onFinished += OnFinishedAlpha;
+	//			TweenScale.Begin(removedObject,0.1f,Vector3.zero).onFinished += OnFinishedAlpha;
 //				iTween.MoveTo (tweenedObject, iTween.Hash ("position", removedObject.transform.position, "time", 2f));
 //				iTween.MoveTo (removedObject, iTween.Hash ("position", tweenedObject.transform.position, "time", 1f,"EaseType","linear"));
 				}
@@ -33,9 +33,5 @@ public class FirstPlayChecker : MonoBehaviour {
 		}
 	}
 
-	void OnFinishedAlpha (UITweener tween)
-	{
-		TweenPosition.Begin (tweenedObject, 0.1f, removedObject.transform.position);
 
-	}
 }

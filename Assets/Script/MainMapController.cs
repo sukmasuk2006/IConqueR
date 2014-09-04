@@ -7,26 +7,25 @@ public class MainMapController : MonoBehaviour {
 
 	public GameObject RaidNotification;
 	public GameObject MainMapScreen;
-	public GameObject raidTimer;
+	//public GameObject raidTimer;
 	private float raidTimerYPos;
-	TextMesh goldText,crystalText;
+	public TextMesh goldText,diamondText;
 	private float timerMovespeed;
 
 	// Use this for initialization
 	void Start () {
 		GameData.gameState = GameConstant.MAP_STATE;
-		raidTimer.transform.position = GameData.raidTimePos;
-		raidTimerYPos = raidTimer.transform.position.y;
+		//raidTimer.transform.position = GameData.raidTimePos;
+		//raidTimerYPos = raidTimer.transform.position.y;
+		goldText.text = GameData.gold.ToString ();		
+		diamondText.text = GameData.diamond.ToString ();
 		AutoSaveData ();
-		goldText = GameObject.Find ("goldText").GetComponents<TextMesh> ()[0];
-		crystalText = GameObject.Find ("crystalText").GetComponents<TextMesh> () [0];
 	//	iTween.MoveTo (zombie_timer, iTween.Hash ("position", new Vector3 (-2,zombie_timer.transform.position.y,-1), "time",GameData.raidTime,"EaseType","linear"));
-		timerMovespeed = (GameData.raidTimePos.x + 2f) / (GameData.raidTime/Time.deltaTime);//Application.targetFrameRate) ;
 	}
 
 	void AutoSaveData(){
 		PlayerPrefs.SetInt ("gold", GameData.gold);
-		PlayerPrefs.SetInt ("crystal", GameData.crystal);
+		PlayerPrefs.SetInt ("diamond", GameData.diamond);
 	}
 	// Update is called once per frame
 	void Update () {
@@ -36,10 +35,8 @@ public class MainMapController : MonoBehaviour {
 	private void UpdateRaidTime(){
 		if (GameData.gameState == GameConstant.MAP_STATE) {
 			GameData.UpdateRaidTime();
-			raidTimer.transform.position = new Vector2(raidTimer.transform.position.x-timerMovespeed,raidTimerYPos);	
-			GameData.raidTimePos = raidTimer.transform.position;
-			goldText.text = GameData.gold.ToString ();		
-			crystalText.text = GameData.raidTime.ToString ();
+			//raidTimer.transform.position = new Vector2(raidTimer.transform.position.x-timerMovespeed,raidTimerYPos);	
+			//GameData.raidTimePos = raidTimer.transform.position;
 		} 
 	}
 
