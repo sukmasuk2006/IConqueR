@@ -1,0 +1,8 @@
+ruby
+sapphire
+opal
+emerald
+amethyst
+aquamarine
+diamond
+peridot

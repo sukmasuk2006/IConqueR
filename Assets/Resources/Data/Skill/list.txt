@@ -1,4 +1,4 @@
 fireball
 iceball
-waterball
 thunderball
+waterball

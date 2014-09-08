@@ -1,0 +1,5 @@
+knight
+warrior
+archer
+tribe
+thief

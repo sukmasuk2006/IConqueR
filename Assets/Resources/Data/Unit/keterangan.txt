@@ -1,0 +1,4 @@
+UANG
+STR
+AGI
+VIT
