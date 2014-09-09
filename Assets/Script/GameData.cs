@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public class GameData : MonoBehaviour {
-
+	
 	// HERO STATS
 	public static int currentLevel = 1;
 	public static float currentExp = 0;
@@ -18,15 +18,15 @@ public class GameData : MonoBehaviour {
 
 	// GAME STATS
 	public static bool isFirstPlay = true;
-	public static float gameSpeed = 1f;
-	public static string gameState = "LOGO";
+	public static bool readyToTween = true;
 	public static float raidTime = 60;
 	public static int unlockedHeroes = 1;
 	public static int unlockHeroCost = 1000;
 	public static int unlockSkillCost = 1000;
 	public static int selectedToViewProfileId = 4;
-	public static string selectedToViewProfileName = "knight";
 	public static int totalSkillUsed = 0;
+	public static string selectedToViewProfileName = "knight";
+	public static string gameState = "LOGO";
 
 	private string[] linesFromFile;
 
@@ -138,7 +138,7 @@ public class GameData : MonoBehaviour {
 	}
 
 	public static void UpdateRaidTime(){
-		raidTime -= (Time.deltaTime * gameSpeed);
+	//	raidTime -= (Time.deltaTime * gameSpeed);
 	}
 	
 	// Update is called once per frame
