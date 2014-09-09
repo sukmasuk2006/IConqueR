@@ -1,4 +1,5 @@
 ﻿	using UnityEngine;
+using System;
 using System.Collections;
 
 public class UnitStatus  {
@@ -50,6 +51,7 @@ public class UnitStatus  {
 	protected float critical;  /* 1 str + 2 agi */
 	protected float evasionRate; /* 2 agi + 1 vit */
 	protected float movement;
+	private double val;
 	public float Movement {
 		get {
 			return movement;
@@ -61,22 +63,10 @@ public class UnitStatus  {
 
  /* 1 agi + 2 vit */
 
-	public UnitStatus(string name,string desc, float str,float agi, float vit){
-		this.name = name;
-		this.description = desc;
-		this.level = 1;
-		this.str = str;
-		this.agi = agi;
-		this.vit = vit;
-		//status = new Status (str, agi, intel, dex, vit);
-		healthPoint = (str + vit * 2) * 10;
-		attackPoint = str  *3;
-		defensePoint = vit * 3;
-		attackSpeed = 3.5f - (( agi - 1f ) * 0.025f);
-		critical = (str + agi *2 ) / 3;
-		evasionRate = (vit + agi *2 ) / 3;
-		movement = (agi + agi *2 ) / 3;
+	public UnitStatus(){
+
 	}
+
 
 	public float EvasionRate {
 		get {

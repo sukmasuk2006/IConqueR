@@ -4,6 +4,9 @@ using System.Collections;
 public class Item {
 
 	protected string name;
+	protected string desc;
+	private int price;
+	protected UnitStatus stats;
 
 	public string Name {
 		get {
@@ -14,9 +17,35 @@ public class Item {
 		}
 	}
 
-	public Item(string name,float str,float agi,float intel,
-	            float dex, float vit){
-		this.name = name;
-	//	status = new Status (str, agi, intel, dex, vit);
+	public Item(string name){
+		this.name = name.Trim();
+	}
+
+
+
+	public string Desc {
+		get {
+			return desc;
+		}
+		set {
+			desc = value;
+		}
+	}
+
+	public UnitStatus Stats {
+		get {
+			return stats;
+		}
+		set {
+			stats = value;
+		}
+	}
+	public int Price {
+		get {
+			return price;
+		}
+		set {
+			price = value;
+		}
 	}
 }

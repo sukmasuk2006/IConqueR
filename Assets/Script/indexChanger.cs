@@ -5,10 +5,10 @@ public class indexChanger : MonoBehaviour {
 
 	public bool isIncrease = true;
 	public GameObject controller;
-	InventoryController invent;
+	ShopController invent;
 	// Use this for initialization
 	void Start () {
-		invent = controller.GetComponent<InventoryController> ();
+		invent = controller.GetComponent<ShopController> ();
 		Debug.Log ("GO");
 	}
 	
@@ -21,7 +21,7 @@ public class indexChanger : MonoBehaviour {
 		if (isIncrease) {
 			Debug.Log("naik");
 
-			if ( GameData.inventoryList.Count+4 > (GameData.selectedToViewProfileId+1) * 4 ){
+			if ( GameData.shopList.Count+4 > (GameData.selectedToViewProfileId+1) * 4 ){
 				GameData.selectedToViewProfileId++;
 				Debug.Log("naik 1");
 			}

@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Holoville.HOTween;
 
 public class SimpleButtonTween : MonoBehaviour {
 
@@ -24,7 +23,7 @@ public class SimpleButtonTween : MonoBehaviour {
 
 	void OnMouseDown(){
 		Debug.Log ("gamestate " + GameData.gameState);
-		HOTween.To(tweenedObject,0.5f,"position",targetObject.transform.position);
+		//HOTween.To(tweenedObject,0.5f,"position",targetObject.transform.position);
 		if (GameData.gameState.Contains(gameStateRequired)) {
 			iTween.MoveTo ( tweenedObject,iTween.Hash("position",targetObject.transform.position,"time", 0.5f,"oncomplete","MoveTarget","oncompletetarget",gameObject));
 			iTween.MoveTo (targetObject, tweenedObject.transform.position,0.5f);		
