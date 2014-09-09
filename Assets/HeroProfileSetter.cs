@@ -3,9 +3,11 @@ using System.Collections;
 
 public class HeroProfileSetter : MonoBehaviour {
 
+	public GameObject tweenedObject;
+	public GameObject targetObject;
+	public HeroProfileController controller;
 	public int id;
 	public string name;
-	public Camera camera;
 	// Use this for initialization
 	void Start () {
 	
@@ -20,8 +22,10 @@ public class HeroProfileSetter : MonoBehaviour {
 		if (GameData.unitList [id].IsUnlocked) {
 						GameData.selectedToViewProfileId = id;
 						GameData.selectedToViewProfileName = name;
-						camera.GetComponent<ScreenFader> ().FadeOut ("HeroProfileScene");
 						GameData.gameState = "HeroProfileScene";
-				}
+						iTween.MoveTo ( tweenedObject,iTween.Hash("position",targetObject.transform.position,"time", 0.5f,"oncomplete","MoveTarget","oncompletetarget",gameObject));
+						iTween.MoveTo (targetObject, tweenedObject.transform.position,0.5f);		
+						controller.SetPictureAndStats();
+		}
 	}
 }

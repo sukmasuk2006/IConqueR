@@ -20,12 +20,14 @@ public class Skill
 	private SkillEffect effect;
 	private bool isUnlocked;
 	private string[] linesFromFile;
+	private bool isSelected;
 
 	public Skill (int level, string nm)
 	{
 		this.name = nm;
 		this.level = level;
 		isUnlocked = false;
+		isSelected = false;
 		InitializeSkill ();
 		//Debug.Log ("Skill initilaized !");
 		//Debug.Log (name + " " + desc + " " + effect.Amount);
@@ -33,21 +35,22 @@ public class Skill
 
 	private void InitializeSkill(){
 		linesFromFile = null;
-		Debug.Log ("init skill " + name);
-		Debug.Log ("X1");
-		TextAsset txt = (TextAsset)Resources.Load ("Data/Skill/"+ name, typeof(TextAsset));
-		Debug.Log ("X2");
+		TextAsset txt = (TextAsset)Resources.Load ("Data/Skill/"+ name.Trim(), typeof(TextAsset));
 		string content = txt.text;
-		Debug.Log ("x3 "+txt.text);
 		linesFromFile = content.Split ("\n" [0]);
-		Debug.Log ("1");
 		desc = linesFromFile [0];
-		Debug.Log ("2");
 		int.TryParse(linesFromFile [1],out type);
-		Debug.Log ("3");
 		effect = new SkillEffect (int.Parse(linesFromFile [2]),
 		                          int.Parse(linesFromFile [3]));
-		Debug.Log ("4");
+	}
+
+	public bool IsSelected {
+		get {
+			return isSelected;
+		}
+		set {
+			isSelected = value;
+		}
 	}
 
 	public SkillEffect Effect {

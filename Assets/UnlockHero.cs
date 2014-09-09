@@ -10,13 +10,12 @@ public class UnlockHero : MonoBehaviour {
 	public UnlockCostController costController;
 
 	void OnMouseDown(){
-		if (GameData.gold >= GameData.unlockHeroCost && !GameData.unitList [slot].IsUnlocked) {
+		if (GameData.gold >= GameData.unitList[slot].GoldNeeded && !GameData.unitList [slot].IsUnlocked) {
 						GameData.unitList [slot].IsUnlocked = true;
 						frame.SetActive (false);
 						GameData.unlockedHeroes++;
-						GameData.unlockHeroCost = GameData.unlockedHeroes * GameConstant.BASE_PRICE * 2;
 						costController.SendMessage ("UpdateCost");
-						renderer.enabled = false;
+						this.gameObject.SetActive(false);
 				} 
 		}
 }
