@@ -47,19 +47,26 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Plugins\WP8\MediaPlayerPlugin.cs" />
+     <None Include="Assets\Resources\Data\Quest\keterangan.txt" />
+     <None Include="Assets\Resources\Data\Quest\defeat.txt" />
      <None Include="Assets\Resources\Data\Item\peridot.txt" />
      <None Include="Assets\Resources\Data\Item\diamond.txt" />
      <None Include="Assets\Resources\Data\Unit\list.txt" />
      <None Include="Assets\Resources\Data\Skill\keterangan.txt" />
+     <None Include="Assets\Resources\Data\Quest\unlock.txt" />
      <None Include="Assets\Resources\Data\Unit\hero.txt" />
      <None Include="Assets\Resources\Data\Unit\keterangan.txt" />
      <None Include="Assets\Resources\Data\Unit\tribe.txt" />
      <None Include="Assets\Resources\Data\Skill\thunderball.txt" />
+     <None Include="Assets\Resources\Data\Quest\list.txt" />
+     <None Include="Assets\Resources\Data\Quest\fortress.txt" />
      <None Include="Assets\Resources\Data\Item\opal.txt" />
      <None Include="Assets\Resources\Data\Item\keterangan.txt" />
      <None Include="Assets\Resources\Data\Item\amethyst.txt" />
      <None Include="Assets\Resources\Data\Unit\archer.txt" />
+     <None Include="Assets\Resources\Data\Quest\list-TEMP.txt" />
      <None Include="Assets\Resources\Data\Skill\iceball.txt" />
+     <None Include="Assets\Resources\Data\Quest\kingdom.txt" />
      <None Include="Assets\Resources\Data\Item\emerald.txt" />
      <None Include="Assets\Resources\Data\Item\aquamarine.txt" />
      <None Include="Assets\Resources\Data\Skill\list.txt" />
