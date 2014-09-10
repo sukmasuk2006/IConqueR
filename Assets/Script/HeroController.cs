@@ -59,6 +59,7 @@ public class HeroController : MonoBehaviour {
 	void Update () {
 		if (this.stats.HealthPoint <= 0) {
 		//	Debug.Log("die");
+			UpdateHealthBar();
 			MoveToGraveyard();
 			this.gameObject.SetActive(false);		
 		}
@@ -87,25 +88,26 @@ public class HeroController : MonoBehaviour {
 	
 	void OnCollisionEnter2D(Collision2D coll) {
 		if (coll.collider.name.Contains (target) && isAttack ) {
-			Unit h = coll.collider.gameObject.GetComponent<HeroController>().stats;
+			HeroController h = coll.collider.gameObject.GetComponent<HeroController>();
 			DoDamageToTarget(h);
 		} else if (coll.collider.name.Contains ("wall")) {
-			movementSpeed = 0f;
+			// push dikit
+			rigidbody2D.AddForce (new Vector2 (movementSpeed * rigidbody2D.mass * direction, 0f));
 		}
 		
 	}
-	void DoDamageToTarget(Unit h){
-		float damage = stats.AttackPoint;
-		h.HealthPoint -= damage;
+	void DoDamageToTarget(HeroController h){
+		float damage = h.stats.AttackPoint;
+		h.stats.HealthPoint -= damage;
 		gameplayController.ReceiveDamage(target,damage);
+		h.UpdateHealthBar ();
 		GetReadyForNextAttack();
-		UpdateHealthBar();
 	}
 
 	void GetReadyForNextAttack(){
 		isAttack = false;
 		attackSpeed = stats.AttackSpeed;
-		movementSpeed = stats.Movement * 3;
+		movementSpeed = stats.Movement;
 		states = 2;
 		isChangeState = true;
 	}
@@ -114,28 +116,34 @@ public class HeroController : MonoBehaviour {
 		rigidbody2D.AddForce (new Vector2 (movementSpeed * rigidbody2D.mass * direction, 0f));
 		states = 1;
 		isChangeState = true;
-		if ( movementSpeed <= 3f )
-			movementSpeed *= 1.03f;
+		movementSpeed *= 1.03f;
+		
+		if (movementSpeed >= 2f)
+			movementSpeed = 2f;
 	}
 
 	void PullBack(){
 		// jika tidak, mundur
-		this.rigidbody2D.AddForce (new Vector2 (movementSpeed * rigidbody2D.mass * direction * -1, 0f));
+		this.rigidbody2D.AddForce (new Vector2 (movementSpeed  * direction * -1, 0f));
 		states = 0;
 		isChangeState = true;
 		// perlambatan gerakan
 		movementSpeed *= 0.9f;
 	}
 
-	void UpdateHealthBar(){
-		healthBar.transform.localScale = new Vector3((stats.HealthPoint * healthScaleConstant 
-		                                              / healthConstant).x,healthScaleConstant.y,
+	public void UpdateHealthBar(){
+		float scaleX = (stats.HealthPoint * healthScaleConstant / healthConstant).x;
+		//if (this.gameObject.name.Contains ("hero"))
+	//		Debug.Log ("health " + stats.HealthPoint  +" sacle " + scaleX);
+		healthBar.transform.localScale = new Vector3(scaleX,
+		                                             healthScaleConstant.y,
 		                                             healthScaleConstant.z);
+
 	}
 
 	void MoveToGraveyard(){
 		transform.position = new Vector2 (-12f, transform.position.y);
-		this.gameObject.SetActive(false);		
+		//this.gameObject.SetActive(false);		
 	}
 
 	void InitializePosition(int pos){

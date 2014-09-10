@@ -15,6 +15,7 @@ public class GameData : MonoBehaviour {
 	public static List<Item> inventoryList;
 	public static List<string> heroesList;
 	public static List<Gem> weaponSlotContentList;
+	public static List<Quest> questList;
 
 	// GAME STATS
 	public static bool isFirstPlay = true;
@@ -131,6 +132,16 @@ public class GameData : MonoBehaviour {
 		/*WEAPON SLOT*/
 		weaponSlotContentList = new List<Gem> ();
 
+		/*QUEST*/
+		linesFromFile = null;
+		questList = new List<Quest> ();
+		TextAsset questTxt = (TextAsset)Resources.Load ("Data/Quest/list", typeof(TextAsset));
+		string questContent = questTxt.text;
+		linesFromFile = questContent.Split ("\n"[0]);
+		for (int i = 0; i < linesFromFile.Length; i++) {
+			Debug.Log ("len " + linesFromFile[i]);
+			questList.Add(new Quest(linesFromFile[i]));		
+		}
 		// TESTING
 		gold = 10000;
 		//GameData.unlockedHeroes = GameData.unitList.Count;

@@ -1,0 +1,14 @@
+Fortress5
+Fortress10
+Fortress15
+Fortress20
+Kingdom1
+Kingdom2
+Kingdom3
+Kingdom4
+Gold10000
+Gold50000
+Gold100000
+Gold500000
+Unlock4
+Unlock8

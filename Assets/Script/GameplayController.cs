@@ -93,10 +93,10 @@ public class GameplayController : MonoBehaviour {
 
 	private void UpdateEnemyHealthBar(float damage){
 		EnemyTotalHealth -= damage;
-		Vector3 temp2 = new Vector3((ConstantHeroHealthLocalScale * heroTotalHealth / 
-		                             ConstantHeroHealth).x,
-		                            ConstantHeroHealthLocalScale.y,
-		                            ConstantHeroHealthLocalScale.z);
+		Vector3 temp2 = new Vector3((ConstantEnemyHealthLocalScale * enemyTotalHealth / 
+		                             ConstantEnemyHealth).x,
+		                            ConstantEnemyHealthLocalScale.y,
+		                            ConstantEnemyHealthLocalScale.z);
 		globalEnemyHealthBar.transform.localScale = temp2; 
 	}
 

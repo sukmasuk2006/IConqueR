@@ -10,7 +10,7 @@ public class UnlockSkill : MonoBehaviour {
 	public Sprite deselectedSprite;
 	public SpriteRenderer renderer;
 	public UnlockCostController costController;
-	public GameObject upgradeBtn;
+//	public GameObject upgradeBtn;
 
 	void Start(){
 		Debug.Log ("awal2 slot " + slot + " isunlock " + GameData.skillList [slot].IsUnlocked + " selec " + GameData.skillList [slot].IsSelected);
@@ -29,7 +29,7 @@ public class UnlockSkill : MonoBehaviour {
 				GameData.skillList [slot].IsUnlocked = true;
 				GameData.skillList[slot].IsSelected = false;
 				frame.SetActive (false);
-				upgradeBtn.SetActive(true);	
+				//upgradeBtn.SetActive(true);	
 				GameData.unlockSkillCost = GameConstant.BASE_PRICE * 10;
 				costController.SendMessage ("UpdateCost");
 				renderer.sprite = deselectedSprite;

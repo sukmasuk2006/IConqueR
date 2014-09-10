@@ -8,7 +8,6 @@ public class SkillSlotController : MonoBehaviour {
 	public int skillSlot;
 	private bool skillState = false;
 	public Sprite unlockedSprite;
-	public GameObject upgradeButton;
 
 	// Use this for initialization
 	void Start () {
@@ -16,7 +15,6 @@ public class SkillSlotController : MonoBehaviour {
 		if (GameData.skillList [skillSlot].IsUnlocked) {
 			skillState = true;
 			skillLockedFrame.SetActive(false);
-			upgradeButton.SetActive(true);
 		}
 	}
 }

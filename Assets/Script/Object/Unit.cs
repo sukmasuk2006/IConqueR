@@ -18,13 +18,9 @@ public class Unit : UnitStatus {
 	}
 
 	private void InitializeHero(){
-		Debug.Log ("X! " + name);
 		TextAsset txt = (TextAsset)Resources.Load ("Data/Unit/" + name.Trim(), typeof(TextAsset));
-		Debug.Log ("X2 " + name);
 		string content = txt.text;
-		Debug.Log ("X3 " + name);
 		string[] linesFromFile = content.Split ("\n" [0]);
-		Debug.Log ("X4 " + name);
 
 		nextExp = 10;
 		currentExp = 0;
@@ -40,10 +36,11 @@ public class Unit : UnitStatus {
 		healthPoint = (str + vit * 2) * 10;
 		attackPoint = str  *3;
 		defensePoint = vit * 3;
-		attackSpeed = float.Parse( Round(3.5f - (agi - 1f) * 0.025f).ToString());
+		//
+		attackSpeed = float.Parse( Round(2f - (agi - 1f) * 0.015f).ToString());
 		critical =  float.Parse( Round((str + agi *2 ) / 3).ToString());
 		evasionRate = float.Parse(Round((vit + agi *2 ) / 3).ToString());
-		movement = float.Parse(Round((agi + agi *2 ) / 3).ToString());
+		movement = float.Parse(Round((agi + agi *2 )).ToString());
 	}
 	
 	private double Round(float value){
