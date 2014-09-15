@@ -5,17 +5,11 @@ public class GameData : MonoBehaviour {
 	
 	// HERO STATS
 	public static int currentLevel = 1;
+	public static int currentMission = 1;
 	public static float currentExp = 0;
-	public static float nextExp = 10;
 	public static int gold = 0;
 	public static int diamond = 0;
 	public static string name = "";
-
-	public static List<Item> shopList;
-	public static List<Item> inventoryList;
-	public static List<string> heroesList;
-	public static List<Gem> weaponSlotContentList;
-	public static List<Quest> questList;
 
 	// GAME STATS
 	public static bool isFirstPlay = true;
@@ -30,11 +24,18 @@ public class GameData : MonoBehaviour {
 	public static string gameState = "LOGO";
 
 	private string[] linesFromFile;
-
+	
+	public static List<Item> shopList;
+	public static List<Item> inventoryList;
+	public static List<Gem> weaponSlotContentList;
+	public static List<Quest> questList;
+	public static List<int> expList;
+	public static List<Mission> missionList;
 	public static List<Unit> unitList;
 	public static List<Unit> enemyList;
+	public static List<FormationUnit> formationList;
 	public static List<Skill> skillList;
-	
+
 
 	// Use this for initialization
 	void Start () {
@@ -44,25 +45,26 @@ public class GameData : MonoBehaviour {
 	void Awake(){
 		InitializeGameData ();
 		LoadData ();
+		Debug.Log ("Data initialized");
 	}
 
 	void LoadData(){
 		if (PlayerPrefs.HasKey ("name")) {
 			name = PlayerPrefs.GetString ("name");
 			isFirstPlay = false;
-			Debug.Log("nama " + name + " is first " + isFirstPlay);
+	//		Debug.Log("nama " + name + " is first " + isFirstPlay);
 		} 
 		else {
 			isFirstPlay = true;				
-			Debug.Log("first play");
+	//		Debug.Log("first play");
 		}
 		if (PlayerPrefs.HasKey ("level")) {
 			currentLevel = PlayerPrefs.GetInt ("level");
-			Debug.Log("level diatas 1");
+	//		Debug.Log("level diatas 1");
 		} 
 		if (PlayerPrefs.HasKey ("exp")) {
 			currentExp = PlayerPrefs.GetFloat ("exp");
-			Debug.Log("ada exp");
+	//		Debug.Log("ada exp");
 		} 
 		/*
 			next exp = load dari data di notepad
@@ -80,18 +82,42 @@ public class GameData : MonoBehaviour {
 
 	void InitializeGameData(){
 		/*INIT*/
+		linesFromFile = null;
 		GameData.unlockHeroCost = GameConstant.BASE_PRICE * GameData.unlockedHeroes * 2;
 
-		/*HERO DATA*/
+		expList = new List<int> ();
+		TextAsset etxt = (TextAsset)Resources.Load ("Data/Exp/hero", typeof(TextAsset));
+		string econtent = etxt.text;
+		linesFromFile = econtent.Split ("\n" [0]);
+		for (int i = 0; i < linesFromFile.Length; i++) {
+			expList.Add(int.Parse(linesFromFile[i]));		
+		}
+
+		linesFromFile = null;
+		missionList = new List<Mission> ();
+		TextAsset metxt = (TextAsset)Resources.Load ("Data/Mission/list", typeof(TextAsset));
+		string mecontent = metxt.text;
+		linesFromFile = mecontent.Split ("\n" [0]);
+		for (int i = 0; i < linesFromFile.Length; i++) {
+			missionList.Add(new Mission(linesFromFile[i]));		
+		}
+
+		
+		/*HERO DATA & FORMATIOn*/
+		linesFromFile = null;
 		unitList = new List<Unit> ();
+		formationList = new List<FormationUnit> ();
 		TextAsset txt = (TextAsset)Resources.Load ("Data/Unit/list", typeof(TextAsset));
 		string content = txt.text;
 		linesFromFile = content.Split ("\n" [0]);
 		
 		for (int i = 0; i < linesFromFile.Length; i++) {
-			unitList.Add(new Unit(linesFromFile[i]));		
+			unitList.Add(new Unit(linesFromFile[i].Trim()));		
+			formationList.Add(new FormationUnit(new Unit(linesFromFile[i].Trim())));		
 		}
-		unitList [4].IsUnlocked = true;
+		unitList [0].IsUnlocked = true;
+		unitList [0].IsActive = true;
+		formationList [0].IsUnlocked = true;
 
 		/*ENEMY DATA*/
 		enemyList = new List<Unit> ();
@@ -99,7 +125,7 @@ public class GameData : MonoBehaviour {
 		for (int i = 0; i < linesFromFile.Length; i++) {
 			enemyList.Add(new Unit(linesFromFile[i]));		
 		}
-		enemyList [4].IsUnlocked = true;
+		enemyList [0].IsUnlocked = true;
 
 		/*SKILL DATA*/
 		linesFromFile = null;
@@ -108,7 +134,7 @@ public class GameData : MonoBehaviour {
 		string skillContent = skillTxt.text;
 		linesFromFile = skillContent.Split ("\n"[0]);
 		for (int i = 0; i < linesFromFile.Length; i++) {
-			Debug.Log ("len " + linesFromFile[i]);
+	//		Debug.Log ("len " + linesFromFile[i]);
 			skillList.Add(new Skill(1,linesFromFile[i]));		
 		}
 		skillList [0].IsUnlocked = true;
@@ -122,9 +148,10 @@ public class GameData : MonoBehaviour {
 		string shopContent = shopTxt.text;
 		linesFromFile = shopContent.Split ("\n"[0]);
 		for (int i = 0; i < linesFromFile.Length; i++) {
-			Debug.Log ("len " + linesFromFile[i]);
+	//		Debug.Log ("len " + linesFromFile[i]);
 			shopList.Add(new Gem(linesFromFile[i]));		
 		}
+
 
 		/*INVENTORY*/
 		inventoryList = new List<Item> ();
@@ -139,11 +166,11 @@ public class GameData : MonoBehaviour {
 		string questContent = questTxt.text;
 		linesFromFile = questContent.Split ("\n"[0]);
 		for (int i = 0; i < linesFromFile.Length; i++) {
-			Debug.Log ("len " + linesFromFile[i]);
+	//		Debug.Log ("len " + linesFromFile[i]);
 			questList.Add(new Quest(linesFromFile[i]));		
 		}
 		// TESTING
-		gold = 10000;
+		gold = 5000;
 		//GameData.unlockedHeroes = GameData.unitList.Count;
 
 	}

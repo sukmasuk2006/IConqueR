@@ -9,7 +9,6 @@ public class MainMapController : MonoBehaviour {
 	public GameObject MainMapScreen;
 	//public GameObject raidTimer;
 	private float raidTimerYPos;
-	public TextMesh goldText,diamondText;
 	private float timerMovespeed;
 
 	// Use this for initialization
@@ -17,8 +16,7 @@ public class MainMapController : MonoBehaviour {
 		GameData.gameState = GameConstant.MAP_STATE;
 		//raidTimer.transform.position = GameData.raidTimePos;
 		//raidTimerYPos = raidTimer.transform.position.y;
-		goldText.text = GameData.gold.ToString ();		
-		diamondText.text = GameData.diamond.ToString ();
+
 		AutoSaveData ();
 	//	iTween.MoveTo (zombie_timer, iTween.Hash ("position", new Vector3 (-2,zombie_timer.transform.position.y,-1), "time",GameData.raidTime,"EaseType","linear"));
 	}

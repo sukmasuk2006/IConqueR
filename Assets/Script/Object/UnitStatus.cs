@@ -45,6 +45,7 @@ public class UnitStatus  {
 
 	// automatic stats
 	protected float healthPoint; /* (1 str + 2 vit )x 10*/
+	protected float maxHealthPoint;
 	protected float attackPoint; /* 3 str */
 	protected float defensePoint; /* 3 vit */
 	protected float attackSpeed; /* 3 agi */
@@ -52,6 +53,16 @@ public class UnitStatus  {
 	protected float evasionRate; /* 2 agi + 1 vit */
 	protected float movement;
 	private double val;
+
+	public float MaxHealthPoint {
+		get {
+			return maxHealthPoint;
+		}
+		set {
+			maxHealthPoint = value;
+		}
+	}
+
 	public float Movement {
 		get {
 			return movement;

@@ -16,26 +16,28 @@ public TextMesh inputtedNameText;
 	
 	// Update is called once per frame
 	void Update () {
-		if (!isKeyboardOpen) {
-			keyboard = TouchScreenKeyboard.Open(inputtedNameText.text,TouchScreenKeyboardType.NamePhonePad);
-			isKeyboardOpen = true;
-		}
+		if (GameData.isFirstPlay) {
+						if (!isKeyboardOpen) {
+								keyboard = TouchScreenKeyboard.Open (inputtedNameText.text, TouchScreenKeyboardType.NamePhonePad);
+								isKeyboardOpen = true;
+						}
 
-		if (isKeyboardOpen) {
-			inputtedNameText.text = keyboard.text;
-		}
+						if (isKeyboardOpen) {
+								inputtedNameText.text = keyboard.text;
+						}
 
-		if (keyboard.done || keyboard.wasCanceled) {
-			inputtedNameText.text = keyboard.text;
+						if (keyboard.done || keyboard.wasCanceled) {
+								inputtedNameText.text = keyboard.text;
 
-		}
-		if ( isDone ){
-			GameData.name = inputtedNameText.text;
-			PlayerPrefs.SetString("name",GameData.name);
-		}
-		if (Input.GetKeyDown (KeyCode.Escape)) {
+						}
+						if (isDone) {
+								GameData.name = inputtedNameText.text;
+								PlayerPrefs.SetString ("name", GameData.name);
+						}
+						if (Input.GetKeyDown (KeyCode.Escape)) {
 
-		}
+						}
+				}
 	}
 
 	private void AddScore(int i){

@@ -9,11 +9,12 @@ public class UnlockSkill : MonoBehaviour {
 	public Sprite selectedSprite;
 	public Sprite deselectedSprite;
 	public SpriteRenderer renderer;
-	public UnlockCostController costController;
+
+	public ProfileController profileController;
 //	public GameObject upgradeBtn;
 
 	void Start(){
-		Debug.Log ("awal2 slot " + slot + " isunlock " + GameData.skillList [slot].IsUnlocked + " selec " + GameData.skillList [slot].IsSelected);
+		//Debug.Log ("awal2 slot " + slot + " isunlock " + GameData.skillList [slot].IsUnlocked + " selec " + GameData.skillList [slot].IsSelected);
 		if (GameData.skillList [slot].IsSelected && GameData.skillList [slot].IsUnlocked) {
 						renderer.sprite = selectedSprite;
 		} else if (!GameData.skillList [slot].IsSelected && GameData.skillList [slot].IsUnlocked) {
@@ -26,14 +27,15 @@ public class UnlockSkill : MonoBehaviour {
 
 		//Debug.Log ("slot " + slot + " isunlock " + GameData.skillList [slot].IsUnlocked + " selec " + GameData.skillList [slot].IsSelected);
 		if (GameData.gold >= GameData.unlockSkillCost && !GameData.skillList [slot].IsUnlocked) {
-				GameData.skillList [slot].IsUnlocked = true;
-				GameData.skillList[slot].IsSelected = false;
-				frame.SetActive (false);
-				//upgradeBtn.SetActive(true);	
-				GameData.unlockSkillCost = GameConstant.BASE_PRICE * 10;
-				costController.SendMessage ("UpdateCost");
-				renderer.sprite = deselectedSprite;
-		} 
+						GameData.skillList [slot].IsUnlocked = true;
+						GameData.skillList [slot].IsSelected = false;
+						frame.SetActive (false);
+						profileController.SendMessage("UpdateGoldAndDiamond");	
+						renderer.sprite = deselectedSprite;
+				
+		} else {
+			Debug.Log("Not enough");			
+		}
 		if (GameData.skillList [slot].IsSelected && GameData.skillList [slot].IsUnlocked  && GameData.totalSkillUsed > 0) {
 			GameData.totalSkillUsed--;
 			renderer.sprite = deselectedSprite;

@@ -20,11 +20,7 @@ public class HeroProfileController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Debug.Log ("start at heroprof");
-		if (GameData.selectedToViewProfileId == 4)
-			upgradeTroopButton.SetActive (false);
-		else
-			expBar.SetActive(false);
+//		Debug.Log ("start at heroprof");
 		Sprite sprite = (Sprite)Resources.Load ("Sprite/Character/Hero/"+GameData.selectedToViewProfileName, typeof(Sprite));
 		spriteRenderer.sprite = sprite;	
 		healthText.text = GameData.unitList [GameData.selectedToViewProfileId].HealthPoint.ToString();
@@ -41,11 +37,6 @@ public class HeroProfileController : MonoBehaviour {
 	}
 
 	public void SetPictureAndStats(){
-		Debug.Log ("start at heroprof");
-		if (GameData.selectedToViewProfileId == 4)
-			upgradeTroopButton.SetActive (false);
-		else
-			expBar.SetActive(false);
 		Sprite sprite = (Sprite)Resources.Load ("Sprite/Character/Hero/"+GameData.selectedToViewProfileName, typeof(Sprite));
 		spriteRenderer.sprite = sprite;	
 		healthText.text = GameData.unitList [GameData.selectedToViewProfileId].HealthPoint.ToString();

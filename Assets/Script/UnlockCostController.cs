@@ -18,6 +18,6 @@ public class UnlockCostController : MonoBehaviour {
 		unlockCostTextSlotOne.text = unlockCostTextSlotTwo.text = 
 		unlockCostTextSlotThree.text = unlockCostTextSlotFour.text = 
 		GameData.unlockHeroCost.ToString ();
-		Debug.Log ("cost updated");
+//		Debug.Log ("cost updated");
 	}
 }

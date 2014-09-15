@@ -2,23 +2,29 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class HomeController : MonoBehaviour {
+public class ProfileController : MonoBehaviour {
 
 	// Use this for initialization
 	
 	public TextMesh goldText;
 	public TextMesh diamondText;
+	public Transform expBar;
+	private float scaleAwal = 1.1f;
+	private float scale = 0f;
+	private float expTujuan;
+
 
 	void Start () {
-		GameData.gameState = "HomeScene";
-		diamondText.text = GameData.diamond.ToString ();
-
+		//Debug.Log ("profile contr current gold " + GameData.gold);
+		UpdateGoldAndDiamond ();
+		expBar.localScale = new Vector3 (scaleAwal * GameData.currentExp / GameData.expList[GameData.currentLevel]
+		                                 , expBar.localScale.y,
+		                                expBar.localScale.z);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		goldText.text = GameData.gold.ToString ();
 
+	public void UpdateGoldAndDiamond(){
+		diamondText.text = GameData.diamond.ToString ();
+		goldText.text = GameData.gold.ToString ();
 	}
 
 	void SetActiveHeroes(){

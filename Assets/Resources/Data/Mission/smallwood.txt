@@ -2,4 +2,3 @@
 100
 1
 knight
-knight

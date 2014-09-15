@@ -21,6 +21,7 @@ public class Skill
 	private bool isUnlocked;
 	private string[] linesFromFile;
 	private bool isSelected;
+	private float cooldown;
 
 	public Skill (int level, string nm)
 	{
@@ -42,6 +43,7 @@ public class Skill
 		int.TryParse(linesFromFile [1],out type);
 		effect = new SkillEffect (int.Parse(linesFromFile [2]),
 		                          int.Parse(linesFromFile [3]));
+		cooldown = float.Parse (linesFromFile [4]);
 	}
 
 	public bool IsSelected {
@@ -104,6 +106,15 @@ public class Skill
 		}
 		set {
 			isUnlocked = value;
+		}
+	}
+
+	public float Cooldown {
+		get {
+			return cooldown;
+		}
+		set {
+			cooldown = value;
 		}
 	}
 }

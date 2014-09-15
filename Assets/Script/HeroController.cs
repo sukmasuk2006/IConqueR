@@ -10,9 +10,9 @@ Bug list
 public class HeroController : MonoBehaviour {
 
 	public List<GameObject> enemyList;
-	public GameplayController gameplayController;
+	public BattleController gameplayController;
 	public GameObject healthBar;
-
+	public SpriteRenderer lockSprite;
 	public Unit stats;
 	//private Animator animator;
 
@@ -33,18 +33,32 @@ public class HeroController : MonoBehaviour {
 		attackSpeed = 0;
 	//	animator = this.GetComponent<Animator>();
 	//	InitializePosition (Random.Range (0, 4));
-		if ( gameObject.name.Contains("hero"))
-			stats = GameData.unitList [slot];
-		else if ( gameObject.name.Contains("enemy"))
-			stats = GameData.enemyList [slot];
-
+		if (gameObject.activeInHierarchy) {
+			healthBar.SetActive (true);
+			lockSprite.enabled = false;
+//			Debug.Log("AKTIF " + name + " " + slot);
+		}
+		if (gameObject.name.Contains ("hero")) {
+		//	if ( gameplayController.activeHeroList[slot] != null ){
+		//		gameplayController.activeHeroList[slot].Refresh();
+			stats = GameData.formationList[slot].Unit;
+			Debug.Log("di hero cont " + slot + " " + stats.HealthPoint);
+		//	}
+		} else if (gameObject.name.Contains ("enemy")) {
+		//	if ( gameplayController.activeEnemyList[slot] != null ){
+		//		gameplayController.activeEnemyList[slot].Refresh();
+				stats = gameplayController.activeEnemyList[slot];
+		//	}
+		}
 		if (stats.Job == "archer" || stats.Job == "mage") {
 			attackType = 1;		
 		}
-		if (!GameData.unitList[slot].IsUnlocked) {
-			healthBar.SetActive (false);
-			gameObject.SetActive(false);
-		}
+
+		// set aktif gak nya
+		//if (!GameData.unitList[slot].IsUnlocked && this.gameObject.name.Contains("hero")) {
+		//	gameObject.SetActive(false);
+		//	healthBar.SetActive (false);
+		//}
 		
 	//	Debug.Log ("str " + stats.Str + " agi " + stats.Agi +"vit " + stats.Vit);
 	//	Debug.Log ("hp " + stats.HealthPoint + "aspd " + stats.AttackSpeed + "crit " + stats.Critical);
@@ -57,33 +71,35 @@ public class HeroController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (this.stats.HealthPoint <= 0) {
-		//	Debug.Log("die");
-			UpdateHealthBar();
-			MoveToGraveyard();
-			this.gameObject.SetActive(false);		
-		}
-		attackSpeed -= Time.deltaTime;
+						if (this.stats.HealthPoint <= 0) {
+								//	Debug.Log("die");
+								UpdateHealthBar ();
+								MoveToGraveyard ();
+								this.gameObject.SetActive (false);		
+						}
+		// jika masih battle
+		if (gameplayController.BatlleState == 0) {
+			attackSpeed -= Time.deltaTime;
 
-		//change animation
-		if (isChangeState) {
-	//		animator.SetInteger("states",states);
-			isChangeState = false;		
-		}
+						//change animation
+						if (isChangeState) {
+								//		animator.SetInteger("states",states);
+								isChangeState = false;		
+						}
 
-		// check attack time
-		if (attackSpeed <= 0 && !isAttack) {
-			isAttack = true;
-			movementSpeed = stats.Movement;
-		}
+						// check attack time
+						if (attackSpeed <= 0 && !isAttack) {
+								isAttack = true;
+								movementSpeed = stats.Movement;
+						}
 
-		// jika attack dorong ke depan
-		if (isAttack) {
-			Attack();
-		}
-		else {
-			PullBack();
-		}
+						// jika attack dorong ke depan
+						if (isAttack) {
+								Attack ();
+						} else {
+								PullBack ();
+						}
+				}
 	}
 	
 	void OnCollisionEnter2D(Collision2D coll) {
@@ -143,7 +159,6 @@ public class HeroController : MonoBehaviour {
 
 	void MoveToGraveyard(){
 		transform.position = new Vector2 (-12f, transform.position.y);
-		//this.gameObject.SetActive(false);		
 	}
 
 	void InitializePosition(int pos){

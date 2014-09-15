@@ -9,6 +9,7 @@ public class Unit : UnitStatus {
 	private int currentExp;
 	private int nextExp;
 	private bool isUnlocked;
+	private bool isActive;
 	private int goldNeeded;
 
 	public Unit(string name):
@@ -22,7 +23,8 @@ public class Unit : UnitStatus {
 		string content = txt.text;
 		string[] linesFromFile = content.Split ("\n" [0]);
 
-		nextExp = 10;
+		isActive = false;
+		nextExp = 100;
 		currentExp = 0;
 		isUnlocked = false;
 		this.level = 1;
@@ -33,7 +35,18 @@ public class Unit : UnitStatus {
 		this.vit = int.Parse( linesFromFile [4]);
 		//status = new Status (str, agi, intel, dex, vit);
 
-		healthPoint = (str + vit * 2) * 10;
+		SetStats ();
+	}
+	public void CopyStats(Unit u){
+		name = u.name;
+		this.str = u.str;
+		this.agi = u.agi;
+		this.vit = u.vit;
+		SetStats ();
+	}
+
+	private void SetStats(){
+		healthPoint = maxHealthPoint = (str + vit * 2) * 3;
 		attackPoint = str  *3;
 		defensePoint = vit * 3;
 		//
@@ -41,6 +54,11 @@ public class Unit : UnitStatus {
 		critical =  float.Parse( Round((str + agi *2 ) / 3).ToString());
 		evasionRate = float.Parse(Round((vit + agi *2 ) / 3).ToString());
 		movement = float.Parse(Round((agi + agi *2 )).ToString());
+	}
+
+	public void Refresh(){
+		healthPoint = maxHealthPoint;
+		Debug.Log ("refresh");
 	}
 	
 	private double Round(float value){
@@ -70,6 +88,11 @@ public class Unit : UnitStatus {
 		}
 		set {
 			currentExp = value;
+			if ( currentExp >= nextExp ){
+				currentExp -= nextExp;
+				level++;
+				nextExp *= 2;
+			}
 		}
 	}
 
@@ -90,4 +113,13 @@ public class Unit : UnitStatus {
 						isUnlocked = value;
 				}
 		}
+
+	public bool IsActive {
+		get {
+			return isActive;
+		}
+		set {
+			isActive = value;
+		}
+	}
 }

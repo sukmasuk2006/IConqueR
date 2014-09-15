@@ -10,7 +10,7 @@ public class LogoSceneController : MonoBehaviour {
 	public float time;
 	// Use this for initialization
 	void Start () {
-		Debug.Log ("di logo " + GameData.isFirstPlay);
+	//	Debug.Log ("di logo " + GameData.isFirstPlay);
 		if (GameData.isFirstPlay) {
 			TweenInputName();
 		}
@@ -30,14 +30,14 @@ public class LogoSceneController : MonoBehaviour {
 
 	public void TweenMainMenu(){
 
-		Debug.Log ("GO");
+	//	Debug.Log ("GO");
 		
 		iTween.MoveTo (tweenedObject, iTween.Hash ("delay",1f,"position", removedObject.transform.position, "time",time));
 		iTween.MoveTo (removedObject, iTween.Hash ("delay",1f,"position", tweenedObject.transform.position, "time", time,"EaseType","linear"));
 	}
 
 	void MoveTarget(){
-		Debug.Log ("GO2");
+	//	Debug.Log ("GO2");
 	
 	}
 
