@@ -4,3 +4,4 @@ EFFECT TIPE SKILL : 1 [DIRECT DAMAGE ]
                     2 [HEAL]
                     3 [ABILITY UP]
 AMOUNT
+CD

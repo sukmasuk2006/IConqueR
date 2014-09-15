@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 6cb8e61270fe6674fabb7da58c949ab9
+guid: f9460361b7af5e04fbbc2983da8219c6
 TextureImporter:
   fileIDToRecycleName:
-    21300000: home_friends_button_hover
+    21300000: Battle_HP_merah
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -35,17 +35,13 @@ TextureImporter:
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
+  alignment: 5
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 40
   alphaIsTransparency: 1
   textureType: 8
-  buildTargetSettings:
-  - buildTarget: iPhone
-    maxTextureSize: 1024
-    textureFormat: -2
-    compressionQuality: 50
+  buildTargetSettings: []
   spriteSheet:
     sprites: []
   spritePackingTag: 

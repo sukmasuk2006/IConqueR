@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 6cb8e61270fe6674fabb7da58c949ab9
+guid: cb93c668f7757d244ba4df45f82f7dbc
 TextureImporter:
   fileIDToRecycleName:
-    21300000: home_friends_button_hover
+    21300000: Battle_BG_mockup
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -41,11 +41,7 @@ TextureImporter:
   spritePixelsToUnits: 40
   alphaIsTransparency: 1
   textureType: 8
-  buildTargetSettings:
-  - buildTarget: iPhone
-    maxTextureSize: 1024
-    textureFormat: -2
-    compressionQuality: 50
+  buildTargetSettings: []
   spriteSheet:
     sprites: []
   spritePackingTag: 
