@@ -3,3 +3,6 @@ warrior
 archer
 tribe
 thief
+monk
+assasin
+hunter

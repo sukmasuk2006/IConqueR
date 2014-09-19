@@ -31,24 +31,17 @@ public class HeroController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		attackSpeed = 0;
-	//	animator = this.GetComponent<Animator>();
-	//	InitializePosition (Random.Range (0, 4));
 		if (gameObject.activeInHierarchy) {
 			healthBar.SetActive (true);
 			lockSprite.enabled = false;
-//			Debug.Log("AKTIF " + name + " " + slot);
 		}
 		if (gameObject.name.Contains ("hero")) {
-		//	if ( gameplayController.activeHeroList[slot] != null ){
-		//		gameplayController.activeHeroList[slot].Refresh();
 			stats = GameData.formationList[slot].Unit;
 			Debug.Log("di hero cont " + slot + " " + stats.HealthPoint);
-		//	}
+			InitializePosition(-1);
 		} else if (gameObject.name.Contains ("enemy")) {
-		//	if ( gameplayController.activeEnemyList[slot] != null ){
-		//		gameplayController.activeEnemyList[slot].Refresh();
 				stats = gameplayController.activeEnemyList[slot];
-		//	}
+			InitializePosition(1);
 		}
 		if (stats.Job == "archer" || stats.Job == "mage") {
 			attackType = 1;		
@@ -158,10 +151,10 @@ public class HeroController : MonoBehaviour {
 	}
 
 	void MoveToGraveyard(){
-		transform.position = new Vector2 (-12f, transform.position.y);
+		transform.position = new Vector2 (-11f, transform.position.y);
 	}
 
 	void InitializePosition(int pos){
-		transform.position = new Vector2 (pos * 0.5f - 4.5f, transform.position.y);
+		transform.position = new Vector2 (9f * pos, transform.position.y);
 	}
 }

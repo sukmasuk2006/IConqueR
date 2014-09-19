@@ -2,3 +2,5 @@ UANG
 STR
 AGI
 VIT
+weaponbasedamage
+range

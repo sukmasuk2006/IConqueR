@@ -24,8 +24,8 @@ public class SimpleButtonTween : MonoBehaviour {
 		//HOTween.To(tweenedObject,0.5f,"position",targetObject.transform.position);
 		if (GameData.readyToTween ) {
 			GameData.readyToTween = false;
-			iTween.MoveTo ( tweenedObject,iTween.Hash("position",targetObject.transform.position,"time", 0.5f,"oncomplete","ReadyTween","oncompletetarget",gameObject));
-			iTween.MoveTo (targetObject, tweenedObject.transform.position,0.5f);		
+			iTween.MoveTo ( tweenedObject,iTween.Hash("position",targetObject.transform.position,"time", 0.1f,"oncomplete","ReadyTween","oncompletetarget",gameObject));
+			iTween.MoveTo (targetObject, tweenedObject.transform.position,0.1f);		
 			GameData.gameState = gameStateTarget;		
 			//HOTween.To( tweenedObject, 8, new TweenParms().Prop( "position", new PlugVector3Path( path ).ClosePath().OrientToPath() ).Loops( -1 ).Ease( EaseType.Linear ).OnStepComplete( PathCycleComplete ) );
 			//HOTween.To(tweenedObject.transform,1,
@@ -33,10 +33,14 @@ public class SimpleButtonTween : MonoBehaviour {
 			//HOTween.To(targetObject.transform,1,
 			//           new TweenParms().Prop("position",tweenedObject.transform.position));                                                          
 		}
-		Debug.Log ("ready " +GameData.readyToTween + "  gamestate " + tweenedObject.name +" " +  GameData.gameState);
+	}
+
+	void OnMouseUp(){
+	
 	}
 
 	void ReadyTween(){
 		GameData.readyToTween = true;
+		Debug.Log ("ready " +GameData.readyToTween + "  gamestate " + tweenedObject.name +" " +  GameData.gameState);
 	}
 }

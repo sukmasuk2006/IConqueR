@@ -5,8 +5,9 @@ public class Item {
 
 	protected string name;
 	protected string desc;
+	protected Sprite sprites;
+	private float successRate;
 	private int price;
-	protected UnitStatus stats;
 
 	public string Name {
 		get {
@@ -32,20 +33,31 @@ public class Item {
 		}
 	}
 
-	public UnitStatus Stats {
-		get {
-			return stats;
-		}
-		set {
-			stats = value;
-		}
-	}
+
 	public int Price {
 		get {
 			return price;
 		}
 		set {
 			price = value;
+		}
+	}
+
+	public Sprite Sprites {
+		get {
+			return sprites;
+		}
+		set {
+			sprites = value;
+		}
+	}
+
+	public float SuccessRate {
+		get {
+			return successRate;
+		}
+		set {
+			successRate = value;
 		}
 	}
 }

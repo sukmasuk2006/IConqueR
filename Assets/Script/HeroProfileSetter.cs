@@ -26,11 +26,15 @@ public class HeroProfileSetter : MonoBehaviour {
 						GameData.selectedToViewProfileId = id;
 						GameData.selectedToViewProfileName = name;
 						GameData.gameState = "HeroProfileScene";
-						iTween.MoveTo ( tweenedObject,iTween.Hash("position",targetObject.transform.position,"time", 0.5f,"oncomplete","MoveTarget","oncompletetarget",gameObject));
-						iTween.MoveTo (targetObject, tweenedObject.transform.position,0.5f);					
+						iTween.MoveTo ( tweenedObject,iTween.Hash("position",targetObject.transform.position,"time", 0.1f,"oncomplete","MoveTarget","oncompletetarget",gameObject));
+						iTween.MoveTo (targetObject, tweenedObject.transform.position,0.1f);					
 						controller.SetPictureAndStats();
 					}
 
 		}
+	}
+
+	void MoveTarget(){
+		GameData.readyToTween = true;
 	}
 }

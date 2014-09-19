@@ -9,16 +9,27 @@ public class BattleController : MonoBehaviour {
 	 */
 	public List<GameObject> heroList;
 	public List<GameObject> enemyList;
+	public List<GameObject> skillList;
+
+	public List<Skill> activeSkill;
+	public List<Unit> activeEnemyList;
+
 	public GameObject globalHeroHealthBar;
 	public GameObject globalEnemyHealthBar;
 	public GameObject reportScreen;
 	public Vector3 reportTargetPosition;	
 	public TextMesh goldTextMesh;
-	public List<Unit> activeEnemyList;
+	public TextMesh diamondText;
+	public TextMesh expEarnedText;
+	public TextMesh winloseText;
+	public GameObject expBar;
+
 	// 0 => battle
 	// 1 => player win
 	// 3=> lose , kenapa 3? biar bisa dibuat pembagi sekalian
 	private int battleState = 0;
+	private int nextExp;
+	private float scaleX;
 	/*
      * Report
 	 */
@@ -29,17 +40,33 @@ public class BattleController : MonoBehaviour {
 	private float enemyTotalHealth;
 	private float ConstantHeroHealth; // untuk menghitung
 	private float ConstantEnemyHealth; // untuk menghitung
-
+	private int goldEarn;
+	private float expEarn;
+	private int diamondEarn;
 	private Mission mission;
+
 	// Use this for initialization
 	void Start () {
+		ScaleExpBar ();
+		Debug.Log ("battle activate");
 
 		mission = GameData.missionList [GameData.currentMission-1];
-		//activeHeroList = new List<Unit> ();
 		activeEnemyList = mission.EnemyList;
-		/*awal2 semua hero aktif, kemudian dicek ada brp yang aktif*/
+		activeSkill = new List<Skill> ();
+		int i = 0,j = 0;
+
+		for ( i =0; i < GameData.skillList.Count; i++) {
+			if ( GameData.skillList[i].IsSelected ){
+				activeSkill.Add(GameData.skillList[i]);
+				skillList[j].SetActive(true);
+				//Debug.Log("selected skill " + i);
+				j++;
+			}
+		}
+
+		/*awal2 semua hero mati, kemudian dicek ada brp yang aktif*/
+		i = 0;
 		GameData.gameState = GameConstant.GAMEPLAY_SCENE;
-		int i = 0;
 		foreach (FormationUnit u in GameData.formationList) {
 				if ( u.IsUnlocked ){
 					GameData.formationList[i].Unit.Refresh();
@@ -138,41 +165,60 @@ public class BattleController : MonoBehaviour {
 
 	// WIINNNN!!
 	void Win(){
+		winloseText.text = "Conquered!";
 		GetReward ();
 		ShowOnReport ();
 		Debug.Log ("win");
 	}
 
 	void Lose(){
+		
+		winloseText.text = "You Lose!";
 		GetReward ();
 		ShowOnReport ();
 		
 		Debug.Log ("lose");
 	}
 
-	void ShowOnReport(){
-		goldTextMesh.text = GameData.gold.ToString ();
-		iTween.MoveTo (reportScreen, iTween.Hash ("position", reportTargetPosition, "time", 1.0f));
-		if (GameData.raidTime <= 0) {
-			GameData.raidTime = 60f; 
-		}
-		
-		mission = null;
+	void GetReward(){
+		goldEarn = mission.GoldReward / battleState;
+		GameData.gold += goldEarn;
+		expEarn = (mission.ExpReward/3)  / battleState;
+		GameData.currentExp += expEarn;
+		diamondEarn = mission.DiamondReward  / battleState;
+		GameData.diamond += diamondEarn;
 	}
 
-	void GetReward(){
-		
-		GameData.gold += mission.GoldReward / battleState;
-		GameData.currentExp += (mission.ExpReward/3)  / battleState;
-		GameData.diamond += mission.DiamondReward  / battleState;
+	void ShowOnReport(){
+		goldTextMesh.text ="+"+goldEarn.ToString ();
+		diamondText.text ="+"+diamondEarn.ToString ();
+		expEarnedText.text ="+"+expEarn.ToString ();
+		iTween.MoveTo (reportScreen, iTween.Hash ("position", reportTargetPosition, "time", 1.0f,"delay",3.0f));
+		ScaleExpBar ();
+		GetExpReward ();
+	}
+
+	void ScaleExpBar(){
 		int nextExp = GameData.expList [GameData.currentLevel - 1];
+		scaleX = GameData.currentExp * 1f / nextExp;
 		if (GameData.currentExp >= nextExp) {
+			scaleX = 1;
 			GameData.currentExp -= nextExp;
 			GameData.currentLevel++;
 		}
+		Vector3 newScale = new Vector3 (scaleX,expBar.transform.localScale.y, expBar.transform.localScale.z);
+		iTween.ScaleTo (expBar, iTween.Hash("scale", newScale,
+		                                    "time", 1.5f,
+		                                    "delay",4.0f));
+
+	}
+
+	void GetExpReward(){
+
 		foreach (Unit u in GameData.unitList) {
 			u.CurrentExp += mission.ExpReward  / battleState;		
 		}
+		mission = null;
 	}
 
 

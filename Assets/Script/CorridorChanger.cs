@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class CorridorChanger : MonoBehaviour {
 
 	public int dir;
-	public GameObject controller;
+	public List<GameObject> controller;
 	public ScreenData data;// Use this for initialization
 
 	void Start () {
@@ -20,11 +20,17 @@ public class CorridorChanger : MonoBehaviour {
 		else if ( dir < 0 && data.corridorState > 0 )
 			data.corridorState--;
 		if (GameData.gameState.Contains ("Shop")) {
-				controller.GetComponent<ShopController> ().UpdateShop ();
+			for ( int i = 0 ; i < controller.Count ; i++ )
+				controller[i].GetComponent<ShopSlotSetter>().UpdateSlot ();
+			Debug.Log("setshop");
+		}
+		else if (GameData.gameState.Contains ("upgrade")) {
+			for ( int i = 0 ; i < controller.Count ; i++ )
+				controller[i].GetComponent<InventorySetter>().UpdateSlot ();
 			Debug.Log("setshop");
 		} else if (GameData.gameState.Contains ("Quest")) {
 			Debug.Log("setquest");
-			controller.GetComponent<QuestController>().SetQuest();					
+			controller[0].GetComponent<QuestController>().SetQuest();					
 		}
 
 	}

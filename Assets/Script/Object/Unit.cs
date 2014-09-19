@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Unit : UnitStatus {
 
@@ -11,6 +12,8 @@ public class Unit : UnitStatus {
 	private bool isUnlocked;
 	private bool isActive;
 	private int goldNeeded;
+	private Weapon weapon;
+	private Sprite sprites;
 
 	public Unit(string name):
 	base(){
@@ -23,6 +26,7 @@ public class Unit : UnitStatus {
 		string content = txt.text;
 		string[] linesFromFile = content.Split ("\n" [0]);
 
+		sprites = (Sprite)Resources.Load ("Sprite/Character/Hero/" + name.Trim (), typeof(Sprite));
 		isActive = false;
 		nextExp = 100;
 		currentExp = 0;
@@ -33,6 +37,7 @@ public class Unit : UnitStatus {
 		this.str = int.Parse( linesFromFile [2]);
 		this.agi = int.Parse( linesFromFile [3]);
 		this.vit = int.Parse( linesFromFile [4]);
+		weapon = new Weapon (name ,float.Parse(linesFromFile[5]),float.Parse(linesFromFile[6]));
 		//status = new Status (str, agi, intel, dex, vit);
 
 		SetStats ();
@@ -54,6 +59,15 @@ public class Unit : UnitStatus {
 		critical =  float.Parse( Round((str + agi *2 ) / 3).ToString());
 		evasionRate = float.Parse(Round((vit + agi *2 ) / 3).ToString());
 		movement = float.Parse(Round((agi + agi *2 )).ToString());
+	}
+	private void LevelUp(){
+		currentExp -= nextExp;
+		level++;
+		nextExp *= 2;
+		str++;
+		agi++;
+		vit++;
+		SetStats ();
 	}
 
 	public void Refresh(){
@@ -89,9 +103,7 @@ public class Unit : UnitStatus {
 		set {
 			currentExp = value;
 			if ( currentExp >= nextExp ){
-				currentExp -= nextExp;
-				level++;
-				nextExp *= 2;
+				LevelUp();
 			}
 		}
 	}
@@ -120,6 +132,25 @@ public class Unit : UnitStatus {
 		}
 		set {
 			isActive = value;
+		}
+	}
+
+
+	public Weapon Weapon {
+		get {
+			return weapon;
+		}
+		set {
+			weapon = value;
+		}
+	}
+
+	public Sprite Sprites {
+		get {
+			return sprites;
+		}
+		set {
+			sprites = value;
 		}
 	}
 }

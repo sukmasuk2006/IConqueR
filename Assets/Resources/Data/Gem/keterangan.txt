@@ -1,0 +1,14 @@
+grade
+price
+STR
+AGI
+VIT
+RATE
+
+ruby str
+opal agi
+sapphire vit
+obsidian str agi
+amethyst str vit
+aquamarine agi vit
+diamond str agi vit

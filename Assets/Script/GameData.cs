@@ -16,7 +16,6 @@ public class GameData : MonoBehaviour {
 	public static bool readyToTween = true;
 	public static float raidTime = 60;
 	public static int unlockedHeroes = 1;
-	public static int unlockHeroCost = 1000;
 	public static int unlockSkillCost = 1000;
 	public static int selectedToViewProfileId = 4;
 	public static int totalSkillUsed = 0;
@@ -83,8 +82,7 @@ public class GameData : MonoBehaviour {
 	void InitializeGameData(){
 		/*INIT*/
 		linesFromFile = null;
-		GameData.unlockHeroCost = GameConstant.BASE_PRICE * GameData.unlockedHeroes * 2;
-
+	
 		expList = new List<int> ();
 		TextAsset etxt = (TextAsset)Resources.Load ("Data/Exp/hero", typeof(TextAsset));
 		string econtent = etxt.text;
@@ -113,7 +111,8 @@ public class GameData : MonoBehaviour {
 		
 		for (int i = 0; i < linesFromFile.Length; i++) {
 			unitList.Add(new Unit(linesFromFile[i].Trim()));		
-			formationList.Add(new FormationUnit(new Unit(linesFromFile[i].Trim())));		
+			if ( i < 5 )
+				formationList.Add(new FormationUnit(new Unit(linesFromFile[0].Trim())));		
 		}
 		unitList [0].IsUnlocked = true;
 		unitList [0].IsActive = true;
@@ -144,12 +143,21 @@ public class GameData : MonoBehaviour {
 		/*SHOP*/
 		linesFromFile = null;
 		shopList = new List<Item> ();
-		TextAsset shopTxt = (TextAsset)Resources.Load ("Data/Item/list", typeof(TextAsset));
+		TextAsset shopTxt = (TextAsset)Resources.Load ("Data/Gem/list", typeof(TextAsset));
 		string shopContent = shopTxt.text;
 		linesFromFile = shopContent.Split ("\n"[0]);
 		for (int i = 0; i < linesFromFile.Length; i++) {
-	//		Debug.Log ("len " + linesFromFile[i]);
+			//		Debug.Log ("len " + linesFromFile[i]);
 			shopList.Add(new Gem(linesFromFile[i]));		
+		}
+
+		linesFromFile = null;
+		TextAsset shop2Txt = (TextAsset)Resources.Load ("Data/Catalyst/list", typeof(TextAsset));
+		string shop2Content = shop2Txt.text;
+		linesFromFile = shop2Content.Split ("\n"[0]);
+		for (int i = 0; i < linesFromFile.Length; i++) {
+			//		Debug.Log ("len " + linesFromFile[i]);
+			shopList.Add(new Catalyst(linesFromFile[i]));		
 		}
 
 

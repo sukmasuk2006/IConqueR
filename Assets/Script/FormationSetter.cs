@@ -16,7 +16,7 @@ public class FormationSetter : MonoBehaviour {
 	void Start () {
 		if (GameData.formationList [slot].IsUnlocked) {
 			heroLock.SetActive (false);
-			ReloadSprite(GameData.formationList[slot].Unit.Name.Trim());
+			ReloadSprite(GameData.formationList[slot].Unit.Sprites);
 		}
 		Debug.Log ("slot isunlock " + slot + " " + GameData.formationList [slot].IsUnlocked);
 	}
@@ -25,13 +25,12 @@ public class FormationSetter : MonoBehaviour {
 		//HOTween.To(tweenedObject,0.5f,"position",targetObject.transform.position);
 		GameData.gameState = "SetFormation";		
 		if (GameData.readyToTween ) {
-			if (!GameData.formationList [slot].IsUnlocked && GameData.gold >= 5000){
+			if (!GameData.formationList [slot].IsUnlocked && GameData.gold >= GameConstant.UNLOCK_SLOT_PRICE){
 				heroLock.SetActive(false);
 				GameData.formationList [slot].IsUnlocked = true;
-				GameData.gold -= 5000;
+				GameData.gold -= GameConstant.UNLOCK_SLOT_PRICE;
 				// awal buka kasih knight
-				GameData.formationList[slot].SetUnit(slot,GameData.unitList[0]);
-				ReloadSprite(GameData.unitList[0].Name);
+				ReloadSprite(GameData.unitList[0].Sprites);
 				profileController.UpdateGoldAndDiamond();
 			}
 			if (GameData.formationList [slot].IsUnlocked ){
@@ -49,8 +48,7 @@ public class FormationSetter : MonoBehaviour {
 		GameData.readyToTween = true;
 	}
 
-	public void ReloadSprite(string name){
-		Sprite sprite = (Sprite)Resources.Load ("Sprite/Character/Hero/" + name, typeof(Sprite));
-		spriteRend.sprite = sprite;
+	public void ReloadSprite(Sprite s){
+		spriteRend.sprite = s;
 	}
 }

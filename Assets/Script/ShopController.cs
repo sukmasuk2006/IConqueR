@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 public class ShopController : MonoBehaviour {
 
-	public GameObject screen;
 	private bool isMouseDown = false;
 
 	public SpriteRenderer item0;
@@ -39,20 +38,20 @@ public class ShopController : MonoBehaviour {
 	}
 
 	public void UpdateShop(){
-		item0.sprite = SetSprite(GameData.shopList[(data.corridorState*4)+0].Name);
-		item1.sprite = SetSprite(GameData.shopList[(data.corridorState*4)+1].Name);
-		item2.sprite = SetSprite(GameData.shopList[(data.corridorState*4)+2].Name);
-		item3.sprite = SetSprite(GameData.shopList[(data.corridorState*4)+3].Name);
+		item0.sprite = SetSprite(GameData.inventoryList[(data.corridorState*4)+0].Name);
+		item1.sprite = SetSprite(GameData.inventoryList[(data.corridorState*4)+1].Name);
+		item2.sprite = SetSprite(GameData.inventoryList[(data.corridorState*4)+2].Name);
+		item3.sprite = SetSprite(GameData.inventoryList[(data.corridorState*4)+3].Name);
 		
-		item0Name.text = GameData.shopList[(data.corridorState*4)+0].Name;
-		item1Name.text = GameData.shopList[(data.corridorState*4)+1].Name;
-		item2Name.text = GameData.shopList[(data.corridorState*4)+2].Name;
-		item3Name.text = GameData.shopList[(data.corridorState*4)+3].Name;
+		item0Name.text = GameData.inventoryList[(data.corridorState*4)+0].Name;
+		item1Name.text = GameData.inventoryList[(data.corridorState*4)+1].Name;
+		item2Name.text = GameData.inventoryList[(data.corridorState*4)+2].Name;
+		item3Name.text = GameData.inventoryList[(data.corridorState*4)+3].Name;
 		
-		item0Price.text = GameData.shopList[(data.corridorState*4)+0].Price.ToString();
-		item1Price.text = GameData.shopList[(data.corridorState*4)+1].Price.ToString();
-		item2Price.text = GameData.shopList[(data.corridorState*4)+2].Price.ToString();
-		item3Price.text = GameData.shopList[(data.corridorState*4)+3].Price.ToString();
+		item0Price.text = GameData.inventoryList[(data.corridorState*4)+0].Price.ToString();
+		item1Price.text = GameData.inventoryList[(data.corridorState*4)+1].Price.ToString();
+		item2Price.text = GameData.inventoryList[(data.corridorState*4)+2].Price.ToString();
+		item3Price.text = GameData.inventoryList[(data.corridorState*4)+3].Price.ToString();
 	}
 
 	// Update is called once per frame

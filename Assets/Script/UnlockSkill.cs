@@ -11,7 +11,6 @@ public class UnlockSkill : MonoBehaviour {
 	public SpriteRenderer renderer;
 
 	public ProfileController profileController;
-//	public GameObject upgradeBtn;
 
 	void Start(){
 		//Debug.Log ("awal2 slot " + slot + " isunlock " + GameData.skillList [slot].IsUnlocked + " selec " + GameData.skillList [slot].IsSelected);

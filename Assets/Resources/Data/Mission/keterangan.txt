@@ -1,8 +1,4 @@
-Mission
-
-nama
-isOpen
-isComplete
-rewardMoney
-rewardExp
-list enemy
+reward exp
+reward gold
+reward diamond
+List<enemy>

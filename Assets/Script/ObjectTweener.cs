@@ -23,7 +23,7 @@ public class ObjectTweener : MonoBehaviour {
 		else if ( dir > 0 && data.corridorState < 0 )
 			data.corridorState++;
 		iTween.MoveTo ( obj,iTween.Hash("position",new Vector3(corridorSize*data.corridorState,
-		                                                       -1.1f,-1),"time",time));
+		                                                       -1.4f,-1),"time",time));
 
 	}
 }

@@ -21,8 +21,8 @@ public class HeroProfileController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 //		Debug.Log ("start at heroprof");
-		Sprite sprite = (Sprite)Resources.Load ("Sprite/Character/Hero/"+GameData.selectedToViewProfileName, typeof(Sprite));
-		spriteRenderer.sprite = sprite;	
+//		Sprite sprite = (Sprite)Resources.Load ("Sprite/Character/Hero/"+GameData.selectedToViewProfileName, typeof(Sprite));
+		spriteRenderer.sprite = GameData.unitList [GameData.selectedToViewProfileId].Sprites;	
 		healthText.text = GameData.unitList [GameData.selectedToViewProfileId].HealthPoint.ToString();
 		strText.text = GameData.unitList [GameData.selectedToViewProfileId].Str.ToString();
 		vitText.text = GameData.unitList [GameData.selectedToViewProfileId].Vit.ToString();
