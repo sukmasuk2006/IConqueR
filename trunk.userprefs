@@ -1,15 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\FormationSetter.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Object\Unit.cs">
     <Files>
-      <File FileName="Assets\Script\Utility\SimpleButtonTween.cs" Line="29" Column="40" />
-      <File FileName="Assets\Script\HeroProfileSetter.cs" Line="24" Column="31" />
-      <File FileName="Assets\Script\GameData.cs" Line="116" Column="69" />
-      <File FileName="Assets\Script\Object\FormationUnit.cs" Line="22" Column="13" />
-      <File FileName="Assets\Script\Object\Unit.cs" Line="45" Column="15" />
-      <File FileName="Assets\Script\ScreenData.cs" Line="8" Column="27" />
-      <File FileName="Assets\Script\FormationSetter.cs" Line="43" Column="12" />
-      <File FileName="Assets\SetHeroOnFormation.cs" Line="9" Column="2" />
+      <File FileName="Assets\Script\UpgradeWeaponController.cs" Line="102" Column="3" />
+      <File FileName="Assets\Script\Object\Unit.cs" Line="45" Column="32" />
+      <File FileName="Assets\Script\Object\Weapon.cs" Line="14" Column="12" />
+      <File FileName="Assets\Script\Object\Item.cs" Line="4" Column="1" />
+      <File FileName="Assets\Script\UpgradeWeapon.cs" Line="24" Column="1" />
+      <File FileName="Assets\Script\Object\Gem.cs" Line="31" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
