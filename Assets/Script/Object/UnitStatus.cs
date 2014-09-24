@@ -52,7 +52,37 @@ public class UnitStatus  {
 	protected float critical;  /* 1 str + 2 agi */
 	protected float evasionRate; /* 2 agi + 1 vit */
 	protected float movement;
+	protected float maxMovement;
+	protected float pushForce;
+	protected float critChance;
 	private double val;
+
+	public float CritChance {
+		get {
+			return critChance;
+		}
+		set {
+			critChance = value;
+		}
+	}
+
+	public float PushForce {
+		get {
+			return pushForce;
+		}
+		set {
+			pushForce = value;
+		}
+	}
+
+	public float MaxMovement {
+		get {
+			return maxMovement;
+		}
+		set {
+			maxMovement = value;
+		}
+	}
 
 	public float MaxHealthPoint {
 		get {

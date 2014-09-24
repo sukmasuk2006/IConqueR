@@ -24,7 +24,7 @@ public class Catalyst : Item
 		string[] linesFromFile = null;
 		TextAsset txt = (TextAsset)Resources.Load ("Data/Catalyst/"+ name.Trim(), typeof(TextAsset));
 		sprites = (Sprite)Resources.Load ("Sprite/Catalyst/" + name.Trim (), typeof(Sprite));
-		Debug.Log ("added catalyst " + name);
+		//Debug.Log ("added catalyst " + name);
 		string content = txt.text;
 		linesFromFile = content.Split ("\n" [0]);
 		desc = linesFromFile [0];

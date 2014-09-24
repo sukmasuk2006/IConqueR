@@ -16,7 +16,7 @@ public class Gem : Item {
 	private void InitializeGem(){
 		string[] linesFromFile = null;
 		TextAsset txt = (TextAsset)Resources.Load ("Data/Gem/"+ name.Trim(), typeof(TextAsset));
-		Debug.Log ("added " + name);
+		//Debug.Log ("added " + name);
 		string content = txt.text;
 		sprites = (Sprite)Resources.Load ("Sprite/Gems/" + name.Trim (), typeof(Sprite));
 		linesFromFile = content.Split ("\n" [0]);

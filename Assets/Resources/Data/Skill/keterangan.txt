@@ -1,7 +1,8 @@
 DESC
-TIPE ATK SKILL: 1 [SELF] / 2 [ENEMY]
-EFFECT TIPE SKILL : 1 [DIRECT DAMAGE ] 
-                    2 [HEAL]
-                    3 [ABILITY UP]
+TIPE ATK SKILL: 1 [ENEMY] / 2 [SELF]
+EFFECT TIPE SKILL : 1 atk 
+                    2 def
+                    3 critical
+                    4 evasion
 AMOUNT
 CD

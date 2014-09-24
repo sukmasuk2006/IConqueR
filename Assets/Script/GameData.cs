@@ -4,12 +4,8 @@ using System.Collections.Generic;
 public class GameData : MonoBehaviour {
 	
 	// HERO STATS
-	public static int currentLevel = 1;
-	public static int currentMission = 1;
-	public static float currentExp = 0;
-	public static int gold = 0;
-	public static int diamond = 0;
-	public static string name = "";
+
+	public static ProfileData profile;
 
 	// GAME STATS
 	public static bool isFirstPlay = true;
@@ -44,12 +40,12 @@ public class GameData : MonoBehaviour {
 	void Awake(){
 		InitializeGameData ();
 		LoadData ();
-		Debug.Log ("Data initialized");
+//		Debug.Log ("Data initialized " + profile.Gold);
 	}
 
 	void LoadData(){
 		if (PlayerPrefs.HasKey ("name")) {
-			name = PlayerPrefs.GetString ("name");
+			profile.Name = PlayerPrefs.GetString ("name");
 			isFirstPlay = false;
 	//		Debug.Log("nama " + name + " is first " + isFirstPlay);
 		} 
@@ -58,22 +54,22 @@ public class GameData : MonoBehaviour {
 	//		Debug.Log("first play");
 		}
 		if (PlayerPrefs.HasKey ("level")) {
-			currentLevel = PlayerPrefs.GetInt ("level");
+			profile.Level = PlayerPrefs.GetInt ("level");
 	//		Debug.Log("level diatas 1");
 		} 
 		if (PlayerPrefs.HasKey ("exp")) {
-			currentExp = PlayerPrefs.GetFloat ("exp");
+			profile.CurrentExp = PlayerPrefs.GetInt ("exp");
 	//		Debug.Log("ada exp");
 		} 
 		/*
 			next exp = load dari data di notepad
 		 */
 
-		if (PlayerPrefs.HasKey ("gold")) {
-			diamond = PlayerPrefs.GetInt("gold");	
-		}
+	//	if (PlayerPrefs.HasKey ("gold")) {
+	//		profile.Gold = PlayerPrefs.GetInt("gold");	
+	//	}
 		if (PlayerPrefs.HasKey ("diamond")) {
-			diamond = PlayerPrefs.GetInt("diamond");	
+			profile.Diamond = PlayerPrefs.GetInt("diamond");	
 		}
 
 
@@ -81,8 +77,7 @@ public class GameData : MonoBehaviour {
 
 	void InitializeGameData(){
 		/*INIT*/
-		linesFromFile = null;
-	
+
 		expList = new List<int> ();
 		TextAsset etxt = (TextAsset)Resources.Load ("Data/Exp/hero", typeof(TextAsset));
 		string econtent = etxt.text;
@@ -90,6 +85,9 @@ public class GameData : MonoBehaviour {
 		for (int i = 0; i < linesFromFile.Length; i++) {
 			expList.Add(int.Parse(linesFromFile[i]));		
 		}
+		profile = new ProfileData ();
+		profile.NewData ("");
+		linesFromFile = null;
 
 		linesFromFile = null;
 		missionList = new List<Mission> ();
@@ -178,7 +176,8 @@ public class GameData : MonoBehaviour {
 			questList.Add(new Quest(linesFromFile[i]));		
 		}
 		// TESTING
-		gold = 5000;
+		profile.Gold = 50000;
+	//	Debug.Log ("gold skrg " + profile.Gold);
 		//GameData.unlockedHeroes = GameData.unitList.Count;
 
 	}

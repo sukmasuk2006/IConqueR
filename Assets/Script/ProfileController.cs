@@ -17,14 +17,14 @@ public class ProfileController : MonoBehaviour {
 	void Start () {
 		//Debug.Log ("profile contr current gold " + GameData.gold);
 		UpdateGoldAndDiamond ();
-		expBar.localScale = new Vector3 (scaleAwal * GameData.currentExp / GameData.expList[GameData.currentLevel]
+		expBar.localScale = new Vector3 (scaleAwal * GameData.profile.CurrentExp / GameData.expList[GameData.profile.Level]
 		                                 , expBar.localScale.y,
 		                                expBar.localScale.z);
 	}
 
 	public void UpdateGoldAndDiamond(){
-		diamondText.text = GameData.diamond.ToString ();
-		goldText.text = GameData.gold.ToString ();
+		diamondText.text = GameData.profile.Diamond.ToString ();
+		goldText.text = GameData.profile.Gold.ToString ();
 	}
 
 	void SetActiveHeroes(){

@@ -12,6 +12,6 @@ public class MissonSetter : MonoBehaviour {
 	// pake int, soalnya udah urut
 
 	void OnMouseDown(){
-		GameData.currentMission = curr;
+		GameData.profile.CurrentMission = curr;
 	}
 }

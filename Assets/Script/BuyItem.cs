@@ -13,8 +13,8 @@ public class BuyItem : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
-		if (GameData.gold - GameData.shopList [(data.corridorState * 4) + slot].Price >= 0) {
-						GameData.gold -= GameData.shopList [(data.corridorState * 4) + slot].Price;
+		if (GameData.profile.Gold - GameData.shopList [(data.corridorState * 4) + slot].Price >= 0) {
+						GameData.profile.Gold -= GameData.shopList [(data.corridorState * 4) + slot].Price;
 						GameData.inventoryList.Add (GameData.shopList [(data.corridorState * 4) + slot]);
 						profileController.SendMessage("UpdateGoldAndDiamond");	
 						Debug.Log ("purchased in inventory " + GameData.inventoryList [GameData.inventoryList.Count-1].Name);

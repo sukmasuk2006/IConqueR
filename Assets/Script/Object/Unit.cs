@@ -1,6 +1,5 @@
 using UnityEngine;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 public class Unit : UnitStatus {
@@ -14,6 +13,8 @@ public class Unit : UnitStatus {
 	private int goldNeeded;
 	private Weapon weapon;
 	private Sprite sprites;
+	private Sprite icon;
+	private bool isCritical;
 
 	public Unit(string name):
 	base(){
@@ -25,8 +26,9 @@ public class Unit : UnitStatus {
 		TextAsset txt = (TextAsset)Resources.Load ("Data/Unit/" + name.Trim(), typeof(TextAsset));
 		string content = txt.text;
 		string[] linesFromFile = content.Split ("\n" [0]);
-
+		
 		sprites = (Sprite)Resources.Load ("Sprite/Character/Hero/" + name.Trim (), typeof(Sprite));
+		icon = (Sprite)Resources.Load ("Sprite/Character Icon/" + name.Trim (), typeof(Sprite));
 		isActive = false;
 		nextExp = 100;
 		currentExp = 0;
@@ -51,14 +53,17 @@ public class Unit : UnitStatus {
 	}
 
 	private void SetStats(){
-		healthPoint = maxHealthPoint = (str + vit * 2) * 3;
-		attackPoint = str  *3;
-		defensePoint = vit * 3;
+		isCritical = false;
+		healthPoint = maxHealthPoint = ((str + vit * 2) * 3) + 108f; //  min 117 max 999
+		attackPoint = str  * 2 + 57; // min 59 max 255
+		defensePoint = vit * 2 + 57; // min 59 max 255
 		//
-		attackSpeed = float.Parse( Round(2f - (agi - 1f) * 0.015f).ToString());
-		critical =  float.Parse( Round((str + agi *2 ) / 3).ToString());
-		evasionRate = float.Parse(Round((vit + agi *2 ) / 3).ToString());
-		movement = float.Parse(Round((agi + agi *2 )).ToString());
+		attackSpeed = float.Parse( Round(2.5f - (agi - 1f) * 0.020408f).ToString()); // min 2.5f max 0.5f  
+		critical =  float.Parse( Round(((str + agi *2 ) / 3)*0.55f).ToString()); // min 1 max 55 
+		critChance = critical;
+		evasionRate = float.Parse(Round(((vit + agi *2 ) / 3)*0.55f).ToString()); // min 1 max 55
+		movement = float.Parse(Round(( (Agi * 2 ) + 200f )).ToString()); // 200f 400f
+		pushForce = (0.18f * agi)+ 2f; // min 2f max 20 
 	}
 	private void LevelUp(){
 		currentExp -= nextExp;
@@ -70,9 +75,63 @@ public class Unit : UnitStatus {
 		SetStats ();
 	}
 
+	public bool IsCritical {
+		get {
+			return isCritical;
+		}
+		set {
+			isCritical = value;
+		}
+	}
+
+	public float Damage{
+		get 
+		{
+			float dmg = attackPoint + weapon.Damage;
+			int isCrit = UnityEngine.Random.Range(0,99);
+			if ( isCrit < CritChance ){
+				dmg*=2;
+				critChance = critical;
+				isCritical = true;
+			//	Debug.Log("CRITICAL ? " + isCrit+ " " + CritChance);
+				// jika critical, chance balik ke awal
+			}
+			else{
+				critChance++;
+				isCritical = false;
+				// jika tidak crit, tingkatkan tingkat critical
+			}
+			return dmg;
+		}
+	}
+
+	public float ReceiveDamage(float dmg, bool crit){
+		int isEvade = UnityEngine.Random.Range(0,99);
+		float returnDamage = dmg;
+				if (isEvade >= evasionRate || crit) 
+				{
+				returnDamage -= defensePoint;
+				HealthPoint -= returnDamage; 
+						// jika gagal eva, kena dmg
+				} else if (isEvade < evasionRate && !crit) {
+					returnDamage = 0;
+			// jika sukses dan tidak crit
+				} 
+		return returnDamage;
+	}
+
+	public Sprite Icon {
+		get {
+			return icon;
+		}
+		set {
+			icon = value;
+		}
+	}
+
 	public void Refresh(){
 		healthPoint = maxHealthPoint;
-		Debug.Log ("refresh");
+//		Debug.Log ("refresh");
 	}
 	
 	private double Round(float value){

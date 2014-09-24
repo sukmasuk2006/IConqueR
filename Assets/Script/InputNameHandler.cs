@@ -31,8 +31,8 @@ public TextMesh inputtedNameText;
 
 						}
 						if (isDone) {
-								GameData.name = inputtedNameText.text;
-								PlayerPrefs.SetString ("name", GameData.name);
+								GameData.profile.Name = inputtedNameText.text;
+								PlayerPrefs.SetString ("name", GameData.profile.Name);
 						}
 						if (Input.GetKeyDown (KeyCode.Escape)) {
 

@@ -7,16 +7,20 @@ public class BattleController : MonoBehaviour {
 	/*
 	 * Gameplay
 	 */
+	public GameObject reportScreen;
+	public GameObject levelUpScreen;
+	public GameObject itemGained;
+	public SpriteRenderer itemGainedSprite;
+	public TextMesh itemName;
+
+	public GameObject globalHeroHealthBar;
+	public GameObject globalEnemyHealthBar;
 	public List<GameObject> heroList;
 	public List<GameObject> enemyList;
 	public List<GameObject> skillList;
 
 	public List<Skill> activeSkill;
 	public List<Unit> activeEnemyList;
-
-	public GameObject globalHeroHealthBar;
-	public GameObject globalEnemyHealthBar;
-	public GameObject reportScreen;
 	public Vector3 reportTargetPosition;	
 	public TextMesh goldTextMesh;
 	public TextMesh diamondText;
@@ -44,13 +48,14 @@ public class BattleController : MonoBehaviour {
 	private float expEarn;
 	private int diamondEarn;
 	private Mission mission;
+	private int isGetReward;
 
 	// Use this for initialization
 	void Start () {
-		ScaleExpBar ();
-		Debug.Log ("battle activate");
-
-		mission = GameData.missionList [GameData.currentMission-1];
+		//		Debug.Log ("battle activate");
+		isGetReward = 0;
+		battleState = 0;
+		mission = GameData.missionList [GameData.profile.CurrentMission-1];
 		activeEnemyList = mission.EnemyList;
 		activeSkill = new List<Skill> ();
 		int i = 0,j = 0;
@@ -77,7 +82,7 @@ public class BattleController : MonoBehaviour {
 					heroTotalHealth += u.Unit.HealthPoint;
 					i++;
 				}
-			Debug.Log("unlocked hero " + i + " " + GameData.formationList[i].Unit.HealthPoint);
+//			Debug.Log("unlocked hero " + i + " " + GameData.formationList[i].Unit.HealthPoint);
 
 		}
 		i = 0;
@@ -95,7 +100,9 @@ public class BattleController : MonoBehaviour {
 		//Debug.Log ("health awal" + heroTotalHealth);
 		ConstantHeroHealth = heroTotalHealth;
 		ConstantEnemyHealth = enemyTotalHealth;
-		Debug.Log ("start mission");
+//		Debug.Log ("start mission");
+		ScaleExpBar ();
+
 	}
 
 
@@ -166,9 +173,11 @@ public class BattleController : MonoBehaviour {
 	// WIINNNN!!
 	void Win(){
 		winloseText.text = "Conquered!";
+		// win, kadang dapat kadang kaga
+		isGetReward = Random.Range (0, 99);
 		GetReward ();
 		ShowOnReport ();
-		Debug.Log ("win");
+		Debug.Log ("win " + isGetReward);
 	}
 
 	void Lose(){
@@ -182,13 +191,22 @@ public class BattleController : MonoBehaviour {
 
 	void GetReward(){
 		goldEarn = mission.GoldReward / battleState;
-		GameData.gold += goldEarn;
-		expEarn = (mission.ExpReward/3)  / battleState;
-		GameData.currentExp += expEarn;
+		GameData.profile.Gold += goldEarn;
+		expEarn = (mission.ExpReward)  / battleState;
+		GameData.profile.CurrentExp += (int)expEarn;
 		diamondEarn = mission.DiamondReward  / battleState;
-		GameData.diamond += diamondEarn;
+		GameData.profile.Diamond += diamondEarn;
+		if (isGetReward % 2 == 1) {
+			int get = mission.GetReward;
+			itemGained.SetActive(true);
+			itemGainedSprite.sprite = GameData.shopList[get].Sprites;
+			itemName.text = GameData.shopList[get].Name;
+			GameData.inventoryList.Add(GameData.shopList[get]);
+			Debug.Log("get reward");
+		}
+		
 	}
-
+	
 	void ShowOnReport(){
 		goldTextMesh.text ="+"+goldEarn.ToString ();
 		diamondText.text ="+"+diamondEarn.ToString ();
@@ -199,24 +217,32 @@ public class BattleController : MonoBehaviour {
 	}
 
 	void ScaleExpBar(){
-		int nextExp = GameData.expList [GameData.currentLevel - 1];
-		scaleX = GameData.currentExp * 1f / nextExp;
-		if (GameData.currentExp >= nextExp) {
+		int nextExp = mission.ExpReward;
+		scaleX = GameData.profile.CurrentExp * 1f / nextExp;
+		if (GameData.profile.CurrentExp >= nextExp) {
+			//LEVELUP
 			scaleX = 1;
-			GameData.currentExp -= nextExp;
-			GameData.currentLevel++;
-		}
+			GameData.profile.CurrentExp -= nextExp;
+			GameData.profile.Level++;
+			iTween.MoveTo (levelUpScreen, iTween.Hash ("position", new Vector3(levelUpScreen.transform.position.x,reportTargetPosition.y,
+			                                                                   levelUpScreen.transform.position.z), "time", 1.0f,"delay",5.0f));
+			}
 		Vector3 newScale = new Vector3 (scaleX,expBar.transform.localScale.y, expBar.transform.localScale.z);
 		iTween.ScaleTo (expBar, iTween.Hash("scale", newScale,
 		                                    "time", 1.5f,
-		                                    "delay",4.0f));
+		                                    "delay",4.0f,"oncomplete","ReadyTween","oncompletetarget",gameObject));
 
 	}
 
-	void GetExpReward(){
+	void ReadyTween(){
+		GameData.readyToTween = true;
+	}
 
+	void GetExpReward(){
+		// untuk unit
 		foreach (Unit u in GameData.unitList) {
-			u.CurrentExp += mission.ExpReward  / battleState;		
+			if ( u.IsActive )
+				u.CurrentExp += mission.ExpReward  / battleState;		
 		}
 		mission = null;
 	}

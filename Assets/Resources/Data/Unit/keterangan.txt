@@ -1,3 +1,4 @@
+desc
 UANG
 STR
 AGI

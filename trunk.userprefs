@@ -1,13 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Object\Unit.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\HeroController.cs">
     <Files>
-      <File FileName="Assets\Script\UpgradeWeaponController.cs" Line="102" Column="3" />
-      <File FileName="Assets\Script\Object\Unit.cs" Line="45" Column="32" />
-      <File FileName="Assets\Script\Object\Weapon.cs" Line="14" Column="12" />
-      <File FileName="Assets\Script\Object\Item.cs" Line="4" Column="1" />
-      <File FileName="Assets\Script\UpgradeWeapon.cs" Line="24" Column="1" />
-      <File FileName="Assets\Script\Object\Gem.cs" Line="31" Column="15" />
+      <File FileName="Assets\Script\HeroController.cs" Line="156" Column="41" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

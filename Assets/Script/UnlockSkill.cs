@@ -25,7 +25,7 @@ public class UnlockSkill : MonoBehaviour {
 	void OnMouseDown(){
 
 		//Debug.Log ("slot " + slot + " isunlock " + GameData.skillList [slot].IsUnlocked + " selec " + GameData.skillList [slot].IsSelected);
-		if (GameData.gold >= GameData.unlockSkillCost && !GameData.skillList [slot].IsUnlocked) {
+		if (GameData.profile.Gold >= GameData.skillList[slot].Price && !GameData.skillList [slot].IsUnlocked) {
 						GameData.skillList [slot].IsUnlocked = true;
 						GameData.skillList [slot].IsSelected = false;
 						frame.SetActive (false);

@@ -25,10 +25,10 @@ public class FormationSetter : MonoBehaviour {
 		//HOTween.To(tweenedObject,0.5f,"position",targetObject.transform.position);
 		GameData.gameState = "SetFormation";		
 		if (GameData.readyToTween ) {
-			if (!GameData.formationList [slot].IsUnlocked && GameData.gold >= GameConstant.UNLOCK_SLOT_PRICE){
+			if (!GameData.formationList [slot].IsUnlocked && GameData.profile.Gold >= GameConstant.UNLOCK_SLOT_PRICE){
 				heroLock.SetActive(false);
 				GameData.formationList [slot].IsUnlocked = true;
-				GameData.gold -= GameConstant.UNLOCK_SLOT_PRICE;
+				GameData.profile.Gold -= GameConstant.UNLOCK_SLOT_PRICE;
 				// awal buka kasih knight
 				ReloadSprite(GameData.unitList[0].Sprites);
 				profileController.UpdateGoldAndDiamond();

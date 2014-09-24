@@ -46,82 +46,75 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Holoville\HOTween Extensions\HOTweenManager\Editor\Core\HOTweenEditorGUI.cs" />
-     <Compile Include="Assets\Holoville\HOTween Extensions\HOTweenManager\Editor\Core\HOTweenEditorVars.cs" />
-     <Compile Include="Assets\Holoville\HOTween Extensions\HOTweenManager\Editor\Core\HOTweenPanelMode.cs" />
-     <Compile Include="Assets\Holoville\HOTween Extensions\HOTweenManager\Editor\Core\IHOTweenPanel.cs" />
-     <Compile Include="Assets\Holoville\HOTween Extensions\HOTweenManager\Editor\HOTweenComponentInspector.cs" />
-     <Compile Include="Assets\Holoville\HOTween Extensions\HOTweenManager\Editor\HOTweenEditor.cs" />
-     <Compile Include="Assets\Holoville\HOTween Extensions\HOTweenManager\Editor\HOTweenManagerInspector.cs" />
-     <None Include="Assets\Plugins\Android\facebook\res\values\attrs.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_activity_circle_row.xml" />
-     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values-iw\strings.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_picker_top_button.xml" />
-     <None Include="Assets\Plugins\HOTween\HOTween_License.txt" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_search_box.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values-ldpi\dimens.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values\colors.xml" />
+     <Compile Include="Assets\Script\spine-unity\Assets\spine-unity\Editor\AtlasAssetInspector.cs" />
+     <Compile Include="Assets\Script\spine-unity\Assets\spine-unity\Editor\BoneFollowerInspector.cs" />
+     <Compile Include="Assets\Script\spine-unity\Assets\spine-unity\Editor\Menus.cs" />
+     <Compile Include="Assets\Script\spine-unity\Assets\spine-unity\Editor\SkeletonAnimationInspector.cs" />
+     <Compile Include="Assets\Script\spine-unity\Assets\spine-unity\Editor\SkeletonDataAssetInspector.cs" />
+     <Compile Include="Assets\Script\spine-unity\Assets\spine-unity\Editor\SkeletonRendererInspector.cs" />
+     <Compile Include="Assets\Script\spine-unity\Assets\spine-unity\Editor\SpineEditorUtilities.cs" />
+     <Compile Include="Assets\Script\spine-unity\Assets\spine-unity\SkeletonUtility\Editor\SkeletonUtilityBoneInspector.cs" />
+     <Compile Include="Assets\Script\spine-unity\Assets\spine-unity\SkeletonUtility\Editor\SkeletonUtilityInspector.cs" />
+     <None Include="Assets\Script\spine-unity\Assets\Examples\Spine\Eyes\eyes.atlas.txt" />
+     <None Include="Assets\Script\spine-unity\Assets\spine-unity\Shaders\HiddenPass.shader" />
+     <None Include="Assets\Resources\Data\Quest\keterangan.txt" />
+     <None Include="Assets\Resources\Data\Quest\defeat.txt" />
+     <None Include="Assets\Resources\Data\Gem\peridot.txt" />
+     <None Include="Assets\Resources\Data\Gem\diamond.txt" />
+     <None Include="Assets\Resources\Data\Skill\Sharpen.txt" />
+     <None Include="Assets\Resources\Sprite\knight\skeleton.json.txt" />
+     <None Include="Assets\Resources\Data\Mission\list.txt" />
+     <None Include="Assets\Resources\Data\Unit\list.txt" />
      <None Include="Assets\Resources\Data\Skill\keterangan.txt" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_friendpickerfragment.xml" />
-     <None Include="Assets\Plugins\Android\facebook\bin\proguard.txt" />
-     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_top_button.xml" />
-     <None Include="Assets\Resources\Data\Unit\hero.txt" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_usersettingsfragment.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_checkbox.xml" />
-     <None Include="Assets\Plugins\Android\facebook\bin\R.txt" />
-     <None Include="Assets\Holoville\HOUnityEditor\Editor\HOEditorGUIFramework.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_title_bar_stub.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values\strings.xml" />
-     <None Include="Assets\Resources\Data\Skill\thunderball.txt" />
-     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_picker_item_background.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_image.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_top_background.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values-hdpi\dimens.xml" />
-     <None Include="Assets\Plugins\Android\facebook\build.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_button_blue.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_picker_list_selector.xml" />
-     <None Include="Assets\Resources\Data\Skill\iceball.txt" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_search_bar_layout.xml" />
-     <None Include="Assets\Plugins\Android\facebook\bin\AndroidManifest.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_login_activity_layout.xml" />
-     <None Include="Assets\Holoville\readme.txt" />
-     <None Include="Assets\Plugins\Android\facebook\res\values-mdpi\dimens.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_list_section_header.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_title_bar.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_usersettingsfragment_background_gradient.xml" />
+     <None Include="Assets\Resources\Data\Catalyst\mythical.txt" />
+     <None Include="Assets\Resources\Data\Mission\brace.txt" />
+     <None Include="Assets\Resources\Data\Quest\unlock.txt" />
+     <None Include="Assets\Resources\Data\Catalyst\common.txt" />
+     <None Include="Assets\Resources\Data\Unit\keterangan.txt" />
+     <None Include="Assets\Resources\Data\Gem\keterangan.txt" />
+     <None Include="Assets\Resources\Data\Catalyst\rare.txt" />
+     <None Include="Assets\Resources\Data\Unit\tribe.txt" />
+     <None Include="Assets\Resources\Data\Mission\keterangan.txt" />
+     <None Include="Assets\Resources\Data\Mission\flowup.txt" />
+     <None Include="Assets\Script\spine-unity\Assets\Examples\Spine\Raptor\raptor.atlas.txt" />
+     <None Include="Assets\Script\spine-unity\Assets\Examples\Spine\Spineboy\spineboy.atlas.txt" />
+     <None Include="Assets\Resources\Data\Quest\list.txt" />
+     <None Include="Assets\Resources\Data\Skill\Steel Body.txt" />
+     <None Include="Assets\Resources\Data\Quest\fortress.txt" />
+     <None Include="Assets\Resources\Data\Gem\opal.txt" />
+     <None Include="Assets\Resources\Data\Unit\monk.txt" />
+     <None Include="Assets\Resources\Data\Mission\smallwood.txt" />
+     <None Include="Assets\Resources\Data\Catalyst\keterangan.txt" />
+     <None Include="Assets\Resources\Data\Gem\amethyst.txt" />
+     <None Include="Assets\Resources\Data\Unit\archer.txt" />
+     <None Include="Assets\Resources\Data\Quest\list-TEMP.txt" />
+     <None Include="Assets\Script\spine-unity\Assets\spine-unity\Shaders\Bones.shader" />
+     <None Include="Assets\Resources\Sprite\knight\skeleton.atlas.txt" />
+     <None Include="Assets\Resources\Data\Quest\kingdom.txt" />
+     <None Include="Assets\Resources\Data\Gem\list.txt" />
+     <None Include="Assets\Resources\Data\Catalyst\legendary.txt" />
+     <None Include="Assets\Resources\Data\Unit\hunter.txt" />
+     <None Include="Assets\Resources\Data\Gem\emerald.txt" />
+     <None Include="Assets\Resources\Data\Exp\hero.txt" />
+     <None Include="Assets\Resources\Data\Gem\aquamarine.txt" />
+     <None Include="Assets\Script\spine-unity\Assets\Examples\Spine\Dragon\dragon.atlas.txt" />
      <None Include="Assets\Resources\Data\Skill\list.txt" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_placepickerfragment.xml" />
-     <None Include="Assets\Resources\Data\Skill\waterball.txt" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_placepickerfragment_list_row.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values\drawables.xml" />
-     <None Include="Assets\Resources\Data\Skill\fireball.txt" />
-     <None Include="Assets\Plugins\Android\facebook\proguard-project.txt" />
-     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_loginbutton_silver.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_picker_list_selector_background_transition.xml" />
+     <None Include="Assets\Resources\Data\Unit\assasin.txt" />
+     <None Include="Assets\Resources\Data\Skill\Power Up!.txt" />
+     <None Include="Assets\Script\spine-unity\Assets\spine-unity\Shaders\Skeleton.shader" />
+     <None Include="Assets\Resources\Data\Mission\raintrap.txt" />
+     <None Include="Assets\Script\spine-unity\Assets\Examples\Spine\Goblins\goblins-ffd.atlas.txt" />
+     <None Include="Assets\Resources\Data\Gem\sapphire.txt" />
      <None Include="Assets\Resources\Text\Gems Description\Common Gems\gold_bar.txt" />
-     <None Include="Assets\Plugins\Android\facebook\res\values-he\strings.xml" />
-     <None Include="Assets\Plugins\Android\facebook\AndroidManifest.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values-es\strings.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\drawable\com_facebook_button_check.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\layout\com_facebook_picker_list_row.xml" />
-     <None Include="Assets\Holoville\HOUnityEditor\Editor\HOEditorUtils.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values\styles.xml" />
-     <None Include="Assets\Plugins\Android\facebook\res\values-xhdpi\dimens.xml" />
- <Reference Include="HOEditorGUIFramework">
- <HintPath>D:/Floogames/4 ICONQUER!/trunk/Assets/Holoville/HOUnityEditor/Editor/HOEditorGUIFramework.dll</HintPath>
- </Reference>
- <Reference Include="HOEditorUtils">
- <HintPath>D:/Floogames/4 ICONQUER!/trunk/Assets/Holoville/HOUnityEditor/Editor/HOEditorUtils.dll</HintPath>
- </Reference>
+     <None Include="Assets\Resources\Data\Unit\thief.txt" />
+     <None Include="Assets\Resources\Data\Gem\ruby.txt" />
+     <None Include="Assets\Script\spine-unity\Assets\spine-unity\Shaders\SkeletonLit.shader" />
+     <None Include="Assets\Resources\Data\Catalyst\list.txt" />
+     <None Include="Assets\Resources\Data\Unit\knight.txt" />
+     <None Include="Assets\Resources\Data\Skill\Moon Dance.txt" />
+     <None Include="Assets\Resources\Data\Unit\warrior.txt" />
  <Reference Include="PluginUnityWP">
  <HintPath>D:/Floogames/4 ICONQUER!/trunk/Assets/Plugins/PluginUnityWP.dll</HintPath>
- </Reference>
- <Reference Include="HOTween">
- <HintPath>D:/Floogames/4 ICONQUER!/trunk/Assets/Plugins/HOTween/HOTween.dll</HintPath>
- </Reference>
- <Reference Include="HOTweenV1_Editor">
- <HintPath>D:/Floogames/4 ICONQUER!/trunk/Assets/Plugins/HOTween/Editor/HOTweenV1_Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>

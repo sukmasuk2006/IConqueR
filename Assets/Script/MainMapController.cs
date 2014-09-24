@@ -22,14 +22,11 @@ public class MainMapController : MonoBehaviour {
 	}
 
 	void AutoSaveData(){
-		PlayerPrefs.SetInt ("gold", GameData.gold);
-		PlayerPrefs.SetInt ("diamond", GameData.diamond);
+	//	PlayerPrefs.SetInt ("gold", GameData.gold);
+	//	PlayerPrefs.SetInt ("diamond", GameData.diamond);
 	}
 	// Update is called once per frame
-	void Update () {
-		UpdateRaidTime ();
-		CheckRaid ();
-	}
+
 	private void UpdateRaidTime(){
 		if (GameData.gameState == GameConstant.MAP_STATE) {
 			GameData.UpdateRaidTime();

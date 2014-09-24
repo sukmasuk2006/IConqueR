@@ -1,4 +1,5 @@
 reward exp
 reward gold
 reward diamond
+reward item
 List<enemy>
