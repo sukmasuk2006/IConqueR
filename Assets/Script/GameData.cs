@@ -11,7 +11,8 @@ public class GameData : MonoBehaviour {
 	public static bool isFirstPlay = true;
 	public static bool readyToTween = true;
 	public static float raidTime = 60;
-	public static int unlockedHeroes = 1;
+	public static int unlockedSlot = 1;
+	public static int activeHeroes = 1;
 	public static int unlockSkillCost = 1000;
 	public static int selectedToViewProfileId = 4;
 	public static int totalSkillUsed = 0;
@@ -108,21 +109,17 @@ public class GameData : MonoBehaviour {
 		linesFromFile = content.Split ("\n" [0]);
 		
 		for (int i = 0; i < linesFromFile.Length; i++) {
-			unitList.Add(new Unit(linesFromFile[i].Trim()));		
+			unitList.Add(new Unit(i,linesFromFile[i].Trim()));		
 			if ( i < 5 )
-				formationList.Add(new FormationUnit(new Unit(linesFromFile[0].Trim())));		
+				formationList.Add(new FormationUnit(new Unit(99,linesFromFile[0].Trim())));		
 		}
 		unitList [0].IsUnlocked = true;
 		unitList [0].IsActive = true;
 		formationList [0].IsUnlocked = true;
+		formationList [0].Unit.HeroId = 0;
 
 		/*ENEMY DATA*/
-		enemyList = new List<Unit> ();
-
-		for (int i = 0; i < linesFromFile.Length; i++) {
-			enemyList.Add(new Unit(linesFromFile[i]));		
-		}
-		enemyList [0].IsUnlocked = true;
+		//enemyList = new List<Unit> ();
 
 		/*SKILL DATA*/
 		linesFromFile = null;

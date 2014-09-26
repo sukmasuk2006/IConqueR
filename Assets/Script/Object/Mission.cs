@@ -35,9 +35,10 @@ public class Mission
 		goldReward = int.Parse(linesFromFile [1]);
 		diamondReward = int.Parse(linesFromFile [2]);
 		maxReward = int.Parse (linesFromFile [3]);
-
+//		Debug.Log ("misi " + name);
 		for (int i = 4; i < linesFromFile.Length; i++) {
-			enemyList.Add(new Unit(linesFromFile[i]));		
+			enemyList.Add(new Unit(i,linesFromFile[i].Trim()));		
+			//Debug.Log ("musuh " + linesFromFile[i].Trim());
 		}
 	}
 

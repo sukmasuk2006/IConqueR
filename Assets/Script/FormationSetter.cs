@@ -7,15 +7,20 @@ public class FormationSetter : MonoBehaviour {
 	public TextMesh info;
 	public SpriteRenderer spriteRend;
 	public GameObject tweenedObject;
+	public GameObject barrackScreen;
 	public GameObject targetObject;
 	public ScreenData screenData;
 	public GameObject heroLock;
 	private bool isReload = false;
-	public ProfileController profileController;
+	public ProfileController profileController; // profile master
+	public HeroProfileController controller; // screen troops
 	// Use this for initialization
 	void Start () {
 		if (GameData.formationList [slot].IsUnlocked) {
 			heroLock.SetActive (false);
+			if ( GameData.formationList[slot].Unit.HeroId == 99 )
+				ReloadSprite(null);
+				else
 			ReloadSprite(GameData.formationList[slot].Unit.Sprites);
 		}
 		Debug.Log ("slot isunlock " + slot + " " + GameData.formationList [slot].IsUnlocked);
@@ -25,28 +30,24 @@ public class FormationSetter : MonoBehaviour {
 		//HOTween.To(tweenedObject,0.5f,"position",targetObject.transform.position);
 		GameData.gameState = "SetFormation";		
 		if (GameData.readyToTween ) {
-			if (!GameData.formationList [slot].IsUnlocked && GameData.profile.Gold >= GameConstant.UNLOCK_SLOT_PRICE){
-				heroLock.SetActive(false);
-				GameData.formationList [slot].IsUnlocked = true;
-				GameData.profile.Gold -= GameConstant.UNLOCK_SLOT_PRICE;
-				// awal buka kasih knight
-				ReloadSprite(GameData.unitList[0].Sprites);
-				profileController.UpdateGoldAndDiamond();
+			// kalau belum ke unlock
+
+			// ketika id !=99, brarti sudah diset, bisa liat profilnya
+			if (GameData.formationList [slot].IsUnlocked && GameData.formationList [slot].Unit.HeroId != 99){
+				// view profile controller set gambar dan status		
+				GameData.selectedToViewProfileId = GameData.formationList[slot].Unit.HeroId;
+				GameData.selectedToViewProfileName = GameData.formationList[slot].Unit.Name;
+				GameData.gameState = "HeroProfileScene";
+				iTween.MoveTo ( tweenedObject,iTween.Hash("position",targetObject.transform.position,"time", 0.1f,"oncomplete","MoveTarget","oncompletetarget",gameObject));
+				iTween.MoveTo (targetObject, tweenedObject.transform.position,0.1f);					
+				controller.SetPictureAndStatsFromFormation();
 			}
-			if (GameData.formationList [slot].IsUnlocked ){
-				screenData.formationSlot = slot;
-				GameData.readyToTween = false;
-				iTween.MoveTo ( tweenedObject,iTween.Hash("position",targetObject.transform.position,"time", 0.5f,"oncomplete","ReadyTween","oncompletetarget",gameObject));
-				iTween.MoveTo (targetObject, tweenedObject.transform.position,0.5f);
-			}
+			// set hero
+
 		}
 	//	Debug.Log ("slot formasi yang akan di set " + screenData.formationSlot +" " +  GameData.gameState);
 	}
-
-
-	void ReadyTween(){
-		GameData.readyToTween = true;
-	}
+	
 
 	public void ReloadSprite(Sprite s){
 		spriteRend.sprite = s;

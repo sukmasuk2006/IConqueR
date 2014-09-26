@@ -12,6 +12,8 @@ public class BattleController : MonoBehaviour {
 	public GameObject itemGained;
 	public SpriteRenderer itemGainedSprite;
 	public TextMesh itemName;
+	private float[] positionList;
+	private bool[] positionAvailableList;
 
 	public GameObject globalHeroHealthBar;
 	public GameObject globalEnemyHealthBar;
@@ -53,10 +55,14 @@ public class BattleController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//		Debug.Log ("battle activate");
+		positionList = new float[12]{1.5f,3f,4.5f,6f,7.5f,9f,1.5f,3f,4.5f,6f,7.5f,9f};
+		positionAvailableList = new bool[12]{true,true,true,true,true,true,true,true,true,true,true,true};
 		isGetReward = 0;
 		battleState = 0;
-		mission = GameData.missionList [GameData.profile.CurrentMission-1];
+		mission = GameData.missionList [GameData.profile.CurrentMission];
+		//Debug.Log ("Misi ke-" + (GameData.profile.CurrentMission - 1).ToString());
 		activeEnemyList = mission.EnemyList;
+		//Debug.Log ("Jumlah musuh " + activeEnemyList.Count);
 		activeSkill = new List<Skill> ();
 		int i = 0,j = 0;
 
@@ -73,12 +79,10 @@ public class BattleController : MonoBehaviour {
 		i = 0;
 		GameData.gameState = GameConstant.GAMEPLAY_SCENE;
 		foreach (FormationUnit u in GameData.formationList) {
-				if ( u.IsUnlocked ){
+				if ( u.IsUnlocked && u.Unit.HeroId != 99){
 					GameData.formationList[i].Unit.Refresh();
 					heroList[i].SetActive(true);
-					Sprite sprite = (Sprite)Resources.Load ("Sprite/Character/Hero/"+
-			                                        u.Unit.Name, typeof(Sprite));
-					heroList[i].GetComponent<SpriteRenderer>().sprite = sprite;	
+					heroList[i].GetComponent<SpriteRenderer>().sprite = u.Unit.Sprites;	
 					heroTotalHealth += u.Unit.HealthPoint;
 					i++;
 				}
@@ -87,11 +91,13 @@ public class BattleController : MonoBehaviour {
 		}
 		i = 0;
 		foreach (Unit u in activeEnemyList) {
-			activeEnemyList[i].Refresh();
-			enemyList[i].SetActive(true);		
+			u.Refresh();
+			enemyList[i].SetActive(true);	
+			enemyList[i].GetComponent<SpriteRenderer>().sprite = u.Sprites;
 			enemyTotalHealth += u.HealthPoint;
 			i++;
 		}
+		//Debug.Log ("Jumlah hp " + enemyTotalHealth);
 
 	
 		ConstantHeroHealthLocalScale = globalHeroHealthBar.transform.localScale;
@@ -151,6 +157,10 @@ public class BattleController : MonoBehaviour {
 		globalHeroHealthBar.transform.localScale = temp; 
 		if (heroTotalHealth <= 0) {
 			battleState = 5;		
+			foreach(GameObject g in heroList){
+				if ( g.activeInHierarchy )
+					g.GetComponent<HeroController>().MoveToGraveyard();
+			}
 			Lose();
 		}
 	}
@@ -166,6 +176,10 @@ public class BattleController : MonoBehaviour {
 		globalEnemyHealthBar.transform.localScale = temp2; 
 		if (enemyTotalHealth == 0) {
 			battleState = 1;	
+			foreach(GameObject g in enemyList){
+				if ( g.activeInHierarchy )
+					g.GetComponent<HeroController>().MoveToGraveyard();
+			}
 			Win();
 		}
 	}
@@ -255,6 +269,24 @@ public class BattleController : MonoBehaviour {
 		}
 		set {
 			battleState = value;
+		}
+	}
+
+	public float[] PositionList {
+		get {
+			return positionList;
+		}
+		set {
+			positionList = value;
+		}
+	}
+
+	public bool[] PositionAvailableList {
+		get {
+			return positionAvailableList;
+		}
+		set {
+			positionAvailableList = value;
 		}
 	}
 }

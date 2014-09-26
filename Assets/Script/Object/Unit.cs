@@ -16,9 +16,10 @@ public class Unit : UnitStatus {
 	private Sprite icon;
 	private bool isCritical;
 
-	public Unit(string name):
+	public Unit(int id,string name):
 	base(){
 		this.name = name;
+		heroId = id;
 		InitializeHero ();
 	}
 
@@ -44,21 +45,28 @@ public class Unit : UnitStatus {
 
 		SetStats ();
 	}
-	public void CopyStats(Unit u){
+	public void CopyStats(int id,Unit u){
 		name = u.name;
+		heroId = id;
 		this.str = u.str;
 		this.agi = u.agi;
 		this.vit = u.vit;
+		this.sprites = u.sprites;
+		this.icon = u.icon;
+		this.level = u.level;
+		this.weapon = u.weapon;
 		SetStats ();
 	}
 
 	private void SetStats(){
 		isCritical = false;
-		healthPoint = maxHealthPoint = ((str + vit * 2) * 3) + 108f; //  min 117 max 999
-		attackPoint = str  * 2 + 57; // min 59 max 255
-		defensePoint = vit * 2 + 57; // min 59 max 255
+		healthPoint = maxHealthPoint = ((str + vit) * 5); //  min 117 max 999
+		attackPoint = str/2 + weapon.Damage; // min 59 max 255
+		defensePoint = vit/2; // min 59 max 255
 		//
 		attackSpeed = float.Parse( Round(2.5f - (agi - 1f) * 0.020408f).ToString()); // min 2.5f max 0.5f  
+		if (weapon.Range == 5)
+						AttackSpeed *= 1.5f;
 		critical =  float.Parse( Round(((str + agi *2 ) / 3)*0.55f).ToString()); // min 1 max 55 
 		critChance = critical;
 		evasionRate = float.Parse(Round(((vit + agi *2 ) / 3)*0.55f).ToString()); // min 1 max 55
@@ -105,13 +113,24 @@ public class Unit : UnitStatus {
 		}
 	}
 
+	public int HeroId {
+		get {
+			return heroId;
+		}
+		set {
+			heroId = value;
+		}
+	}
+
 	public float ReceiveDamage(float dmg, bool crit){
 		int isEvade = UnityEngine.Random.Range(0,99);
 		float returnDamage = dmg;
 				if (isEvade >= evasionRate || crit) 
 				{
-				returnDamage -= defensePoint;
-				HealthPoint -= returnDamage; 
+					returnDamage -= defensePoint;
+						if ( returnDamage <= 0 ) returnDamage = 1;
+					HealthPoint -= returnDamage;
+					if ( healthPoint <= 0 ) healthPoint = 0;
 						// jika gagal eva, kena dmg
 				} else if (isEvade < evasionRate && !crit) {
 					returnDamage = 0;

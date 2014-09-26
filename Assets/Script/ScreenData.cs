@@ -5,5 +5,4 @@ public class ScreenData : MonoBehaviour {
 
 	public int corridorState;
 	public int maxCorridorState;
-	public int formationSlot;
 }

@@ -19,7 +19,6 @@
 	{ "name": "pedang", "parent": "telapak", "length": 167.21, "x": 15.22, "y": 1.33, "rotation": 34.47 }
 ],
 "slots": [
-	{ "name": "base2", "bone": "root", "color": "c2ffdd9d", "attachment": "base" },
 	{ "name": "left_leg_upper", "bone": "left feet", "attachment": "left_leg_upper" },
 	{ "name": "left_leg_lower", "bone": "bone12", "attachment": "left_leg_lower" },
 	{ "name": "left_foot", "bone": "bone13", "attachment": "left_foot" },
@@ -39,9 +38,6 @@
 ],
 "skins": {
 	"default": {
-		"base2": {
-			"base": { "x": 63.5, "y": 43.99, "width": 350, "height": 311 }
-		},
 		"body": {
 			"body": { "x": 47.38, "y": 9.91, "rotation": -89.54, "width": 84, "height": 99 }
 		},
@@ -93,141 +89,6 @@
 	}
 },
 "animations": {
-	"coba jalan": {
-		"bones": {
-			"right hand": {
-				"rotate": [
-					{ "time": 0, "angle": 18.39 }
-				],
-				"translate": [
-					{ "time": 0, "x": -5.04, "y": 6.38 }
-				]
-			},
-			"bone10": {
-				"rotate": [
-					{ "time": 0, "angle": -14.3 }
-				]
-			},
-			"left hand": {
-				"rotate": [
-					{ "time": 0, "angle": 256.19 }
-				]
-			},
-			"lengan": {
-				"rotate": [
-					{ "time": 0, "angle": 59.87 }
-				]
-			},
-			"telapak": {
-				"rotate": [
-					{ "time": 0, "angle": 29.25 }
-				]
-			},
-			"pedang": {
-				"rotate": [
-					{ "time": 0, "angle": 10.77 }
-				],
-				"translate": [
-					{ "time": 0, "x": 3.49, "y": -1.43 }
-				]
-			},
-			"left feet": {
-				"rotate": [
-					{ "time": 0, "angle": 294.81 },
-					{ "time": 0.2666, "angle": 57.65 },
-					{ "time": 0.4, "angle": 22.77 },
-					{ "time": 0.6666, "angle": 290.33 },
-					{ "time": 0.8, "angle": 294.81 }
-				],
-				"translate": [
-					{ "time": 0, "x": -15.07, "y": 10.58, "curve": "stepped" },
-					{ "time": 0.8, "x": -15.07, "y": 10.58 }
-				]
-			},
-			"bone12": {
-				"rotate": [
-					{ "time": 0, "angle": -10.43 },
-					{ "time": 0.1333, "angle": -55.24 },
-					{ "time": 0.2666, "angle": -71.36 },
-					{ "time": 0.4, "angle": 15.68 },
-					{ "time": 0.6666, "angle": -9.7 },
-					{ "time": 0.8, "angle": -10.43 }
-				]
-			},
-			"right feet": {
-				"rotate": [
-					{ "time": 0, "angle": -321 },
-					{ "time": 0.1333, "angle": -328.35 },
-					{ "time": 0.4, "angle": -15.15 },
-					{ "time": 0.5333, "angle": -278.64 },
-					{ "time": 0.8, "angle": -321 }
-				],
-				"translate": [
-					{ "time": 0, "x": -4.64, "y": -8.12 },
-					{ "time": 0.2666, "x": -13.71, "y": -8.18 },
-					{ "time": 0.4, "x": -4.81, "y": -13.66 },
-					{ "time": 0.5333, "x": -6.72, "y": -15.69 },
-					{ "time": 0.8, "x": -4.64, "y": -8.12 }
-				]
-			},
-			"bone14": {
-				"rotate": [
-					{ "time": 0, "angle": -24.18 },
-					{ "time": 0.1333, "angle": -46.09 },
-					{ "time": 0.2666, "angle": -24.65 },
-					{ "time": 0.4, "angle": -68.03 },
-					{ "time": 0.5333, "angle": -102.63 },
-					{ "time": 0.8, "angle": -24.18 }
-				],
-				"translate": [
-					{ "time": 0.4, "x": 2.3, "y": -0.46 }
-				]
-			},
-			"bone15": {
-				"rotate": [
-					{ "time": 0, "angle": 17.69 },
-					{ "time": 0.1333, "angle": 17.77 },
-					{ "time": 0.2666, "angle": 24.72 },
-					{ "time": 0.4, "angle": -23.91 },
-					{ "time": 0.5333, "angle": 29.5 },
-					{ "time": 0.8, "angle": 17.69 }
-				]
-			},
-			"body": {
-				"rotate": [
-					{ "time": 0, "angle": -5.83 },
-					{ "time": 0.2666, "angle": -12.48 },
-					{ "time": 0.5333, "angle": -19.48 },
-					{ "time": 0.8, "angle": -5.83 }
-				],
-				"translate": [
-					{ "time": 0, "x": 3.13, "y": 119.16 },
-					{ "time": 0.1333, "x": 3.13, "y": 116.79 },
-					{ "time": 0.8, "x": 3.13, "y": 119.16 }
-				]
-			},
-			"bone13": {
-				"rotate": [
-					{ "time": 0.2666, "angle": -52.18 },
-					{ "time": 0.4, "angle": -8.29 },
-					{ "time": 0.5333, "angle": 22.16 },
-					{ "time": 0.6666, "angle": -35.34 }
-				]
-			},
-			"bone11": {
-				"rotate": [
-					{ "time": 0, "angle": 2.11 }
-				]
-			}
-		},
-		"slots": {
-			"base2": {
-				"attachment": [
-					{ "time": 0, "name": "base" }
-				]
-			}
-		}
-	},
 	"jalan2": {
 		"bones": {
 			"left hand": {

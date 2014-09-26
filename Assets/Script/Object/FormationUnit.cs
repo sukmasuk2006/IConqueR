@@ -20,9 +20,10 @@ public class FormationUnit
 					this.unit = u;		
 				}
 
-	public void SetUnit(int slot, Unit u){
-		unit.CopyStats(u);
-		unitSlot = slot;
+	public void SetUnit(int id, Unit u){
+		unit.CopyStats(id,u);
+		if (u.HeroId == 99)
+						u.Sprites = null;
 	}
 
 	public Unit Unit {

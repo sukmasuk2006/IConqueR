@@ -6,3 +6,5 @@ thief
 monk
 assasin
 hunter
+ninja
+satria

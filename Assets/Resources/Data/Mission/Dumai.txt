@@ -2,5 +2,4 @@
 100
 1
 6
-knight
-knight
+monk

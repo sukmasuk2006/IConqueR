@@ -7,6 +7,7 @@ public class SimpleButtonTween : MonoBehaviour {
 	public GameObject targetObject;
 	public string gameStateRequired;
 	public string gameStateTarget;
+	private Vector3 tempPosition;
 
 	public bool isRemoved = true;
 
@@ -22,10 +23,10 @@ public class SimpleButtonTween : MonoBehaviour {
 
 	void OnMouseDown(){
 		//HOTween.To(tweenedObject,0.5f,"position",targetObject.transform.position);
+		tempPosition = targetObject.transform.position;
 		if (GameData.readyToTween ) {
 			GameData.readyToTween = false;
-			iTween.MoveTo ( tweenedObject,iTween.Hash("position",targetObject.transform.position,"time", 0.1f,"oncomplete","ReadyTween","oncompletetarget",gameObject));
-			iTween.MoveTo (targetObject, tweenedObject.transform.position,0.1f);		
+			iTween.MoveTo ( targetObject,iTween.Hash("position",tweenedObject.transform.position,"time", 0.1f,"onComplete","ReadyTween","onCompleteTarget",gameObject));
 			GameData.gameState = gameStateTarget;		
 			//HOTween.To( tweenedObject, 8, new TweenParms().Prop( "position", new PlugVector3Path( path ).ClosePath().OrientToPath() ).Loops( -1 ).Ease( EaseType.Linear ).OnStepComplete( PathCycleComplete ) );
 			//HOTween.To(tweenedObject.transform,1,
@@ -41,6 +42,7 @@ public class SimpleButtonTween : MonoBehaviour {
 
 	void ReadyTween(){
 		GameData.readyToTween = true;
-		Debug.Log ("ready " +GameData.readyToTween + "  gamestate " + tweenedObject.name +" " +  GameData.gameState);
+		iTween.MoveTo (tweenedObject, tempPosition,0.3f);		
+		Debug.Log ("Oncomplete");
 	}
 }

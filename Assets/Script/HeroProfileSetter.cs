@@ -8,7 +8,7 @@ public class HeroProfileSetter : MonoBehaviour {
 	public HeroProfileController controller;
 	public int id;
 	public string name;
-	public ScreenData screenData;
+	private Vector3 tempPosition;
 
 	// Use this for initialization
 	void Start () {
@@ -20,21 +20,21 @@ public class HeroProfileSetter : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
-		if (GameData.unitList [id].IsUnlocked) {
-					if ( GameData.gameState != "SetFormation" ){
+		tempPosition = targetObject.transform.position;
+		if (GameData.unitList [id].IsUnlocked && GameData.readyToTween) {
 						// view profile controller set gambar dan status		
 						GameData.selectedToViewProfileId = id;
 						GameData.selectedToViewProfileName = name;
 						GameData.gameState = "HeroProfileScene";
-						iTween.MoveTo ( tweenedObject,iTween.Hash("position",targetObject.transform.position,"time", 0.1f,"oncomplete","MoveTarget","oncompletetarget",gameObject));
-						iTween.MoveTo (targetObject, tweenedObject.transform.position,0.1f);					
+						GameData.readyToTween = false;
+						iTween.MoveTo ( targetObject,iTween.Hash("position",tweenedObject.transform.position,"time", 0.1f,"onComplete","ReadyTween","onCompleteTarget",gameObject));
 						controller.SetPictureAndStats();
-					}
-
+					
 		}
 	}
-
-	void MoveTarget(){
+	void ReadyTween(){
 		GameData.readyToTween = true;
+		iTween.MoveTo (tweenedObject, tempPosition,0.3f);		
+		Debug.Log ("Oncomplete");
 	}
 }

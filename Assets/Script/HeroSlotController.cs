@@ -22,7 +22,6 @@ public class HeroSlotController : MonoBehaviour {
 
 		if (GameData.unitList [heroSlot].IsUnlocked) {
 			goldText.gameObject.SetActive(false);
-			heroButton.enabled = false;
 			heroState = true;
 			heroLockedFrame.SetActive(false);
 		}

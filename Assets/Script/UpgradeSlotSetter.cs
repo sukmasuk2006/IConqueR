@@ -8,6 +8,7 @@ public class UpgradeSlotSetter : MonoBehaviour {
 	public GameObject tweenedObject;
 	public GameObject targetObject;
 	public int slot;
+	private Vector3 tempPosition;
 	// Use this for initialization
 	void Start () {
 	
@@ -16,6 +17,7 @@ public class UpgradeSlotSetter : MonoBehaviour {
 	void OnMouseDown(){
 		//HOTween.To(tweenedObject,0.5f,"position",targetObject.transform.position);
 			// jika udah ada isinya, masukin invent lagi
+		tempPosition = targetObject.transform.position;
 		if (controller.SlotList [slot] is Gem || controller.SlotList [slot] is Catalyst) {
 			controller.RemoveASlot(slot);
 			controller.UpdateSemuaGambarDiInventory();
@@ -28,9 +30,8 @@ public class UpgradeSlotSetter : MonoBehaviour {
 				
 				i.CheckButton ();
 			}
-			iTween.MoveTo ( tweenedObject,iTween.Hash("position",targetObject.transform.position,"time", 0.1f,"oncomplete","ReadyTween","oncompletetarget",gameObject));
-			iTween.MoveTo (targetObject, tweenedObject.transform.position,0.1f);		
-			                                                      
+			iTween.MoveTo ( targetObject,iTween.Hash("position",tweenedObject.transform.position,"time", 0.1f,"onComplete","ReadyTween","onCompleteTarget",gameObject));
+
 		}
 	}
 	
@@ -40,6 +41,7 @@ public class UpgradeSlotSetter : MonoBehaviour {
 	
 	void ReadyTween(){
 		GameData.readyToTween = true;
-		Debug.Log ("ready " +GameData.readyToTween + "  gamestate " + tweenedObject.name +" " +  GameData.gameState);
+		iTween.MoveTo (tweenedObject, tempPosition,0.3f);		
+		Debug.Log ("Oncomplete");
 	}
 }
