@@ -11,13 +11,15 @@ public class GameData : MonoBehaviour {
 	public static bool isFirstPlay = true;
 	public static bool readyToTween = true;
 	public static float raidTime = 60;
-	public static int unlockedSlot = 1;
-	public static int activeHeroes = 1;
+	public static int unlockedSlot = 1; // slot formasi yang terbuka
+	public static int activeHeroes = 1; // hero yang aktif
 	public static int unlockSkillCost = 1000;
-	public static int selectedToViewProfileId = 4;
-	public static int totalSkillUsed = 0;
-	public static string selectedToViewProfileName = "knight";
-	public static string gameState = "LOGO";
+	public static int selectedToViewProfileId = 0; // hero yg ditampilkan di troopprofile
+	public static int totalSkillUsed = 0; // skill yg aktif
+	public static string selectedToViewProfileName = "knight"; // nama hero yang ditampilkan
+	public static string gameState = "LOGO"; // untuk state dari layar
+	public static string missionType = "Fortress";
+	// apakah serang fort atau castle, untuk dicek achivementnya
 
 	private string[] linesFromFile;
 	

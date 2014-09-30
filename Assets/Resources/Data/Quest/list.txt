@@ -1,4 +1,8 @@
 fortress
-kingdom
+castle
 defeat
-Unlock
+gold
+fortress2
+defeat2
+castle2
+gold2

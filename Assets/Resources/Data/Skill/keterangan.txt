@@ -1,8 +1,14 @@
 DESC
 TIPE ATK SKILL: 1 [ENEMY] / 2 [SELF]
-EFFECT TIPE SKILL : 1 atk 
-                    2 def
-                    3 critical
+EFFECT TIPE SKILL : 1 def 
+                    2 atk
+                    3 attackspeed
                     4 evasion
+		    5 critical
+		    6 atk def
+                    7 atk critical evasion
+		    8 atk evasion attackspeed
+                    9 atk critical evasion attackspeed
+                   10 all
 AMOUNT
-CD
+levelReq

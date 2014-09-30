@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -55,7 +55,7 @@ public class BattleController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//		Debug.Log ("battle activate");
-		positionList = new float[12]{1.5f,3f,4.5f,6f,7.5f,9f,1.5f,3f,4.5f,6f,7.5f,9f};
+		positionList = new float[12]{1.75f,3f,4.25f,5.5f,6.25f,7.5f,1.75f,3f,4.25f,5.5f,6.25f,7.5f};
 		positionAvailableList = new bool[12]{true,true,true,true,true,true,true,true,true,true,true,true};
 		isGetReward = 0;
 		battleState = 0;
@@ -82,7 +82,7 @@ public class BattleController : MonoBehaviour {
 				if ( u.IsUnlocked && u.Unit.HeroId != 99){
 					GameData.formationList[i].Unit.Refresh();
 					heroList[i].SetActive(true);
-					heroList[i].GetComponent<SpriteRenderer>().sprite = u.Unit.Sprites;	
+//					heroList[i].GetComponent<SpriteRenderer>().sprite = u.Unit.Sprites;	
 					heroTotalHealth += u.Unit.HealthPoint;
 					i++;
 				}
@@ -93,7 +93,7 @@ public class BattleController : MonoBehaviour {
 		foreach (Unit u in activeEnemyList) {
 			u.Refresh();
 			enemyList[i].SetActive(true);	
-			enemyList[i].GetComponent<SpriteRenderer>().sprite = u.Sprites;
+//			enemyList[i].GetComponent<SpriteRenderer>().sprite = u.Sprites;
 			enemyTotalHealth += u.HealthPoint;
 			i++;
 		}
@@ -190,6 +190,12 @@ public class BattleController : MonoBehaviour {
 		// win, kadang dapat kadang kaga
 		isGetReward = Random.Range (0, 99);
 		GetReward ();
+		if (GameData.missionType.Contains ("Fortress"))
+			GameData.profile.FortressDestroyed++;
+		else if (GameData.missionType.Contains ("Castle"))
+			GameData.profile.CastleDestroyed++;
+		GameData.profile.DefeatedArmy += activeEnemyList.Count;
+		GameData.profile.CheckQuestAchievement ();
 		ShowOnReport ();
 		Debug.Log ("win " + isGetReward);
 	}
@@ -218,7 +224,7 @@ public class BattleController : MonoBehaviour {
 			GameData.inventoryList.Add(GameData.shopList[get]);
 			Debug.Log("get reward");
 		}
-		
+
 	}
 	
 	void ShowOnReport(){
@@ -257,6 +263,9 @@ public class BattleController : MonoBehaviour {
 		foreach (Unit u in GameData.unitList) {
 			if ( u.IsActive )
 				u.CurrentExp += mission.ExpReward  / battleState;		
+		}
+		foreach (FormationUnit u in GameData.formationList) {
+				u.Unit.CurrentExp += mission.ExpReward  / battleState;		
 		}
 		mission = null;
 	}

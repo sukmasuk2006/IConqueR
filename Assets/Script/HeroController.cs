@@ -14,7 +14,6 @@ public class HeroController : MonoBehaviour {
 	public GameObject healthBar;
 	public SpriteRenderer lockSprite;
 	public Unit stats;
-	public SpriteRenderer spriteRenderer;
 	public GameObject projectile;
 	//private Animator animator;
 
@@ -29,6 +28,7 @@ public class HeroController : MonoBehaviour {
 	private bool isAttack = false;
 	private bool isChangeState = true;
 	public int slot;
+	public SkeletonAnimation animator;
 
 	// Use this for initialization
 	void Start () {
@@ -37,8 +37,7 @@ public class HeroController : MonoBehaviour {
 		if (gameObject.activeInHierarchy) {
 			healthBar.SetActive (true);
 			lockSprite.enabled = false;
-			spriteRenderer.sprite = GameData.formationList[slot].Unit.Icon;
-		}
+			}
 		if (gameObject.name.Contains ("hero")) {
 			stats = GameData.formationList[slot].Unit;
 //			Debug.Log("di hero cont " + slot + " " + stats.HealthPoint);
@@ -49,7 +48,14 @@ public class HeroController : MonoBehaviour {
 			InitializeWeapon();
 			InitializePosition(1);
 		}
-	
+		stats.SetSpine ();
+		animator.skeletonDataAsset = stats.PlayerData;
+		animator.calculateNormals = true;
+		animator.loop = true;
+		animator.Awake ();
+		animator.state.SetAnimation (0, "jalan2", true);
+		//animator.AnimationName = "jalan2";
+
 		// set aktif gak nya
 		//if (!GameData.unitList[slot].IsUnlocked && this.gameObject.name.Contains("hero")) {
 		//	gameObject.SetActive(false);
@@ -75,28 +81,28 @@ public class HeroController : MonoBehaviour {
 		if (controller.BatlleState == 0) {
 						attackSpeed -= Time.deltaTime;
 						// check attack time
-				if ( attackType==0 ){		
-					// MELEE
-						if (attackSpeed <= 0 && !isAttack) {
-						// jika waktunya serang, SERANG!
-								isAttack = true;
-								movementSpeed = stats.Movement;
-								PushForward();
-						}
-						else
-						{
-							DeceleratePullBack();
-						}
-					}
-				else {
-					if (attackSpeed <= 0 && !isAttack) {
-						// jika waktunya serang, SERANG!
-						isAttack = true;
-						projectile.GetComponent<ProjectileController>().Launch();
-						//DoDamageToTarget
-					}
-				}//	Push();
+						if (attackType == 0) {		
+								// MELEE
+								if (attackSpeed <= 0 && !isAttack) {
+										// jika waktunya serang, SERANG!
+										isAttack = true;
+										movementSpeed = stats.Movement;
+										PushForward ();
+								} else {
+										DeceleratePullBack ();
+								}
+						} else {
+								if (attackSpeed <= 0 && !isAttack) {
+										// jika waktunya serang, SERANG!
+										isAttack = true;
+										projectile.GetComponent<ProjectileController> ().Launch ();
+										//DoDamageToTarget
+								}
+						}//	Push();
 
+				} else {
+				// battle end
+			rigidbody2D.velocity = Vector2.zero;
 		}
 	}
 

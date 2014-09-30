@@ -13,7 +13,7 @@ using System.Collections;
 
 public class Catalyst : Item
 {
-
+		
 		public Catalyst (string name) : base (name)
 		{
 			

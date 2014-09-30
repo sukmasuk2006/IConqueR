@@ -21,6 +21,7 @@ public class UnlockHero : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
+		// UNLOCK HERO
 		if (GameData.profile.Gold >= GameData.unitList [slot].GoldNeeded && !GameData.unitList [slot].IsUnlocked) {
 						GameData.unitList [slot].IsUnlocked = true;
 						frame.SetActive (false);

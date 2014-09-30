@@ -14,14 +14,14 @@ using System.Collections.Generic;
 public class Skill
 {
 	private string name;
-	private string desc;
+	private int heroesRequired;
 	private int level;
 	private int type;
 	private SkillEffect effect;
 	private bool isUnlocked;
 	private string[] linesFromFile;
 	private bool isSelected;
-	private float cooldown;
+	private float levelRequired;
 	private int price;
 
 	public Skill (int level, string nm)
@@ -41,20 +41,20 @@ public class Skill
 		price = 1000;
 		string content = txt.text;
 		linesFromFile = content.Split ("\n" [0]);
-		desc = linesFromFile [0];
+		heroesRequired = int.Parse (linesFromFile [0]);
 		int.TryParse(linesFromFile [1],out type);
 		effect = new SkillEffect (int.Parse(linesFromFile [2]),
 		                          int.Parse(linesFromFile [3]));
-		cooldown = float.Parse (linesFromFile [4]);
+		levelRequired = float.Parse (linesFromFile [4]);
 	}
 
 	public void DoEffect(Unit u){
 		int tipe = effect.Tipe;
 		switch (tipe) {
-		case 1 :  u.AttackPoint+= effect.Amount;   // direct damage
+		case 1 :  u.DefensePoint+= (effect.Amount / 100)* GameData.unitList[0].DefensePoint;   // knight
 			Debug.Log("attack Up by " + effect.Amount);
 			break; 
-		case 2 : u.DefensePoint+= effect.Amount; // heal, - karena nanti di battle controller, darah - (-amount)
+		case 2 : u.AttackPoint+= (effect.Amount / 100)* GameData.unitList[0].AttackPoint; // warrior
  			break;
 		case 3 :  u.Critical+= effect.Amount; // sek
 			break;
@@ -90,12 +90,12 @@ public class Skill
 		}
 	}
 
-	public string Desc {
+	public int HeroesRequired {
 		get {
-			return desc;
+			return heroesRequired;
 		}
 		set {
-			desc = value;
+			heroesRequired = value;
 		}
 	}
 
@@ -126,12 +126,12 @@ public class Skill
 		}
 	}
 
-	public float Cooldown {
+	public float LevelRequired {
 		get {
-			return cooldown;
+			return levelRequired;
 		}
 		set {
-			cooldown = value;
+			levelRequired = value;
 		}
 	}
 

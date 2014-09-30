@@ -14,6 +14,10 @@ public class UpgradeWeaponController : MonoBehaviour {
 	public List<SpriteRenderer> upgradeSlot;
 	// gambar button di choose inventory
 	public List<InventorySetter> selectItemButton;
+
+	//upgrade data di profile
+	public HeroProfileController profileController;
+
 	private float totalStr;
 	private float totalAgi;
 	private float totalVit;
@@ -38,13 +42,34 @@ public class UpgradeWeaponController : MonoBehaviour {
 
 	}
 
-	public void SetWeapon(){
-		totalAgi = totalStr = totalVit = 0;
+	public void InitializeWeapon(){
 		weaponData = GameData.unitList [GameData.selectedToViewProfileId].Weapon;
+		strText.text = weaponData.WeaponStats.Str + "";
+		agiText.text = weaponData.WeaponStats.Agi + "";
+		vitText.text = weaponData.WeaponStats.Vit +"";
 		spriteRenderer.sprite = weaponData.Sprites;
 		damageText.text = weaponData.Damage.ToString();
 		fromText.text = weaponData.Rank.ToString();
 		toText.text = (weaponData.Rank + 1).ToString ();
+	}
+
+	public void UpdateWeaponInfo(){
+		// JIKA SUKSES UPDATE INFO SENJATA DI UNIT DAN FORMATION
+		GameData.unitList [GameData.selectedToViewProfileId].Weapon = weaponData; 
+		GameData.formationList [GameData.selectedToViewProfileId].Unit.Weapon = weaponData; 
+
+		// update stats unit
+		GameData.unitList [GameData.selectedToViewProfileId].SetStats ();
+		GameData.formationList [GameData.selectedToViewProfileId].Unit.SetStats (); 
+		profileController.SetPictureAndStatsFromFormation ();
+
+		spriteRenderer.sprite = weaponData.Sprites;
+		damageText.text = weaponData.Damage.ToString();
+		fromText.text = weaponData.Rank.ToString();
+		toText.text = (weaponData.Rank + 1).ToString ();
+		strText.text = weaponData.WeaponStats.Str.ToString();
+		agiText.text = weaponData.WeaponStats.Agi.ToString ();
+		vitText.text = weaponData.WeaponStats.Vit.ToString ();
 	}
 
 	// update gambar di slot upgrade
@@ -89,14 +114,16 @@ public class UpgradeWeaponController : MonoBehaviour {
 		InitilaizeSlot ();
 	}
 
+	// START UPGRADE!
 	public void StartCrafting(){
 		bool success = false;
 		float temp = Random.Range (0, 100) - weaponData.SuccessRate;
 		if (temp < percentages) {
 			success = true;
 			weaponData.SuccessRate = 0;
-			weaponData.Upgrade();
-			SetWeapon();
+			Gem g = (Gem)slotList[0];
+			weaponData.Upgrade(g.Stats);
+			UpdateWeaponInfo();
 		}Debug.Log("temp " + temp);
 		AfterUpgradeAttempt();
 

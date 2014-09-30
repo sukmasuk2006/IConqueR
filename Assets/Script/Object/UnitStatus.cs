@@ -105,7 +105,9 @@ public class UnitStatus  {
  /* 1 agi + 2 vit */
 
 	public UnitStatus(){
-
+		str = 0;
+		agi = 0;
+		vit = 0;
 	}
 
 

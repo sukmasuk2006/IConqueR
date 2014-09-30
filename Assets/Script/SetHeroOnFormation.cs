@@ -27,9 +27,13 @@ public class SetHeroOnFormation : MonoBehaviour {
 					int slot = 0;
 					for (int i = 0; i < GameData.unitList.Count; i++) {
 							if (i < 5) {
+
+					// BUAT JADI KOSONG DULU
 									GameData.formationList [i].SetUnit (99, GameData.unitList [i]);
 									listForm [i].ReloadSprite (null);
 							}
+
+				// SET HERO JIKA ADA
 							if (GameData.unitList [i].IsActive && GameData.formationList [slot].IsUnlocked) {
 									Debug.Log ("slot " + slot);
 									GameData.formationList [slot].SetUnit (slot, GameData.unitList [i]);

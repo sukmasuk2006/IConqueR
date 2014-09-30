@@ -8,18 +8,28 @@ public class HeroSlotController : MonoBehaviour {
 	public int heroSlot;
 	private bool heroState = false;
 	public Sprite unlockedSprite;
-	public TextMesh lvlText;
 	public TextMesh nameText;
-	public TextMesh descText;
+	public TextMesh jobText;
+	public TextMesh lvlText;
+	public TextMesh str;
+	public TextMesh agi;
+	public TextMesh vit;
 	public TextMesh goldText;
 
 	// Use this for initialization
 	void Start () {
-		lvlText.text = GameData.unitList [heroSlot].Level.ToString();
-		nameText.text = GameData.unitList [heroSlot].Name;
-		descText.text = GameData.unitList [heroSlot].Description;
-		goldText.text = GameData.unitList [heroSlot].GoldNeeded.ToString();
+		UpdateData ();
+	}
 
+	public void UpdateData(){
+		nameText.text = "Name " + GameData.unitList [heroSlot].Name;
+		jobText.text = GameData.unitList [heroSlot].Job;
+		lvlText.text = "Level " + GameData.unitList [heroSlot].Level.ToString();
+		str.text = "Str :"+GameData.unitList [heroSlot].Str.ToString();
+		agi.text = "Agi :"+GameData.unitList [heroSlot].Agi.ToString();
+		vit.text = "Vit :"+GameData.unitList [heroSlot].Vit.ToString();
+		goldText.text = GameData.unitList [heroSlot].GoldNeeded.ToString();
+		
 		if (GameData.unitList [heroSlot].IsUnlocked) {
 			goldText.gameObject.SetActive(false);
 			heroState = true;

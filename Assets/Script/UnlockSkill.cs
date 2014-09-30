@@ -9,6 +9,7 @@ public class UnlockSkill : MonoBehaviour {
 	public Sprite selectedSprite;
 	public Sprite deselectedSprite;
 	public SpriteRenderer renderer;
+	public TextMesh text;
 
 	public ProfileController profileController;
 
@@ -25,7 +26,8 @@ public class UnlockSkill : MonoBehaviour {
 	void OnMouseDown(){
 
 		//Debug.Log ("slot " + slot + " isunlock " + GameData.skillList [slot].IsUnlocked + " selec " + GameData.skillList [slot].IsSelected);
-		if (GameData.profile.Gold >= GameData.skillList[slot].Price && !GameData.skillList [slot].IsUnlocked) {
+		if (GameData.profile.Gold >= GameData.skillList[slot].Price && !GameData.skillList [slot].IsUnlocked 
+		                && GameData.unitList[GameData.skillList[slot].HeroesRequired].IsUnlocked ) {
 						GameData.skillList [slot].IsUnlocked = true;
 						GameData.skillList [slot].IsSelected = false;
 						frame.SetActive (false);
@@ -33,7 +35,10 @@ public class UnlockSkill : MonoBehaviour {
 						renderer.sprite = deselectedSprite;
 				
 		} else {
-			Debug.Log("Not enough");			
+			if ( GameData.profile.Gold < GameData.skillList[slot].Price )
+				text.text = "Not enough money..";
+			else if ( !GameData.unitList[GameData.skillList[slot].HeroesRequired].IsUnlocked )
+				text.text = "You must unlock " + GameData.unitList[GameData.skillList[slot].HeroesRequired].Name + " first!";			
 		}
 		if (GameData.skillList [slot].IsSelected && GameData.skillList [slot].IsUnlocked  && GameData.totalSkillUsed > 0) {
 			GameData.totalSkillUsed--;

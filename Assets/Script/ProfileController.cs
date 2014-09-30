@@ -28,20 +28,6 @@ public class ProfileController : MonoBehaviour {
 	}
 
 	void SetActiveHeroes(){
-		 /*
-		Debug.Log ("hero set");
-		int index = 0,cleanSlotIndex = 0;
-		for (int i = 0; i < 8 ; i++ ) {
-			if ( cleanSlotIndex < 5 ) 
-				basecampActiveHeroesList[cleanSlotIndex++].sprite = null;
 
-			if ( GameData.selectedHeroes[i]){
-				basecampActiveHeroesList[index++].sprite = 
-					(Sprite)Resources.Load("Sprite/Character/Hero/"
-					                       +GameData.heroesList[i],typeof(Sprite));
-				Debug.Log(GameData.heroesList[i]);
-				//GameData.basecampActiveHeroesList[index++] = GameData.heroesList[i];
-			}
-		}*/
 	}
 }

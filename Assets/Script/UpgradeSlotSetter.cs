@@ -26,10 +26,7 @@ public class UpgradeSlotSetter : MonoBehaviour {
 			GameData.readyToTween = false;
 			controller.UpgradedSlot = slot;
 			// cek kalau slot 0 itu gem, dll itu catalyst yg di on-kan buttonya
-			foreach (InventorySetter i in controller.selectItemButton){
-				
-				i.CheckButton ();
-			}
+
 			iTween.MoveTo ( targetObject,iTween.Hash("position",tweenedObject.transform.position,"time", 0.1f,"onComplete","ReadyTween","onCompleteTarget",gameObject));
 
 		}
@@ -40,8 +37,12 @@ public class UpgradeSlotSetter : MonoBehaviour {
 	}
 	
 	void ReadyTween(){
+		GameData.gameState = targetObject.name;
 		GameData.readyToTween = true;
 		iTween.MoveTo (tweenedObject, tempPosition,0.3f);		
 		Debug.Log ("Oncomplete");
+		foreach (InventorySetter i in controller.selectItemButton){
+			i.CheckButton ();
+		}
 	}
 }

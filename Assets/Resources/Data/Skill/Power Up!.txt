@@ -1,5 +1,5 @@
-Summon a fireball and crush the enemy
 1
 1
-1
+2
 10
+3

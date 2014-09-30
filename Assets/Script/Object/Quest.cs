@@ -18,6 +18,7 @@ public class Quest
 	private int currentQuantity;
 	private int quantityNeeded;
 	private bool isCompleted;
+	private bool isRewardTaken;
 	private int rewardMoney;
 	private int rewardDiamond;
 
@@ -93,6 +94,15 @@ public class Quest
 		}
 		set {
 			rewardDiamond = value;
+		}
+	}
+
+	public bool IsRewardTaken {
+		get {
+			return isRewardTaken;
+		}
+		set {
+			isRewardTaken = value;
 		}
 	}
 }

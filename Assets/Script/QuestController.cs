@@ -9,6 +9,8 @@ public class QuestController : MonoBehaviour {
 	public TextMesh descTwo;
 	public TextMesh rewardOne;
 	public TextMesh rewardTwo;
+	public GameObject buttonOne;
+	public GameObject buttonTwo;
 	public ScreenData data;
 	Quest one, two;
 
@@ -19,6 +21,9 @@ public class QuestController : MonoBehaviour {
 	}
 
 	public void SetQuest(){
+		buttonOne.SetActive (false);
+		buttonTwo.SetActive (false);
+
 		one = GameData.questList [(data.corridorState*2)+0];
 		two = GameData.questList [(data.corridorState*2)+1];
 		
@@ -27,6 +32,12 @@ public class QuestController : MonoBehaviour {
 		
 		rewardOne.text = one.RewardMoney.ToString();
 		rewardTwo.text = two.RewardMoney.ToString();
+
+		Debug.Log ("quest ke  1" + one.IsCompleted);
+		if (one.IsCompleted && !one.IsRewardTaken)
+						buttonOne.SetActive (true);
+		if (two.IsCompleted && !two.IsRewardTaken)
+						buttonTwo.SetActive (true);
 	}
 
 	private string SetDesc(int num, string name){
@@ -36,9 +47,9 @@ public class QuestController : MonoBehaviour {
 			break;
 		case "fortress" : ret = "Destroy "+num + " enemy fortress!";
 			break;
-		case "kingdom" :  ret = "Conquer "+num + " enemy Kingdoms!";
+		case "castle" :  ret = "Demolish "+num + " enemy Kingdoms!";
 			break;
-		case "unlock" :  ret = "Unlock "+num + " of your troopers!!";
+		case "gold" :  ret = "Have total "+num + " Gold!";
 			break;
 		default :ret = "";
 			break;

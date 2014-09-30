@@ -13,24 +13,20 @@ public class SelectItem : MonoBehaviour {
 
 	void OnMouseDown(){
 		
-		if (GameData.inventoryList.Count > (4 * data.corridorState)+slot) {
 			//copy
 			Item[] itemlist = new Item[GameData.inventoryList.Count];
 			GameData.inventoryList.CopyTo(itemlist);
 			// pasang di slot upgrade
-			Debug.Log("slot " + controller.SlotList.Count+ " itemlistke " + itemlist[(4 * data.corridorState)+slot]);
+		//	Debug.Log("slot " + controller.SlotList.Count+ " itemlistke " + itemlist[(4 * data.corridorState)+slot]);
 			controller.SlotList[controller.UpgradedSlot] = itemlist[(4 * data.corridorState)+slot];
 			controller.UpdateSlot(controller.UpgradedSlot);
 			//biar gak dobel pas nyari lagi di invent
 			GameData.inventoryList.RemoveAt((4 * data.corridorState)+slot);
 			// UPDATE SLOT DI CHOOSE GEM SCREEN ke slot
 			controller.UpdateSemuaGambarDiInventory();
-		}// else {
-		//	if (GameData.inventoryList [slot] is Gem) {
-		//		controller.SlotList.Add (GameData.inventoryList [(4 * data.corridorState)+slot]);
-			
-		//	}
-
-		//}
+			data.maxCorridorState = (GameData.inventoryList.Count/4);
+			if (GameData.inventoryList.Count % 4 == 0)
+						data.maxCorridorState--;
+			data.UpdateMaxCorridor();
 	}
 }

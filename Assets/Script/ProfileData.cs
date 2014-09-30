@@ -12,6 +12,12 @@ public class ProfileData
 	private int diamond;
 	private int nextStage;
 
+	// untuk quest
+	private int defeatedArmy;
+	private int fortressDestroyed;
+	private int castleDestroyed;
+	private int unlockedTroop;
+
 	public ProfileData(){
 
 	}
@@ -26,6 +32,24 @@ public class ProfileData
 		nextStage = 1;
 	
 		nextExp = GameData.expList [level];
+	}
+
+	public void CheckQuestAchievement(){
+		foreach (Quest q in GameData.questList) {
+			if ( q.Target.Contains("defeat"))
+				if ( defeatedArmy >= q.QuantityNeeded )
+					q.IsCompleted = true;
+			if ( q.Target.Contains("fortress"))
+				if ( fortressDestroyed >= q.QuantityNeeded )
+					q.IsCompleted = true;
+			if ( q.Target.Contains("castle"))
+				if ( castleDestroyed >= q.QuantityNeeded )
+					q.IsCompleted = true;
+			if ( q.Target.Contains("gold"))
+				if ( Gold >= q.QuantityNeeded )
+					q.IsCompleted = true;
+
+		}
 	}
 
 	public void LoadData(){
@@ -65,12 +89,30 @@ public class ProfileData
 		}
 	}
 
+	public int DefeatedArmy {
+		get {
+			return defeatedArmy;
+		}
+		set {
+			defeatedArmy = value;
+		}
+	}
+
 	public int CurrentExp {
 		get {
 			return currentExp;
 		}
 		set {
 			currentExp = value;
+		}
+	}
+
+	public int UnlockedTroop {
+		get {
+			return unlockedTroop;
+		}
+		set {
+			unlockedTroop = value;
 		}
 	}
 
@@ -83,12 +125,30 @@ public class ProfileData
 		}
 	}
 
+	public int FortressDestroyed {
+		get {
+			return fortressDestroyed;
+		}
+		set {
+			fortressDestroyed = value;
+		}
+	}
+
 	public int Diamond {
 		get {
 			return diamond;
 		}
 		set {
 			diamond = value;
+		}
+	}
+
+	public int CastleDestroyed {
+		get {
+			return castleDestroyed;
+		}
+		set {
+			castleDestroyed = value;
 		}
 	}
 

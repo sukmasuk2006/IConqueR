@@ -5,3 +5,4 @@ AGI
 VIT
 weaponbasedamage
 range
+name

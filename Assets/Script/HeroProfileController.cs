@@ -16,41 +16,35 @@ public class HeroProfileController : MonoBehaviour {
 	public TextMesh critText;
 	public GameObject expBar;
 	public GameObject upgradeTroopButton;
+
+	public TextMesh name;
+	public TextMesh lvl;
+	public TextMesh job;
 	
 
 	// Use this for initialization
 	void Start () {
-		SetPictureAndStats();
-
+	//	SetPictureAndStats();
+		SetPictureAndStatsFromFormation ();
 	}
-
-	public void SetPictureAndStats(){
-		Sprite sprite = (Sprite)Resources.Load ("Sprite/Character/Hero/"+GameData.selectedToViewProfileName, typeof(Sprite));
-		spriteRenderer.sprite = sprite;	
-		healthText.text = GameData.unitList [GameData.selectedToViewProfileId].HealthPoint.ToString();
-		strText.text = GameData.unitList [GameData.selectedToViewProfileId].Str.ToString();
-		vitText.text = GameData.unitList [GameData.selectedToViewProfileId].Vit.ToString();
-		agiText.text = GameData.unitList [GameData.selectedToViewProfileId].Agi.ToString();
-		movText.text = GameData.unitList [GameData.selectedToViewProfileId].Movement.ToString();
-		atkText.text = GameData.unitList [GameData.selectedToViewProfileId].AttackPoint.ToString();
-		defText.text = GameData.unitList [GameData.selectedToViewProfileId].DefensePoint.ToString();
-		evaText.text = GameData.unitList [GameData.selectedToViewProfileId].EvasionRate.ToString();
-		atkSpdText.text = GameData.unitList [GameData.selectedToViewProfileId].AttackSpeed.ToString();
-		critText.text = GameData.unitList [GameData.selectedToViewProfileId].Critical.ToString();
-	}
-
+	
 	public void SetPictureAndStatsFromFormation(){
-		spriteRenderer.sprite = GameData.formationList [GameData.selectedToViewProfileId].Unit.Sprites;	
-		healthText.text = GameData.formationList [GameData.selectedToViewProfileId].Unit.HealthPoint.ToString();
-		strText.text = GameData.formationList [GameData.selectedToViewProfileId].Unit.Str.ToString();
-		vitText.text = GameData.formationList [GameData.selectedToViewProfileId].Unit.Vit.ToString();
-		agiText.text = GameData.formationList [GameData.selectedToViewProfileId].Unit.Agi.ToString();
-		movText.text = GameData.formationList [GameData.selectedToViewProfileId].Unit.Movement.ToString();
-		atkText.text = GameData.formationList [GameData.selectedToViewProfileId].Unit.AttackPoint.ToString();
-		defText.text = GameData.formationList [GameData.selectedToViewProfileId].Unit.DefensePoint.ToString();
-		evaText.text = GameData.formationList [GameData.selectedToViewProfileId].Unit.EvasionRate.ToString();
-		atkSpdText.text = GameData.formationList [GameData.selectedToViewProfileId].Unit.AttackSpeed.ToString();
-		critText.text = GameData.formationList [GameData.selectedToViewProfileId].Unit.Critical.ToString();
+		Unit u = GameData.formationList [GameData.selectedToViewProfileId].Unit;
+		name.text = GameData.selectedToViewProfileName;
+		job.text = u.Job;
+		lvl.text = u.Level.ToString();
+		healthText.text = u.HealthPoint.ToString();
+		spriteRenderer.sprite = u.Sprites;	
+		healthText.text = u.HealthPoint.ToString();
+		strText.text = u.Str.ToString() +" + "+ u.Weapon.WeaponStats.Str;
+		vitText.text = u.Vit.ToString()+" + "+ u.Weapon.WeaponStats.Vit;
+		agiText.text = u.Agi.ToString()+" + "+ u.Weapon.WeaponStats.Agi;
+		movText.text = u.Movement.ToString();
+		atkText.text = u.AttackPoint.ToString();
+		defText.text = u.DefensePoint.ToString();
+		evaText.text = u.EvasionRate.ToString();
+		atkSpdText.text = u.AttackSpeed.ToString();
+		critText.text = u.Critical.ToString();
 	}
 
 	// Update is called once per frame

@@ -12,7 +12,7 @@ public class UpgradeWeaponSetter : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
-		controller.SetWeapon ();
+		controller.InitializeWeapon ();
 		for ( int i = 0 ; i < listInv.Count ; i++ ){
 			listInv[i].UpdateSlot();
 		}
