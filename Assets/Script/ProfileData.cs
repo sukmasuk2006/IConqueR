@@ -18,6 +18,7 @@ public class ProfileData
 	private int fortressDestroyed;
 	private int castleDestroyed;
 	private int unlockedTroop;
+	private int mapPosition;
 
 	// gameplay
 	public int unlockedSlot; // slot formasi yang terbuka
@@ -28,7 +29,6 @@ public class ProfileData
 	public  List<Item> inventoryList;
 	public  List<Quest> questList;
 	public  List<Unit> unitList;
-	public  List<Mission> missionList;
 
 	public ProfileData(){
 
@@ -51,7 +51,6 @@ public class ProfileData
 		inventoryList = new List<Item> ();
 		questList = new List<Quest> ();
 		unitList = new List<Unit> ();
-		missionList = new List<Mission> ();
 		Debug.Log ("next exp " + nextExp);
 	}
 
@@ -109,6 +108,15 @@ public class ProfileData
 		}
 		set {
 			nextMission = value;
+		}
+	}
+
+	public int MapPosition {
+		get {
+			return mapPosition;
+		}
+		set {
+			mapPosition = value;
 		}
 	}
 

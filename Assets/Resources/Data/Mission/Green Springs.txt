@@ -1,5 +1,6 @@
-50
-300
+60
+500
 0
 6
+warrior
 knight

@@ -21,6 +21,7 @@ public class GameData : MonoBehaviour {
 	private string[] linesFromFile;
 	
 	public static List<Item> shopList;
+	public static  List<Mission> missionList;
 	public static List<int> expList;
 	public static List<Sprite> unitSpriteList;
 	public static List<Sprite> unitIconList;
@@ -180,11 +181,12 @@ public class GameData : MonoBehaviour {
 	void InitializeGameData(){
 		/*INIT*/
 		linesFromFile = null;
+		missionList = new List<Mission> ();
 		TextAsset metxt = (TextAsset)Resources.Load ("Data/Mission/list", typeof(TextAsset));
 		string mecontent = metxt.text;
 		linesFromFile = mecontent.Split ("\n" [0]);
 		for (int i = 0; i < linesFromFile.Length; i++) {
-			profile.missionList.Add(new Mission(linesFromFile[i]));		
+			missionList.Add(new Mission(linesFromFile[i]));		
 		}
 		/*SKILL DATA*/
 		linesFromFile = null;

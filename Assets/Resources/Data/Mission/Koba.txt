@@ -1,5 +1,8 @@
 100
-100
-1
-6
-monk
+1000
+0
+7
+knight
+knight
+knight
+warrior

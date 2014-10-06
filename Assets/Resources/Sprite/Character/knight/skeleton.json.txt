@@ -31,10 +31,10 @@
 	{ "name": "right_hand_lower", "bone": "bone10", "attachment": "right_hand_lower" },
 	{ "name": "right_hand_upper", "bone": "right hand", "attachment": "right_hand_upper" },
 	{ "name": "right_fingers", "bone": "bone11", "attachment": "right_fingers" },
-	{ "name": "shield", "bone": "bone", "attachment": "shield" },
 	{ "name": "head", "bone": "head", "attachment": "head" },
 	{ "name": "left_leg_lower2", "bone": "bone14", "attachment": "left_leg_lower" },
-	{ "name": "left_foot2", "bone": "bone15", "attachment": "left_foot" }
+	{ "name": "left_foot2", "bone": "bone15", "attachment": "left_foot" },
+	{ "name": "shield", "bone": "bone", "attachment": "shield" }
 ],
 "skins": {
 	"default": {
@@ -89,6 +89,67 @@
 	}
 },
 "animations": {
+	"serang": {
+		"bones": {
+			"left hand": {
+				"rotate": [
+					{ "time": 0, "angle": -57.39 },
+					{ "time": 0.0333, "angle": -21.82 },
+					{ "time": 0.1333, "angle": 11.47 },
+					{ "time": 0.1666, "angle": 60.58 },
+					{ "time": 0.2333, "angle": 11.47 },
+					{ "time": 0.3, "angle": -21.82 },
+					{ "time": 0.3333, "angle": -57.39 }
+				]
+			},
+			"lengan": {
+				"rotate": [
+					{ "time": 0, "angle": -3.75 },
+					{ "time": 0.0666, "angle": 64.88 },
+					{ "time": 0.1333, "angle": 85.73, "curve": "stepped" },
+					{ "time": 0.2333, "angle": 85.73 },
+					{ "time": 0.3, "angle": 64.88 },
+					{ "time": 0.3333, "angle": -3.75 }
+				]
+			},
+			"telapak": {
+				"rotate": [
+					{ "time": 0, "angle": 76.17 },
+					{ "time": 0.0666, "angle": 24.3 },
+					{ "time": 0.1333, "angle": 7.43 },
+					{ "time": 0.2, "angle": 24.3 },
+					{ "time": 0.2666, "angle": 7.43 },
+					{ "time": 0.3333, "angle": 76.17 }
+				]
+			},
+			"pedang": {
+				"rotate": [
+					{ "time": 0, "angle": -42.18 },
+					{ "time": 0.1333, "angle": -34.81, "curve": "stepped" },
+					{ "time": 0.2333, "angle": -34.81 },
+					{ "time": 0.3333, "angle": -46.3 }
+				]
+			},
+			"head": {
+				"rotate": [
+					{ "time": 0, "angle": -18.35 },
+					{ "time": 0.1, "angle": -8.19 },
+					{ "time": 0.1666, "angle": 16.64 },
+					{ "time": 0.2666, "angle": -8.19 },
+					{ "time": 0.3333, "angle": -18.35 }
+				]
+			},
+			"right hand": {
+				"rotate": [
+					{ "time": 0, "angle": -10.12 },
+					{ "time": 0.1, "angle": 14.27 },
+					{ "time": 0.1666, "angle": -282.32 },
+					{ "time": 0.2666, "angle": 14.27 },
+					{ "time": 0.3333, "angle": -10.12 }
+				]
+			}
+		}
+	},
 	"jalan2": {
 		"bones": {
 			"left hand": {
@@ -225,21 +286,7 @@
 					{ "time": 0, "x": 0.969, "y": 1 }
 				]
 			}
-		},
-		"draworder": [
-			{
-				"time": 0,
-				"offsets": [
-					{ "slot": "shield", "offset": 3 }
-				]
-			},
-			{
-				"time": 0.3333,
-				"offsets": [
-					{ "slot": "shield", "offset": 3 }
-				]
-			}
-		]
+		}
 	}
 }
 }

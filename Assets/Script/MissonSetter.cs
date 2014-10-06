@@ -11,7 +11,7 @@ public class MissonSetter : MonoBehaviour {
 	public TextMesh confirmText2;
 	// Use this for initialization
 	void Start () {
-		name.text = GameData.profile.missionList [curr].Name;
+		name.text = GameData.missionList [curr].Name;
 		if (curr > GameData.profile.NextMission) {
 			this.gameObject.SetActive(false);
 		}
@@ -26,7 +26,7 @@ public class MissonSetter : MonoBehaviour {
 	}
 
 	void SetInformation(){
-		confirmText1.text = "Attack "+ GameData.profile.missionList[curr].Name +" " + missionType +" ?";
-		confirmText2.text = "Enemy list :" + GameData.profile.missionList[curr].EnemyListName;
+		confirmText1.text = "Attack "+ GameData.missionList[curr].Name +" " + missionType +" ?";
+		confirmText2.text = "Enemy list :" + GameData.missionList[curr].EnemyListName;
 	}
 }

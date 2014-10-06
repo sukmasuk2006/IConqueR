@@ -4,3 +4,4 @@
 6
 warrior
 knight
+archer

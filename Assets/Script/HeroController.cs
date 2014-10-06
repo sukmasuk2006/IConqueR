@@ -29,13 +29,19 @@ public class HeroController : MonoBehaviour {
 	private bool isChangeState = true;
 	public int slot;
 	public SkeletonAnimation animator;
+	private bool isDeath;
+	private HeroController targetUnit;
 
-	//enemy only
-	private Unit tempStats;
+	public bool IsDeath {
+		get {
+			return isDeath;
+		}
+	}
+
 
 	// Use this for initialization
 	void Start () {
-
+		isDeath = false;
 		attackSpeed = 0;
 		if (gameObject.activeInHierarchy) {
 			healthBar.SetActive (true);
@@ -49,17 +55,8 @@ public class HeroController : MonoBehaviour {
 			InitializeWeapon();
 			InitializePosition(-1);
 		} else if (gameObject.name.Contains ("enemy")) {
-			stats = tempStats = controller.activeEnemyList[slot];
-	// tiap 3 stage, naik level musuhnya
-			int level = (GameData.currentMission/3)+1;
-			stats.Agi *= level;
-			stats.Str *= level;
-			stats.Vit *= level;
-			stats.Weapon.WeaponStats.Str = stats.Weapon.WeaponStats.Agi = stats.Weapon.WeaponStats.Vit = 0;
-			stats.Weapon.Damage = 1 * level;
-			Debug.Log("multipyl " + level + " str " + stats.Str+ " agi "+ stats.Agi +"vit " +stats.Vit +" dmg "+stats.Weapon.Damage
-			          );
-			stats.SetStats();
+			stats =  controller.activeEnemyList[slot];
+
 			InitializeWeapon();
 			InitializePosition(1);
 		}
@@ -76,12 +73,12 @@ public class HeroController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 				if (this.stats.HealthPoint <= 0) {
+					isDeath = true;
 					MoveToGraveyard();
-					
-				
 				}
+				
 				// jika masih battle
-		if (controller.BatlleState == 0) {
+				if (controller.BatlleState == 0) {
 						attackSpeed -= Time.deltaTime;
 						// check attack time
 						if (attackType == 0) {		
@@ -125,26 +122,42 @@ public class HeroController : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll) {
 		if (coll.gameObject.name.Contains (target) && isAttack && attackType == 0 ) {
-			HeroController h = coll.gameObject.GetComponent<HeroController>();
-			DoDamageToTarget(h);
+			targetUnit = coll.gameObject.GetComponent<HeroController>();
+			if ( animator.state.GetCurrent(1) == null ){
+				animator.state.SetAnimation(1,"serang",false);
+				animator.state.GetCurrent(1).Complete += HandleComplete;
+			}
+	//		animator.state.AddAnimation(0,"jalan2",true,0.1f);
+//			skeletonAnimation.state.SetAnimation(0, "jump", false);
+
+
 		} else if (coll.gameObject.name.Contains ("wall")) {
 			// push dikit
 			rigidbody2D.velocity = Vector2.zero;
 		}
 		
 	}
+
+	void HandleComplete (Spine.AnimationState state, int trackIndex, int loopCount)
+	{
+		DoDamageToTarget (targetUnit);
+	}
+
 	public void DoDamageToTarget(HeroController h){
-		// ATTACK!!
+		// ATTACK!! kalau masih hidup
 		if (stats.HealthPoint > 0) {
 				// damage critical atau tidak, dimasukkan ke unit untuk dihitung evasion
+				Debug.Log("damaged unit " + gameObject.name +" health " + stats.HealthPoint);
 				float damage = h.stats.ReceiveDamage(stats.Damage,stats.IsCritical);
+				Debug.Log(" damage " + damage);
+				stats.IsCritical = false; // set critical ke semula, tapi chance tetep
 				controller.ReceiveDamage (target, damage);
 				h.UpdateHealthBar ();
 				GetReadyForNextAttack ();
 		}
 	}
 
-	void GetReadyForNextAttack(){
+	public void GetReadyForNextAttack(){
 		isAttack = false;
 		attackSpeed = stats.AttackSpeed;
 		movementSpeed = stats.Movement;
@@ -153,8 +166,7 @@ public class HeroController : MonoBehaviour {
 						rigidbody2D.velocity = Vector2.zero;
 						rigidbody2D.AddForce (new Vector2 (stats.Movement * direction * -1, 0f));
 				}
-		states = 2;
-		isChangeState = true;
+
 	}
 
 	public void DeceleratePullBack(){
@@ -177,7 +189,6 @@ public class HeroController : MonoBehaviour {
 	public void MoveToGraveyard(){
 		if (this.gameObject.name.Contains ("enemy")) {
 			GameData.profile.DefeatedArmy++;
-			stats = tempStats;
 		}
 		transform.position = new Vector2 (-11f, transform.position.y);
 		projectile.SetActive(false);

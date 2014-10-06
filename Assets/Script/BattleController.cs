@@ -24,6 +24,7 @@ public class BattleController : MonoBehaviour {
 	public SpriteRenderer bg;
 	public List<Skill> activeSkill;
 	public List<Unit> activeEnemyList;
+	public List<Unit> tempStats;
 	public Vector3 reportTargetPosition;	
 	public TextMesh goldTextMesh;
 	public TextMesh diamondText;
@@ -67,7 +68,7 @@ public class BattleController : MonoBehaviour {
 		positionAvailableList = new bool[12]{true,true,true,true,true,true,true,true,true,true,true,true};
 		isGetReward = 0;
 		battleState = 0;
-		mission = GameData.profile.missionList [GameData.currentMission];
+		mission = GameData.missionList [GameData.currentMission];
 		//Debug.Log ("Misi ke-" + (GameData.profile.CurrentMission - 1).ToString());
 		activeEnemyList = mission.EnemyList;
 		//Debug.Log ("Jumlah musuh " + activeEnemyList.Count);
@@ -98,14 +99,26 @@ public class BattleController : MonoBehaviour {
 
 		}
 		i = 0;
-		foreach (Unit u in activeEnemyList) {
-			u.Refresh();
+		tempStats = new List<Unit> ();
+		for ( i = 0 ; i < activeEnemyList.Count ; i++) {
+			Unit s = activeEnemyList[i];
+			s.Refresh();
 			enemyList[i].SetActive(true);	
 //			enemyList[i].GetComponent<SpriteRenderer>().sprite = u.Sprites;
-			enemyTotalHealth += u.HealthPoint;
-			i++;
+			tempStats.Add(new Unit(s.HeroId,s.Job.Trim()));
+//			Debug.Log("added temp " + tempStats.Count
+			// tiap 3 stage, naik level musuhnya
+			int level = (GameData.currentMission/3)+1;
+			s.Agi *= level;
+			s.Str *= level;
+			s.Vit *= level;
+			s.Weapon.WeaponStats.Str = s.Weapon.WeaponStats.Agi = s.Weapon.WeaponStats.Vit = 0;
+			s.Weapon.Damage = 1 * level;
+			s.SetStats();
+			enemyTotalHealth += s.HealthPoint;
+
 		}
-		//Debug.Log ("Jumlah hp " + enemyTotalHealth);
+	//	Debug.Log ("report " + activeEnemyList.Count + " " + tempStats.Count);
 
 	
 		ConstantHeroHealthLocalScale = globalHeroHealthBar.transform.localScale;
@@ -175,23 +188,41 @@ public class BattleController : MonoBehaviour {
 
 	private void UpdateEnemyHealthBar(float damage){
 		enemyTotalHealth = Mathf.Floor(enemyTotalHealth- damage);
-		if (enemyTotalHealth <= 0)
-				enemyTotalHealth = 0;
+		if (enemyTotalHealth <= 0) {
+			enemyTotalHealth = 0;
+		}
+		/*
+		enemyTotalHealth = 0;
+		foreach (GameObject g in enemyList) {
+			HeroController h = g.GetComponent<HeroController>();
+			if ( g.activeInHierarchy  ){
+				enemyTotalHealth += h.stats.HealthPoint;
+				if ( h.IsDeath )
+					h.MoveToGraveyard();
+			}
+		}
 
+		if (enemyTotalHealth <= 0) {
+			enemyTotalHealth = 0;
+			battleState = 1;
+			Win();	
+		}
+		*/
 		Vector3 temp2 = new Vector3((ConstantEnemyHealthLocalScale * enemyTotalHealth / 
 		                             ConstantEnemyHealth).x,
 		                            ConstantEnemyHealthLocalScale.y,
 		                            ConstantEnemyHealthLocalScale.z);
 		globalEnemyHealthBar.transform.localScale = temp2; 
+
 		if (enemyTotalHealth <= 0) {
 			battleState = 1;	
-			Debug.Log ("WIN2");
-			foreach(GameObject g in enemyList){
-				if ( g.activeInHierarchy )
-					g.GetComponent<HeroController>().MoveToGraveyard();
+			foreach (GameObject g in enemyList) {
+				HeroController h = g.GetComponent<HeroController>();
+				if ( g.activeInHierarchy  ){
+					h.MoveToGraveyard();
+				}
 			}
 			Win();
-
 		}
 	}
 
@@ -244,21 +275,27 @@ public class BattleController : MonoBehaviour {
 	}
 	
 	void ShowOnReport(){
+		ScaleExpBar ();
+		GetExpReward ();
 		goldTextMesh.text ="+"+goldEarn.ToString ();
 		diamondText.text ="+"+diamondEarn.ToString ();
 		expEarnedText.text ="+"+expEarn.ToString ();
+		Debug.Log ("report " + activeEnemyList.Count + " " + tempStats.Count);
+		for (int i = 0; i < activeEnemyList.Count; i++) {
+			activeEnemyList[i].CopyStats(tempStats[i].HeroId,tempStats[i]);
+		}
 		iTween.MoveTo (reportScreen, iTween.Hash ("position", reportTargetPosition, "time", 1.0f,"delay",3.0f));
-		ScaleExpBar ();
-		GetExpReward ();
+
 	}
 
 	void ScaleExpBar(){
 		int gotExp = mission.ExpReward; // buat ngitung
-		expEarn = gotExp;
 		scaleX = GameData.profile.CurrentExp * 1f / GameData.profile.NextExp; // cek awal2
 
 		Debug.Log ("DI BATLE cur " + GameData.profile.CurrentExp + " got " + gotExp + " nesx " + GameData.profile.NextExp);
 		if ( battleState == 1 || battleState == 5 ){
+			gotExp /= battleState;
+			expEarn = gotExp;
 			if (GameData.profile.IsLevelUp(gotExp) ) {
 			//LEVELUP
 				GameData.profile.CurrentExp += gotExp;

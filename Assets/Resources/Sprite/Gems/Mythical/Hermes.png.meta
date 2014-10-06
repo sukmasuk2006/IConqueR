@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 243f8157812b5bb48b9175698c2d75f3
+guid: 6382bdbcbb127214b824593988645bc5
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Helios
+    21300000: Hermes
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -26,9 +26,9 @@ TextureImporter:
   maxTextureSize: 128
   textureSettings:
     filterMode: -1
-    aniso: 1
+    aniso: -1
     mipBias: -1
-    wrapMode: 1
+    wrapMode: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50

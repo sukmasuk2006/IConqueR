@@ -1,6 +1,7 @@
-60
+75
 600
 0
 6
 warrior
 warrior
+knight

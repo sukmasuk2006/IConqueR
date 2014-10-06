@@ -46,7 +46,7 @@ public class Mission
 		maxReward = int.Parse (linesFromFile [3]);
 		for (int i = 4; i < linesFromFile.Length; i++) {
 			enemyList.Add(new Unit(i,linesFromFile[i].Trim()));		
-			enemyListName = linesFromFile[i].Trim() + ", ";
+			enemyListName += linesFromFile[i].Trim() + " ";
 		}
 	}
 

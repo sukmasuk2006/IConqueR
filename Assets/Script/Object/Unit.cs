@@ -17,7 +17,7 @@ public class Unit : UnitStatus {
 
 	public Unit(int id,string name):
 	base(){
-		this.job = this.name = name;
+		this.job = this.name = name.Trim();
 		heroId = id;
 		InitializeHero ();
 	}

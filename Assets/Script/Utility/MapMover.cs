@@ -10,7 +10,9 @@ public class MapMover : MonoBehaviour {
 	public AudioClip sound;
 	// Use this for initialization
 	void Start () {
-	
+		data.corridorState = GameData.profile.MapPosition;
+		SetCoord ();
+		tweenedObject.transform.position = new Vector3 (x, y, -0.6f);
 	}
 	
 	void OnMouseUp(){
@@ -27,6 +29,7 @@ public class MapMover : MonoBehaviour {
 			SetCoord ();
 			GameData.readyToTween = false;	
 			iTween.MoveTo (tweenedObject, iTween.Hash ("position", new Vector3 (x, y, -0.6f), "time", 1f, "onComplete", "ReadyTween", "onCompleteTarget", gameObject));
+			GameData.profile.MapPosition = data.corridorState;
 		}
 		MusicManager.getMusicEmitter().audio.PlayOneShot(sound);
 
@@ -34,6 +37,7 @@ public class MapMover : MonoBehaviour {
 
 	void ReadyTween(){
 		GameData.readyToTween = true;
+		SaveLoad.Save ();
 	}
 		
 	void SetCoord(){

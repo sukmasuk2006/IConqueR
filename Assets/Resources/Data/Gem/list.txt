@@ -30,3 +30,7 @@ Helios
 Hermes
 Poseidon
 Gaia
+Geyni
+Angin
+Banyu
+Lemah
