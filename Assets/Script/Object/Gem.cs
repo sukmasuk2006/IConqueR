@@ -1,32 +1,31 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using System.Collections;
-
+[System.Serializable]
 public class Gem : Item {
 
 	private string grade;
 	protected UnitStatus stats;
 	//private ArrayList<int> requiremets;
 
-	public Gem(string name):
-		base(name){
+	public Gem(int id, string name):
+		base(id,name){
 		InitializeGem ();
 	}
 
 	private void InitializeGem(){
 		string[] linesFromFile = null;
 		TextAsset txt = (TextAsset)Resources.Load ("Data/Gem/"+ name.Trim(), typeof(TextAsset));
-		//Debug.Log ("added " + name);
 		string content = txt.text;
-		sprites = (Sprite)Resources.Load ("Sprite/Gems/" + name.Trim (), typeof(Sprite));
 		linesFromFile = content.Split ("\n" [0]);
 		grade = linesFromFile [0];
 		Price = int.Parse(linesFromFile[1]);
+		PriceType = int.Parse (linesFromFile [2]);
 		stats = new UnitStatus ();
-		stats.Str =  int.Parse( linesFromFile [2]);
-		stats.Agi = int.Parse (linesFromFile [3]);
-		stats.Vit = int.Parse (linesFromFile [4]);
-		SuccessRate = float.Parse(linesFromFile[5]);
+		stats.Str =  int.Parse( linesFromFile [3]);
+		stats.Agi = int.Parse (linesFromFile [4]);
+		stats.Vit = int.Parse (linesFromFile [5]);
+		SuccessRate = float.Parse(linesFromFile[6]);
+//		Debug.Log ("added " + name + " rate " + SuccessRate);
 	}
 	public string Grade {
 		get {

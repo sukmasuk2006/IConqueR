@@ -1,7 +1,7 @@
 ﻿public class GameConstant  {
 
 	/*	 CONSTANT   */
-	public static int UNLOCK_SLOT_PRICE = 5000;
+	public static int UNLOCK_SLOT_PRICE = 2000;
 
 	/*Screen state*/
 	public const string LOGO_STATE = "LOGO";

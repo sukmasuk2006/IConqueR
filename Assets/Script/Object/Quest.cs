@@ -8,11 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using UnityEngine;
-using System;
 using System.Collections;
-
+[System.Serializable]
 public class Quest
 {
+	private int id;
 	private string name;
 	private string target;
 	private int currentQuantity;
@@ -22,8 +22,9 @@ public class Quest
 	private int rewardMoney;
 	private int rewardDiamond;
 
-	public Quest (string trg)
+	public Quest (int id,string trg)
 	{
+		this.id = id;
 		target = trg;
 		currentQuantity = 0;
 		isCompleted = false;
@@ -40,6 +41,15 @@ public class Quest
 		quantityNeeded = int.Parse (linesFromFile [1]);
 		rewardMoney = int.Parse (linesFromFile [2]);
 		rewardDiamond = int.Parse (linesFromFile [3]);
+	}
+
+	public int Id {
+		get {
+			return id;
+		}
+		set {
+			id = value;
+		}
 	}
 
 	public string Target {

@@ -34,6 +34,7 @@ using UnityEngine;
 using Spine;
 
 /// <summary>Loads and stores a Spine atlas and list of materials.</summary>
+[System.Serializable]
 public class AtlasAsset : ScriptableObject {
 	public TextAsset atlasFile;
 	public Material[] materials;

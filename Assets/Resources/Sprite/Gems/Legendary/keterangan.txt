@@ -1,0 +1,6 @@
+Apollo Stone
+STR agi vit
+Pandora Stone
+str agi VIT
+Poseidon Stone
+Terra

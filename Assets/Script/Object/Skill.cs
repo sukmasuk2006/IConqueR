@@ -7,15 +7,14 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-using System;
 using UnityEngine;
 using System.Collections.Generic;
-
+[System.Serializable]
 public class Skill
 {
 	private string name;
 	private int heroesRequired;
-	private int level;
+	private int id;
 	private int type;
 	private SkillEffect effect;
 	private bool isUnlocked;
@@ -27,7 +26,7 @@ public class Skill
 	public Skill (int level, string nm)
 	{
 		this.name = nm;
-		this.level = level;
+		this.id = level;
 		isUnlocked = false;
 		isSelected = false;
 		InitializeSkill ();
@@ -38,7 +37,7 @@ public class Skill
 	private void InitializeSkill(){
 		linesFromFile = null;
 		TextAsset txt = (TextAsset)Resources.Load ("Data/Skill/"+ name.Trim(), typeof(TextAsset));
-		price = 1000;
+		price = 1000 * (id+1);
 		string content = txt.text;
 		linesFromFile = content.Split ("\n" [0]);
 		heroesRequired = int.Parse (linesFromFile [0]);
@@ -51,14 +50,37 @@ public class Skill
 	public void DoEffect(Unit u){
 		int tipe = effect.Tipe;
 		switch (tipe) {
-		case 1 :  u.DefensePoint+= (effect.Amount / 100)* GameData.unitList[0].DefensePoint;   // knight
-			Debug.Log("attack Up by " + effect.Amount);
+		case 1 :  u.DefensePoint+= (effect.Amount / 100)* u.DefensePoint;   // knight
 			break; 
-		case 2 : u.AttackPoint+= (effect.Amount / 100)* GameData.unitList[0].AttackPoint; // warrior
- 			break;
-		case 3 :  u.Critical+= effect.Amount; // sek
+		case 2 : u.AttackPoint+= (effect.Amount / 100)* u.AttackPoint; // warrior
 			break;
-		case 4 :  u.EvasionRate+= effect.Amount; // sek
+		case 3 :  u.AttackSpeed -= (effect.Amount / 100)* u.AttackSpeed;
+			break;
+		case 4 :  u.EvasionRate+= (effect.Amount / 100)* u.EvasionRate; // sek
+		break;	
+		case 5 :  u.Critical+= (effect.Amount / 100)* u.Critical;   
+			break; 
+		case 6 : u.AttackPoint+= (effect.Amount / 100)* u.AttackPoint;
+				u.DefensePoint+= (effect.Amount / 100)* u.DefensePoint;   // knight
+			break;
+		case 7 : u.AttackSpeed+= (effect.Amount / 100)* u.AttackSpeed;   
+			u.Critical+= (effect.Amount / 100)* u.Critical;   
+			u.EvasionRate+= (effect.Amount / 100)* u.EvasionRate;
+			break;
+		case 8 : u.AttackPoint+= (effect.Amount / 100)* u.AttackPoint;
+			u.AttackSpeed+= (effect.Amount / 100)* u.AttackSpeed;   
+			u.EvasionRate+= (effect.Amount / 100)* u.EvasionRate;
+			break;
+		case 9 :  u.AttackPoint+= (effect.Amount / 100)* u.AttackPoint;
+			u.AttackSpeed+= (effect.Amount / 100)* u.AttackSpeed;   
+			u.EvasionRate+= (effect.Amount / 100)* u.EvasionRate;
+			u.Critical+= (effect.Amount / 100)* u.Critical;   
+			break;
+		case 10 :  u.AttackPoint+= (effect.Amount / 100)* u.AttackPoint;
+			u.AttackSpeed+= (effect.Amount / 100)* u.AttackSpeed;   
+			u.EvasionRate+= (effect.Amount / 100)* u.EvasionRate;
+			u.Critical+= (effect.Amount / 100)* u.Critical;  
+			u.DefensePoint+= (effect.Amount / 100)* u.DefensePoint;   // knight
 			break;
 		}
 	}
@@ -99,12 +121,12 @@ public class Skill
 		}
 	}
 
-	public int Level {
+	public int Id {
 		get {
-			return level;
+			return id;
 		}
 		set {
-			level = value;
+			id = value;
 		}
 	}
 

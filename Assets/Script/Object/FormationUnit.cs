@@ -7,7 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
+[System.Serializable]
 public class FormationUnit
 	{
 	private Unit unit;
@@ -22,8 +22,7 @@ public class FormationUnit
 
 	public void SetUnit(int id, Unit u){
 		unit.CopyStats(id,u);
-		if (u.HeroId == 99)
-						u.Sprites = null;
+
 	}
 
 	public Unit Unit {

@@ -14,8 +14,7 @@ public class HeroProfileController : MonoBehaviour {
 	public TextMesh evaText;
 	public TextMesh atkSpdText;
 	public TextMesh critText;
-	public GameObject expBar;
-	public GameObject upgradeTroopButton;
+	public TextMesh expText;
 
 	public TextMesh name;
 	public TextMesh lvl;
@@ -29,12 +28,12 @@ public class HeroProfileController : MonoBehaviour {
 	}
 	
 	public void SetPictureAndStatsFromFormation(){
-		Unit u = GameData.formationList [GameData.selectedToViewProfileId].Unit;
+		Unit u = GameData.profile.formationList [GameData.selectedToViewProfileIdFromFormation].Unit;
 		name.text = GameData.selectedToViewProfileName;
 		job.text = u.Job;
-		lvl.text = u.Level.ToString();
+		lvl.text = "Level\n"+u.Level.ToString();
 		healthText.text = u.HealthPoint.ToString();
-		spriteRenderer.sprite = u.Sprites;	
+		spriteRenderer.sprite = GameData.unitSpriteList[GameData.selectedToViewProfileId];	
 		healthText.text = u.HealthPoint.ToString();
 		strText.text = u.Str.ToString() +" + "+ u.Weapon.WeaponStats.Str;
 		vitText.text = u.Vit.ToString()+" + "+ u.Weapon.WeaponStats.Vit;
@@ -45,6 +44,7 @@ public class HeroProfileController : MonoBehaviour {
 		evaText.text = u.EvasionRate.ToString();
 		atkSpdText.text = u.AttackSpeed.ToString();
 		critText.text = u.Critical.ToString();
+		expText.text = "Next level : "+u.CurrentExp + " / " + u.NextExp;
 	}
 
 	// Update is called once per frame

@@ -8,6 +8,7 @@
 // </auto-generated>
 using UnityEngine;
 using System.Collections.Generic;
+[System.Serializable]
 public class Mission
 {
 	private string name;
@@ -18,6 +19,13 @@ public class Mission
 	private int diamondReward;
 	private int maxReward;
 	private List<Unit> enemyList;
+	private string enemyListName;
+
+	public string EnemyListName {
+		get {
+			return enemyListName;
+		}
+	}
 
 	public Mission (string name)
 	{
@@ -28,6 +36,7 @@ public class Mission
 	private void InitializeMission(){
 		enemyList = new List<Unit> ();
 	//	Debug.Log ("nama " + name);
+		enemyListName = "";
 		TextAsset txt = (TextAsset)Resources.Load ("Data/Mission/"+name.Trim(), typeof(TextAsset));
 		string content = txt.text;
 		string[] linesFromFile = content.Split ("\n" [0]);
@@ -35,10 +44,9 @@ public class Mission
 		goldReward = int.Parse(linesFromFile [1]);
 		diamondReward = int.Parse(linesFromFile [2]);
 		maxReward = int.Parse (linesFromFile [3]);
-//		Debug.Log ("misi " + name);
 		for (int i = 4; i < linesFromFile.Length; i++) {
 			enemyList.Add(new Unit(i,linesFromFile[i].Trim()));		
-			//Debug.Log ("musuh " + linesFromFile[i].Trim());
+			enemyListName = linesFromFile[i].Trim() + ", ";
 		}
 	}
 

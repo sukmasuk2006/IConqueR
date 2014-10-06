@@ -8,13 +8,16 @@ public class SkillSlotController : MonoBehaviour {
 	public int skillSlot;
 	private bool skillState = false;
 	public Sprite unlockedSprite;
+	public TextMesh priceText;
 
 	// Use this for initialization
 	void Start () {
-
-		if (GameData.skillList [skillSlot].IsUnlocked) {
+		Skill s = GameData.profile.skillList [skillSlot];
+		priceText.text = s.Price.ToString();
+		if (s.IsUnlocked) {
 			skillState = true;
 			skillLockedFrame.SetActive(false);
+
 		}
 	}
 }

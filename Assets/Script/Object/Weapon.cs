@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-
+[System.Serializable]
 public class Weapon : Item {
 
 	private float damage;
@@ -9,9 +9,8 @@ public class Weapon : Item {
 	private UnitStatus weaponStats;
 	//private ArrayList<Item> equippedGem;
 
-	public Weapon(string name,float damage, float range):
-		base(name){
-		sprites = (Sprite)Resources.Load ("Sprite/Weapon/" + name.Trim (), typeof(Sprite));
+	public Weapon(int id,string name,float damage, float range):
+		base(id,name){
 		this.damage = damage;
 		this.range = range;
 		weaponStats = new UnitStatus ();
@@ -22,6 +21,8 @@ public class Weapon : Item {
 	public float Damage {
 		get {
 			return damage;
+		}set{
+			damage = value;		
 		}
 	}
 

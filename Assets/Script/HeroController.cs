@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 /*
@@ -10,6 +9,7 @@ Bug list
 public class HeroController : MonoBehaviour {
 
 	public List<GameObject> enemyList;
+	public SpriteRenderer icon;
 	public BattleController controller;
 	public GameObject healthBar;
 	public SpriteRenderer lockSprite;
@@ -30,6 +30,9 @@ public class HeroController : MonoBehaviour {
 	public int slot;
 	public SkeletonAnimation animator;
 
+	//enemy only
+	private Unit tempStats;
+
 	// Use this for initialization
 	void Start () {
 
@@ -37,45 +40,45 @@ public class HeroController : MonoBehaviour {
 		if (gameObject.activeInHierarchy) {
 			healthBar.SetActive (true);
 			lockSprite.enabled = false;
-			}
+		}
 		if (gameObject.name.Contains ("hero")) {
-			stats = GameData.formationList[slot].Unit;
-//			Debug.Log("di hero cont " + slot + " " + stats.HealthPoint);
+			stats = GameData.profile.formationList[slot].Unit;
+			icon.sprite = GameData.unitIconList[stats.HeroId];
+
+			Debug.Log("di hero cont " + stats.HeroId);
 			InitializeWeapon();
 			InitializePosition(-1);
 		} else if (gameObject.name.Contains ("enemy")) {
-				stats = controller.activeEnemyList[slot];
+			stats = tempStats = controller.activeEnemyList[slot];
+	// tiap 3 stage, naik level musuhnya
+			int level = (GameData.currentMission/3)+1;
+			stats.Agi *= level;
+			stats.Str *= level;
+			stats.Vit *= level;
+			stats.Weapon.WeaponStats.Str = stats.Weapon.WeaponStats.Agi = stats.Weapon.WeaponStats.Vit = 0;
+			stats.Weapon.Damage = 1 * level;
+			Debug.Log("multipyl " + level + " str " + stats.Str+ " agi "+ stats.Agi +"vit " +stats.Vit +" dmg "+stats.Weapon.Damage
+			          );
+			stats.SetStats();
 			InitializeWeapon();
 			InitializePosition(1);
 		}
-		stats.SetSpine ();
-		animator.skeletonDataAsset = stats.PlayerData;
+		animator.skeletonDataAsset = GameData.skeleteonDataAssetList[0];
 		animator.calculateNormals = true;
 		animator.loop = true;
 		animator.Awake ();
 		animator.state.SetAnimation (0, "jalan2", true);
-		//animator.AnimationName = "jalan2";
-
-		// set aktif gak nya
-		//if (!GameData.unitList[slot].IsUnlocked && this.gameObject.name.Contains("hero")) {
-		//	gameObject.SetActive(false);
-		//	healthBar.SetActive (false);
-		//}
-		
-	//	Debug.Log ("str " + stats.Str + " agi " + stats.Agi +"vit " + stats.Vit);
-	//	Debug.Log ("hp " + stats.HealthPoint + "aspd " + stats.AttackSpeed + "crit " + stats.Critical);
-	//	Debug.Log ("atk " + stats.AttackPoint +" def " + stats.DefensePoint + " ms " + stats.Movement);
 		healthConstant = stats.HealthPoint;
 		healthScaleConstant = healthBar.transform.localScale;
 		movementSpeed = stats.Movement;
-	//	rigidbody2D.AddForce (new Vector2 (movementSpeed  * direction, 0f));
-
 	}
 	
 	// Update is called once per frame
 	void Update () {
 				if (this.stats.HealthPoint <= 0) {
 					MoveToGraveyard();
+					
+				
 				}
 				// jika masih battle
 		if (controller.BatlleState == 0) {
@@ -161,6 +164,7 @@ public class HeroController : MonoBehaviour {
 	}
 
 	public void UpdateHealthBar(){
+
 		float scaleX = (stats.HealthPoint * healthScaleConstant / healthConstant).x;
 		//if (this.gameObject.name.Contains ("hero"))
 	//		Debug.Log ("health " + stats.HealthPoint  +" sacle " + scaleX);
@@ -171,11 +175,15 @@ public class HeroController : MonoBehaviour {
 	}
 
 	public void MoveToGraveyard(){
+		if (this.gameObject.name.Contains ("enemy")) {
+			GameData.profile.DefeatedArmy++;
+			stats = tempStats;
+		}
 		transform.position = new Vector2 (-11f, transform.position.y);
 		projectile.SetActive(false);
 		UpdateHealthBar ();
 		this.gameObject.SetActive (false);	
-		Debug.Log("DIIEEEE");
+//		Debug.Log("DIIEEEE");
 	}
 
 	void InitializePosition(int pos){

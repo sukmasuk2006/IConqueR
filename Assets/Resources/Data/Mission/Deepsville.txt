@@ -1,6 +1,6 @@
-50
-100
-1
+60
+600
+0
 6
-knight
-knight
+warrior
+warrior

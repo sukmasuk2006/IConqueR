@@ -1,13 +1,21 @@
-﻿using UnityEngine;
-using System.Collections;
-
+﻿[System.Serializable]
 public class Item {
 
 	protected string name;
 	protected string desc;
-	protected Sprite sprites;
 	private float successRate;
 	private int price;
+	private int priceType;
+	protected int id;
+
+	public int Id {
+		get {
+			return id;
+		}
+		set {
+			id = value;
+		}
+	}
 
 	public string Name {
 		get {
@@ -18,7 +26,8 @@ public class Item {
 		}
 	}
 
-	public Item(string name){
+	public Item(int id,string name){
+		this.id = id;
 		this.name = name.Trim();
 	}
 
@@ -43,14 +52,7 @@ public class Item {
 		}
 	}
 
-	public Sprite Sprites {
-		get {
-			return sprites;
-		}
-		set {
-			sprites = value;
-		}
-	}
+
 
 	public float SuccessRate {
 		get {
@@ -58,6 +60,15 @@ public class Item {
 		}
 		set {
 			successRate = value;
+		}
+	}
+
+	public int PriceType {
+		get {
+			return priceType;
+		}
+		set {
+			priceType = value;
 		}
 	}
 }

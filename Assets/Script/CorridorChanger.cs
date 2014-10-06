@@ -7,6 +7,7 @@ public class CorridorChanger : MonoBehaviour {
 	public List<GameObject> controller;
 	public ScreenData data;
 	public TextMesh corridorState;
+	public AudioClip sound;
 	// Use this for initialization
 
 	void Start () {
@@ -41,6 +42,7 @@ public class CorridorChanger : MonoBehaviour {
 			controller[0].GetComponent<QuestController>().SetQuest();					
 			corridorState.text = "Page " + (data.corridorState+1).ToString();
 		}
+		MusicManager.getMusicEmitter().audio.PlayOneShot(sound);
 
 	}
 }

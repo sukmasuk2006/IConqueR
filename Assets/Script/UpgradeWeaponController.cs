@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
 // DI SCREEN UPGRADE
 public class UpgradeWeaponController : MonoBehaviour {
 
@@ -35,19 +34,19 @@ public class UpgradeWeaponController : MonoBehaviour {
 	private void InitilaizeSlot(){
 		slotList = null;
 		slotList = new List<Item> (4);
-		slotList.Add (new Item (""));
-		slotList.Add (new Item (""));
-		slotList.Add (new Item (""));
-		slotList.Add (new Item (""));
+		slotList.Add (new Item (99,""));
+		slotList.Add (new Item (99,""));
+		slotList.Add (new Item (99,""));
+		slotList.Add (new Item (99,""));
 
 	}
 
 	public void InitializeWeapon(){
-		weaponData = GameData.unitList [GameData.selectedToViewProfileId].Weapon;
+		weaponData = GameData.profile.unitList [GameData.selectedToViewProfileId].Weapon;
 		strText.text = weaponData.WeaponStats.Str + "";
 		agiText.text = weaponData.WeaponStats.Agi + "";
 		vitText.text = weaponData.WeaponStats.Vit +"";
-		spriteRenderer.sprite = weaponData.Sprites;
+		//spriteRenderer.sprite = GameData.weaponSpriteList[weaponData.Id];
 		damageText.text = weaponData.Damage.ToString();
 		fromText.text = weaponData.Rank.ToString();
 		toText.text = (weaponData.Rank + 1).ToString ();
@@ -55,15 +54,15 @@ public class UpgradeWeaponController : MonoBehaviour {
 
 	public void UpdateWeaponInfo(){
 		// JIKA SUKSES UPDATE INFO SENJATA DI UNIT DAN FORMATION
-		GameData.unitList [GameData.selectedToViewProfileId].Weapon = weaponData; 
-		GameData.formationList [GameData.selectedToViewProfileId].Unit.Weapon = weaponData; 
+		GameData.profile.unitList [GameData.selectedToViewProfileId].Weapon = weaponData; 
+		GameData.profile.formationList [GameData.selectedToViewProfileIdFromFormation].Unit.Weapon = weaponData; 
 
 		// update stats unit
-		GameData.unitList [GameData.selectedToViewProfileId].SetStats ();
-		GameData.formationList [GameData.selectedToViewProfileId].Unit.SetStats (); 
+		GameData.profile.unitList [GameData.selectedToViewProfileId].SetStats ();
+		GameData.profile.formationList [GameData.selectedToViewProfileIdFromFormation].Unit.SetStats (); 
 		profileController.SetPictureAndStatsFromFormation ();
 
-		spriteRenderer.sprite = weaponData.Sprites;
+		//spriteRenderer.sprite = GameData.weaponSpriteList[weaponData.Id];
 		damageText.text = weaponData.Damage.ToString();
 		fromText.text = weaponData.Rank.ToString();
 		toText.text = (weaponData.Rank + 1).ToString ();
@@ -75,30 +74,43 @@ public class UpgradeWeaponController : MonoBehaviour {
 	// update gambar di slot upgrade
 	public void UpdateSlot(int slot){
 		try {
-			upgradeSlot [slot].sprite = slotList [slot].Sprites;
+//			Debug.Log("A SPRITE");
+			// temp slot yang diupgrade, udah dipasang/diremove gemnya
+			Item i = slotList[upgradedSlot];
+
+			// pasang/remove gambar
+			if ( i is Gem )
+				upgradeSlot [upgradedSlot].sprite = GameData.gemSpriteList[slot];
+			else
+				upgradeSlot [upgradedSlot].sprite = GameData.catalystSpriteList[slot];
+
+			// jika id 99
+			if ( i.Id == 99 )
+				upgradeSlot [upgradedSlot].sprite = null;
 		}
 		catch {
+			Debug.Log("gk ada SPRITE");
 			upgradeSlot [slot].sprite = null;
 		}
 	}
 
 	public void UpdateSemuaGambarDiInventory(){
 		for ( int i = 0 ; i < selectItemButton.Count ; i++ )
-		selectItemButton[i].UpdateSlot();
+			selectItemButton[i].UpdateSlot();
 	}
 
 	// jika sudah ada gem/catalyst terpasang, di klik akan balek ke invent
 	public void RemoveASlot(int i){
 		if (slotList [i] is Gem || slotList [i] is Catalyst)
-			GameData.inventoryList.Add (slotList [i]);
-		slotList [i]  = new Item("");
+			GameData.profile.inventoryList.Add (slotList [i]);
+		slotList [i]  = new Item(99,"");
 		UpdateSlot (i);
 	}
 
 	public void RemoveSlot(){
 		for (int i = 0; i < slotList.Count; i++) {
 						if (slotList [i] is Gem || slotList [i] is Catalyst)
-								GameData.inventoryList.Add (slotList [i]);
+				GameData.profile.inventoryList.Add (slotList [i]);
 			upgradeSlot [i].sprite = null;
 		}
 
@@ -107,6 +119,7 @@ public class UpgradeWeaponController : MonoBehaviour {
 	}
 
 	public void AfterUpgradeAttempt(){
+		percentages = 0;
 		for (int i = 0; i < slotList.Count; i++) {
 			upgradeSlot [i].sprite = null;
 		}
@@ -117,14 +130,22 @@ public class UpgradeWeaponController : MonoBehaviour {
 	// START UPGRADE!
 	public void StartCrafting(){
 		bool success = false;
+		// misal dapat 100-succes rate 10 => 90 , semakin kecil, kemungkinan naik semakin besar
 		float temp = Random.Range (0, 100) - weaponData.SuccessRate;
+		Debug.Log ("persentase " + temp + " " + percentages);
 		if (temp < percentages) {
-			success = true;
-			weaponData.SuccessRate = 0;
-			Gem g = (Gem)slotList[0];
-			weaponData.Upgrade(g.Stats);
-			UpdateWeaponInfo();
-		}Debug.Log("temp " + temp);
+						success = true;
+						weaponData.SuccessRate = 0;
+						Gem g = (Gem)slotList [0];
+						weaponData.Upgrade (g.Stats);
+						UpdateWeaponInfo ();
+				} else {
+			/// jika gagal naik dong persentasinya
+			/// 
+			weaponData.SuccessRate ++;		
+		}
+		Debug.Log("temp " + temp);
+		// hilanghkan semua gem+catalyst
 		AfterUpgradeAttempt();
 
 	}

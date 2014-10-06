@@ -3,8 +3,6 @@ using System.Collections;
 
 public class QuestController : MonoBehaviour {
 
-	public SpriteRenderer rendererOne;
-	public SpriteRenderer rendererTwo;
 	public TextMesh descOne;
 	public TextMesh descTwo;
 	public TextMesh rewardOne;
@@ -12,6 +10,9 @@ public class QuestController : MonoBehaviour {
 	public GameObject buttonOne;
 	public GameObject buttonTwo;
 	public ScreenData data;
+	public TextMesh completedOne;
+	public TextMesh completedTwo;
+
 	Quest one, two;
 
 	// Use this for initialization
@@ -23,9 +24,10 @@ public class QuestController : MonoBehaviour {
 	public void SetQuest(){
 		buttonOne.SetActive (false);
 		buttonTwo.SetActive (false);
+		completedOne.text = completedTwo.text = "";
 
-		one = GameData.questList [(data.corridorState*2)+0];
-		two = GameData.questList [(data.corridorState*2)+1];
+		one = GameData.profile.questList [(data.corridorState*2)+0];
+		two = GameData.profile.questList [(data.corridorState*2)+1];
 		
 		descOne.text = SetDesc (one.QuantityNeeded,one.Target.Trim());
 		descTwo.text = SetDesc (two.QuantityNeeded,two.Target.Trim());
@@ -33,23 +35,30 @@ public class QuestController : MonoBehaviour {
 		rewardOne.text = one.RewardMoney.ToString();
 		rewardTwo.text = two.RewardMoney.ToString();
 
-		Debug.Log ("quest ke  1" + one.IsCompleted);
-		if (one.IsCompleted && !one.IsRewardTaken)
+//		Debug.Log ("quest ke  1 id" + one.Id);
+		if (one.IsCompleted)
+				if (!one.IsRewardTaken)
 						buttonOne.SetActive (true);
-		if (two.IsCompleted && !two.IsRewardTaken)
+				else
+						completedOne.text = "Completed!";
+		if (two.IsCompleted )
+			if ( !two.IsRewardTaken)
 						buttonTwo.SetActive (true);
+		else {
+			completedTwo.text = "Completed!";
+				}
 	}
 
 	private string SetDesc(int num, string name){
 		string ret;
 		switch (name) {
-		case "defeat" :  ret = "Defeat "+num + " enemy armies!";
+		case "defeat" :  ret = "Defeat "+num + "\nof enemy armies!";
 			break;
-		case "fortress" : ret = "Destroy "+num + " enemy fortress!";
+		case "fortress" : ret = "Destroy "+num + "\nof enemy fortress!";
 			break;
-		case "castle" :  ret = "Demolish "+num + " enemy Kingdoms!";
+		case "castle" :  ret = "Demolish "+num + "\n of enemy Kingdoms!";
 			break;
-		case "gold" :  ret = "Have total "+num + " Gold!";
+		case "gold" :  ret = "Have total "+num + "\n of Gold!";
 			break;
 		default :ret = "";
 			break;

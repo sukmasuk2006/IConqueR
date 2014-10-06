@@ -1,8 +1,32 @@
-ruby
-sapphire
-opal
-emerald
-amethyst
-aquamarine
-diamond
-peridot
+Gold
+Copper
+Silver
+Steel
+Red crystal
+Green crystal
+Blue crystal
+Yellow crystal
+Sapphire
+Obsidian
+Platinum
+Titanium
+Amber
+Amethyst
+Aquamarine
+Ruby
+Fire Stone
+Wind Stone
+Water Stone
+Earth Stone
+Helios Platinum
+Hermes Platinum
+Poseidon Platinum
+Gaia Platinum
+Helios Ruby
+Hermes Ruby
+Poseidon Ruby
+Gaia Ruby
+Helios
+Hermes
+Poseidon
+Gaia

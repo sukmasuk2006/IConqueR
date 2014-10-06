@@ -9,6 +9,8 @@ public class UpgradeSlotSetter : MonoBehaviour {
 	public GameObject targetObject;
 	public int slot;
 	private Vector3 tempPosition;
+	public AudioClip sound;
+	public TextMesh infoText;
 	// Use this for initialization
 	void Start () {
 	
@@ -30,17 +32,19 @@ public class UpgradeSlotSetter : MonoBehaviour {
 			iTween.MoveTo ( targetObject,iTween.Hash("position",tweenedObject.transform.position,"time", 0.1f,"onComplete","ReadyTween","onCompleteTarget",gameObject));
 
 		}
+		infoText.text = "";
 	}
 	
 	void OnMouseUp(){
-		
+		//MusicManager.getMusicEmitter().audio.PlayOneShot(sound);
+
 	}
 	
 	void ReadyTween(){
 		GameData.gameState = targetObject.name;
 		GameData.readyToTween = true;
 		iTween.MoveTo (tweenedObject, tempPosition,0.3f);		
-		Debug.Log ("Oncomplete");
+//		Debug.Log ("Oncomplete");
 		foreach (InventorySetter i in controller.selectItemButton){
 			i.CheckButton ();
 		}

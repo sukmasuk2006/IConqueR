@@ -7,6 +7,8 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+[System.Serializable]
 public class SkillEffect
 {
 	int tipe;

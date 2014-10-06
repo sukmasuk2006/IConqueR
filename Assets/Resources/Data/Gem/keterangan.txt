@@ -1,9 +1,13 @@
 grade
 price
+priceType
+
 STR
 AGI
 VIT
+
 RATE
+
 
 ruby str
 opal agi

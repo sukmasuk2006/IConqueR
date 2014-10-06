@@ -1,11 +1,12 @@
 using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
+[System.Serializable]
 public class ProfileData 
 {
 	private string name;
 	private int level;
-	private int currentMission;
+	private int nextMission;
 	private int currentExp;
 	private int nextExp;
 	private int gold;
@@ -18,6 +19,17 @@ public class ProfileData
 	private int castleDestroyed;
 	private int unlockedTroop;
 
+	// gameplay
+	public int unlockedSlot; // slot formasi yang terbuka
+	public int activeHeroes; // hero yang aktif
+	public int totalSkillUsed; // skill yg aktif
+	public  List<FormationUnit> formationList;
+	public  List<Skill> skillList;
+	public  List<Item> inventoryList;
+	public  List<Quest> questList;
+	public  List<Unit> unitList;
+	public  List<Mission> missionList;
+
 	public ProfileData(){
 
 	}
@@ -25,17 +37,26 @@ public class ProfileData
 	public void NewData(string n){
 		name = name;
 		level = 1;
-		currentMission = 1;
+		nextMission = 0;
 		currentExp = 0;
-		gold = 0;
+		gold = 500;
 		diamond = 0;
 		nextStage = 1;
-	
+		unlockedSlot = 1;
+		activeHeroes = 1;
+		totalSkillUsed = 1;
 		nextExp = GameData.expList [level];
+		formationList = new List<FormationUnit> ();
+		skillList = new List<Skill> ();
+		inventoryList = new List<Item> ();
+		questList = new List<Quest> ();
+		unitList = new List<Unit> ();
+		missionList = new List<Mission> ();
+		Debug.Log ("next exp " + nextExp);
 	}
 
 	public void CheckQuestAchievement(){
-		foreach (Quest q in GameData.questList) {
+		foreach (Quest q in questList) {
 			if ( q.Target.Contains("defeat"))
 				if ( defeatedArmy >= q.QuantityNeeded )
 					q.IsCompleted = true;
@@ -57,8 +78,10 @@ public class ProfileData
 	}
 
 	public void ProfileLevelUp(){
+		currentExp -= nextExp;
 		level++;
 		nextExp = GameData.expList [level];
+		Debug.Log ("Profile level up " + level + " " + nextExp);
 	}
 
 
@@ -80,12 +103,12 @@ public class ProfileData
 		}
 	}
 
-	public int CurrentMission {
+	public int NextMission {
 		get {
-			return currentMission;
+			return nextMission;
 		}
 		set {
-			currentMission = value;
+			nextMission = value;
 		}
 	}
 
@@ -98,12 +121,22 @@ public class ProfileData
 		}
 	}
 
+	public bool IsLevelUp(int gotExp){
+		bool ret =false;
+		if (currentExp+gotExp >= nextExp)
+			ret = true;
+		return ret;
+	}
+	
 	public int CurrentExp {
 		get {
 			return currentExp;
 		}
 		set {
 			currentExp = value;
+			if ( currentExp >= nextExp ){
+				ProfileLevelUp();
+			}
 		}
 	}
 

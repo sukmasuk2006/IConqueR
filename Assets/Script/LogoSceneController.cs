@@ -5,17 +5,17 @@ public class LogoSceneController : MonoBehaviour {
 
 	private const int DELAY = 2;
 	public GameObject tweenedObject;
-	public GameObject inputNameScreen;
 	public GameObject removedObject;
 	public float time;
 	// Use this for initialization
 	void Start () {
 	//	Debug.Log ("di logo " + GameData.isFirstPlay);
-		if (GameData.isFirstPlay) {
-			TweenInputName();
-		}
-		else
+	//	if (GameData.isFirstPlay) {
+		//	TweenInputName();
+		//}
+		//else
 			TweenMainMenu ();
+		GameMusic.PlayMusic ("Music/royal");
 	}
 	
 	// Update is called once per frame
@@ -23,10 +23,10 @@ public class LogoSceneController : MonoBehaviour {
 	
 	}
 
-	private void TweenInputName(){
+	/*private void TweenInputName(){
 		iTween.MoveTo (inputNameScreen, iTween.Hash ("delay", 1f, "position", removedObject.transform.position, "time", time));
 		iTween.MoveTo (removedObject, iTween.Hash ("delay", 1f, "position", inputNameScreen.transform.position, "time", time));
-	}
+	}*/
 
 	public void TweenMainMenu(){
 
@@ -37,7 +37,6 @@ public class LogoSceneController : MonoBehaviour {
 	}
 
 	void MoveTarget(){
-	//	Debug.Log ("GO2");
 	
 	}
 

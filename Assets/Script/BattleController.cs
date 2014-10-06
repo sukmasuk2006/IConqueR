@@ -20,7 +20,8 @@ public class BattleController : MonoBehaviour {
 	public List<GameObject> heroList;
 	public List<GameObject> enemyList;
 	public List<GameObject> skillList;
-
+	public List<GameObject> heroLevelUpSpriteList;
+	public SpriteRenderer bg;
 	public List<Skill> activeSkill;
 	public List<Unit> activeEnemyList;
 	public Vector3 reportTargetPosition;	
@@ -51,24 +52,31 @@ public class BattleController : MonoBehaviour {
 	private int diamondEarn;
 	private Mission mission;
 	private int isGetReward;
+	private const int itemChance = 40;
 
 	// Use this for initialization
 	void Start () {
+		battleState = 0;
+		MusicManager.play ("Music/royal2", 0.1f, 0.1f);
+		Sprite back = null;
+		int cur = (GameData.currentMission/5)+1;
+		back = (Sprite)Resources.Load ("Sprite/Background/"+cur,typeof(Sprite));
+		bg.sprite = back;
 		//		Debug.Log ("battle activate");
 		positionList = new float[12]{1.75f,3f,4.25f,5.5f,6.25f,7.5f,1.75f,3f,4.25f,5.5f,6.25f,7.5f};
 		positionAvailableList = new bool[12]{true,true,true,true,true,true,true,true,true,true,true,true};
 		isGetReward = 0;
 		battleState = 0;
-		mission = GameData.missionList [GameData.profile.CurrentMission];
+		mission = GameData.profile.missionList [GameData.currentMission];
 		//Debug.Log ("Misi ke-" + (GameData.profile.CurrentMission - 1).ToString());
 		activeEnemyList = mission.EnemyList;
 		//Debug.Log ("Jumlah musuh " + activeEnemyList.Count);
 		activeSkill = new List<Skill> ();
 		int i = 0,j = 0;
 
-		for ( i =0; i < GameData.skillList.Count; i++) {
-			if ( GameData.skillList[i].IsSelected ){
-				activeSkill.Add(GameData.skillList[i]);
+		for ( i =0; i < GameData.profile.skillList.Count; i++) {
+			if ( GameData.profile.skillList[i].IsSelected ){
+				activeSkill.Add(GameData.profile.skillList[i]);
 				skillList[j].SetActive(true);
 				//Debug.Log("selected skill " + i);
 				j++;
@@ -78,9 +86,9 @@ public class BattleController : MonoBehaviour {
 		/*awal2 semua hero mati, kemudian dicek ada brp yang aktif*/
 		i = 0;
 		GameData.gameState = GameConstant.GAMEPLAY_SCENE;
-		foreach (FormationUnit u in GameData.formationList) {
+		foreach (FormationUnit u in GameData.profile.formationList) {
 				if ( u.IsUnlocked && u.Unit.HeroId != 99){
-					GameData.formationList[i].Unit.Refresh();
+					GameData.profile.formationList[i].Unit.Refresh();
 					heroList[i].SetActive(true);
 //					heroList[i].GetComponent<SpriteRenderer>().sprite = u.Unit.Sprites;	
 					heroTotalHealth += u.Unit.HealthPoint;
@@ -166,38 +174,45 @@ public class BattleController : MonoBehaviour {
 	}
 
 	private void UpdateEnemyHealthBar(float damage){
-		EnemyTotalHealth -= damage;
+		enemyTotalHealth = Mathf.Floor(enemyTotalHealth- damage);
 		if (enemyTotalHealth <= 0)
-						enemyTotalHealth = 0;
+				enemyTotalHealth = 0;
+
 		Vector3 temp2 = new Vector3((ConstantEnemyHealthLocalScale * enemyTotalHealth / 
 		                             ConstantEnemyHealth).x,
 		                            ConstantEnemyHealthLocalScale.y,
 		                            ConstantEnemyHealthLocalScale.z);
 		globalEnemyHealthBar.transform.localScale = temp2; 
-		if (enemyTotalHealth == 0) {
+		if (enemyTotalHealth <= 0) {
 			battleState = 1;	
+			Debug.Log ("WIN2");
 			foreach(GameObject g in enemyList){
 				if ( g.activeInHierarchy )
 					g.GetComponent<HeroController>().MoveToGraveyard();
 			}
 			Win();
+
 		}
 	}
 
 	// WIINNNN!!
 	void Win(){
+		Debug.Log ("WIN3");
 		winloseText.text = "Conquered!";
 		// win, kadang dapat kadang kaga
 		isGetReward = Random.Range (0, 99);
 		GetReward ();
-		if (GameData.missionType.Contains ("Fortress"))
-			GameData.profile.FortressDestroyed++;
-		else if (GameData.missionType.Contains ("Castle"))
-			GameData.profile.CastleDestroyed++;
-		GameData.profile.DefeatedArmy += activeEnemyList.Count;
+		if (GameData.currentMission == GameData.profile.NextMission) {
+			if (GameData.missionType.Contains ("Fortress"))
+				GameData.profile.FortressDestroyed++;
+			else if (GameData.missionType.Contains ("Castle"))
+				GameData.profile.CastleDestroyed++;
+			GameData.profile.NextMission++;
+		}
 		GameData.profile.CheckQuestAchievement ();
 		ShowOnReport ();
-		Debug.Log ("win " + isGetReward);
+//		Debug.Log ("win " + GameData.profile.DefeatedArmy);
+		SaveLoad.Save ();
 	}
 
 	void Lose(){
@@ -205,24 +220,25 @@ public class BattleController : MonoBehaviour {
 		winloseText.text = "You Lose!";
 		GetReward ();
 		ShowOnReport ();
-		
+		GameData.profile.CheckQuestAchievement ();
+
+		SaveLoad.Save ();
 		Debug.Log ("lose");
 	}
 
 	void GetReward(){
 		goldEarn = mission.GoldReward / battleState;
 		GameData.profile.Gold += goldEarn;
-		expEarn = (mission.ExpReward)  / battleState;
-		GameData.profile.CurrentExp += (int)expEarn;
 		diamondEarn = mission.DiamondReward  / battleState;
 		GameData.profile.Diamond += diamondEarn;
-		if (isGetReward % 2 == 1) {
+		// semakin tinggi misi, semakin susah dpt reward
+		if (isGetReward < itemChance - GameData.currentMission && battleState == 1) {
 			int get = mission.GetReward;
 			itemGained.SetActive(true);
-			itemGainedSprite.sprite = GameData.shopList[get].Sprites;
+			itemGainedSprite.sprite = GameData.gemSpriteList[get];
 			itemName.text = GameData.shopList[get].Name;
-			GameData.inventoryList.Add(GameData.shopList[get]);
-			Debug.Log("get reward");
+			GameData.profile.inventoryList.Add(GameData.shopList[get]);
+//			Debug.Log("get reward");
 		}
 
 	}
@@ -237,17 +253,31 @@ public class BattleController : MonoBehaviour {
 	}
 
 	void ScaleExpBar(){
-		int nextExp = mission.ExpReward;
-		scaleX = GameData.profile.CurrentExp * 1f / nextExp;
-		if (GameData.profile.CurrentExp >= nextExp) {
+		int gotExp = mission.ExpReward; // buat ngitung
+		expEarn = gotExp;
+		scaleX = GameData.profile.CurrentExp * 1f / GameData.profile.NextExp; // cek awal2
+
+		Debug.Log ("DI BATLE cur " + GameData.profile.CurrentExp + " got " + gotExp + " nesx " + GameData.profile.NextExp);
+		if ( battleState == 1 || battleState == 5 ){
+			if (GameData.profile.IsLevelUp(gotExp) ) {
 			//LEVELUP
-			scaleX = 1;
-			GameData.profile.CurrentExp -= nextExp;
-			GameData.profile.Level++;
-			iTween.MoveTo (levelUpScreen, iTween.Hash ("position", new Vector3(levelUpScreen.transform.position.x,reportTargetPosition.y,
-			                                                                   levelUpScreen.transform.position.z), "time", 1.0f,"delay",5.0f));
+				GameData.profile.CurrentExp += gotExp;
+				scaleX = 0.99f;
+				Debug.Log ("LEVEL UP");
+				iTween.MoveTo (levelUpScreen, iTween.Hash ("position", new Vector3(levelUpScreen.transform.position.x,reportTargetPosition.y,
+				                                                                   levelUpScreen.transform.position.z), "time", 1.0f,"delay",5.0f));
 			}
+			else{
+				// rescale
+				GameData.profile.CurrentExp += gotExp;
+				scaleX = GameData.profile.CurrentExp * 1f / GameData.profile.NextExp; // cek awal2
+			}
+			Debug.Log("get exp");
+
+		}
+		Debug.Log ("scale x" + scaleX);
 		Vector3 newScale = new Vector3 (scaleX,expBar.transform.localScale.y, expBar.transform.localScale.z);
+
 		iTween.ScaleTo (expBar, iTween.Hash("scale", newScale,
 		                                    "time", 1.5f,
 		                                    "delay",4.0f,"oncomplete","ReadyTween","oncompletetarget",gameObject));
@@ -260,12 +290,21 @@ public class BattleController : MonoBehaviour {
 
 	void GetExpReward(){
 		// untuk unit
-		foreach (Unit u in GameData.unitList) {
+		int reward = mission.ExpReward / battleState;
+		foreach (Unit u in GameData.profile.unitList) {
 			if ( u.IsActive )
-				u.CurrentExp += mission.ExpReward  / battleState;		
+				u.CurrentExp += reward;		
 		}
-		foreach (FormationUnit u in GameData.formationList) {
-				u.Unit.CurrentExp += mission.ExpReward  / battleState;		
+		List<FormationUnit> fl = GameData.profile.formationList;
+		for (int i = 0 ; i < 5 ; i++) {
+			if ( fl[i].IsUnlocked && fl[i].Unit.HeroId != 99){
+				if ( fl[i].Unit.IsLevelUp(reward)){
+					GameObject spr = heroLevelUpSpriteList[i];
+					iTween.MoveTo(spr,iTween.Hash("position",new Vector3(spr.transform.position.x,-4.3f,-3.3f),
+					                              "time",0.5f,"delay",4.5f));
+				}
+				fl[i].Unit.CurrentExp += reward;	
+			}
 		}
 		mission = null;
 	}

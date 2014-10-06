@@ -10,12 +10,7 @@ public class ActivateSkill : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
-		Debug.Log ("jum " + GameData.formationList.Count);
-		for (int i = 0 ; i < GameData.formationList.Count ; i++ ){
-			if ( GameData.formationList[i].IsUnlocked )
-				controller.activeSkill[slot].DoEffect(GameData.formationList[i].Unit);
-		}
+		controller.activeSkill[slot].DoEffect(GameData.profile.unitList[controller.activeSkill[slot].Id]);
 	}
 
 	// Update is called once per frame

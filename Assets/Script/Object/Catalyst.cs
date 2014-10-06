@@ -9,12 +9,12 @@
 //------------------------------------------------------------------------------
 using UnityEngine;
 using System.Collections.Generic;
-using System.Collections;
 
+[System.Serializable]
 public class Catalyst : Item
 {
 		
-		public Catalyst (string name) : base (name)
+		public Catalyst (int id,string name) : base (id,name)
 		{
 			
 		InitializeCatalyst ();
@@ -23,11 +23,11 @@ public class Catalyst : Item
 	private void InitializeCatalyst(){
 		string[] linesFromFile = null;
 		TextAsset txt = (TextAsset)Resources.Load ("Data/Catalyst/"+ name.Trim(), typeof(TextAsset));
-		sprites = (Sprite)Resources.Load ("Sprite/Catalyst/" + name.Trim (), typeof(Sprite));
 		//Debug.Log ("added catalyst " + name);
 		string content = txt.text;
 		linesFromFile = content.Split ("\n" [0]);
 		desc = linesFromFile [0];
+		PriceType = 0;
 		Price = int.Parse(linesFromFile[1]);
 		SuccessRate = float.Parse (linesFromFile [2]);
 	}

@@ -1,7 +1,5 @@
-﻿	using UnityEngine;
-using System;
-using System.Collections;
-
+﻿
+[System.Serializable]
 public class UnitStatus  {
 	
 	protected string spriteName;

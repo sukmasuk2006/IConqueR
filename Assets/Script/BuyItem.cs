@@ -8,25 +8,31 @@ public class BuyItem : MonoBehaviour {
 	public int slot;
 	public ProfileController profileController;
 	public ScreenData inventoryData;
-
+	public AudioClip sound;
 	// Use this for initialization
+
 	void Start () {
 		
 	}
 
 	void OnMouseDown(){
-		if (GameData.profile.Gold - GameData.shopList [(data.corridorState * 4) + slot].Price >= 0) {
-						GameData.profile.Gold -= GameData.shopList [(data.corridorState * 4) + slot].Price;
-						GameData.inventoryList.Add (GameData.shopList [(data.corridorState * 4) + slot]);
-						profileController.SendMessage("UpdateGoldAndDiamond");	
-						Debug.Log ("purchased in inventory " + GameData.inventoryList [GameData.inventoryList.Count-1].Name);
-						inventoryData.maxCorridorState = (GameData.inventoryList.Count/4);
-						if (GameData.inventoryList.Count % 4 == 0)
+		Item i = GameData.shopList [(data.corridorState * 4) + slot];
+		int money = profileController.GetMoneyValue (i.PriceType);
+		if (money - i.Price >= 0) {
+			int value = GameData.shopList [(data.corridorState * 4) + slot].Price;
+			profileController.UpdateGoldAndDiamond(i.PriceType,value);
+			GameData.profile.inventoryList.Add (GameData.shopList [(data.corridorState * 4) + slot]);
+//			Debug.Log("uang terpakai gold " + GameData.profile.Gold +" diam " + GameData.profile.Diamond 
+//			          +" mon " + money );
+//			Debug.Log ("purchased in inventory " + GameData.profile.inventoryList [GameData.profile.inventoryList.Count-1].Name);
+			inventoryData.maxCorridorState = (GameData.profile.inventoryList.Count/4);
+			if (GameData.profile.inventoryList.Count % 4 == 0)
 							inventoryData.maxCorridorState--;
 						inventoryData.UpdateMaxCorridor();
 				} else {
 			Debug.Log("not enough money");		
 		}
+		MusicManager.getMusicEmitter().audio.PlayOneShot(sound);
 
 	}
 }

@@ -17,14 +17,14 @@ public class ObjectTweener : MonoBehaviour {
 
 	void OnMouseUp(){
 		// geser kanan
-		Debug.Log (data.corridorState + " " + data.maxCorridorState);
+//		Debug.Log (data.corridorState + " " + data.maxCorridorState);
 		if (dir > 0 && data.corridorState < data.maxCorridorState)
 			data.corridorState++;
 		// geser kiri
 		else if ( dir < 0 && data.corridorState > 0 )
 			data.corridorState--;
 		iTween.MoveTo ( obj,iTween.Hash("position",new Vector3(corridorSize*-data.corridorState,
-		                                                       -1.3f,-1),"time",time));
+		                                                       -1.3f,-3f),"time",time));
 		corridorState.text = "Page " + (data.corridorState+1).ToString();
 	}
 }

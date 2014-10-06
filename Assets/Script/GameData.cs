@@ -10,29 +10,27 @@ public class GameData : MonoBehaviour {
 	// GAME STATS
 	public static bool isFirstPlay = true;
 	public static bool readyToTween = true;
-	public static float raidTime = 60;
-	public static int unlockedSlot = 1; // slot formasi yang terbuka
-	public static int activeHeroes = 1; // hero yang aktif
-	public static int unlockSkillCost = 1000;
 	public static int selectedToViewProfileId = 0; // hero yg ditampilkan di troopprofile
-	public static int totalSkillUsed = 0; // skill yg aktif
 	public static string selectedToViewProfileName = "knight"; // nama hero yang ditampilkan
+	public static int selectedToViewProfileIdFromFormation = 0; // formasi slot ke berapa
 	public static string gameState = "LOGO"; // untuk state dari layar
+	public static int currentMission = 0; // cek misi yang dijalankan
 	public static string missionType = "Fortress";
 	// apakah serang fort atau castle, untuk dicek achivementnya
 
 	private string[] linesFromFile;
 	
 	public static List<Item> shopList;
-	public static List<Item> inventoryList;
-	public static List<Gem> weaponSlotContentList;
-	public static List<Quest> questList;
 	public static List<int> expList;
-	public static List<Mission> missionList;
-	public static List<Unit> unitList;
-	public static List<Unit> enemyList;
-	public static List<FormationUnit> formationList;
-	public static List<Skill> skillList;
+	public static List<Sprite> unitSpriteList;
+	public static List<Sprite> unitIconList;
+	public static List<Sprite> weaponSpriteList;
+	public static List<Sprite> gemSpriteList;
+	public static List<Sprite> catalystSpriteList;
+	public static List<Sprite> skillSpriteList;
+	public static List<Sprite> achievementSpriteList;
+	public static List<SkeletonDataAsset> skeleteonDataAssetList;
+
 
 
 	// Use this for initialization
@@ -41,46 +39,13 @@ public class GameData : MonoBehaviour {
 	}
 
 	void Awake(){
+		InitializePersistent ();
 		InitializeGameData ();
 		LoadData ();
-//		Debug.Log ("Data initialized " + profile.Gold);
+		//		Debug.Log ("Data initialized " + profile.Gold);
 	}
 
-	void LoadData(){
-		if (PlayerPrefs.HasKey ("name")) {
-			profile.Name = PlayerPrefs.GetString ("name");
-			isFirstPlay = false;
-	//		Debug.Log("nama " + name + " is first " + isFirstPlay);
-		} 
-		else {
-			isFirstPlay = true;				
-	//		Debug.Log("first play");
-		}
-		if (PlayerPrefs.HasKey ("level")) {
-			profile.Level = PlayerPrefs.GetInt ("level");
-	//		Debug.Log("level diatas 1");
-		} 
-		if (PlayerPrefs.HasKey ("exp")) {
-			profile.CurrentExp = PlayerPrefs.GetInt ("exp");
-	//		Debug.Log("ada exp");
-		} 
-		/*
-			next exp = load dari data di notepad
-		 */
-
-	//	if (PlayerPrefs.HasKey ("gold")) {
-	//		profile.Gold = PlayerPrefs.GetInt("gold");	
-	//	}
-		if (PlayerPrefs.HasKey ("diamond")) {
-			profile.Diamond = PlayerPrefs.GetInt("diamond");	
-		}
-
-
-	}
-
-	void InitializeGameData(){
-		/*INIT*/
-
+	void InitializePersistent(){
 		expList = new List<int> ();
 		TextAsset etxt = (TextAsset)Resources.Load ("Data/Exp/hero", typeof(TextAsset));
 		string econtent = etxt.text;
@@ -92,101 +57,148 @@ public class GameData : MonoBehaviour {
 		profile.NewData ("");
 		linesFromFile = null;
 
-		linesFromFile = null;
-		missionList = new List<Mission> ();
-		TextAsset metxt = (TextAsset)Resources.Load ("Data/Mission/list", typeof(TextAsset));
-		string mecontent = metxt.text;
-		linesFromFile = mecontent.Split ("\n" [0]);
-		for (int i = 0; i < linesFromFile.Length; i++) {
-			missionList.Add(new Mission(linesFromFile[i]));		
-		}
-
-		
-		/*HERO DATA & FORMATIOn*/
-		linesFromFile = null;
-		unitList = new List<Unit> ();
-		formationList = new List<FormationUnit> ();
-		TextAsset txt = (TextAsset)Resources.Load ("Data/Unit/list", typeof(TextAsset));
-		string content = txt.text;
-		linesFromFile = content.Split ("\n" [0]);
-		
-		for (int i = 0; i < linesFromFile.Length; i++) {
-			unitList.Add(new Unit(i,linesFromFile[i].Trim()));		
-			if ( i < 5 )
-				formationList.Add(new FormationUnit(new Unit(99,linesFromFile[0].Trim())));		
-		}
-		unitList [0].IsUnlocked = true;
-		unitList [0].IsActive = true;
-		formationList [0].IsUnlocked = true;
-		formationList [0].Unit.HeroId = 0;
-
-		/*ENEMY DATA*/
-		//enemyList = new List<Unit> ();
-
-		/*SKILL DATA*/
-		linesFromFile = null;
-		skillList = new List<Skill> ();
-		TextAsset skillTxt = (TextAsset)Resources.Load ("Data/Skill/list", typeof(TextAsset));
-		string skillContent = skillTxt.text;
-		linesFromFile = skillContent.Split ("\n"[0]);
-		for (int i = 0; i < linesFromFile.Length; i++) {
-	//		Debug.Log ("len " + linesFromFile[i]);
-			skillList.Add(new Skill(1,linesFromFile[i]));		
-		}
-		skillList [0].IsUnlocked = true;
-		skillList [0].IsSelected = true;
-		totalSkillUsed = 1;
-
 		/*SHOP*/
 		linesFromFile = null;
 		shopList = new List<Item> ();
+		gemSpriteList = new List<Sprite> ();
 		TextAsset shopTxt = (TextAsset)Resources.Load ("Data/Gem/list", typeof(TextAsset));
 		string shopContent = shopTxt.text;
 		linesFromFile = shopContent.Split ("\n"[0]);
 		for (int i = 0; i < linesFromFile.Length; i++) {
 			//		Debug.Log ("len " + linesFromFile[i]);
-			shopList.Add(new Gem(linesFromFile[i]));		
+			shopList.Add(new Gem(i,linesFromFile[i]));
+			Gem g = (Gem)shopList[i];
+			gemSpriteList.Add(LoadGemSprite(g.Grade.Trim()+"/"+linesFromFile[i].Trim()));
 		}
-
+//		Debug.Log ("Jumlah gambar gem " + gemSpriteList.Count);
 		linesFromFile = null;
 		TextAsset shop2Txt = (TextAsset)Resources.Load ("Data/Catalyst/list", typeof(TextAsset));
 		string shop2Content = shop2Txt.text;
 		linesFromFile = shop2Content.Split ("\n"[0]);
+		catalystSpriteList = new List<Sprite> ();
 		for (int i = 0; i < linesFromFile.Length; i++) {
 			//		Debug.Log ("len " + linesFromFile[i]);
-			shopList.Add(new Catalyst(linesFromFile[i]));		
+			shopList.Add(new Catalyst(i,linesFromFile[i]));		
+			catalystSpriteList.Add(LoadCatalystSprite(linesFromFile[i].Trim()));
 		}
 
-
-		/*INVENTORY*/
-		inventoryList = new List<Item> ();
-
-		/*WEAPON SLOT*/
-		weaponSlotContentList = new List<Gem> ();
+		// sprite, icon, and skeleton
+		//UNIT
+		linesFromFile = null;
+		TextAsset txt = (TextAsset)Resources.Load ("Data/Unit/list", typeof(TextAsset));
+		string content = txt.text;
+		linesFromFile = content.Split ("\n" [0]);
+		unitSpriteList = new List<Sprite> ();
+		unitIconList = new List<Sprite> ();
+		skeleteonDataAssetList = new List<SkeletonDataAsset> ();
+		for (int i = 0; i < linesFromFile.Length; i++) {
+			unitSpriteList.Add(LoadCharacterSprite(linesFromFile[i].Trim()));
+			profile.unitList.Add(new Unit(i,linesFromFile[i].Trim()));	
+			unitIconList.Add(LoadIconList(linesFromFile[i].Trim()));
+			skeleteonDataAssetList.Add(LoadSkeleton(linesFromFile[i].Trim()));
+			if ( i < 5 )
+				profile.formationList.Add(new FormationUnit(new Unit(99,linesFromFile[0].Trim())));		
+		}
+		profile.unitList [0].IsUnlocked = true;
+		profile.unitList [0].IsActive = true;
+		profile.formationList [0].IsUnlocked = true;
+		profile.formationList [0].Unit.HeroId = 0;
+//		Debug.Log ("JUm sprite char " + unitSpriteList.Count);
 
 		/*QUEST*/
+		achievementSpriteList = new List<Sprite> ();
 		linesFromFile = null;
-		questList = new List<Quest> ();
 		TextAsset questTxt = (TextAsset)Resources.Load ("Data/Quest/list", typeof(TextAsset));
 		string questContent = questTxt.text;
 		linesFromFile = questContent.Split ("\n"[0]);
 		for (int i = 0; i < linesFromFile.Length; i++) {
-	//		Debug.Log ("len " + linesFromFile[i]);
-			questList.Add(new Quest(linesFromFile[i]));		
+			//		Debug.Log ("len " + linesFromFile[i]);
+			profile.questList.Add(new Quest(i%4,linesFromFile[i]));		
+			if ( i < 4 ) // 4 adalah macam quest yang ada
+				achievementSpriteList.Add(LoadAchievementSprite(linesFromFile[i].Trim()));
 		}
-		// TESTING
-		profile.Gold = 50000;
-	//	Debug.Log ("gold skrg " + profile.Gold);
-		//GameData.unlockedHeroes = GameData.unitList.Count;
-
 	}
 
-	public static void UpdateRaidTime(){
-	//	raidTime -= (Time.deltaTime * gameSpeed);
+	private Sprite LoadAchievementSprite(string name){
+		Sprite sprites = null;
+//		Debug.Log ("load sprite " + name);
+		sprites = (Sprite)Resources.Load ("Sprite/Achievement/" + name, typeof(Sprite));
+		return sprites;
+	}
+
+	private Sprite LoadCharacterSprite(string name){
+		Sprite sprites = null;
+		sprites = (Sprite)Resources.Load ("Sprite/Character/Hero/" + name, typeof(Sprite));
+		return sprites;
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	private Sprite LoadIconList(string name){
+		Sprite sprites = null;
+		sprites = (Sprite)Resources.Load ("Sprite/Character Icon/" + name, typeof(Sprite));
+		return sprites;
+	}
 
+	private SkeletonDataAsset LoadSkeleton(string name){
+		SkeletonDataAsset playerData;
+		playerData = ScriptableObject.CreateInstance<SkeletonDataAsset> ();
+		playerData = (SkeletonDataAsset)Resources.Load ("Sprite/Character/"+name+"/mySkeldata",typeof(SkeletonDataAsset));
+		
+		playerData.scale = 0.006f;
+		playerData.defaultMix = 0.55f;
+		return playerData;
+	}
+	
+	private Sprite LoadWeaponSprite(string name){
+		Sprite sprites = null;
+		sprites = (Sprite)Resources.Load ("Sprite/Weapon/" + name, typeof(Sprite));
+		return sprites;
+	}
+
+	private Sprite LoadGemSprite(string name){
+		Sprite sprites = null;
+		sprites = (Sprite)Resources.Load ("Sprite/Gems/"+name.Trim(), typeof(Sprite));
+		return sprites;
+	}
+
+	private Sprite LoadCatalystSprite(string name){
+		Sprite sprites = null;
+		sprites = (Sprite)Resources.Load ("Sprite/Catalyst/" + name, typeof(Sprite));
+		return sprites;
+	}
+
+	void LoadData(){
+		SaveLoad.Load ();
+	
+		try {
+			Debug.Log ("ARMY " +GameData.profile.DefeatedArmy);
+		}
+		catch{
+			Debug.Log ("FAIL TO LOAD");
+		}
+	}
+
+	void InitializeGameData(){
+		/*INIT*/
+		linesFromFile = null;
+		TextAsset metxt = (TextAsset)Resources.Load ("Data/Mission/list", typeof(TextAsset));
+		string mecontent = metxt.text;
+		linesFromFile = mecontent.Split ("\n" [0]);
+		for (int i = 0; i < linesFromFile.Length; i++) {
+			profile.missionList.Add(new Mission(linesFromFile[i]));		
+		}
+		/*SKILL DATA*/
+		linesFromFile = null;
+		TextAsset skillTxt = (TextAsset)Resources.Load ("Data/Skill/list", typeof(TextAsset));
+		string skillContent = skillTxt.text;
+		linesFromFile = skillContent.Split ("\n"[0]);
+		for (int i = 0; i < linesFromFile.Length; i++) {
+			profile.skillList.Add(new Skill(i,linesFromFile[i]));		
+		}
+		profile.skillList [0].IsUnlocked = true;
+		profile.skillList [0].IsSelected = true;
+		profile.totalSkillUsed = 1;
+		Debug.Log ("first play ");
+		profile.CheckQuestAchievement ();
+		//SaveLoad.Save ();
 	}
 }
