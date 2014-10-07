@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\EnemySetter.cs" />
      <Compile Include="Assets\Script\ActivateSkill.cs" />
      <Compile Include="Assets\Script\BattleController.cs" />
      <Compile Include="Assets\Script\BuyItem.cs" />
@@ -61,7 +62,6 @@
      <Compile Include="Assets\Script\HeroLeaderSetter.cs" />
      <Compile Include="Assets\Script\HeroProfileController.cs" />
      <Compile Include="Assets\Script\HeroSlotController.cs" />
-     <Compile Include="Assets\Script\InfoTroopSetter.cs" />
      <Compile Include="Assets\Script\InputNameDone.cs" />
      <Compile Include="Assets\Script\InputNameHandler.cs" />
      <Compile Include="Assets\Script\InventorySetter.cs" />
@@ -81,7 +81,6 @@
      <Compile Include="Assets\Script\ObjectTweener.cs" />
      <Compile Include="Assets\Script\ProfileController.cs" />
      <Compile Include="Assets\Script\ProfileData.cs" />
-     <Compile Include="Assets\Script\ProgressBar.cs" />
      <Compile Include="Assets\Script\ProjectileController.cs" />
      <Compile Include="Assets\Script\QuestController.cs" />
      <Compile Include="Assets\Script\ScreenData.cs" />
@@ -95,13 +94,11 @@
      <Compile Include="Assets\Script\SkillSlotController.cs" />
      <Compile Include="Assets\Script\SoundMuter.cs" />
      <Compile Include="Assets\Script\StartUpgrade.cs" />
-     <Compile Include="Assets\Script\StoryController.cs" />
      <Compile Include="Assets\Script\UnlockFormationSlot.cs" />
      <Compile Include="Assets\Script\UnlockHero.cs" />
      <Compile Include="Assets\Script\UnlockSkill.cs" />
      <Compile Include="Assets\Script\UpgradeSkill.cs" />
      <Compile Include="Assets\Script\UpgradeSlotSetter.cs" />
-     <Compile Include="Assets\Script\UpgradeTroops.cs" />
      <Compile Include="Assets\Script\UpgradeWeapon.cs" />
      <Compile Include="Assets\Script\UpgradeWeaponController.cs" />
      <Compile Include="Assets\Script\UpgradeWeaponSetter.cs" />

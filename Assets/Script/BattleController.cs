@@ -57,6 +57,8 @@ public class BattleController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Debug.Log ("batltecontrol START");
+
 		battleState = 0;
 		MusicManager.play ("Music/royal2", 0.1f, 0.1f);
 		Sprite back = null;

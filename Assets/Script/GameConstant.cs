@@ -20,6 +20,4 @@
 	public const string MYTHICAL_GEM = "mythical";
 	public const string LEGENDARY_GEM = "legendary";
 
-	/*Gem Type*/
-
 }

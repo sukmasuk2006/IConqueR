@@ -15,6 +15,7 @@ public class ProjectileController : MonoBehaviour {
 					
 			Debug.Log("DOR");
 			HeroController h = coll.gameObject.GetComponent<HeroController> ();
+			h.PushForward(1f);
 						//h.PushForward ();
 						isLaunch = false;
 						heroController.DoDamageToTarget (h);
@@ -26,7 +27,7 @@ public class ProjectileController : MonoBehaviour {
 		Debug.Log("Launch");
 		IsLaunch = true;
 		
-		rigidbody2D.AddForce(new Vector2(600f * heroController.direction,0f));
+		rigidbody2D.AddForce(new Vector2(heroController.MovementSpeed * 2 * heroController.direction,0f));
 	}
 
 

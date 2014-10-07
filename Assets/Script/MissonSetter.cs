@@ -9,6 +9,7 @@ public class MissonSetter : MonoBehaviour {
 	public string missionType; // fortress/castle
 	public TextMesh confirmText1;
 	public TextMesh confirmText2;
+	public EnemySetter setter;
 	// Use this for initialization
 	void Start () {
 		name.text = GameData.missionList [curr].Name;
@@ -27,6 +28,9 @@ public class MissonSetter : MonoBehaviour {
 
 	void SetInformation(){
 		confirmText1.text = "Attack "+ GameData.missionList[curr].Name +" " + missionType +" ?";
-		confirmText2.text = "Enemy list :" + GameData.missionList[curr].EnemyListName;
+		//confirmText2.text = "Enemy list :" + GameData.missionList[curr].EnemyListName;
+		Debug.Log ("Update slot 0");
+
+		setter.UpdateSlot (GameData.missionList [curr]);
 	}
 }

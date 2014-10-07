@@ -19,7 +19,14 @@ public class HeroController : MonoBehaviour {
 
 	public string target;
 	private Vector3 healthScaleConstant;
-	private float movementSpeed = 0f;   // kecepatan gerak
+	private float movementSpeed = 0f;
+	public float MovementSpeed {
+		get {
+			return movementSpeed;
+		}
+	}
+
+   // kecepatan gerak
 	private int states = 0; 			// menentukan animasi
 	public int direction = 1;
 	private int attackType = 0; // 0  melee, 1 range
@@ -41,6 +48,7 @@ public class HeroController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Debug.Log ("HERO START");
 		isDeath = false;
 		attackSpeed = 0;
 		if (gameObject.activeInHierarchy) {
@@ -87,7 +95,7 @@ public class HeroController : MonoBehaviour {
 										// jika waktunya serang, SERANG!
 										isAttack = true;
 										movementSpeed = stats.Movement;
-										PushForward ();
+										PushForward (1f);
 								} else {
 										DeceleratePullBack ();
 								}
@@ -114,26 +122,28 @@ public class HeroController : MonoBehaviour {
 
 	}
 
-	public void PushForward(){
+	public void PushForward(float f){
 		rigidbody2D.velocity = Vector2.zero;
-		rigidbody2D.AddForce (new Vector2 (stats.Movement* direction, 0f));
+		rigidbody2D.AddForce (new Vector2 (stats.Movement* direction *f, 0f));
+		Debug.Log ("vel X " + rigidbody2D.angularVelocity);
 
 	}
 
-	void OnCollisionEnter2D(Collision2D coll) {
-		if (coll.gameObject.name.Contains (target) && isAttack && attackType == 0 ) {
+	void OnTriggerEnter2D(Collider2D coll) {
+		if (coll.gameObject.name.Contains (target) ) {
+			rigidbody2D.velocity = Vector2.zero;
 			targetUnit = coll.gameObject.GetComponent<HeroController>();
-			if ( animator.state.GetCurrent(1) == null ){
-				animator.state.SetAnimation(1,"serang",false);
-				animator.state.GetCurrent(1).Complete += HandleComplete;
+			targetUnit.PushForward(-0.3f);
+			if ( isAttack && attackType == 0 ){
+				if ( animator.state.GetCurrent(1) == null ){
+					animator.state.ClearTrack(0);
+					animator.state.SetAnimation(1,"serang",false);
+					animator.state.GetCurrent(1).Complete += HandleComplete;
+				}
 			}
-	//		animator.state.AddAnimation(0,"jalan2",true,0.1f);
-//			skeletonAnimation.state.SetAnimation(0, "jump", false);
-
-
 		} else if (coll.gameObject.name.Contains ("wall")) {
 			// push dikit
-			rigidbody2D.velocity = Vector2.zero;
+			PushForward(0.1f);
 		}
 		
 	}
@@ -150,6 +160,7 @@ public class HeroController : MonoBehaviour {
 				Debug.Log("damaged unit " + gameObject.name +" health " + stats.HealthPoint);
 				float damage = h.stats.ReceiveDamage(stats.Damage,stats.IsCritical);
 				Debug.Log(" damage " + damage);
+				h.PushForward(-0.5f);
 				stats.IsCritical = false; // set critical ke semula, tapi chance tetep
 				controller.ReceiveDamage (target, damage);
 				h.UpdateHealthBar ();
@@ -161,12 +172,7 @@ public class HeroController : MonoBehaviour {
 		isAttack = false;
 		attackSpeed = stats.AttackSpeed;
 		movementSpeed = stats.Movement;
-		// jika tidak, mundur
-		if (attackType == 0) {
-						rigidbody2D.velocity = Vector2.zero;
-						rigidbody2D.AddForce (new Vector2 (stats.Movement * direction * -1, 0f));
-				}
-
+		animator.state.AddAnimation (0, "jalan2", true, attackSpeed);
 	}
 
 	public void DeceleratePullBack(){

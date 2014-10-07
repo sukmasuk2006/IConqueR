@@ -2,4 +2,4 @@
 300
 0
 6
-warrior
+Archer
