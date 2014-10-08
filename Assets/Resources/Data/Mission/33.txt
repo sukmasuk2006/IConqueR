@@ -1,0 +1,10 @@
+Bima
+150
+1500
+3
+11
+warrior
+tribe
+archer
+thief
+knight

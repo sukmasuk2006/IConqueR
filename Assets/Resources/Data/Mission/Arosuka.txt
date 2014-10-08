@@ -1,7 +1,0 @@
-80
-750
-1
-6
-warrior
-knight
-archer

@@ -11,6 +11,14 @@ using System.Collections.Generic;
 [System.Serializable]
 public class Mission
 {
+	private int id;
+
+	public int Id {
+		get {
+			return id;
+		}
+	}
+
 	private string name;
 	private bool isOpen;
 	private bool isComplete;
@@ -27,24 +35,25 @@ public class Mission
 		}
 	}
 
-	public Mission (string name)
+	public Mission (int id)
 	{
-		this.name = name;
+		this.id = id;
 		InitializeMission ();
 	}
 
 	private void InitializeMission(){
 		enemyList = new List<Unit> ();
-	//	Debug.Log ("nama " + name);
+		Debug.Log ("nama " + id);
 		enemyListName = "";
-		TextAsset txt = (TextAsset)Resources.Load ("Data/Mission/"+name.Trim(), typeof(TextAsset));
+		TextAsset txt = (TextAsset)Resources.Load ("Data/Mission/"+id, typeof(TextAsset));
 		string content = txt.text;
 		string[] linesFromFile = content.Split ("\n" [0]);
-		expReward = int.Parse(linesFromFile [0]);
-		goldReward = int.Parse(linesFromFile [1]);
-		diamondReward = int.Parse(linesFromFile [2]);
-		maxReward = int.Parse (linesFromFile [3]);
-		for (int i = 4; i < linesFromFile.Length; i++) {
+		name = linesFromFile [0];
+		expReward = int.Parse(linesFromFile [1]);
+		goldReward = int.Parse(linesFromFile [2]);
+		diamondReward = int.Parse(linesFromFile [3]);
+		maxReward = int.Parse (linesFromFile [4]);
+		for (int i = 5; i < linesFromFile.Length; i++) {
 			enemyList.Add(new Unit(i,linesFromFile[i].Trim()));		
 			enemyListName += linesFromFile[i].Trim() + " ";
 		}

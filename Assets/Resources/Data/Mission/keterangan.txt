@@ -2,4 +2,9 @@ reward exp
 reward gold
 reward diamond
 reward item
+0-7
+8-15
+16-23
+24-31
+32-35
 List<enemy>

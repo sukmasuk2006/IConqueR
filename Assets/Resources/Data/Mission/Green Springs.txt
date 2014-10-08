@@ -1,6 +1,0 @@
-60
-500
-0
-6
-warrior
-knight
