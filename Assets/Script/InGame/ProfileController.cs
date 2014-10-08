@@ -15,6 +15,7 @@ public class ProfileController : MonoBehaviour {
 	private float expTujuan;
 
 	void Start () {
+
 		//Debug.Log ("profile contr current gold " + GameData.gold);
 		levelText.text = "Level " + GameData.profile.Level.ToString ();
 		UpdateGoldAndDiamond (0,0);
