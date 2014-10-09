@@ -5,12 +5,18 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using PluginUnityWP;
 
+using System.Xml.Serialization;
+using System.Xml;
+
 public static class SaveLoad {
 
 	private static string gamepath = Application.persistentDataPath + "/t20.gd";
 	//it's static so we can call it from anywhere
 	public static void Save() {
-		Serializer.Save<ProfileData> (gamepath,GameData.profile);
+		// SaveController.SaveAndSerialize (SaveController.PrefEnum.GAMESTATE, GameData.profile);
+//		Serializer.Save<ProfileData> (gamepath,GameData.profile);
+
+		Serializer.Save<ProfileData>(gamepath,GameData.profile);
 		/*
 			Build Winphone
 		byte[] bytes = PluginUnityWP.Class1.SerializeObject<ProfileData> (GameData.profile);
@@ -28,7 +34,8 @@ public static class SaveLoad {
 
 	
 	public static void Load() {
-		GameData.profile =  Serializer.Load<ProfileData> (gamepath);
+		//GameData.profile = SaveController.LoadAndDeserialize<ProfileData> (SaveController.PrefEnum.GAMESTATE);
+			GameData.profile =  Serializer.Load<ProfileData> (gamepath);
 
 /*			Build Winphone
 		byte[] bytes = File.ReadAllBytes (gamepath);        
@@ -48,4 +55,5 @@ public static class SaveLoad {
 			Debug.Log("GK BISA DI LOAD");		
 		}*/
 	}
+
 }

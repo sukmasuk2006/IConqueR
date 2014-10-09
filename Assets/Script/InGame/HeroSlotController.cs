@@ -21,7 +21,7 @@ public class HeroSlotController : MonoBehaviour {
 	}
 
 	public void UpdateData(){
-		nameText.text = "Name " + GameData.profile.unitList [heroSlot].Name;
+		nameText.text = GameData.profile.unitList [heroSlot].Name;
 		jobText.text = GameData.profile.unitList [heroSlot].Job;
 		lvlText.text = "Level " + GameData.profile.unitList [heroSlot].Level.ToString();
 		str.text = "Str :"+GameData.profile.unitList [heroSlot].Str.ToString();

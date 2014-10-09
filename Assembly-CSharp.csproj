@@ -80,7 +80,6 @@
      <Compile Include="Assets\Script\InGame\ShopSlotSetter.cs" />
      <Compile Include="Assets\Script\InGame\ShowItemDetails.cs" />
      <Compile Include="Assets\Script\InGame\SkeletonSetter.cs" />
-     <Compile Include="Assets\Script\InGame\SkillEffect.cs" />
      <Compile Include="Assets\Script\InGame\SkillSlotController.cs" />
      <Compile Include="Assets\Script\InGame\SoundMuter.cs" />
      <Compile Include="Assets\Script\InGame\StartUpgrade.cs" />
@@ -100,6 +99,7 @@
      <Compile Include="Assets\Script\Object\Mission.cs" />
      <Compile Include="Assets\Script\Object\Quest.cs" />
      <Compile Include="Assets\Script\Object\Skill.cs" />
+     <Compile Include="Assets\Script\Object\SkillEffect.cs" />
      <Compile Include="Assets\Script\Object\Unit.cs" />
      <Compile Include="Assets\Script\Object\UnitStatus.cs" />
      <Compile Include="Assets\Script\Object\Weapon.cs" />
@@ -108,6 +108,7 @@
      <Compile Include="Assets\Script\Utility\MapMover.cs" />
      <Compile Include="Assets\Script\Utility\SaveLoad.cs" />
      <Compile Include="Assets\Script\Utility\ScreenFader.cs" />
+     <Compile Include="Assets\Script\Utility\Serializer.cs" />
      <Compile Include="Assets\Script\Utility\SimpleButton.cs" />
      <Compile Include="Assets\Script\Utility\SimpleButtonTween.cs" />
      <Compile Include="Assets\Script\Utility\iTween.cs" />

@@ -1,11 +1,23 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Utility\SaveLoad.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\InGame\ObjectTweener.cs">
     <Files>
-      <File FileName="Assets\Script\Object\Mission.cs" Line="55" Column="1" />
-      <File FileName="Assets\Script\Utility\SaveLoad.cs" Line="14" Column="3" />
-      <File FileName="Assets\Script\InGame\ProfileController.cs" Line="21" Column="102" />
-      <File FileName="Assets\Script\InGame\UnlockHero.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Object\FormationUnit.cs" Line="21" Column="6" />
+      <File FileName="Assets\Script\Object\Unit.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Object\Weapon.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Object\UnitStatus.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Object\Item.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Object\Gem.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Object\Skill.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Object\Quest.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Object\Mission.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Object\Catalyst.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Object\SkillEffect.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Utility\SaveLoad.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Utility\Serializer.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\InGame\HeroSlotController.cs" Line="24" Column="19" />
+      <File FileName="Assets\Script\InGame\HeroController.cs" Line="154" Column="1" />
+      <File FileName="Assets\Script\InGame\ObjectTweener.cs" Line="31" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

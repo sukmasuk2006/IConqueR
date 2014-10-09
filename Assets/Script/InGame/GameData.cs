@@ -42,7 +42,7 @@ public class GameData : MonoBehaviour {
 	void Awake(){
 		InitializePersistent ();
 		InitializeGameData ();
-		LoadData ();
+		//LoadData ();
 		//		Debug.Log ("Data initialized " + profile.Gold);
 	}
 
@@ -171,10 +171,10 @@ public class GameData : MonoBehaviour {
 		SaveLoad.Load ();
 	
 		try {
-			Debug.Log ("ARMY " +GameData.profile.DefeatedArmy);
+			//Debug.Log ("ARMY " +GameData.profile.DefeatedArmy);
 		}
 		catch{
-			Debug.Log ("FAIL TO LOAD");
+			//Debug.Log ("FAIL TO LOAD");
 		}
 	}
 
