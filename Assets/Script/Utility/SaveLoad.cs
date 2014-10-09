@@ -16,12 +16,12 @@ public static class SaveLoad {
 		// SaveController.SaveAndSerialize (SaveController.PrefEnum.GAMESTATE, GameData.profile);
 //		Serializer.Save<ProfileData> (gamepath,GameData.profile);
 
-		Serializer.Save<ProfileData>(gamepath,GameData.profile);
-		/*
-			Build Winphone
+		//Serializer.Save<ProfileData>(gamepath,GameData.profile);
+
+		//	Build Winphone
 		byte[] bytes = PluginUnityWP.Class1.SerializeObject<ProfileData> (GameData.profile);
 		File.WriteAllBytes (gamepath, bytes);
-		*/
+
 		/*BinaryFormatter bf = new BinaryFormatter();
 		//Application.persistentDataPath is a string, so if you wanted you can put that into debug.log if you want to know where save games are located
 		FileStream file = File.Create(gamepath); //you can call it anything you want
