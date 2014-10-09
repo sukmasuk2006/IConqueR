@@ -41,15 +41,15 @@ public class Weapon : Item {
 		weaponStats.Agi += s.Agi;
 		weaponStats.Vit += s.Vit;
 		if (rank == 1 || rank == 2)
-			damage += 5;
+			damage += 2;
 		if (rank == 3 || rank == 4)
-			damage += 10;
+			damage += 3;
 		if (rank == 5 || rank == 6)
-			damage += 15;
+			damage += 6;
 		if (rank == 7 || rank == 8)
-			damage += 20;
+			damage += 10;
 		if (rank == 9 || rank == 10)
-			damage += 30;
+			damage += 15;
 	}
 
 	public bool CheckUpgradeReq(string grade){

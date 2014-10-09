@@ -29,7 +29,7 @@ public class Unit : UnitStatus {
 		string econtent = etxt.text;
 		string[] linesFromFile = econtent.Split ("\n" [0]);
 		isActive = false;
-		nextExp = 100;
+		nextExp = 75;
 		currentExp = 0;
 		isUnlocked = false;
 		this.name = linesFromFile [0];

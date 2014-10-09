@@ -1,8 +1,8 @@
-Liwa
-120
-1000
+Ficayard
+150
+715
 0
-11
+7
+knight
 warrior
-knight
-knight
+warrior

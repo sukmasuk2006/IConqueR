@@ -8,3 +8,19 @@ reward item
 24-31
 32-35
 List<enemy>
+
+hero exp
+50,100,200,400,800,1200,2400,4800
+
+tiap 5 level naik stats enemy
+at
+4
+9
+14
+19
+24
+29
+34
+39
+44
+49

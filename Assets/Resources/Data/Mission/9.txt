@@ -1,8 +1,9 @@
-Metro
-120
-1000
-0
-11
+Fica Castle
+250
+925
+1
+15
+knight
 warrior
 knight
 archer

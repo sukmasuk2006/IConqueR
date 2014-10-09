@@ -1,6 +1,6 @@
-Smallwood
-30
-300
+Staport
+55
+225
 0
 7
 knight

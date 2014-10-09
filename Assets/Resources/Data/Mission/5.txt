@@ -1,7 +1,7 @@
-Arosuka
-80
-750
+guriver
+100
+600
 0
-11
+7
 warrior
 knight

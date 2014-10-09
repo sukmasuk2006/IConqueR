@@ -1,7 +1,9 @@
-Green Springs
-60
-500
+toret
+170
+1700
 0
-7
-warrior
-knight
+13
+tribe
+tribe
+archer
+archer

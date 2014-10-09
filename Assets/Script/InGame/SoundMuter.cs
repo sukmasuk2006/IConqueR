@@ -5,11 +5,12 @@ using PluginUnityWP;
 public class SoundMuter : MonoBehaviour {
 
 	private bool isMute = false;
-	Renderer soundOn;
+	public SpriteRenderer soundOn;
+	public Sprite on;
+	public Sprite off;
 
 	// Use this for initialization
 	void Start () {
-		soundOn = GameObject.Find ("soundOn").renderer;
 		if (isMute)
 			soundOn.enabled = false;
 	}
@@ -23,14 +24,14 @@ public class SoundMuter : MonoBehaviour {
 	void OnMouseDown(){
 						if (!isMute) {
 								Debug.Log ("mute");
-								AudioListener.volume = 0;
+								MusicManager.setVolume(0,0);
 								isMute = true;		
-								soundOn.enabled = false;
+								soundOn.sprite = off;
 						} else {
 								Debug.Log ("unmute");
-								AudioListener.volume = 100;
+								MusicManager.setVolume(1,0);
 								isMute = false;
-								soundOn.enabled = true;
+								soundOn.sprite = on;
 					}
 	}
 

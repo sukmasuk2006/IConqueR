@@ -55,7 +55,6 @@
      <Compile Include="Assets\Script\InGame\FirstPlayChecker.cs" />
      <Compile Include="Assets\Script\InGame\FormationSetter.cs" />
      <Compile Include="Assets\Script\InGame\GameConstant.cs" />
-     <Compile Include="Assets\Script\InGame\GameData.cs" />
      <Compile Include="Assets\Script\InGame\GameMusic.cs" />
      <Compile Include="Assets\Script\InGame\GetQuestReward.cs" />
      <Compile Include="Assets\Script\InGame\HeroController.cs" />
@@ -70,7 +69,6 @@
      <Compile Include="Assets\Script\InGame\MissonSetter.cs" />
      <Compile Include="Assets\Script\InGame\ObjectTweener.cs" />
      <Compile Include="Assets\Script\InGame\ProfileController.cs" />
-     <Compile Include="Assets\Script\InGame\ProfileData.cs" />
      <Compile Include="Assets\Script\InGame\ProjectileController.cs" />
      <Compile Include="Assets\Script\InGame\QuestController.cs" />
      <Compile Include="Assets\Script\InGame\ScreenData.cs" />
@@ -94,9 +92,11 @@
      <Compile Include="Assets\Script\InGame\indexChanger.cs" />
      <Compile Include="Assets\Script\Object\Catalyst.cs" />
      <Compile Include="Assets\Script\Object\FormationUnit.cs" />
+     <Compile Include="Assets\Script\Object\GameData.cs" />
      <Compile Include="Assets\Script\Object\Gem.cs" />
      <Compile Include="Assets\Script\Object\Item.cs" />
      <Compile Include="Assets\Script\Object\Mission.cs" />
+     <Compile Include="Assets\Script\Object\ProfileData.cs" />
      <Compile Include="Assets\Script\Object\Quest.cs" />
      <Compile Include="Assets\Script\Object\Skill.cs" />
      <Compile Include="Assets\Script\Object\SkillEffect.cs" />

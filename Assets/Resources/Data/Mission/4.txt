@@ -1,7 +1,8 @@
-Deepsville
-75
-600
+gulmory
+90
+550
 0
 7
-knight
+warrior
+warrior
 knight

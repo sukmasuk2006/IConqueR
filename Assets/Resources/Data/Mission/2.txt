@@ -1,6 +1,6 @@
-Dumai
-50
-500
+Sevillage
+55
+275
 0
 7
 knight

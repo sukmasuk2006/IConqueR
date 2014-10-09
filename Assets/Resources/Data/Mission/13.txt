@@ -1,7 +1,9 @@
-Dumai
-50
-500
+toret
+170
+1300
 0
-7
+13
 warrior
-knight
+tribe
+archer
+archer

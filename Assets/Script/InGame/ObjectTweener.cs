@@ -18,13 +18,20 @@ public class ObjectTweener : MonoBehaviour {
 	void OnMouseUp(){
 		// geser kanan
 //		Debug.Log (data.corridorState + " " + data.maxCorridorState);
-		if (dir > 0 && data.corridorState < data.maxCorridorState)
-			data.corridorState++;
+		if (GameData.readyToTween) {
+			GameData.readyToTween = false;
+						if (dir > 0 && data.corridorState < data.maxCorridorState)
+								data.corridorState++;
 		// geser kiri
-		else if ( dir < 0 && data.corridorState > 0 )
-			data.corridorState--;
-		iTween.MoveTo ( obj,iTween.Hash("position",new Vector3(corridorSize*-data.corridorState,
-		                                                       -0.9f,-3f),"time",time));
-		corridorState.text = "Page " + (data.corridorState+1).ToString();
+		else if (dir < 0 && data.corridorState > 0)
+								data.corridorState--;
+						iTween.MoveTo (obj, iTween.Hash ("position", new Vector3 (corridorSize * -data.corridorState,
+			                                                          -0.9f, -3f), "time","onComplete", "ReadyTween", "onCompleteTarget", gameObject));
+						corridorState.text = "Page " + (data.corridorState + 1).ToString ();
+		}
+	}
+
+	void ReadyTween(){
+		GameData.readyToTween = true;
 	}
 }

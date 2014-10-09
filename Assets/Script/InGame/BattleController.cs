@@ -110,7 +110,9 @@ public class BattleController : MonoBehaviour {
 			tempStats.Add(new Unit(s.HeroId,s.Job.Trim()));
 //			Debug.Log("added temp " + tempStats.Count
 			// tiap 3 stage, naik level musuhnya
-			int level = (GameData.currentMission/5)+1;
+			float level = 1 + (GameData.currentMission/3)*0.25f;
+			if ( GameData.missionType == "castle") //boss
+				level +=0.5f;
 			s.Agi *= level;
 			s.Str *= level;
 			s.Vit *= level;
@@ -232,14 +234,17 @@ public class BattleController : MonoBehaviour {
 	void Win(){
 		Debug.Log ("WIN3");
 		winloseText.text = "Conquered!";
-		// win, kadang dapat kadang kaga
-		isGetReward = Random.Range (0, 99);
 		GetReward ();
+		// diamond kalau win doang + caslte + 1x doang dptnya
 		if (GameData.currentMission == GameData.profile.NextMission) {
+			diamondEarn = mission.DiamondReward;
+
 			if (GameData.missionType.Contains ("Fortress"))
 				GameData.profile.FortressDestroyed++;
-			else if (GameData.missionType.Contains ("Castle"))
+			else if (GameData.missionType.Contains ("Castle")){
 				GameData.profile.CastleDestroyed++;
+				GameData.profile.Diamond += diamondEarn;
+			}
 			GameData.profile.NextMission++;
 		}
 		GameData.profile.CheckQuestAchievement ();
@@ -260,10 +265,12 @@ public class BattleController : MonoBehaviour {
 	}
 
 	void GetReward(){
+		// gold pasti
+		// win, kadang dapat item kadang ngga
+		isGetReward = Random.Range (0, 99);
 		goldEarn = mission.GoldReward / battleState;
 		GameData.profile.Gold += goldEarn;
-		diamondEarn = mission.DiamondReward  / battleState;
-		GameData.profile.Diamond += diamondEarn;
+	
 		// semakin tinggi misi, semakin susah dpt reward
 		if (isGetReward < itemChance - GameData.currentMission && battleState == 1) {
 			int get = mission.GetReward;

@@ -27,6 +27,7 @@ public class HeroController : MonoBehaviour {
 	}
 
    // kecepatan gerak
+	private float antiBug = 0f;
 	private int states = 0; 			// menentukan animasi
 	public int direction = 1;
 	private int attackType = 0; // 0  melee, 1 range
@@ -127,7 +128,8 @@ public class HeroController : MonoBehaviour {
 		if (coll.gameObject.name.Contains (target) ) {
 			rigidbody2D.velocity = Vector2.zero;
 			targetUnit = coll.gameObject.GetComponent<HeroController>();
-			targetUnit.PushForward(-0.3f);
+			PushForward(-0.3f);
+			antiBug = 0f;
 			if ( isAttack && attackType == 0 ){
 				if ( animator.state.GetCurrent(1) == null ){
 					animator.state.ClearTrack(0);
@@ -137,9 +139,11 @@ public class HeroController : MonoBehaviour {
 			}
 		} else if (coll.gameObject.name.Contains ("wall")) {
 			// push dikit
+			rigidbody2D.velocity = Vector2.zero;
 			PushForward(0.1f);
+			antiBug = 0.5f * direction;
 		}
-		
+
 	}
 
 	void HandleComplete (Spine.AnimationState state, int trackIndex, int loopCount)
@@ -154,7 +158,7 @@ public class HeroController : MonoBehaviour {
 				Debug.Log("damaged unit " + gameObject.name +" health " + stats.HealthPoint);
 				float damage = h.stats.ReceiveDamage(stats.Damage,stats.IsCritical);
 				Debug.Log(" damage " + damage);
-				h.PushForward(-0.5f);
+				h.PushForward(-0.5f + antiBug);
 				stats.IsCritical = false; // set critical ke semula, tapi chance tetep
 				controller.ReceiveDamage (target, damage);
 				h.UpdateHealthBar ();

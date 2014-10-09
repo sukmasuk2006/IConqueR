@@ -1,5 +1,5 @@
-Green Springs
-60
+Farfield
+75
 500
 0
 7

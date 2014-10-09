@@ -1,6 +1,9 @@
-Smallwood
-30
-300
+toret
+150
+1500
 0
-7
+12
+knight
 warrior
+archer
+tribe

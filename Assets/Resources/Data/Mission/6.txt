@@ -1,8 +1,7 @@
-Koba
-90
-800
+behill
+100
+610
 0
-11
-warrior
+7
 warrior
 warrior

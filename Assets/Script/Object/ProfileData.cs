@@ -45,7 +45,7 @@ public class ProfileData
 		unlockedSlot = 1;
 		activeHeroes = 1;
 		totalSkillUsed = 1;
-		nextExp = GameData.expList [level];
+		nextExp = 75;
 		formationList = new List<FormationUnit> ();
 		skillList = new List<Skill> ();
 		inventoryList = new List<Item> ();
