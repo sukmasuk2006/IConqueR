@@ -1,10 +1,26 @@
-﻿
-[System.Serializable]
+﻿using UnityEngine;
+
 public class UnitStatus  {
 	
-	protected string spriteName;
+	public void SaveStatus(string key)
+	{
+		PlayerPrefs.SetInt (key + "level" + GameData.tesId, level);
+		PlayerPrefs.SetFloat(key+"str"+GameData.tesId,str);
+		PlayerPrefs.SetFloat(key+"agi"+GameData.tesId,agi);
+		PlayerPrefs.SetFloat(key+"vit"+GameData.tesId,vit);
+
+	}
+	
+	public void LoadStatus (string key)
+	{
+		level = PlayerPrefs.GetInt (key + "level" + GameData.tesId);
+		str = PlayerPrefs.GetFloat(key+"str"+GameData.tesId);
+		agi = PlayerPrefs.GetFloat(key+"agi"+GameData.tesId);
+		vit = PlayerPrefs.GetFloat(key+"vit"+GameData.tesId);
+	}
+
 	protected string name;
-	protected string description;
+	//protected string description;
 	protected int level;
 	protected const int maxLevel = 10;
 	//upgradable stats
@@ -53,7 +69,6 @@ public class UnitStatus  {
 	protected float maxMovement;
 	protected float pushForce;
 	protected float critChance;
-	private double val;
 
 	public float CritChance {
 		get {
@@ -118,15 +133,6 @@ public class UnitStatus  {
 		}
 	}
 
-	public string IconPath {
-		get {
-			return spriteName;
-		}
-		set {
-			spriteName = value;
-		}
-	}
-
 	public string Name {
 		get {
 			return name;
@@ -136,14 +142,14 @@ public class UnitStatus  {
 		}
 	}
 
-	public string Description {
+	/*public string Description {
 		get {
 			return description;
 		}
 		set {
 			description = value;
 		}
-	}
+	}*/
 
 	public int Level {
 		get {

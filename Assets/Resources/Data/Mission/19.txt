@@ -1,8 +1,10 @@
-Liwa
-120
-1000
+Duhu
+500
+2000
 0
-11
-warrior
-monk
+23
+tribe
+knight
+tribe
 archer
+thief

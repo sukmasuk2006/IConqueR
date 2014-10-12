@@ -1,7 +1,9 @@
-Ambarawa
-90
-800
+Duhu
+400
+1700
 0
-11
+21
+tribe
 knight
 tribe
+archer

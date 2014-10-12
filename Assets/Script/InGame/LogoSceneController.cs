@@ -7,13 +7,10 @@ public class LogoSceneController : MonoBehaviour {
 	public GameObject tweenedObject;
 	public GameObject removedObject;
 	public float time;
+	public AudioClip dor;
 	// Use this for initialization
 	void Start () {
-	//	Debug.Log ("di logo " + GameData.isFirstPlay);
-	//	if (GameData.isFirstPlay) {
-		//	TweenInputName();
-		//}
-		//else
+	
 			TweenMainMenu ();
 		GameMusic.PlayMusic ("Music/royal");
 	}
@@ -29,15 +26,18 @@ public class LogoSceneController : MonoBehaviour {
 	}*/
 
 	public void TweenMainMenu(){
-
+		GameData.readyToTween = false;
 	//	Debug.Log ("GO");
-		
-		iTween.MoveTo (tweenedObject, iTween.Hash ("delay",1f,"position", removedObject.transform.position, "time",time));
-		iTween.MoveTo (removedObject, iTween.Hash ("delay",1f,"position", tweenedObject.transform.position, "time", time,"EaseType","linear"));
+		iTween.ColorTo (removedObject, iTween.Hash ("delay",1f,"a",0f ,"time", time,"EaseType","linear"));
+		iTween.MoveTo (removedObject, iTween.Hash ("delay",4f,"position", new Vector3(0,0,3), "time", time,"EaseType","linear"));
+
+		iTween.MoveTo (tweenedObject, iTween.Hash ("delay",3f,"position", removedObject.transform.position, "time",0.1f,"EaseType","linear"
+		                                           ,"onComplete", "ReadyTween", "onCompleteTarget", gameObject));
 	}
 
-	void MoveTarget(){
-	
+	void ReadyTween(){
+		MusicManager.getMusicPlayer().audio.PlayOneShot(dor);
+		GameData.readyToTween = true;
 	}
 
 

@@ -4,4 +4,4 @@ guriver
 0
 7
 warrior
-knight
+warrior

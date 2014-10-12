@@ -10,12 +10,20 @@ public class MissonSetter : MonoBehaviour {
 	public TextMesh confirmText1;
 	public TextMesh confirmText2;
 	public EnemySetter setter;
+	private SpriteRenderer render;
 	// Use this for initialization
 	void Start () {
+		render = gameObject.GetComponent<SpriteRenderer> ();
 		name.text = GameData.missionList [curr].Name;
-		//if (curr > GameData.profile.NextMission) {
-	//		this.gameObject.SetActive(false);
-		//}
+		if (curr > GameData.profile.NextMission) {
+			this.gameObject.SetActive(false);
+		}
+		if (curr == GameData.profile.NextMission) {
+			if (missionType == "Fortress")
+				this.render.sprite = (Sprite)Resources.Load ("Sprite/Button/icon_fortress_yellow", typeof(Sprite));
+			else
+				this.render.sprite = (Sprite)Resources.Load ("Sprite/Button/icon_crown_yellow", typeof(Sprite));
+		}
 	}
 
 	// pake int, soalnya udah urut

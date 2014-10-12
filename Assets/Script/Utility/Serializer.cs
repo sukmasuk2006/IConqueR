@@ -34,12 +34,12 @@ public class Serializer
 	public static void Save<T>(string filename, T data) where T: class
 	{
 		Debug.Log("game saved 1");
-	using (Stream stream = File.OpenWrite(filename))
-		{   
-			Debug.Log ("gamesaved2");
-			BinaryFormatter formatter = new BinaryFormatter();
-			formatter.Serialize(stream, data);
-		}
+		using (Stream stream = File.OpenWrite(filename))
+			{   
+				Debug.Log ("gamesaved2");
+				BinaryFormatter formatter = new BinaryFormatter();
+				formatter.Serialize(stream, data);
+			}
 	}
 
 }

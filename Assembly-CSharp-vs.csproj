@@ -74,7 +74,6 @@
      <Compile Include="Assets\Script\InGame\ScreenData.cs" />
      <Compile Include="Assets\Script\InGame\SelectItem.cs" />
      <Compile Include="Assets\Script\InGame\SetHeroOnFormation.cs" />
-     <Compile Include="Assets\Script\InGame\ShopController.cs" />
      <Compile Include="Assets\Script\InGame\ShopSlotSetter.cs" />
      <Compile Include="Assets\Script\InGame\ShowItemDetails.cs" />
      <Compile Include="Assets\Script\InGame\SkeletonSetter.cs" />
@@ -89,7 +88,6 @@
      <Compile Include="Assets\Script\InGame\UpgradeWeapon.cs" />
      <Compile Include="Assets\Script\InGame\UpgradeWeaponController.cs" />
      <Compile Include="Assets\Script\InGame\UpgradeWeaponSetter.cs" />
-     <Compile Include="Assets\Script\InGame\indexChanger.cs" />
      <Compile Include="Assets\Script\Object\Catalyst.cs" />
      <Compile Include="Assets\Script\Object\FormationUnit.cs" />
      <Compile Include="Assets\Script\Object\GameData.cs" />

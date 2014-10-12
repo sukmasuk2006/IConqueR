@@ -18,31 +18,34 @@ public class UpgradeWeapon : MonoBehaviour {
 	}
 	
 	void OnMouseDown(){
-		// cek apakah slot 0 itu gem kagak
-		if (controller.SlotList [0] is Gem) {
-			gem = (Gem)controller.SlotList[0];
-			CheckRequirement();
-		}else
-			info.text = "Please insert a Gemstone to upgrade";
-		MusicManager.getMusicEmitter().audio.PlayOneShot(sound);
+		CheckRequirement ();
+				MusicManager.getMusicEmitter().audio.PlayOneShot(sound);
 
 	}
 
 	void CheckRequirement(){
+		
+		// cek apakah slot 0 itu gem kagak
 		Weapon w = controller.WeaponData;
+		
 		if (w.Rank < 10) {
 			// check dulu + brp 
-			int minLevelReq = (w.Rank+1)*2;
-			Unit u = GameData.profile.formationList[GameData.selectedToViewProfileIdFromFormation].Unit;
-			if ( u.Level >= minLevelReq ){
-				// min senjata level = 2 x unit level
-				bool rankreq = w.CheckUpgradeReq(gem.Grade);
-				// kalau udah bisa up, cek gemnya bener nggak
-				if ( rankreq ){
-					CountingPercentages();
-				}
-				else
-					info.text = "Use suitable gem to upgrade!";
+			int minLevelReq = (w.Rank + 1) * 2;
+			Unit u = GameData.profile.formationList [GameData.selectedToViewProfileIdFromFormation].Unit;
+			if (u.Level >= minLevelReq) {
+				if (controller.SlotList [0] is Gem) {
+					gem = (Gem)controller.SlotList [0];
+					// min senjata level = 2 x unit level
+					bool rankreq = w.CheckUpgradeReq(gem.Grade);
+					// kalau udah bisa up, cek gemnya bener nggak
+					if ( rankreq ){
+						CountingPercentages();
+					}
+					else
+						info.text = "Use suitable gem to upgrade!";
+					
+				} else 
+					info.text = "Please insert a Gemstone to upgrade";
 			}
 			else{
 				info.text = GameData.selectedToViewProfileName +" at least level "+ minLevelReq +" to upgrade.";
@@ -69,6 +72,7 @@ public class UpgradeWeapon : MonoBehaviour {
 		amount.text = percentages.ToString ();
 		if ( GameData.readyToTween )
 			controller.Percentages = percentages;
+		GameData.gameState = "confirm";
 		iTween.MoveTo (confirmScreen,new Vector3(0f,0f,confirmScreen.transform.position.z),0.1f);
 	}
 }

@@ -31,11 +31,22 @@ public class Quest
 		InitializeQuest ();
 	}
 
+	public void Save(){
+		PlayerPrefs.SetInt ("Quest"+id+"currentQuantity" + GameData.tesId, currentQuantity);	
+		PlayerPrefs.SetInt ("Quest"+id+"isCompleted" + GameData.tesId,isCompleted ? 1:0);	
+		PlayerPrefs.SetInt ("Quest"+id+"isRewardTaken" + GameData.tesId, isRewardTaken ? 1 : 0);	
+	}
+
+	public void Load(){
+		PlayerPrefs.GetInt ("Quest"+id+"currentQuantity" + GameData.tesId, currentQuantity);	
+		isCompleted  = (PlayerPrefs.GetInt ("Quest"+id+"isCompleted" + GameData.tesId)!=0);	
+		isRewardTaken = (PlayerPrefs.GetInt ("Quest"+id+"isRewardTaken" + GameData.tesId)!=0);	
+	}
+
 	private void InitializeQuest(){
 		TextAsset txt = (TextAsset)Resources.Load ("Data/Quest/" + target.Trim(), typeof(TextAsset));
 		string content = txt.text;
 		string[] linesFromFile = content.Split ("\n" [0]);
-
 
 		target = linesFromFile [0];
 		quantityNeeded = int.Parse (linesFromFile [1]);

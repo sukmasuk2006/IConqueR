@@ -17,7 +17,20 @@ public class Weapon : Item {
 		SuccessRate = 0;
 		rank = 0;
 	}
-	
+
+	public void Save(){
+		PlayerPrefs.SetFloat (name + "damage" + GameData.tesId,damage);
+		PlayerPrefs.SetInt (name + "rank" + GameData.tesId,rank);
+		weaponStats.SaveStatus (name+"weapon");
+	}
+
+	public void Load ()
+	{
+		damage = PlayerPrefs.GetFloat (name + "damage" + GameData.tesId);
+		rank = PlayerPrefs.GetInt (name + "rank" + GameData.tesId);
+		weaponStats.LoadStatus(name+"weapon");
+	}
+
 	public float Damage {
 		get {
 			return damage;

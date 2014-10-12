@@ -11,9 +11,10 @@ public class Unit : UnitStatus {
 	private bool isUnlocked;
 	private bool isActive;
 	private int goldNeeded;
-	private Weapon weapon;
 	private bool isCritical;
+	private const int base_exp = 75;
 
+	private Weapon weapon;
 
 	public Unit(int id,string name):
 	base(){
@@ -29,13 +30,13 @@ public class Unit : UnitStatus {
 		string econtent = etxt.text;
 		string[] linesFromFile = econtent.Split ("\n" [0]);
 		isActive = false;
-		nextExp = 75;
+		nextExp = base_exp;
 		currentExp = 0;
 		isUnlocked = false;
 		this.name = linesFromFile [0];
 		this.level = 1;
 		this.goldNeeded = int.Parse( linesFromFile [1]);
-		weapon = new Weapon (heroId,name ,float.Parse(linesFromFile[5]),float.Parse(linesFromFile[6]));
+		weapon = new Weapon (heroId,job ,float.Parse(linesFromFile[5]),float.Parse(linesFromFile[6]));
 		this.str = int.Parse (linesFromFile [2]) + weapon.WeaponStats.Str;
 		this.agi = int.Parse( linesFromFile [3]) + weapon.WeaponStats.Agi;
 		this.vit = int.Parse( linesFromFile [4]) + weapon.WeaponStats.Vit;
@@ -78,6 +79,26 @@ public class Unit : UnitStatus {
 		evasionRate = float.Parse(Round(((tempVit + tempAgi *2 ) / 3)*0.55f).ToString()); // min 1 max 55
 		movement = float.Parse(Round(( (tempAgi * 2 ) + 200f )).ToString()); // 200f 400f
 		pushForce = (0.18f * tempAgi)+ 2f; // min 2f max 20 
+	}
+
+	public void Save ()
+	{
+		SaveStatus (job); // save level
+		PlayerPrefs.SetInt(job+"currentExp"+GameData.tesId,currentExp);
+		PlayerPrefs.SetInt(job+"isUnlocked"+GameData.tesId,(isUnlocked ? 1 : 0 ));
+		PlayerPrefs.SetInt(job+"isActive"+GameData.tesId,(isActive ? 1 : 0 ));
+		weapon.Save();
+	}
+
+	public void Load(){
+		LoadStatus (job); // load job status
+		currentExp = PlayerPrefs.GetInt(job+"currentExp"+GameData.tesId);
+		isUnlocked = (PlayerPrefs.GetInt(job+"isUnlocked"+GameData.tesId) != 0);
+		isActive = (PlayerPrefs.GetInt(job+"isActive"+GameData.tesId) != 0);
+		nextExp = base_exp;
+		for (int i = 0; i < level; i++)
+			nextExp *= 2;
+		weapon.Load ();
 	}
 
 	private void LevelUp(){

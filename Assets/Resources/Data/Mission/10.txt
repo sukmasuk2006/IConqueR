@@ -1,8 +1,9 @@
-Bima
-110
-1100
+Greeasis
+175
+775
 0
-12
-warrior
+15
 knight
+knight
+archer
 archer

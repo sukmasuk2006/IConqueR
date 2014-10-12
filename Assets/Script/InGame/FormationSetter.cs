@@ -17,6 +17,7 @@ public class FormationSetter : MonoBehaviour {
 	public AudioClip sound;
 	// Use this for initialization
 	void Start () {
+
 		if (GameData.profile.formationList [slot].IsUnlocked) {
 			heroLock.SetActive (false);
 			if ( GameData.profile.formationList[slot].Unit.HeroId == 99 )
@@ -24,7 +25,7 @@ public class FormationSetter : MonoBehaviour {
 				else
 				ReloadSprite(GameData.unitSpriteList[GameData.profile.formationList[slot].Unit.HeroId]);
 		}
-//		Debug.Log ("slot isunlock " + slot + " " + GameData.profile.formationList [slot].IsUnlocked);
+		Debug.Log ("slot isunlock " + slot + " " + GameData.profile.formationList [slot].IsUnlocked);
 	}
 
 	void OnMouseDown(){
@@ -33,7 +34,7 @@ public class FormationSetter : MonoBehaviour {
 		MusicManager.getMusicEmitter().audio.PlayOneShot(sound);
 		if (GameData.readyToTween ) {
 			// kalau belum ke unlock
-			Debug.Log("masuk 1 " + GameData.profile.formationList [slot].IsUnlocked + " " + GameData.profile.formationList [slot].Unit.HeroId);
+//			Debug.Log("masuk 1 " + GameData.profile.formationList [slot].IsUnlocked + " " + GameData.profile.formationList [slot].Unit.HeroId);
 			// ketika id !=99, brarti sudah diset, bisa liat profilnya
 			if (GameData.profile.formationList [slot].IsUnlocked && GameData.profile.formationList [slot].Unit.HeroId != 99){
 				Debug.Log("masuk 2 " + GameData.profile.formationList [slot].IsUnlocked + " " + GameData.profile.formationList [slot].Unit.HeroId);

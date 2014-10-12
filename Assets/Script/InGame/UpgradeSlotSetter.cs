@@ -19,20 +19,21 @@ public class UpgradeSlotSetter : MonoBehaviour {
 	void OnMouseDown(){
 		//HOTween.To(tweenedObject,0.5f,"position",targetObject.transform.position);
 			// jika udah ada isinya, masukin invent lagi
-		tempPosition = targetObject.transform.position;
-		if (controller.SlotList [slot] is Gem || controller.SlotList [slot] is Catalyst) {
-			controller.RemoveASlot(slot);
-			controller.UpdateSemuaGambarDiInventory();
-		}
-		else if (GameData.readyToTween) {
-			GameData.readyToTween = false;
-			controller.UpgradedSlot = slot;
-			// cek kalau slot 0 itu gem, dll itu catalyst yg di on-kan buttonya
+		if (GameData.gameState != "confirm") {
+						tempPosition = targetObject.transform.position;
+						if (controller.SlotList [slot] is Gem || controller.SlotList [slot] is Catalyst) {
+								controller.RemoveASlot (slot);
+								controller.UpdateSemuaGambarDiInventory ();
+						} else if (GameData.readyToTween) {
+								GameData.readyToTween = false;
+								controller.UpgradedSlot = slot;
+								// cek kalau slot 0 itu gem, dll itu catalyst yg di on-kan buttonya
 
-			iTween.MoveTo ( targetObject,iTween.Hash("position",tweenedObject.transform.position,"time", 0.1f,"onComplete","ReadyTween","onCompleteTarget",gameObject));
+								iTween.MoveTo (targetObject, iTween.Hash ("position", tweenedObject.transform.position, "time", 0.1f, "onComplete", "ReadyTween", "onCompleteTarget", gameObject));
 
-		}
-		infoText.text = "";
+						}
+						infoText.text = "";
+				}
 	}
 	
 	void OnMouseUp(){

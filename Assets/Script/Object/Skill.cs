@@ -22,6 +22,7 @@ public class Skill
 	private bool isSelected;
 	private float levelRequired;
 	private int price;
+	private string desc;
 
 	public Skill (int level, string nm)
 	{
@@ -45,6 +46,17 @@ public class Skill
 		effect = new SkillEffect (int.Parse(linesFromFile [2]),
 		                          int.Parse(linesFromFile [3]));
 		levelRequired = float.Parse (linesFromFile [4]);
+
+	}
+
+	public void Save(){
+		PlayerPrefs.SetInt ("Skill"+id+"isUnlocked" + GameData.tesId, isUnlocked ? 1:0);	
+		PlayerPrefs.SetInt ("Skill"+id+"isSelected" + GameData.tesId, isSelected ? 1 : 0);	
+	}
+	
+	public void Load(){
+		isUnlocked  = (PlayerPrefs.GetInt ("Skill"+id+"isUnlocked" + GameData.tesId)!=0);	
+		isSelected = (PlayerPrefs.GetInt ("Skill"+id+"isSelected" + GameData.tesId)!=0);	
 	}
 
 	public void DoEffect(Unit u){
@@ -60,8 +72,8 @@ public class Skill
 		break;	
 		case 5 :  u.Critical+= (effect.Amount / 100)* u.Critical;   
 			break; 
-		case 6 : u.AttackPoint+= (effect.Amount / 100)* u.AttackPoint;
-				u.DefensePoint+= (effect.Amount / 100)* u.DefensePoint;   // knight
+		case 6 : u.AttackPoint+= (effect.Amount / 200)* u.AttackPoint;
+				u.DefensePoint+= (effect.Amount / 200)* u.DefensePoint;   // knight
 			break;
 		case 7 : u.AttackSpeed+= (effect.Amount / 100)* u.AttackSpeed;   
 			u.Critical+= (effect.Amount / 100)* u.Critical;   

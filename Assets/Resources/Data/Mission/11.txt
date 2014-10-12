@@ -1,9 +1,9 @@
-Tetet
-120
-1300
+Savanna
+205
+825
 0
-12
+15
 knight
 knight
+warrior
 archer
-tribe

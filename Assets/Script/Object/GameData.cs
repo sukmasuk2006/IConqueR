@@ -6,6 +6,7 @@ public class GameData : MonoBehaviour {
 	// HERO STATS
 
 	public static ProfileData profile;
+	public static int tesId = 1;
 
 	// GAME STATS
 	public static bool isFirstPlay = true;
@@ -42,8 +43,17 @@ public class GameData : MonoBehaviour {
 	void Awake(){
 		InitializePersistent ();
 		InitializeGameData ();
-		//LoadData ();
+		LoadData ();
+	//	LoadData ();
 		//		Debug.Log ("Data initialized " + profile.Gold);
+	}
+
+	public static void SaveData(){
+		profile.SaveNonList ();
+	}
+
+	public static void LoadData(){
+		profile.LoadData ();
 	}
 
 	void InitializePersistent(){
@@ -83,7 +93,7 @@ public class GameData : MonoBehaviour {
 			catalystSpriteList.Add(LoadCatalystSprite(linesFromFile[i].Trim()));
 		}
 
-		// sprite, icon, and skeleton
+		// sprite, icon, and skeleton, weapon
 		//UNIT
 		linesFromFile = null;
 		TextAsset txt = (TextAsset)Resources.Load ("Data/Unit/list", typeof(TextAsset));
@@ -92,11 +102,13 @@ public class GameData : MonoBehaviour {
 		unitSpriteList = new List<Sprite> ();
 		unitIconList = new List<Sprite> ();
 		skeleteonDataAssetList = new List<SkeletonDataAsset> ();
+		weaponSpriteList = new List<Sprite> ();
 		for (int i = 0; i < linesFromFile.Length; i++) {
 			unitSpriteList.Add(LoadCharacterSprite(linesFromFile[i].Trim()));
 			profile.unitList.Add(new Unit(i,linesFromFile[i].Trim()));	
 			unitIconList.Add(LoadIconList(linesFromFile[i].Trim()));
 			skeleteonDataAssetList.Add(LoadSkeleton(linesFromFile[i].Trim()));
+			weaponSpriteList.Add(LoadWeaponSprite(linesFromFile[i].Trim()));
 			if ( i < 5 )
 				profile.formationList.Add(new FormationUnit(new Unit(99,linesFromFile[0].Trim())));		
 		}
@@ -118,6 +130,8 @@ public class GameData : MonoBehaviour {
 			if ( i < 4 ) // 4 adalah macam quest yang ada
 				achievementSpriteList.Add(LoadAchievementSprite(linesFromFile[i].Trim()));
 		}
+
+
 	}
 
 	private Sprite LoadAchievementSprite(string name){
@@ -167,16 +181,16 @@ public class GameData : MonoBehaviour {
 		return sprites;
 	}
 
-	void LoadData(){
+	/*void LoadData(){
 		SaveLoad.Load ();
 	
 		try {
-			//Debug.Log ("ARMY " +GameData.profile.DefeatedArmy);
+			Debug.Log ("ARMY " +GameData.profile.DefeatedArmy);
 		}
 		catch{
-			//Debug.Log ("FAIL TO LOAD");
+			Debug.Log ("FAIL TO LOAD");
 		}
-	}
+	}*/
 
 	void InitializeGameData(){
 		/*INIT*/
@@ -191,13 +205,14 @@ public class GameData : MonoBehaviour {
 		string skillContent = skillTxt.text;
 		linesFromFile = skillContent.Split ("\n"[0]);
 		for (int i = 0; i < linesFromFile.Length; i++) {
-			profile.skillList.Add(new Skill(i,linesFromFile[i]));		
+			profile.skillList.Add(new Skill(i,linesFromFile[i]));	
 		}
 		profile.skillList [0].IsUnlocked = true;
 		profile.skillList [0].IsSelected = true;
 		profile.totalSkillUsed = 1;
-		Debug.Log ("first play ");
+//		Debug.Log ("first play ");
 		profile.CheckQuestAchievement ();
+		profile.Gold = 100000;
 		//SaveLoad.Save ();
 	}
 }

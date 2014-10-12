@@ -3,5 +3,6 @@ bownstream
 630
 0
 7
+warrior
 knight
-knight
+warrior

@@ -43,7 +43,7 @@ public class Mission
 
 	private void InitializeMission(){
 		enemyList = new List<Unit> ();
-		Debug.Log ("nama " + id);
+//		Debug.Log ("nama " + id);
 		enemyListName = "";
 		TextAsset txt = (TextAsset)Resources.Load ("Data/Mission/"+id, typeof(TextAsset));
 		string content = txt.text;

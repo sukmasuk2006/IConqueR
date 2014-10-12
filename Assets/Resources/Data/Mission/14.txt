@@ -1,9 +1,9 @@
-toret
-170
-1700
+Sedhtuos
+300
+1000
 0
-13
+15
 tribe
-tribe
-archer
+knight
+knight
 archer

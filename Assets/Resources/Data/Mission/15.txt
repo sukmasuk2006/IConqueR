@@ -1,8 +1,9 @@
-Deepsville
-75
-600
+Sisaoneerg
+350
+1200
 0
-7
+19
 warrior
 warrior
-knight
+warrior
+warrior

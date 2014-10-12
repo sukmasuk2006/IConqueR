@@ -1,9 +1,8 @@
-toret
-170
-1300
+sedhtron
+250
+900
 0
-13
-warrior
+15
 tribe
-archer
+knight
 archer

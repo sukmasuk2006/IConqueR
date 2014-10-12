@@ -22,6 +22,7 @@ public class UnlockFormationSlot : MonoBehaviour {
 			//	ReloadSprite(GameData.unitList[0].Sprites);
 				profileController.UpdateGoldAndDiamond(0,GameConstant.UNLOCK_SLOT_PRICE);
 			SetPos();
+
 			if (GameData.profile.unlockedSlot == 5)
 				this.gameObject.SetActive (false);
 		}

@@ -27,5 +27,6 @@ public class StartUpgrade : MonoBehaviour {
 
 	void ReadyTween(){
 		GameData.readyToTween = true;
+		GameData.gameState = "";
 	}
 }

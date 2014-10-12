@@ -13,10 +13,11 @@ public class SkillSlotController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Skill s = GameData.profile.skillList [skillSlot];
-		priceText.text = s.Price.ToString();
 		if (s.IsUnlocked) {
-			skillState = true;
-			skillLockedFrame.SetActive(false);
+						skillLockedFrame.SetActive (false);
+						skillButton.sprite = unlockedSprite;
+				} else if (!s.IsUnlocked) {
+				priceText.text =  s.Price.ToString();
 
 		}
 	}

@@ -18,8 +18,10 @@ public class SimpleButton : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
-		MusicManager.getMusicEmitter().audio.PlayOneShot(sound);
-		camera.GetComponent<ScreenFader> ().FadeOut (targetScene);
-		GameData.gameState = targetScene;
+		if (GameData.readyToTween) {
+						MusicManager.getMusicEmitter ().audio.PlayOneShot (sound);
+						camera.GetComponent<ScreenFader> ().FadeOut (targetScene);
+						GameData.gameState = targetScene;
+				}
 	}
 }

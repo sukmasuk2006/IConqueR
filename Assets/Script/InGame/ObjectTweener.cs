@@ -7,7 +7,8 @@ public class ObjectTweener : MonoBehaviour {
 	public GameObject obj;
 	public float time;
 	public int dir;
-	private const float corridorSize = 18;
+	public float corridorSize = 18;
+	public float ySize = -1;
 	public ScreenData data;
 	public TextMesh corridorState;
 
@@ -25,9 +26,9 @@ public class ObjectTweener : MonoBehaviour {
 		// geser kiri
 		else if (dir < 0 && data.corridorState > 0)
 								data.corridorState--;
-						iTween.MoveTo (obj, iTween.Hash ("position", new Vector3 (corridorSize * -data.corridorState,
-			                                                          -0.9f, -3f), "time","onComplete", "ReadyTween", "onCompleteTarget", gameObject));
-						corridorState.text = "Page " + (data.corridorState + 1).ToString ();
+				iTween.MoveTo (obj, iTween.Hash ("position", new Vector3 (corridorSize * -data.corridorState,
+	                                                          ySize, -3f), "time", 0.1f,"onComplete", "ReadyTween", "onCompleteTarget", gameObject));
+				corridorState.text = "Page " + (data.corridorState + 1).ToString ();
 		}
 	}
 

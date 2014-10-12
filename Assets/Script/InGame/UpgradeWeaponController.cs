@@ -44,7 +44,7 @@ public class UpgradeWeaponController : MonoBehaviour {
 
 	public void InitializeWeapon(){
 		weaponData = GameData.profile.unitList [GameData.selectedToViewProfileId].Weapon;
-		spriteRenderer.sprite = GameData.unitSpriteList [GameData.selectedToViewProfileId];
+		spriteRenderer.sprite = GameData.weaponSpriteList [GameData.selectedToViewProfileId];
 		strText.text = weaponData.WeaponStats.Str + "";
 		agiText.text = weaponData.WeaponStats.Agi + "";
 		vitText.text = weaponData.WeaponStats.Vit +"";
@@ -64,7 +64,7 @@ public class UpgradeWeaponController : MonoBehaviour {
 		GameData.profile.formationList [GameData.selectedToViewProfileIdFromFormation].Unit.SetStats (); 
 		profileController.SetPictureAndStatsFromFormation ();
 
-		//spriteRenderer.sprite = GameData.weaponSpriteList[weaponData.Id];
+		spriteRenderer.sprite = GameData.weaponSpriteList[weaponData.Id];
 		damageText.text = weaponData.Damage.ToString();
 		fromText.text = weaponData.Rank.ToString();
 		toText.text = (weaponData.Rank + 1).ToString ();

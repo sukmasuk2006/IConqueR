@@ -1,9 +1,8 @@
-toret
-150
-1500
+Gosert
+225
+850
 0
-12
+15
+tribe
 knight
 warrior
-archer
-tribe

@@ -110,7 +110,7 @@ public class BattleController : MonoBehaviour {
 			tempStats.Add(new Unit(s.HeroId,s.Job.Trim()));
 //			Debug.Log("added temp " + tempStats.Count
 			// tiap 3 stage, naik level musuhnya
-			float level = 1 + (GameData.currentMission/3)*0.25f;
+			float level = 1 + (GameData.currentMission/2)*0.25f;
 			if ( GameData.missionType == "castle") //boss
 				level +=0.5f;
 			s.Agi *= level;

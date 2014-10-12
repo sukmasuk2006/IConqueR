@@ -36,7 +36,8 @@ public class ProfileController : MonoBehaviour {
 
 		diamondText.text = GameData.profile.Diamond.ToString ();
 		goldText.text = GameData.profile.Gold.ToString ();
-		SaveLoad.Save ();
+		//SaveLoad.Save ();
+		GameData.SaveData ();
 	}
 
 	public int GetMoneyValue(int type){

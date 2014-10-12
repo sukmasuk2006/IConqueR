@@ -48,7 +48,7 @@ public class SetHeroOnFormation : MonoBehaviour {
 								iTween.MoveTo ( targetObject,iTween.Hash("position",tweenedObject.transform.position,"time", 0.1f,"onComplete","ReadyTween","onCompleteTarget",gameObject));
 							}
 			}
-		SaveLoad.Save ();
+		GameData.SaveData ();
 	}
 
 	void ReadyTween(){

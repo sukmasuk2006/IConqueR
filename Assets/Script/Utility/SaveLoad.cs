@@ -10,8 +10,9 @@ using System.Xml;
 
 public static class SaveLoad {
 
-
-	private static string gamepath = Application.persistentDataPath + "/t20.gd";
+	// T21 -> SUCCESS MAP 1
+	// 
+	private static string gamepath = Application.persistentDataPath + "/t21.gd";
 	//it's static so we can call it from anywhere
 	public static void Save() {
 		// SaveController.SaveAndSerialize (SaveController.PrefEnum.GAMESTATE, GameData.profile);
@@ -20,8 +21,8 @@ public static class SaveLoad {
 		//Serializer.Save<ProfileData>(gamepath,GameData.profile);
 
 		//	Build Winphone
-		byte[] bytes = PluginUnityWP.Class1.SerializeObject<ProfileData> (GameData.profile);
-		File.WriteAllBytes (gamepath, bytes);
+		//byte[] bytes = PluginUnityWP.Class1.SerializeObject<ProfileData> (GameData.profile);
+		//File.WriteAllBytes (gamepath, bytes);
 
 		/*BinaryFormatter bf = new BinaryFormatter();
 		//Application.persistentDataPath is a string, so if you wanted you can put that into debug.log if you want to know where save games are located
@@ -36,21 +37,22 @@ public static class SaveLoad {
 	
 	public static void Load() {
 		//GameData.profile = SaveController.LoadAndDeserialize<ProfileData> (SaveController.PrefEnum.GAMESTATE);
-			GameData.profile =  Serializer.Load<ProfileData> (gamepath);
 
 /*			Build Winphone
 		byte[] bytes = File.ReadAllBytes (gamepath);        
 		GameData.profile = (ProfileData)PluginUnityWP.Class1.DeserializeObject<ProfileData>(bytes);
-	//	*/
-		/*
+	//	
+
 		if (File.Exists (gamepath)) {	
-						BinaryFormatter bf = new BinaryFormatter ();
-			FileStream file = File.Open (gamepath, FileMode.Open);
-						GameData.profile = (ProfileData)bf.Deserialize (file);
+				//		BinaryFormatter bf = new BinaryFormatter ();
+			//FileStream file = File.Open (gamepath, FileMode.Open);
+				//		GameData.profile = (ProfileData)bf.Deserialize (file);
 						Debug.Log ("gameloaded!");
 //						Debug.Log ("army defeated " + GameData.profile.DefeatedArmy);
-						file.Close ();
-			GameData.isFirstPlay = false;
+			//			file.Close ();
+			//GameData.isFirstPlay = false;
+			GameData.profile =  Serializer.Load<ProfileData> (gamepath);
+
 				} else {
 			GameData.isFirstPlay = true;
 			Debug.Log("GK BISA DI LOAD");		

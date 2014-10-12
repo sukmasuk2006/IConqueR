@@ -4,5 +4,4 @@ gulmory
 0
 7
 warrior
-warrior
 knight

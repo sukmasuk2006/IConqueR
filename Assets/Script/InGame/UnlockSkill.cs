@@ -5,9 +5,9 @@ public class UnlockSkill : MonoBehaviour {
 
 	public int slot;
 	public GameObject frame;
-	public Sprite lockedSprite;
 	public Sprite selectedSprite;
 	public Sprite deselectedSprite;
+	public TextMesh buttonInfo;
 	public SpriteRenderer renderer;
 	public TextMesh text;
 	public AudioClip sound;
@@ -15,14 +15,19 @@ public class UnlockSkill : MonoBehaviour {
 	public ProfileController profileController;
 
 	void Start(){
-
+//		Debug.Log ("skill ke " + slot + " unlock " + GameData.profile.skillList [slot].IsUnlocked);
+		if (!GameData.profile.skillList [slot].IsUnlocked) {
+			renderer.sprite = deselectedSprite;
+			buttonInfo.text = "unlock";
+		}
 		//Debug.Log ("awal2 slot " + slot + " isunlock " + GameData.profile.skillList [slot].IsUnlocked + " selec " + GameData.profile.skillList [slot].IsSelected);
-		if (GameData.profile.skillList [slot].IsSelected && GameData.profile.skillList [slot].IsUnlocked) {
+		else if (GameData.profile.skillList [slot].IsSelected && GameData.profile.skillList [slot].IsUnlocked) {
 						renderer.sprite = selectedSprite;
-		} else if (!GameData.profile.skillList [slot].IsSelected && GameData.profile.skillList [slot].IsUnlocked) {
-				renderer.sprite = deselectedSprite;		
-		} else
-				renderer.sprite = lockedSprite;
+						buttonInfo.text = "deselect";
+				} else if (!GameData.profile.skillList [slot].IsSelected && GameData.profile.skillList [slot].IsUnlocked) {
+						renderer.sprite = deselectedSprite;		
+						buttonInfo.text = "select";
+				} 
 	}
 
 	void OnMouseDown(){
@@ -36,7 +41,7 @@ public class UnlockSkill : MonoBehaviour {
 						frame.SetActive (false);
 			profileController.UpdateGoldAndDiamond(0,GameData.profile.skillList[slot].Price);
 						renderer.sprite = deselectedSprite;
-				
+						buttonInfo.text = "select";
 		} else {
 			if ( GameData.profile.Gold < GameData.profile.skillList[slot].Price )
 				text.text = "Not enough money..";
@@ -46,11 +51,13 @@ public class UnlockSkill : MonoBehaviour {
 		if (GameData.profile.skillList [slot].IsSelected && GameData.profile.skillList [slot].IsUnlocked  && GameData.profile.totalSkillUsed > 0) {
 			GameData.profile.totalSkillUsed--;
 			renderer.sprite = deselectedSprite;
+			buttonInfo.text = "select";
 			GameData.profile.skillList[slot].IsSelected = false;
 		}
 		else if (!GameData.profile.skillList [slot].IsSelected && GameData.profile.skillList [slot].IsUnlocked && GameData.profile.totalSkillUsed < 2) {
 			GameData.profile.totalSkillUsed++;
-			renderer.sprite = selectedSprite;		
+			renderer.sprite = selectedSprite;
+			buttonInfo.text = "deselect";
 			GameData.profile.skillList[slot].IsSelected = true;
 		}
 	}
