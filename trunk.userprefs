@@ -1,26 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Object\ProfileData.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Object\GameData.cs">
     <Files>
-      <File FileName="Assets\Script\InGame\InventorySetter.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Object\Quest.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Object\Skill.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Object\SkillEffect.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Object\GameData.cs" Line="56" Column="15" />
-      <File FileName="Assets\Script\Object\Unit.cs" Line="48" Column="2" />
-      <File FileName="Assets\Script\Object\UnitStatus.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Object\Weapon.cs" Line="35" Column="8" />
-      <File FileName="Assets\Script\InGame\ProfileController.cs" Line="40" Column="19" />
-      <File FileName="Assets\Script\Object\Gem.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Object\ProfileData.cs" Line="60" Column="2" />
-      <File FileName="Assets\Script\InGame\UpgradeWeaponController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Object\Item.cs" Line="2" Column="1" />
-      <File FileName="Assets\Script\Object\Catalyst.cs" Line="17" Column="3" />
-      <File FileName="Assets\Script\InGame\ActivateSkill.cs" Line="6" Column="2" />
-      <File FileName="Assets\Script\InGame\FormationSetter.cs" Line="28" Column="1" />
-      <File FileName="Assets\Script\Object\Mission.cs" Line="46" Column="3" />
-      <File FileName="Assets\Script\InGame\SetHeroOnFormation.cs" Line="51" Column="20" />
-      <File FileName="Assets\Script\InGame\UnlockHero.cs" Line="65" Column="1" />
+      <File FileName="Assets\Script\Object\GameData.cs" Line="137" Column="67" />
+      <File FileName="Assets\Script\Object\ProfileData.cs" Line="87" Column="127" />
+      <File FileName="Assets\Script\InGame\HeroController.cs" Line="171" Column="33" />
+      <File FileName="Assets\Script\InGame\LogoSceneController.cs" Line="39" Column="83" />
+      <File FileName="Assets\Script\InGame\MissonSetter.cs" Line="19" Column="5" />
+      <File FileName="Assets\Script\InGame\ProjectileController.cs" Line="20" Column="40" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

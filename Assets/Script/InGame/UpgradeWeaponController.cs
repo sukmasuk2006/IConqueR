@@ -149,6 +149,7 @@ public class UpgradeWeaponController : MonoBehaviour {
 		Debug.Log("temp " + temp);
 		// hilanghkan semua gem+catalyst
 		AfterUpgradeAttempt();
+		GameData.SaveData ();
 
 	}
 

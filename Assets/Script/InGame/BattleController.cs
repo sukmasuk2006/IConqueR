@@ -85,7 +85,6 @@ public class BattleController : MonoBehaviour {
 				j++;
 			}
 		}
-
 		/*awal2 semua hero mati, kemudian dicek ada brp yang aktif*/
 		i = 0;
 		GameData.gameState = GameConstant.GAMEPLAY_SCENE;
@@ -97,8 +96,6 @@ public class BattleController : MonoBehaviour {
 					heroTotalHealth += u.Unit.HealthPoint;
 					i++;
 				}
-//			Debug.Log("unlocked hero " + i + " " + GameData.formationList[i].Unit.HealthPoint);
-
 		}
 		i = 0;
 		tempStats = new List<Unit> ();
@@ -250,7 +247,7 @@ public class BattleController : MonoBehaviour {
 		GameData.profile.CheckQuestAchievement ();
 		ShowOnReport ();
 //		Debug.Log ("win " + GameData.profile.DefeatedArmy);
-		SaveLoad.Save ();
+		GameData.SaveData ();
 	}
 
 	void Lose(){
@@ -260,7 +257,7 @@ public class BattleController : MonoBehaviour {
 		ShowOnReport ();
 		GameData.profile.CheckQuestAchievement ();
 
-		SaveLoad.Save ();
+		GameData.SaveData ();
 		Debug.Log ("lose");
 	}
 
@@ -301,7 +298,7 @@ public class BattleController : MonoBehaviour {
 		int gotExp = mission.ExpReward; // buat ngitung
 		scaleX = GameData.profile.CurrentExp * 1f / GameData.profile.NextExp; // cek awal2
 
-		Debug.Log ("DI BATLE cur " + GameData.profile.CurrentExp + " got " + gotExp + " nesx " + GameData.profile.NextExp);
+		//Debug.Log ("DI BATLE cur " + GameData.profile.CurrentExp + " got " + gotExp + " nesx " + GameData.profile.NextExp);
 		if ( battleState == 1 || battleState == 5 ){
 			gotExp /= battleState;
 			expEarn = gotExp;
@@ -309,7 +306,7 @@ public class BattleController : MonoBehaviour {
 			//LEVELUP
 				GameData.profile.CurrentExp += gotExp;
 				scaleX = 0.99f;
-				Debug.Log ("LEVEL UP");
+			//	Debug.Log ("LEVEL UP");
 				iTween.MoveTo (levelUpScreen, iTween.Hash ("position", new Vector3(levelUpScreen.transform.position.x,reportTargetPosition.y,
 				                                                                   levelUpScreen.transform.position.z), "time", 1.0f,"delay",5.0f));
 			}
@@ -318,10 +315,10 @@ public class BattleController : MonoBehaviour {
 				GameData.profile.CurrentExp += gotExp;
 				scaleX = GameData.profile.CurrentExp * 1f / GameData.profile.NextExp; // cek awal2
 			}
-			Debug.Log("get exp");
+			//Debug.Log("get exp");
 
 		}
-		Debug.Log ("scale x" + scaleX);
+//		Debug.Log ("scale x" + scaleX);
 		Vector3 newScale = new Vector3 (scaleX,expBar.transform.localScale.y, expBar.transform.localScale.z);
 
 		iTween.ScaleTo (expBar, iTween.Hash("scale", newScale,

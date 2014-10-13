@@ -16,7 +16,7 @@ public class MissonSetter : MonoBehaviour {
 		render = gameObject.GetComponent<SpriteRenderer> ();
 		name.text = GameData.missionList [curr].Name;
 		if (curr > GameData.profile.NextMission) {
-			this.gameObject.SetActive(false);
+		//	this.gameObject.SetActive(false);
 		}
 		if (curr == GameData.profile.NextMission) {
 			if (missionType == "Fortress")
@@ -37,7 +37,7 @@ public class MissonSetter : MonoBehaviour {
 	void SetInformation(){
 		confirmText1.text = "Attack "+ GameData.missionList[curr].Name +" " + missionType +" ?";
 		//confirmText2.text = "Enemy list :" + GameData.missionList[curr].EnemyListName;
-		Debug.Log ("Update slot 0");
+//		Debug.Log ("Update slot 0");
 
 		setter.UpdateSlot (GameData.missionList [curr]);
 	}

@@ -6,10 +6,10 @@ public class EnemySetter : MonoBehaviour {
 	public List<SpriteRenderer> renders;
 	// Use this for initialization
 	public void UpdateSlot(Mission m){
-		Debug.Log ("Update slot");
+//		Debug.Log ("Update slot");
 		for ( int i = 0 ; i < 5 ; i++ ){
 			try {
-				Debug.Log ("Update slot "+ i +" " +m.EnemyList[i].Job );
+//				Debug.Log ("Update slot "+ i +" " +m.EnemyList[i].Job );
 				renders[i].sprite = SwitchSprite(m.EnemyList[i].Job);
 			}
 			catch{

@@ -7,12 +7,15 @@ public class ProfileController : MonoBehaviour {
 	// Use this for initialization
 	
 	public TextMesh levelText;
+	public TextMesh titleText;
 	public TextMesh goldText;
 	public TextMesh diamondText;
 	public Transform expBar;
+	public SpriteRenderer renderer;
 	private float scaleAwal = 1.1f;
 	private float scale = 0f;
 	private float expTujuan;
+
 
 	void Start () {
 
@@ -37,7 +40,25 @@ public class ProfileController : MonoBehaviour {
 		diamondText.text = GameData.profile.Diamond.ToString ();
 		goldText.text = GameData.profile.Gold.ToString ();
 		//SaveLoad.Save ();
+		GameData.profile.CheckQuestAchievement ();
+		SetTitle ();
 		GameData.SaveData ();
+	}
+
+	void SetTitle ()
+	{
+		int i = GameData.profile.CastleDestroyed;
+		string teks = "";
+		switch (i) {
+		case 0 : teks = "Soldier"; break;
+		case 1 : teks = "General"; break;
+		case 2 : teks = "Commander"; break;
+		case 3 : teks = "Baron"; break;
+		case 4 : teks = "King"; break;
+		case 5 : teks = "Hero"; break;		
+		}
+		titleText.text = teks;
+		renderer.sprite = GameData.achievementSpriteList [i];
 	}
 
 	public int GetMoneyValue(int type){

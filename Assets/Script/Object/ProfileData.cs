@@ -36,21 +36,21 @@ public class ProfileData
 	}
 
 	public void SaveNonList(){
-		PlayerPrefs.SetInt ("level", level);
-		PlayerPrefs.SetInt("nextMission",nextMission);
-		PlayerPrefs.SetInt("currentExp", currentExp);
-		PlayerPrefs.SetInt("gold", gold);
-		PlayerPrefs.SetInt("diamond", diamond);
-		PlayerPrefs.SetInt("defeatedArmy", defeatedArmy);
-		PlayerPrefs.SetInt("fortressDestroyed", fortressDestroyed);
-		PlayerPrefs.SetInt("castleDestroyed", castleDestroyed);
-		PlayerPrefs.SetInt("unlockedTroop",  unlockedTroop);
-		PlayerPrefs.SetInt("mapPosition", mapPosition);
-		PlayerPrefs.SetInt("unlockedSlot", unlockedSlot);
-		PlayerPrefs.SetInt("activeHeroes",  activeHeroes);
-		PlayerPrefs.SetInt("totalSkillUsed", totalSkillUsed);
-		Debug.Log ("save unlocked slot " + unlockedSlot);
-		Debug.Log ("save activeheroes " + activeHeroes);
+		PlayerPrefs.SetInt ("level"+GameData.tesId, level);
+		PlayerPrefs.SetInt("nextMission"+GameData.tesId,nextMission);
+		PlayerPrefs.SetInt("currentExp"+GameData.tesId, currentExp);
+		PlayerPrefs.SetInt("gold"+GameData.tesId, gold);
+		PlayerPrefs.SetInt("diamond"+GameData.tesId, diamond);
+		PlayerPrefs.SetInt("defeatedArmy"+GameData.tesId, defeatedArmy);
+		PlayerPrefs.SetInt("fortressDestroyed"+GameData.tesId, fortressDestroyed);
+		PlayerPrefs.SetInt("castleDestroyed"+GameData.tesId, castleDestroyed);
+		PlayerPrefs.SetInt("unlockedTroop"+GameData.tesId,  unlockedTroop);
+		PlayerPrefs.SetInt("mapPosition"+GameData.tesId, mapPosition);
+		PlayerPrefs.SetInt("unlockedSlot"+GameData.tesId, unlockedSlot);
+		PlayerPrefs.SetInt("activeHeroes"+GameData.tesId,  activeHeroes);
+		PlayerPrefs.SetInt("totalSkillUsed"+GameData.tesId, totalSkillUsed);
+		Debug.Log ("save castle destroyed  " + castleDestroyed);
+//		Debug.Log ("save activeheroes " + activeHeroes);
 		for (int q = 0; q < 5; q++) {
 			formationList[q].Save(q);		
 		}
@@ -64,7 +64,7 @@ public class ProfileData
 			questList[k].Save();
 		}
 		totalInvent = inventoryList.Count;
-		PlayerPrefs.SetInt ("totalInvent", totalInvent);
+		PlayerPrefs.SetInt ("totalInvent"+GameData.tesId, totalInvent);
 		for ( int l = 0 ; l < totalInvent ;l++){
 		//	inventoryList[l].Save();
 			PlayerPrefs.SetInt("inventoryId"+l+"is"+GameData.tesId,inventoryList[l].Id);
@@ -81,32 +81,35 @@ public class ProfileData
 	}
 
 	public void LoadData(){
-		level = PlayerPrefs.GetInt("level");
-		nextMission = PlayerPrefs.GetInt("nextMission");
-		currentExp = 	PlayerPrefs.GetInt("currentExp");
-		gold = PlayerPrefs.GetInt("gold");
-		diamond = PlayerPrefs.GetInt("diamond");
-		defeatedArmy = PlayerPrefs.GetInt("defeatedArmy");
-		fortressDestroyed = PlayerPrefs.GetInt("fortressDestroyed");
-		castleDestroyed = PlayerPrefs.GetInt("castleDestroyed");
-		unlockedTroop =  PlayerPrefs.GetInt("unlockedTroop");
-		mapPosition = PlayerPrefs.GetInt("mapPosition");
-		unlockedSlot = PlayerPrefs.GetInt("unlockedSlot");
-		activeHeroes = PlayerPrefs.GetInt("activeHeroes");
-		totalSkillUsed = PlayerPrefs.GetInt("totalSkillUsed");
+
+		level =  GameData.CheckPrefs("level"+GameData.tesId) ? PlayerPrefs.GetInt("level"+GameData.tesId): level;
+		nextMission = GameData.CheckPrefs("nextMission"+GameData.tesId) ? PlayerPrefs.GetInt("nextMission"+GameData.tesId): nextMission;
+		currentExp = GameData.CheckPrefs("currentExp"+GameData.tesId) ? PlayerPrefs.GetInt("currentExp"+GameData.tesId) :currentExp;
+		gold = GameData.CheckPrefs("gold"+GameData.tesId) ? PlayerPrefs.GetInt("gold"+GameData.tesId) : gold;
+		diamond = GameData.CheckPrefs("diamond"+GameData.tesId) ? PlayerPrefs.GetInt("diamond"+GameData.tesId) : diamond;
+		defeatedArmy = GameData.CheckPrefs("defeatedArmy"+GameData.tesId) ? PlayerPrefs.GetInt("defeatedArmy"+GameData.tesId) : defeatedArmy;
+		fortressDestroyed = GameData.CheckPrefs("fortressDestroyed"+GameData.tesId) ? 
+			PlayerPrefs.GetInt("fortressDestroyed"+GameData.tesId) : fortressDestroyed;
+		castleDestroyed = GameData.CheckPrefs("castleDestroyed"+GameData.tesId) ? PlayerPrefs.GetInt("castleDestroyed"+GameData.tesId) : castleDestroyed;
+		unlockedTroop =  GameData.CheckPrefs("unlockedTroop"+GameData.tesId) ? PlayerPrefs.GetInt("unlockedTroop"+GameData.tesId) : unlockedTroop;
+		mapPosition = GameData.CheckPrefs("mapPosition"+GameData.tesId) ? PlayerPrefs.GetInt("mapPosition"+GameData.tesId) : mapPosition ;
+		unlockedSlot = GameData.CheckPrefs("unlockedSlot"+GameData.tesId) ? PlayerPrefs.GetInt("unlockedSlot"+GameData.tesId) : unlockedSlot;
+		activeHeroes = GameData.CheckPrefs("activeHeroes"+GameData.tesId) ? PlayerPrefs.GetInt("activeHeroes"+GameData.tesId) : activeHeroes;
+		totalSkillUsed = GameData.CheckPrefs("totalSkillUsed"+GameData.tesId) ? PlayerPrefs.GetInt("totalSkillUsed"+GameData.tesId) : totalSkillUsed;
 		nextExp = base_exp;
+		Debug.Log ("Load Castle destroyed  " + castleDestroyed);
 		for (int i = 0; i < level; i++)
 						nextExp *= 2;
 		for (int i = 0; i < 10; i++)
 			unitList [i].Load ();
 
-		Debug.Log ("load unlocked slot " + unlockedSlot);
+//		Debug.Log ("load unlocked slot " + unlockedSlot);
 		for (int i = 0; i < unlockedSlot; i++) {
 			formationList [i].IsUnlocked = true;
 		}
 	//	Debug.Log("slot " + slot + " isunlock " + formationList[slot].IsUnlocked);
 		int slot = 0;
-		Debug.Log ("load active heroes " + activeHeroes);
+//		Debug.Log ("load active heroes " + activeHeroes);
 		for (int i = 0; i < 10; i++) {
 			if ( unitList[i].IsActive ){
 				formationList[slot].SetUnit(i,unitList[i]);
@@ -119,7 +122,7 @@ public class ProfileData
 		for ( int k = 0 ; k < questList.Count ;k++){
 			questList[k].Load();
 		}
-		totalInvent = PlayerPrefs.GetInt ("totalInvent");
+		totalInvent = PlayerPrefs.GetInt ("totalInvent"+GameData.tesId);
 		int inventId = 0;
 		string namaItem = "";
 		for ( int l = 0 ; l < totalInvent ;l++){
@@ -128,18 +131,16 @@ public class ProfileData
 			namaItem = PlayerPrefs.GetString("inventoryName"+l+"is"+GameData.tesId);
 			if ( namaItem.Contains("Gem") ){
 				inventoryList.Add(new Gem(inventId,namaItem.Split("\n"[0])[0]));
-				Debug.Log("added gem TO INVNET " + namaItem );
+//				Debug.Log("added gem TO INVNET " + namaItem );
 			}
 			else{
 				inventoryList.Add(new Catalyst(inventId,namaItem.Split("\n"[0])[0]));
-				Debug.Log("added CATALYST TO INVNET" + namaItem);
+//				Debug.Log("added CATALYST TO INVNET" + namaItem);
 			}
 
 		}
+		CheckQuestAchievement ();
 		//for (int i = 0; i < activeHeroes; i++) //  5 doang yo langsung ae
-		
-		
-
 	}
 
 	public void NewData(string n){

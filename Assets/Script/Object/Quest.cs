@@ -38,7 +38,7 @@ public class Quest
 	}
 
 	public void Load(){
-		PlayerPrefs.GetInt ("Quest"+id+"currentQuantity" + GameData.tesId, currentQuantity);	
+		currentQuantity = PlayerPrefs.GetInt ("Quest"+id+"currentQuantity" + GameData.tesId);	
 		isCompleted  = (PlayerPrefs.GetInt ("Quest"+id+"isCompleted" + GameData.tesId)!=0);	
 		isRewardTaken = (PlayerPrefs.GetInt ("Quest"+id+"isRewardTaken" + GameData.tesId)!=0);	
 	}

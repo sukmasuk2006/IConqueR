@@ -15,10 +15,9 @@ public class ProjectileController : MonoBehaviour {
 					
 			Debug.Log("DOR with " + coll.gameObject.name);
 			HeroController h = coll.gameObject.GetComponent<HeroController> ();
-			h.PushForward(1f);
 						//h.PushForward ();
-						isLaunch = false;
-						heroController.DoDamageToTarget (h);
+			isLaunch = false;
+			heroController.DoDamageToTarget (h,-0.05f);
 					
 		}
 	}

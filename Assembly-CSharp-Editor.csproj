@@ -78,10 +78,14 @@
      <None Include="Assets\Resources\Data\Gem\Lemah.txt" />
      <None Include="Assets\Resources\Data\Mission\28.txt" />
      <None Include="Assets\Resources\Data\Quest\castle2.txt" />
+     <None Include="Assets\Resources\Data\Quest\defeat3.txt" />
      <None Include="Assets\Resources\Data\Mission\18.txt" />
      <None Include="Assets\Resources\Data\Mission\16.txt" />
+     <None Include="Assets\Resources\Data\Quest\fortress4.txt" />
      <None Include="Assets\Resources\Data\Gem\Poseidon Platinum.txt" />
      <None Include="Assets\Resources\Data\Mission\5.txt" />
+     <None Include="Assets\Resources\Data\Quest\castle3.txt" />
+     <None Include="Assets\Resources\Data\Quest\castle4.txt" />
      <None Include="Assets\Resources\Data\Catalyst\common.txt" />
      <None Include="Assets\Resources\Sprite\Character\monk\skeleton.atlas.txt" />
      <None Include="Assets\Resources\Data\Quest\defeat2.txt" />
@@ -89,6 +93,7 @@
      <None Include="Assets\Resources\Data\Mission\12.txt" />
      <None Include="Assets\Resources\Data\Mission\14.txt" />
      <None Include="Assets\Resources\Sprite\Character\tribe\skeleton.json.txt" />
+     <None Include="Assets\Resources\Data\Quest\fortress5.txt" />
      <None Include="Assets\Resources\Sprite\Character\knight\skeleton.json.txt" />
      <None Include="Assets\Resources\Data\Mission\31.txt" />
      <None Include="Assets\Resources\Data\Unit\keterangan.txt" />
@@ -100,6 +105,7 @@
      <None Include="Assets\Resources\Data\Gem\red crystal.txt" />
      <None Include="Assets\Resources\Sprite\Character\hunter\skeleton.atlas.txt" />
      <None Include="Assets\Resources\Data\Catalyst\rare.txt" />
+     <None Include="Assets\Resources\Data\Quest\fortress3.txt" />
      <None Include="Assets\Resources\Sprite\Character\hunter\skeleton.json.txt" />
      <None Include="Assets\Resources\Data\Unit\tribe.txt" />
      <None Include="Assets\Resources\Data\Gem\Banyu.txt" />
@@ -120,7 +126,9 @@
      <None Include="Assets\Resources\Data\Quest\fortress.txt" />
      <None Include="Assets\Resources\Data\Gem\Fire Stone.txt" />
      <None Include="Assets\Resources\Data\Mission\50.txt" />
+     <None Include="Assets\Resources\Data\Quest\castle5.txt" />
      <None Include="Assets\Resources\Data\Mission\9.txt" />
+     <None Include="Assets\Resources\Data\Quest\gold3.txt" />
      <None Include="Assets\Resources\Sprite\Character\tribe\skeleton.atlas.txt" />
      <None Include="Assets\Resources\Data\Mission\39.txt" />
      <None Include="Assets\Resources\Sprite\Character\warrior\skeleton.atlas.txt" />
@@ -139,6 +147,7 @@
      <None Include="Assets\Resources\Data\Quest\list-TEMP.txt" />
      <None Include="Assets\Resources\Data\Mission\48.txt" />
      <None Include="Assets\Plugins\MusicManager\TestScene\Resources\Music_Licence.txt" />
+     <None Include="Assets\Resources\Data\Quest\gold4.txt" />
      <None Include="Assets\Script\spine-unity\Assets\spine-unity\Shaders\Bones.shader" />
      <None Include="Assets\Resources\Sprite\Character\assasin\skeleton.atlas.txt" />
      <None Include="Assets\Resources\Sprite\Character\archer\skeleton.atlas.txt" />
@@ -222,6 +231,7 @@
      <None Include="Assets\Resources\Data\Gem\Gold.txt" />
      <None Include="Assets\Resources\Data\Mission\30.txt" />
      <None Include="Assets\Resources\Data\Unit\warrior.txt" />
+     <None Include="Assets\Resources\Data\Quest\defeat4.txt" />
  <Reference Include="PluginUnityWP">
  <HintPath>D:/Floogames/4 ICONQUER!/trunk/Assets/Plugins/PluginUnityWP.dll</HintPath>
  </Reference>

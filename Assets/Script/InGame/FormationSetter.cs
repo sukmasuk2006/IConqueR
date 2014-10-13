@@ -25,7 +25,7 @@ public class FormationSetter : MonoBehaviour {
 				else
 				ReloadSprite(GameData.unitSpriteList[GameData.profile.formationList[slot].Unit.HeroId]);
 		}
-		Debug.Log ("slot isunlock " + slot + " " + GameData.profile.formationList [slot].IsUnlocked);
+//		Debug.Log ("slot isunlock " + slot + " " + GameData.profile.formationList [slot].IsUnlocked);
 	}
 
 	void OnMouseDown(){
@@ -37,7 +37,7 @@ public class FormationSetter : MonoBehaviour {
 //			Debug.Log("masuk 1 " + GameData.profile.formationList [slot].IsUnlocked + " " + GameData.profile.formationList [slot].Unit.HeroId);
 			// ketika id !=99, brarti sudah diset, bisa liat profilnya
 			if (GameData.profile.formationList [slot].IsUnlocked && GameData.profile.formationList [slot].Unit.HeroId != 99){
-				Debug.Log("masuk 2 " + GameData.profile.formationList [slot].IsUnlocked + " " + GameData.profile.formationList [slot].Unit.HeroId);
+//				Debug.Log("masuk 2 " + GameData.profile.formationList [slot].IsUnlocked + " " + GameData.profile.formationList [slot].Unit.HeroId);
 				// view profile controller set gambar dan status		
 				GameData.selectedToViewProfileId = GameData.profile.formationList[slot].Unit.HeroId;
 				GameData.selectedToViewProfileName = GameData.profile.formationList[slot].Unit.Name;
@@ -50,6 +50,7 @@ public class FormationSetter : MonoBehaviour {
 			// set hero
 
 		}
+
 	//	Debug.Log ("slot formasi yang akan di set " + screenData.formationSlot +" " +  GameData.gameState);
 	}
 	

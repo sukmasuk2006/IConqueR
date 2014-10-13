@@ -57,6 +57,7 @@ public class Skill
 	public void Load(){
 		isUnlocked  = (PlayerPrefs.GetInt ("Skill"+id+"isUnlocked" + GameData.tesId)!=0);	
 		isSelected = (PlayerPrefs.GetInt ("Skill"+id+"isSelected" + GameData.tesId)!=0);	
+//		Debug.Log ("slot u " + isUnlocked + " s " + isSelected);
 	}
 
 	public void DoEffect(Unit u){

@@ -27,7 +27,7 @@ public class HeroController : MonoBehaviour {
 	}
 
    // kecepatan gerak
-	private float antiBug = 0f;
+	public float antiBug = 0f;
 	private int states = 0;
 	private bool isHero = false;
 	public float AntiBug {
@@ -57,7 +57,7 @@ public class HeroController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Debug.Log ("HERO START");
+	//	Debug.Log ("HERO START");
 		isDeath = false;
 		attackSpeed = 0;
 		if (gameObject.activeInHierarchy) {
@@ -68,7 +68,7 @@ public class HeroController : MonoBehaviour {
 			stats = GameData.profile.formationList[slot].Unit;
 			icon.sprite = GameData.unitIconList[stats.HeroId];
 			isHero = true;
-			Debug.Log("di hero cont " + stats.HeroId);
+//			Debug.Log("di hero cont " + stats.HeroId);
 			InitializeWeapon();
 			InitializePosition(-1);
 		} else if (gameObject.name.Contains ("enemy")) {
@@ -93,7 +93,6 @@ public class HeroController : MonoBehaviour {
 					isDeath = true;
 					MoveToGraveyard();
 				}
-				
 				// jika masih battle
 				if (controller.BatlleState == 0) {
 						attackSpeed -= Time.deltaTime;
@@ -123,29 +122,15 @@ public class HeroController : MonoBehaviour {
 		}
 	}
 
-
-
-	public void PushForward(float f){
-		rigidbody2D.velocity = Vector2.zero;
-		rigidbody2D.AddForce (new Vector2 (stats.Movement* direction *f, 0f));
-		Debug.Log ("vel X " + rigidbody2D.angularVelocity);
-
-	}
-
 	void OnTriggerEnter2D(Collider2D coll) {
 		if (coll.gameObject.name.Contains ("wall")) {
 			// push dikit
 			rigidbody2D.velocity = Vector2.zero;
 			PushForward(0.1f);
-			antiBug = 0.5f * direction;
 		}
-		else 
-		if (coll.gameObject.name.Contains (target) ) {
+		else if (coll.gameObject.name.Contains (target) ) {
 			rigidbody2D.velocity = Vector2.zero;
 			targetUnit = coll.gameObject.GetComponent<HeroController>();
-			if ( !CheckIsCornered() )
-				PushForward(-0.3f);
-			antiBug = 0f;
 			if ( isAttack && attackType == 0 ){
 				if ( animator.state.GetCurrent(1) == null ){
 					animator.state.ClearTrack(0);
@@ -154,7 +139,19 @@ public class HeroController : MonoBehaviour {
 				}
 			}
 		} 
-
+		
+	}
+	void OnTriggerStay2D(Collider2D coll) {
+		if (coll.gameObject.name.Contains ("wall")) {
+			// push dikit
+			rigidbody2D.velocity = Vector2.zero;
+			PushForward(0.1f);
+		}
+		else if (coll.gameObject.name.Contains (target) && !CheckIsCornered() ) {
+			targetUnit = coll.gameObject.GetComponent<HeroController>();
+			PushForward(-0.1f);
+		} 
+		
 	}
 
 	public bool CheckIsCornered(){
@@ -171,18 +168,27 @@ public class HeroController : MonoBehaviour {
 
 	void HandleComplete (Spine.AnimationState state, int trackIndex, int loopCount)
 	{
-		DoDamageToTarget (targetUnit);
+		DoDamageToTarget (targetUnit,-0.5f);
 	}
 
-	public void DoDamageToTarget(HeroController h){
+	// jika F- => mundurin kita/musuh
+	// F + => majuin kita/musuh
+	public void PushForward(float f){
+		rigidbody2D.velocity = Vector2.zero;
+		rigidbody2D.AddForce (new Vector2 (stats.Movement* direction *f, 0f));
+		//		Debug.Log ("vel X " + rigidbody2D.angularVelocity);
+		
+	}
+
+	public void DoDamageToTarget(HeroController h,float force){
 		// ATTACK!! kalau masih hidup
 		if (stats.HealthPoint > 0) {
 				// damage critical atau tidak, dimasukkan ke unit untuk dihitung evasion
-				Debug.Log("damaged unit " + gameObject.name +" health " + stats.HealthPoint);
+				//Debug.Log("damaged unit " + gameObject.name +" health " + stats.HealthPoint);
 				float damage = h.stats.ReceiveDamage(stats.Damage,stats.IsCritical);
-				Debug.Log(" damage " + damage);
-				if ( !h.CheckIsCornered() )
-					h.PushForward(-0.4f);
+				//Debug.Log(" damage " + damage);
+				if ( !h.CheckIsCornered() ) // jika gk kepepet nusuhnya, pukul mundur
+				h.PushForward(force);
 				stats.IsCritical = false; // set critical ke semula, tapi chance tetep
 				controller.ReceiveDamage (target, damage);
 				h.UpdateHealthBar ();

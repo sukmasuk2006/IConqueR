@@ -32,8 +32,8 @@ public class QuestController : MonoBehaviour {
 		descOne.text = SetDesc (one.QuantityNeeded,one.Target.Trim());
 		descTwo.text = SetDesc (two.QuantityNeeded,two.Target.Trim());
 		
-		rewardOne.text = one.RewardMoney.ToString();
-		rewardTwo.text = two.RewardMoney.ToString();
+		rewardOne.text = one.RewardMoney.ToString() + "\n\n" + one.RewardDiamond.ToString();
+		rewardTwo.text = two.RewardMoney.ToString() + "\n\n" + two.RewardDiamond;
 
 //		Debug.Log ("quest ke  1 id" + one.Id);
 		if (one.IsCompleted)
@@ -52,13 +52,13 @@ public class QuestController : MonoBehaviour {
 	private string SetDesc(int num, string name){
 		string ret;
 		switch (name) {
-		case "defeat" :  ret = "Defeat "+num + "\nof enemy armies!";
+		case "defeat" :  ret = "Defeat\n"+num + "\nenemy armies!";
 			break;
-		case "fortress" : ret = "Destroy "+num + "\nof enemy fortress!";
+		case "fortress" : ret = "Destroy\n"+num + "\nenemy fortress!";
 			break;
-		case "castle" :  ret = "Demolish "+num + "\n of enemy Kingdoms!";
+		case "castle" :  ret = "Conquer\n"+num + "\nenemy Kingdoms!";
 			break;
-		case "gold" :  ret = "Have total "+num + "\n of Gold!";
+		case "gold" :  ret = "Have total\n"+num + "\nGold!";
 			break;
 		default :ret = "";
 			break;

@@ -6,6 +6,9 @@ public class LogoSceneController : MonoBehaviour {
 	private const int DELAY = 2;
 	public GameObject tweenedObject;
 	public GameObject removedObject;
+	public Vector3 LogoTarget;
+	public Vector3 buttonTarget;
+	public GameObject button;
 	public float time;
 	public AudioClip dor;
 	// Use this for initialization
@@ -31,7 +34,9 @@ public class LogoSceneController : MonoBehaviour {
 		iTween.ColorTo (removedObject, iTween.Hash ("delay",1f,"a",0f ,"time", time,"EaseType","linear"));
 		iTween.MoveTo (removedObject, iTween.Hash ("delay",4f,"position", new Vector3(0,0,3), "time", time,"EaseType","linear"));
 
-		iTween.MoveTo (tweenedObject, iTween.Hash ("delay",3f,"position", removedObject.transform.position, "time",0.1f,"EaseType","linear"
+		iTween.MoveTo (tweenedObject, iTween.Hash ("delay",2f,"position", LogoTarget, "time",1f,"EaseType","linear"
+		                                           ));
+		iTween.MoveTo (button, iTween.Hash ("delay",2f,"position", buttonTarget, "time",1f,"EaseType","linear"
 		                                           ,"onComplete", "ReadyTween", "onCompleteTarget", gameObject));
 	}
 

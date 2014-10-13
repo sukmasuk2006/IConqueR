@@ -43,17 +43,31 @@ public class GameData : MonoBehaviour {
 	void Awake(){
 		InitializePersistent ();
 		InitializeGameData ();
+	//	PlayerPrefs.DeleteAll ();
 		LoadData ();
 	//	LoadData ();
 		//		Debug.Log ("Data initialized " + profile.Gold);
+	}
+
+	public static bool CheckPrefs(string key){
+		bool ret = PlayerPrefs.HasKey (key) ? true : false;
+		//Debug.Log ("CEK PREFS " + key + " " + ret);
+		return ret;
 	}
 
 	public static void SaveData(){
 		profile.SaveNonList ();
 	}
 
-	public static void LoadData(){
-		profile.LoadData ();
+	public void LoadData(){
+		if (PlayerPrefs.HasKey ("level"+GameData.tesId)) {
+						profile.LoadData ();
+			Debug.Log("LOADED");
+		}
+		else{
+			SaveData();
+			Debug.Log("NEW GAME");
+		}
 	}
 
 	void InitializePersistent(){
@@ -126,24 +140,34 @@ public class GameData : MonoBehaviour {
 		linesFromFile = questContent.Split ("\n"[0]);
 		for (int i = 0; i < linesFromFile.Length; i++) {
 			//		Debug.Log ("len " + linesFromFile[i]);
-			profile.questList.Add(new Quest(i%4,linesFromFile[i]));		
-			if ( i < 4 ) // 4 adalah macam quest yang ada
-				achievementSpriteList.Add(LoadAchievementSprite(linesFromFile[i].Trim()));
+			profile.questList.Add(new Quest(i,linesFromFile[i]));		
+			if ( i < 6 ) // 6 jumlah titel
+				achievementSpriteList.Add(LoadAchievementSprite(i));
 		}
 
+		skillSpriteList = new List<Sprite> ();
+		for (int i = 1; i <= 10; i++) {
+			skillSpriteList.Add(LoadSkillSprite(i));
+		}
 
 	}
 
-	private Sprite LoadAchievementSprite(string name){
+	private Sprite LoadAchievementSprite(int id){
 		Sprite sprites = null;
-//		Debug.Log ("load sprite " + name);
-		sprites = (Sprite)Resources.Load ("Sprite/Achievement/" + name, typeof(Sprite));
+		//		Debug.Log ("load sprite " + name);
+		sprites = (Sprite)Resources.Load ("Sprite/Achievement/" + id, typeof(Sprite));
 		return sprites;
 	}
 
 	private Sprite LoadCharacterSprite(string name){
 		Sprite sprites = null;
 		sprites = (Sprite)Resources.Load ("Sprite/Character/Hero/" + name, typeof(Sprite));
+		return sprites;
+	}
+
+	private Sprite LoadSkillSprite(int id){
+		Sprite sprites = null;
+		sprites = (Sprite)Resources.Load ("Sprite/Skill/skill_" + id, typeof(Sprite));
 		return sprites;
 	}
 	

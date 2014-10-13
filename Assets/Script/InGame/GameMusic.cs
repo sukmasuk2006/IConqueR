@@ -20,7 +20,7 @@ public class GameMusic : MonoBehaviour {
 
 	public static void PlayMusic(string name){
 		MusicManager.play (name);
-		Debug.Log ("PLAY " + MusicManager.getMusicEmitter ().audio.clip.name);
+//		Debug.Log ("PLAY " + MusicManager.getMusicEmitter ().audio.clip.name);
 
 	}
 
