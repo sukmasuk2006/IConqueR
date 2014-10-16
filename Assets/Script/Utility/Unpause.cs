@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class Unpause : MonoBehaviour {
 
+	public List<HeroController> unitList;
 	public GameObject obj;
 	// Use this for initialization
 	void Start () {
@@ -11,19 +12,25 @@ public class Unpause : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.Escape) && GameData.readyToTween && GameData.gameState == "Paused") {
-			UnPause();
-		}
+	
 	}
 
 	void OnMouseDown(){
 		UnPause ();	
 	}
 
-	void UnPause(){
-		iTween.MoveTo ( obj,iTween.Hash("position",new Vector3(0,-12,-3),"time", 0.1f,"onComplete","ReadyTween","onCompleteTarget",gameObject));
-		//sound.audio.PlayOneShot (sound.audio.clip);
+	public void UnPause(){
+		Debug.Log("Unpause");
 		GameData.readyToTween = false;	
+		//sound.audio.PlayOneShot (sound.audio.clip);
+		GameData.gameState = "";
+		for (int i =0; i < unitList.Count; i++) {
+			if ( unitList[i].gameObject.activeInHierarchy )
+				unitList[i].CheckState();		
+		}
+
+		iTween.MoveTo ( obj,iTween.Hash("position",new Vector3(3.74f,22f,-2f),"time", 0.1f,"onComplete","ReadyTween","onCompleteTarget",gameObject));
+
 	}
 
 	void ReadyTween(){

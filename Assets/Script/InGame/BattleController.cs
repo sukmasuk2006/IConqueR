@@ -173,21 +173,25 @@ public class BattleController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.Escape)) {
+		if (Input.GetKeyDown (KeyCode.Escape) && GameData.gameState != "Paused") {
 			iTween.MoveTo ( pauseScreen,iTween.Hash("position",new Vector3(3.7f,-0.3f,-3f),"time", 0.1f,"onComplete","ReadyTween","onCompleteTarget",gameObject));
 			//sound.audio.PlayOneShot (sound.audio.clip);
 			GameData.gameState = "Paused";	
 			GameData.readyToTween = false;	
+			Debug.Log("pause");
+		}
+		else if (Input.GetKeyDown (KeyCode.Escape) && GameData.readyToTween && GameData.gameState == "Paused") {
+			pauseScreen.GetComponentInChildren<Unpause>().UnPause();
 		}
 	}
 	public void ReceiveDamage(string target,float damage){
-		if (battleState == 0) {
+		//if (battleState == 0) {
 				if (target.Contains ("enemy")) {
 						UpdateEnemyHealthBar (damage);
 				} else {
 						UpdateHeroHealthBar (damage);
 				}
-		}
+		//}
 	}
 
 	private void UpdateHeroHealthBar(float damage)
@@ -200,7 +204,9 @@ public class BattleController : MonoBehaviour {
 		                           ConstantHeroHealthLocalScale.y,
 		                           ConstantHeroHealthLocalScale.z);
 		globalHeroHealthBar.transform.localScale = temp; 
-		if (heroTotalHealth <= 0) {
+		int total = heroList.Where (x => x.activeInHierarchy).ToList ().Count;
+		Debug.Log ("total hero " + total);
+		if (heroTotalHealth <= 0 || total == 0) {
 			battleState = 5;		
 			foreach(GameObject g in heroList){
 				if ( g.activeInHierarchy )
@@ -222,7 +228,9 @@ public class BattleController : MonoBehaviour {
 		                            ConstantEnemyHealthLocalScale.z);
 		globalEnemyHealthBar.transform.localScale = temp2; 
 
-		if (enemyTotalHealth <= 0) {
+		int total = enemyList.Where (x => x.activeInHierarchy).ToList ().Count;
+		Debug.Log ("total enemy " + total);
+		if (enemyTotalHealth <= 0 || total == 0) {
 			battleState = 1;	
 			foreach (GameObject g in enemyList) {
 				HeroController h = g.GetComponent<HeroController>();
