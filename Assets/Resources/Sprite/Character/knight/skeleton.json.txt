@@ -89,7 +89,7 @@
 	}
 },
 "animations": {
-	"serang": {
+	"attack": {
 		"bones": {
 			"left hand": {
 				"rotate": [
@@ -150,7 +150,18 @@
 			}
 		}
 	},
-	"jalan2": {
+	"idle": {
+		"bones": {
+			"head": {
+				"rotate": [
+					{ "time": 0, "angle": 5.43 },
+					{ "time": 0.1333, "angle": 0.99 },
+					{ "time": 0.2666, "angle": 5.43 }
+				]
+			}
+		}
+	},
+	"run": {
 		"bones": {
 			"left hand": {
 				"rotate": [

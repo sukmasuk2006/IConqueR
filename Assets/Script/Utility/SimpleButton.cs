@@ -11,11 +11,6 @@ public class SimpleButton : MonoBehaviour {
 	void Start () {
 	
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	void OnMouseDown(){
 		if (GameData.readyToTween) {

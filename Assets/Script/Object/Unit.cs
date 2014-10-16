@@ -55,6 +55,7 @@ public class Unit : UnitStatus {
 		this.level = u.level;
 		this.weapon = u.weapon;
 		this.currentExp = u.currentExp;
+		this.nextExp = u.nextExp;
 		this.level = u.level;
 		SetStats ();
 
@@ -73,7 +74,7 @@ public class Unit : UnitStatus {
 		attackPoint = tempStr/2 + weapon.Damage; // min 59 max 255
 		defensePoint = tempVit/2; // min 59 max 255
 		//
-		attackSpeed = float.Parse( Round(2.5f - (tempAgi - 1f) * 0.020408f).ToString()); // min 2.5f max 0.5f  
+		attackSpeed = float.Parse( Round(1f - (tempAgi - 1f) * 0.0050408f).ToString()); // min 2.5f max 0.5f  
 		if (weapon.Range == 5)
 						AttackSpeed *= 1.5f;
 		critical =  float.Parse( Round(((tempStr + tempAgi *2 ) / 3)*0.55f).ToString()); // min 1 max 55 

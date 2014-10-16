@@ -7,6 +7,14 @@ public class Weapon : Item {
 	private float range;
 	private int rank;
 	private UnitStatus weaponStats;
+	private string gemRequired;
+
+	public string GemRequired {
+		get {
+			return gemRequired;
+		}
+	}
+
 	//private ArrayList<Item> equippedGem;
 
 	public Weapon(int id,string name,float damage, float range):
@@ -16,6 +24,7 @@ public class Weapon : Item {
 		weaponStats = new UnitStatus ();
 		SuccessRate = 0;
 		rank = 0;
+		gemRequired = "Common";
 	}
 
 	public void Save(){
@@ -53,14 +62,26 @@ public class Weapon : Item {
 		weaponStats.Str += s.Str;
 		weaponStats.Agi += s.Agi;
 		weaponStats.Vit += s.Vit;
-		if (rank == 1 || rank == 2)
+		if (rank == 1 || rank == 2) {
 			damage += 2;
-		if (rank == 3 || rank == 4)
-			damage += 3;
-		if (rank == 5 || rank == 6)
-			damage += 6;
-		if (rank == 7 || rank == 8)
+			if ( rank == 2 )
+				gemRequired = "Uncommon";
+		}
+		if (rank == 3 || rank == 4) {
+				damage += 3;
+			if ( rank == 4 )
+				gemRequired = "Rare";
+		}
+		if (rank == 5 || rank == 6) {
+				damage += 6;
+			if ( rank == 6 )
+				gemRequired = "Mythical";
+		}
+		if (rank == 7 || rank == 8) {
 			damage += 10;
+			if ( rank == 8 )
+				gemRequired = "Legendary";
+		}
 		if (rank == 9 || rank == 10)
 			damage += 15;
 	}

@@ -78,6 +78,10 @@ public class Quest
 		}
 		set {
 			currentQuantity = value;
+			if ( currentQuantity >= quantityNeeded ){
+				
+				isCompleted = true;
+			}
 		}
 	}
 

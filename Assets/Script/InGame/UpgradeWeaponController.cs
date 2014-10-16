@@ -16,6 +16,7 @@ public class UpgradeWeaponController : MonoBehaviour {
 
 	//upgrade data di profile
 	public HeroProfileController profileController;
+	public List<Item> queriedList;
 
 	private float totalStr;
 	private float totalAgi;
@@ -86,6 +87,7 @@ public class UpgradeWeaponController : MonoBehaviour {
 			else
 				upgradeSlot [upgradedSlot].sprite = GameData.catalystSpriteList[slot];
 
+			Debug.Log(" slot " + upgradedSlot + " idnya  " + i.Id);
 			// jika id 99
 			if ( i.Id == 99 )
 				upgradeSlot [upgradedSlot].sprite = null;

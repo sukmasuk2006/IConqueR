@@ -26,7 +26,7 @@ public class Catalyst : Item
 		//Debug.Log ("added catalyst " + name);
 		string content = txt.text;
 		linesFromFile = content.Split ("\n" [0]);
-		desc = linesFromFile [0];
+		desc = linesFromFile [0]; // nama catalyst
 		PriceType = 0;
 		Price = int.Parse(linesFromFile[1]);
 		SuccessRate = float.Parse (linesFromFile [2]);

@@ -10,14 +10,13 @@ public class ProfileData
 	private int nextExp;
 	private int gold;
 	private int diamond;
+	private int title;
 	//private int nextStage;
 
 	// untuk quest
-	private int defeatedArmy;
-	private int fortressDestroyed;
-	private int castleDestroyed;
 	private int unlockedTroop;
 	private int mapPosition;
+	private Vector3 mapPos;
 
 	// gameplay
 	public int unlockedSlot; // slot formasi yang terbuka
@@ -36,20 +35,18 @@ public class ProfileData
 	}
 
 	public void SaveNonList(){
+		
 		PlayerPrefs.SetInt ("level"+GameData.tesId, level);
+		PlayerPrefs.SetInt("title"+GameData.tesId, title);
 		PlayerPrefs.SetInt("nextMission"+GameData.tesId,nextMission);
 		PlayerPrefs.SetInt("currentExp"+GameData.tesId, currentExp);
 		PlayerPrefs.SetInt("gold"+GameData.tesId, gold);
 		PlayerPrefs.SetInt("diamond"+GameData.tesId, diamond);
-		PlayerPrefs.SetInt("defeatedArmy"+GameData.tesId, defeatedArmy);
-		PlayerPrefs.SetInt("fortressDestroyed"+GameData.tesId, fortressDestroyed);
-		PlayerPrefs.SetInt("castleDestroyed"+GameData.tesId, castleDestroyed);
 		PlayerPrefs.SetInt("unlockedTroop"+GameData.tesId,  unlockedTroop);
-		PlayerPrefs.SetInt("mapPosition"+GameData.tesId, mapPosition);
+		PlayerPrefsX.SetVector3 ("mapPos", mapPos);
 		PlayerPrefs.SetInt("unlockedSlot"+GameData.tesId, unlockedSlot);
 		PlayerPrefs.SetInt("activeHeroes"+GameData.tesId,  activeHeroes);
 		PlayerPrefs.SetInt("totalSkillUsed"+GameData.tesId, totalSkillUsed);
-		Debug.Log ("save castle destroyed  " + castleDestroyed);
 //		Debug.Log ("save activeheroes " + activeHeroes);
 		for (int q = 0; q < 5; q++) {
 			formationList[q].Save(q);		
@@ -82,22 +79,18 @@ public class ProfileData
 
 	public void LoadData(){
 
+		title = PlayerPrefs.GetInt("title"+GameData.tesId);
 		level =  GameData.CheckPrefs("level"+GameData.tesId) ? PlayerPrefs.GetInt("level"+GameData.tesId): level;
 		nextMission = GameData.CheckPrefs("nextMission"+GameData.tesId) ? PlayerPrefs.GetInt("nextMission"+GameData.tesId): nextMission;
 		currentExp = GameData.CheckPrefs("currentExp"+GameData.tesId) ? PlayerPrefs.GetInt("currentExp"+GameData.tesId) :currentExp;
 		gold = GameData.CheckPrefs("gold"+GameData.tesId) ? PlayerPrefs.GetInt("gold"+GameData.tesId) : gold;
 		diamond = GameData.CheckPrefs("diamond"+GameData.tesId) ? PlayerPrefs.GetInt("diamond"+GameData.tesId) : diamond;
-		defeatedArmy = GameData.CheckPrefs("defeatedArmy"+GameData.tesId) ? PlayerPrefs.GetInt("defeatedArmy"+GameData.tesId) : defeatedArmy;
-		fortressDestroyed = GameData.CheckPrefs("fortressDestroyed"+GameData.tesId) ? 
-			PlayerPrefs.GetInt("fortressDestroyed"+GameData.tesId) : fortressDestroyed;
-		castleDestroyed = GameData.CheckPrefs("castleDestroyed"+GameData.tesId) ? PlayerPrefs.GetInt("castleDestroyed"+GameData.tesId) : castleDestroyed;
 		unlockedTroop =  GameData.CheckPrefs("unlockedTroop"+GameData.tesId) ? PlayerPrefs.GetInt("unlockedTroop"+GameData.tesId) : unlockedTroop;
-		mapPosition = GameData.CheckPrefs("mapPosition"+GameData.tesId) ? PlayerPrefs.GetInt("mapPosition"+GameData.tesId) : mapPosition ;
+		mapPos = PlayerPrefsX.GetVector3 ("mapPos");
 		unlockedSlot = GameData.CheckPrefs("unlockedSlot"+GameData.tesId) ? PlayerPrefs.GetInt("unlockedSlot"+GameData.tesId) : unlockedSlot;
 		activeHeroes = GameData.CheckPrefs("activeHeroes"+GameData.tesId) ? PlayerPrefs.GetInt("activeHeroes"+GameData.tesId) : activeHeroes;
 		totalSkillUsed = GameData.CheckPrefs("totalSkillUsed"+GameData.tesId) ? PlayerPrefs.GetInt("totalSkillUsed"+GameData.tesId) : totalSkillUsed;
 		nextExp = base_exp;
-		Debug.Log ("Load Castle destroyed  " + castleDestroyed);
 		for (int i = 0; i < level; i++)
 						nextExp *= 2;
 		for (int i = 0; i < 10; i++)
@@ -107,15 +100,12 @@ public class ProfileData
 		for (int i = 0; i < unlockedSlot; i++) {
 			formationList [i].IsUnlocked = true;
 		}
+
+		RefreshFormation ();
 	//	Debug.Log("slot " + slot + " isunlock " + formationList[slot].IsUnlocked);
-		int slot = 0;
+	
 //		Debug.Log ("load active heroes " + activeHeroes);
-		for (int i = 0; i < 10; i++) {
-			if ( unitList[i].IsActive ){
-				formationList[slot].SetUnit(i,unitList[i]);
-				slot++;
-			}
-		}
+
 		for ( int j = 0 ; j < skillList.Count ;j++){
 			skillList[j].Load();
 		}
@@ -139,12 +129,22 @@ public class ProfileData
 			}
 
 		}
-		CheckQuestAchievement ();
 		//for (int i = 0; i < activeHeroes; i++) //  5 doang yo langsung ae
+	}
+
+	public void RefreshFormation(){
+		int slot = 0;
+		for (int i = 0; i < 10; i++) {
+			if ( unitList[i].IsActive ){
+				formationList[slot].SetUnit(i,unitList[i]);
+				slot++;
+			}
+		}
 	}
 
 	public void NewData(string n){
 		name = "Floo";
+		title = 0;
 		level = 1;
 		nextMission = 0;
 		currentExp = 0;
@@ -163,23 +163,6 @@ public class ProfileData
 //			Debug.Log ("next exp " + nextExp);
 	}
 
-	public void CheckQuestAchievement(){
-		foreach (Quest q in questList) {
-			if ( q.Target.Contains("defeat"))
-				if ( defeatedArmy >= q.QuantityNeeded )
-					q.IsCompleted = true;
-			if ( q.Target.Contains("fortress"))
-				if ( fortressDestroyed >= q.QuantityNeeded )
-					q.IsCompleted = true;
-			if ( q.Target.Contains("castle"))
-				if ( castleDestroyed >= q.QuantityNeeded )
-					q.IsCompleted = true;
-			if ( q.Target.Contains("gold"))
-				if ( Gold >= q.QuantityNeeded )
-					q.IsCompleted = true;
-
-		}
-	}
 
 	public void ProfileLevelUp(){
 		currentExp -= nextExp;
@@ -225,14 +208,6 @@ public class ProfileData
 		}
 	}
 
-	public int DefeatedArmy {
-		get {
-			return defeatedArmy;
-		}
-		set {
-			defeatedArmy = value;
-		}
-	}
 
 	public bool IsLevelUp(int gotExp){
 		bool ret =false;
@@ -262,21 +237,21 @@ public class ProfileData
 		}
 	}
 
+	public Vector3 MapPos {
+		get {
+			return mapPos;
+		}
+		set {
+			mapPos = value;
+		}
+	}
+
 	public int Gold {
 		get {
 			return gold;
 		}
 		set {
 			gold = value;
-		}
-	}
-
-	public int FortressDestroyed {
-		get {
-			return fortressDestroyed;
-		}
-		set {
-			fortressDestroyed = value;
 		}
 	}
 
@@ -289,21 +264,21 @@ public class ProfileData
 		}
 	}
 
-	public int CastleDestroyed {
-		get {
-			return castleDestroyed;
-		}
-		set {
-			castleDestroyed = value;
-		}
-	}
-
 	public int NextExp {
 		get {
 			return nextExp;
 		}
 		set {
 			nextExp = value;
+		}
+	}
+
+	public int Title {
+		get {
+			return title;
+		}
+		set {
+			title = value;
 		}
 	}
 }

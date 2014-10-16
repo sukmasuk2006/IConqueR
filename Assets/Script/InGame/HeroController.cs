@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Linq;
 using System.Collections.Generic;
 
 /*
@@ -77,11 +78,11 @@ public class HeroController : MonoBehaviour {
 			InitializeWeapon();
 			InitializePosition(1);
 		}
-		animator.skeletonDataAsset = GameData.skeleteonDataAssetList[0];
+		animator.skeletonDataAsset = GameData.skeleteonDataAssetList[stats.HeroId];
 		animator.calculateNormals = true;
 		animator.loop = true;
 		animator.Awake ();
-		animator.state.SetAnimation (0, "jalan2", true);
+		animator.state.SetAnimation (0, "run", true);
 		healthConstant = stats.HealthPoint;
 		healthScaleConstant = healthBar.transform.localScale;
 		movementSpeed = stats.Movement;
@@ -94,7 +95,7 @@ public class HeroController : MonoBehaviour {
 					MoveToGraveyard();
 				}
 				// jika masih battle
-				if (controller.BatlleState == 0) {
+				if (controller.BatlleState == 0 && GameData.gameState != "Paused") {
 						attackSpeed -= Time.deltaTime;
 						// check attack time
 						if (attackType == 0) {		
@@ -123,35 +124,35 @@ public class HeroController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D coll) {
-		if (coll.gameObject.name.Contains ("wall")) {
-			// push dikit
-			rigidbody2D.velocity = Vector2.zero;
-			PushForward(0.1f);
-		}
-		else if (coll.gameObject.name.Contains (target) ) {
-			rigidbody2D.velocity = Vector2.zero;
-			targetUnit = coll.gameObject.GetComponent<HeroController>();
-			if ( isAttack && attackType == 0 ){
-				if ( animator.state.GetCurrent(1) == null ){
-					animator.state.ClearTrack(0);
-					animator.state.SetAnimation(1,"serang",false);
-					animator.state.GetCurrent(1).Complete += HandleComplete;
+		if (GameData.gameState != "Paused") {
+						if (coll.gameObject.name.Contains ("wall")) {
+								// push dikit
+								rigidbody2D.velocity = Vector2.zero;
+								PushForward (0.1f);
+						} else if (coll.gameObject.name.Contains (target)) {
+								rigidbody2D.velocity = Vector2.zero;
+								targetUnit = coll.gameObject.GetComponent<HeroController> ();
+								if (isAttack && attackType == 0) {
+										if (animator.state.GetCurrent (1) == null) {
+												animator.state.ClearTrack (0);
+												animator.state.SetAnimation (1, "attack", false);
+												animator.state.GetCurrent (1).Complete += HandleComplete;
+										}
+								}
+						} 
 				}
-			}
-		} 
-		
 	}
 	void OnTriggerStay2D(Collider2D coll) {
-		if (coll.gameObject.name.Contains ("wall")) {
-			// push dikit
-			rigidbody2D.velocity = Vector2.zero;
-			PushForward(0.1f);
-		}
-		else if (coll.gameObject.name.Contains (target) && !CheckIsCornered() ) {
-			targetUnit = coll.gameObject.GetComponent<HeroController>();
-			PushForward(-0.1f);
-		} 
-		
+		if (GameData.gameState != "Paused") {
+						if (coll.gameObject.name.Contains ("wall")) {
+								// push dikit
+								rigidbody2D.velocity = Vector2.zero;
+								PushForward (0.1f);
+						} else if (coll.gameObject.name.Contains (target) && !CheckIsCornered ()) {
+								targetUnit = coll.gameObject.GetComponent<HeroController> ();
+								PushForward (-0.1f);
+						} 
+				}	
 	}
 
 	public bool CheckIsCornered(){
@@ -169,12 +170,15 @@ public class HeroController : MonoBehaviour {
 	void HandleComplete (Spine.AnimationState state, int trackIndex, int loopCount)
 	{
 		DoDamageToTarget (targetUnit,-0.5f);
+		animator.state.ClearTracks ();
+		animator.state.AddAnimation (0, "run", true, -0.33f);
+
 	}
 
 	// jika F- => mundurin kita/musuh
 	// F + => majuin kita/musuh
 	public void PushForward(float f){
-		rigidbody2D.velocity = Vector2.zero;
+//		rigidbody2D.velocity = Vector2.zero;
 		rigidbody2D.AddForce (new Vector2 (stats.Movement* direction *f, 0f));
 		//		Debug.Log ("vel X " + rigidbody2D.angularVelocity);
 		
@@ -188,7 +192,7 @@ public class HeroController : MonoBehaviour {
 				float damage = h.stats.ReceiveDamage(stats.Damage,stats.IsCritical);
 				//Debug.Log(" damage " + damage);
 				if ( !h.CheckIsCornered() ) // jika gk kepepet nusuhnya, pukul mundur
-				h.PushForward(force);
+					h.PushForward(force);
 				stats.IsCritical = false; // set critical ke semula, tapi chance tetep
 				controller.ReceiveDamage (target, damage);
 				h.UpdateHealthBar ();
@@ -200,7 +204,12 @@ public class HeroController : MonoBehaviour {
 		isAttack = false;
 		attackSpeed = stats.AttackSpeed;
 		movementSpeed = stats.Movement;
-		animator.state.AddAnimation (0, "jalan2", true, attackSpeed);
+		if (animator.state.GetCurrent (0) == null) {
+			Debug.Log("1 null");		
+		}
+		else
+			Debug.Log("1 gak null");	
+		animator.state.SetAnimation (0, "run", true);
 	}
 
 	public void DeceleratePullBack(){
@@ -222,7 +231,9 @@ public class HeroController : MonoBehaviour {
 
 	public void MoveToGraveyard(){
 		if (this.gameObject.name.Contains ("enemy")) {
-			GameData.profile.DefeatedArmy++;
+			var m = GameData.profile.questList.Where(x => x.Target.Contains("defeat")).ToList();
+			foreach( Quest q in m )
+				q.CurrentQuantity++;
 		}
 		transform.position = new Vector2 (-11f, transform.position.y);
 		projectile.SetActive(false);

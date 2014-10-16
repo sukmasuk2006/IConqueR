@@ -30,10 +30,8 @@ public class GameData : MonoBehaviour {
 	public static List<Sprite> gemSpriteList;
 	public static List<Sprite> catalystSpriteList;
 	public static List<Sprite> skillSpriteList;
-	public static List<Sprite> achievementSpriteList;
+	public static List<Sprite> titleSpriteList;
 	public static List<SkeletonDataAsset> skeleteonDataAssetList;
-
-
 
 	// Use this for initialization
 	void Start () {
@@ -45,8 +43,6 @@ public class GameData : MonoBehaviour {
 		InitializeGameData ();
 	//	PlayerPrefs.DeleteAll ();
 		LoadData ();
-	//	LoadData ();
-		//		Debug.Log ("Data initialized " + profile.Gold);
 	}
 
 	public static bool CheckPrefs(string key){
@@ -133,7 +129,7 @@ public class GameData : MonoBehaviour {
 //		Debug.Log ("JUm sprite char " + unitSpriteList.Count);
 
 		/*QUEST*/
-		achievementSpriteList = new List<Sprite> ();
+		titleSpriteList = new List<Sprite> ();
 		linesFromFile = null;
 		TextAsset questTxt = (TextAsset)Resources.Load ("Data/Quest/list", typeof(TextAsset));
 		string questContent = questTxt.text;
@@ -142,7 +138,7 @@ public class GameData : MonoBehaviour {
 			//		Debug.Log ("len " + linesFromFile[i]);
 			profile.questList.Add(new Quest(i,linesFromFile[i]));		
 			if ( i < 6 ) // 6 jumlah titel
-				achievementSpriteList.Add(LoadAchievementSprite(i));
+				titleSpriteList.Add(LoadTitleSprite(i));
 		}
 
 		skillSpriteList = new List<Sprite> ();
@@ -152,10 +148,10 @@ public class GameData : MonoBehaviour {
 
 	}
 
-	private Sprite LoadAchievementSprite(int id){
+	private Sprite LoadTitleSprite(int id){
 		Sprite sprites = null;
 		//		Debug.Log ("load sprite " + name);
-		sprites = (Sprite)Resources.Load ("Sprite/Achievement/" + id, typeof(Sprite));
+		sprites = (Sprite)Resources.Load ("Sprite/Title/" + id, typeof(Sprite));
 		return sprites;
 	}
 
@@ -183,7 +179,7 @@ public class GameData : MonoBehaviour {
 		playerData = (SkeletonDataAsset)Resources.Load ("Sprite/Character/"+name+"/mySkeldata",typeof(SkeletonDataAsset));
 		
 		playerData.scale = 0.006f;
-		playerData.defaultMix = 0.55f;
+		playerData.defaultMix = 0f;
 		return playerData;
 	}
 	
@@ -235,8 +231,7 @@ public class GameData : MonoBehaviour {
 		profile.skillList [0].IsSelected = true;
 		profile.totalSkillUsed = 1;
 //		Debug.Log ("first play ");
-		profile.CheckQuestAchievement ();
-		profile.Gold = 100000;
+		profile.Gold = 500;
 		//SaveLoad.Save ();
 	}
 }

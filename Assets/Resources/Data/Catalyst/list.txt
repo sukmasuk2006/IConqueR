@@ -1,4 +1,4 @@
-common
-rare
-mythical
-legendary
+Common
+Rare
+Mythical
+Legendary

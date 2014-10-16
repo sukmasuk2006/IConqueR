@@ -12,6 +12,8 @@ public class QuestController : MonoBehaviour {
 	public ScreenData data;
 	public TextMesh completedOne;
 	public TextMesh completedTwo;
+	public TextMesh quantyOne;
+	public TextMesh quantyTwo;
 
 	Quest one, two;
 
@@ -34,6 +36,9 @@ public class QuestController : MonoBehaviour {
 		
 		rewardOne.text = one.RewardMoney.ToString() + "\n\n" + one.RewardDiamond.ToString();
 		rewardTwo.text = two.RewardMoney.ToString() + "\n\n" + two.RewardDiamond;
+
+		quantyOne.text = one.CurrentQuantity + " / " + one.QuantityNeeded;
+		quantyTwo.text = two.CurrentQuantity + " / " + two.QuantityNeeded;
 
 //		Debug.Log ("quest ke  1 id" + one.Id);
 		if (one.IsCompleted)

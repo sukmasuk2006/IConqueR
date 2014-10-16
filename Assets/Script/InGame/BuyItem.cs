@@ -9,30 +9,30 @@ public class BuyItem : MonoBehaviour {
 	public ProfileController profileController;
 	public ScreenData inventoryData;
 	public AudioClip sound;
+	public ConfirmBuy confirm;
+	public GameObject confirmScreen;
 	// Use this for initialization
 
 	void Start () {
 		
 	}
 
-	void OnMouseDown(){
+	void OnMouseUp(){
 		Item i = GameData.shopList [(data.corridorState * 4) + slot];
 		int money = profileController.GetMoneyValue (i.PriceType);
-		if (money - i.Price >= 0) {
-			int value = GameData.shopList [(data.corridorState * 4) + slot].Price;
-			profileController.UpdateGoldAndDiamond(i.PriceType,value);
-			GameData.profile.inventoryList.Add (GameData.shopList [(data.corridorState * 4) + slot]);
-//			Debug.Log("uang terpakai gold " + GameData.profile.Gold +" diam " + GameData.profile.Diamond 
-//			          +" mon " + money );
-//			Debug.Log ("purchased in inventory " + GameData.profile.inventoryList [GameData.profile.inventoryList.Count-1].Name);
-			inventoryData.maxCorridorState = (GameData.profile.inventoryList.Count/4);
-			if (GameData.profile.inventoryList.Count % 4 == 0)
-							inventoryData.maxCorridorState--;
-						inventoryData.UpdateMaxCorridor();
-				} else {
-			Debug.Log("not enough money");		
-		}
-		MusicManager.getMusicEmitter().audio.PlayOneShot(sound);
 
+		if (GameData.gameState != "confirm" && GameData.readyToTween && money >= i.Price) {
+			GameData.readyToTween = false;
+						confirm.text1.text = "Buy " + i.Name;
+						confirm.text2.text = "For " + i.Price + " ? ";
+						confirm.Slot = slot;
+						MusicManager.getMusicEmitter ().audio.PlayOneShot (sound);
+						iTween.MoveTo (confirmScreen, iTween.Hash ("position", new Vector3(0,0,confirmScreen.transform.position.z), "time", 0.1f, "oncomplete", "ReadyTween", "oncompletetarget", gameObject));
+				}
+	}
+	
+	void ReadyTween(){
+		GameData.readyToTween = true;
+		GameData.gameState = "confirm";
 	}
 }

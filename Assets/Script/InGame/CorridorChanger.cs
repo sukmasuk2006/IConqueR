@@ -26,7 +26,13 @@ public class CorridorChanger : MonoBehaviour {
 			data.corridorState--;
 		if (GameData.gameState.Contains ("Shop")) {
 			for ( int i = 0 ; i < controller.Count ; i++ )
-				controller[i].GetComponent<ShopSlotSetter>().UpdateSlot ();
+				if ( data.shopState == 0 ){
+					controller[i].GetComponent<ShopSlotSetter>().UpdateSlotGem ();
+					Debug.Log("shopset");
+			}
+			else
+					data.corridorState = 0;
+				
 			corridorState.text = "Page " + (data.corridorState+1).ToString();
 			Debug.Log("setshop");
 		}

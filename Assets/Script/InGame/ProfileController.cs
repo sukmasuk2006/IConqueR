@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
+using UnityEngine;
+using System.Linq;
 using System.Collections.Generic;
 
 public class ProfileController : MonoBehaviour {
@@ -18,7 +18,7 @@ public class ProfileController : MonoBehaviour {
 
 
 	void Start () {
-
+		GameData.gameState = "Map";
 		//Debug.Log ("profile contr current gold " + GameData.gold);
 		levelText.text = "Level " + GameData.profile.Level.ToString ();
 		UpdateGoldAndDiamond (0,0);
@@ -40,14 +40,16 @@ public class ProfileController : MonoBehaviour {
 		diamondText.text = GameData.profile.Diamond.ToString ();
 		goldText.text = GameData.profile.Gold.ToString ();
 		//SaveLoad.Save ();
-		GameData.profile.CheckQuestAchievement ();
+		var m = GameData.profile.questList.Where (x => x.Target.Contains ("gold")).ToList ();
+		foreach (Quest q in m)
+						q.CurrentQuantity = GameData.profile.Gold;
 		SetTitle ();
 		GameData.SaveData ();
 	}
 
 	void SetTitle ()
 	{
-		int i = GameData.profile.CastleDestroyed;
+		int i = GameData.profile.Title;
 		string teks = "";
 		switch (i) {
 		case 0 : teks = "Soldier"; break;
@@ -58,7 +60,7 @@ public class ProfileController : MonoBehaviour {
 		case 5 : teks = "Hero"; break;		
 		}
 		titleText.text = teks;
-		renderer.sprite = GameData.achievementSpriteList [i];
+		renderer.sprite = GameData.titleSpriteList [i];
 	}
 
 	public int GetMoneyValue(int type){

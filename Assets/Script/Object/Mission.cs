@@ -28,6 +28,7 @@ public class Mission
 	private int maxReward;
 	private List<Unit> enemyList;
 	private string enemyListName;
+	private int title; // icon di battle controller
 
 	public string EnemyListName {
 		get {
@@ -45,6 +46,7 @@ public class Mission
 		enemyList = new List<Unit> ();
 //		Debug.Log ("nama " + id);
 		enemyListName = "";
+		title = 0;
 		TextAsset txt = (TextAsset)Resources.Load ("Data/Mission/"+id, typeof(TextAsset));
 		string content = txt.text;
 		string[] linesFromFile = content.Split ("\n" [0]);
@@ -135,6 +137,15 @@ public class Mission
 		}
 		set {
 			maxReward = value;
+		}
+	}
+
+	public int Title {
+		get {
+			return title;
+		}
+		set {
+			title = value;
 		}
 	}
 }

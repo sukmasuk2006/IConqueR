@@ -21,6 +21,7 @@ public class UpgradeSlotSetter : MonoBehaviour {
 			// jika udah ada isinya, masukin invent lagi
 		if (GameData.gameState != "confirm") {
 						tempPosition = targetObject.transform.position;
+						controller.UpgradedSlot = slot;
 						if (controller.SlotList [slot] is Gem || controller.SlotList [slot] is Catalyst) {
 								controller.RemoveASlot (slot);
 								controller.UpdateSemuaGambarDiInventory ();
@@ -28,6 +29,7 @@ public class UpgradeSlotSetter : MonoBehaviour {
 								GameData.readyToTween = false;
 								controller.UpgradedSlot = slot;
 								// cek kalau slot 0 itu gem, dll itu catalyst yg di on-kan buttonya
+							controller.UpdateSemuaGambarDiInventory ();
 
 								iTween.MoveTo (targetObject, iTween.Hash ("position", tweenedObject.transform.position, "time", 0.1f, "onComplete", "ReadyTween", "onCompleteTarget", gameObject));
 

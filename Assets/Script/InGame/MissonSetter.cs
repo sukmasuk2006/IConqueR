@@ -10,26 +10,29 @@ public class MissonSetter : MonoBehaviour {
 	public TextMesh confirmText1;
 	public TextMesh confirmText2;
 	public EnemySetter setter;
+	public int enemyLeaderTitle;
 	private SpriteRenderer render;
+
 	// Use this for initialization
 	void Start () {
 		render = gameObject.GetComponent<SpriteRenderer> ();
 		name.text = GameData.missionList [curr].Name;
 		if (curr > GameData.profile.NextMission) {
-		//	this.gameObject.SetActive(false);
+			this.gameObject.SetActive(false);
 		}
 		if (curr == GameData.profile.NextMission) {
-			if (missionType == "Fortress")
+			if (missionType == "Camp" )
+				this.render.sprite = (Sprite)Resources.Load ("Sprite/Button/icon_attack_yellow", typeof(Sprite));
+			else if (missionType == "Fortress")
 				this.render.sprite = (Sprite)Resources.Load ("Sprite/Button/icon_fortress_yellow", typeof(Sprite));
-			else
+			else if ( missionType == "Castle")
 				this.render.sprite = (Sprite)Resources.Load ("Sprite/Button/icon_crown_yellow", typeof(Sprite));
 		}
 	}
 
-	// pake int, soalnya udah urut
-
-	void OnMouseDown(){
+	void OnMouseUp(){
 		SetInformation ();
+		GameData.missionList [curr].Title = enemyLeaderTitle;
 		GameData.missionType = missionType;
 		GameData.currentMission = curr;
 	}

@@ -42,7 +42,7 @@ public class UpgradeWeapon : MonoBehaviour {
 						CountingPercentages();
 					}
 					else
-						info.text = "Use suitable gem to upgrade!";
+						info.text = w.GemRequired + " class gems required";
 					
 				} else 
 					info.text = "Please insert a Gemstone to upgrade";
@@ -75,4 +75,5 @@ public class UpgradeWeapon : MonoBehaviour {
 		GameData.gameState = "confirm";
 		iTween.MoveTo (confirmScreen,new Vector3(0f,0f,confirmScreen.transform.position.z),0.1f);
 	}
+
 }

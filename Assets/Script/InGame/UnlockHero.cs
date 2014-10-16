@@ -40,8 +40,9 @@ public class UnlockHero : MonoBehaviour {
 						profileController.UpdateGoldAndDiamond(0,GameData.profile.unitList [slot].GoldNeeded);	
 						teks.text = "Select";
 						renderer.sprite = spriteBiru;
-				} else {
-			Debug.Log("gak ada uang");
+		} else if ( GameData.profile.Gold < GameData.profile.unitList [slot].GoldNeeded 
+		           && !GameData.profile.unitList [slot].IsUnlocked ) {
+			warningText.text = "Not enough Gold to Unlock, fight more!";
 		}
 		// gak dipake heronya
 		if (GameData.profile.unitList [slot].IsActive && GameData.profile.unitList [slot].IsUnlocked  && GameData.profile.activeHeroes > 0) {

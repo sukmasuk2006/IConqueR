@@ -16,20 +16,22 @@ public class ShopSlotSetter : MonoBehaviour {
 	public Sprite goldSprite;
 	public Sprite diamondSprite;
 	public SpriteRenderer priceTypeSprite;
+	private Color defaultColor;
 
 	// Use this for initialization
 	void Start () {
-		UpdateSlot ();
+		UpdateSlotGem ();
+		defaultColor = grade.color;
 	}
 	
-	public void UpdateSlot(){
+	public void UpdateSlotGem(){
 		Sprite s = null;
 		if (GameData.shopList.Count > (4 * data.corridorState)+slot) {
-			if ( GameData.shopList[(4 * data.corridorState)+slot] is Gem ){
-				Gem g = (Gem)GameData.shopList[(4 * data.corridorState)+slot];
+			Gem g = (Gem)GameData.shopList[(4 * data.corridorState)+slot];
 				s = GameData.gemSpriteList[g.Id];
 				name.text = g.Name; 
 				grade.text = g.Grade;
+				grade.color = GetColor(g.Grade);
 				str.text = "Str + " + g.Stats.Str.ToString();
 				agi.text = "Agi + " + g.Stats.Agi.ToString();
 				vit.text = "Vit + " + g.Stats.Vit.ToString();
@@ -38,24 +40,37 @@ public class ShopSlotSetter : MonoBehaviour {
 					priceTypeSprite.sprite = goldSprite;
 				else
 					priceTypeSprite.sprite = diamondSprite;
-			}
-			else{
-				Catalyst g = (Catalyst)GameData.shopList[(4 * data.corridorState)+slot];
-				s = GameData.catalystSpriteList[g.Id];
-				name.text = g.Desc; 
-				grade.text = g.Name;
-				str.text = "Increase upgrade";
-				agi.text = "success rate";
-				vit.text = "by " + g.SuccessRate.ToString();
-				price.text = g.Price.ToString(); 
-				priceTypeSprite.sprite = goldSprite;
-			}
 		}
 		spriteRenderer.sprite = s;
 	}
+
+	public void UpdateSlotCatalyst(){
+		Sprite s = null;
+		Catalyst g = (Catalyst)GameData.shopList[(4 * data.corridorState)+slot];
+		s = GameData.catalystSpriteList[g.Id];
+		name.text = g.Desc; 
+		grade.text = g.Name;
+		grade.color = GetColor(g.Name);
+		str.text = "Increase upgrade";
+		agi.text = "success rate";
+		vit.text = "by " + g.SuccessRate.ToString();
+		price.text = g.Price.ToString(); 
+		priceTypeSprite.sprite = goldSprite;
+		spriteRenderer.sprite = s;
+	}
 	
-	// Update is called once per frame
-	void Update () {
-		
+	Color GetColor(string tipe){
+		Color ret = new Color();
+		Debug.Log ("UPDET COLOR " + tipe);
+
+		switch (tipe.Trim()) {
+		case "Common" : ret = Color.white;break;//white
+		case "Uncommon" : ret = new Color(0,1,1,1);break; //biru muda
+		case "Rare" : ret = defaultColor;break; // 
+		case "Mythical" : ret = new Color(1,1,0);break;
+		case "Legendary" : ret = Color.green;break;//new Color(19,255,0);break;		
+		}
+
+		return ret;
 	}
 }

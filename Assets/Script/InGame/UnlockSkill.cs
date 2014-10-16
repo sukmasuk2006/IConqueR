@@ -22,19 +22,19 @@ public class UnlockSkill : MonoBehaviour {
 		if (!GameData.profile.skillList [slot].IsUnlocked) {
 			renderer.sprite = deselectedSprite;
 			buttonInfo.text = "unlock";
-			priceText.text = s.Price.ToString();
+			priceText.text = s.Price + "";
 		}
 		//Debug.Log ("awal2 slot " + slot + " isunlock " + GameData.profile.skillList [slot].IsUnlocked + " selec " + GameData.profile.skillList [slot].IsSelected);
 		else if (GameData.profile.skillList [slot].IsSelected && GameData.profile.skillList [slot].IsUnlocked) {
 				renderer.sprite = selectedSprite;
 				buttonInfo.text = "deselect";
 				frame.SetActive(false);
-				priceText.text = s.Price.ToString();
+			priceText.gameObject.SetActive(false);
 		} else if (!GameData.profile.skillList [slot].IsSelected && GameData.profile.skillList [slot].IsUnlocked) {
 				renderer.sprite = deselectedSprite;		
 				buttonInfo.text = "select";
 				frame.SetActive(false);
-			priceText.text = s.Price.ToString();
+			priceText.gameObject.SetActive(false);
 		} 
 	}
 
@@ -50,6 +50,7 @@ public class UnlockSkill : MonoBehaviour {
 			profileController.UpdateGoldAndDiamond(0,GameData.profile.skillList[slot].Price);
 						renderer.sprite = deselectedSprite;
 						buttonInfo.text = "select";
+			priceText.gameObject.SetActive(false);
 		} else {
 			if ( GameData.profile.Gold < GameData.profile.skillList[slot].Price )
 				text.text = "Not enough money..";
