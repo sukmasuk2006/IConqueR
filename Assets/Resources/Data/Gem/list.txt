@@ -18,10 +18,10 @@ Fire Stone
 Wind Stone
 Water Stone
 Earth Stone
-Helios Platinum
-Hermes Platinum
-Poseidon Platinum
-Gaia Platinum
+Dark Helios
+Dark Hermes
+Dark Poseidon
+Dark Gaia
 Helios Ruby
 Hermes Ruby
 Poseidon Ruby
@@ -30,7 +30,7 @@ Helios
 Hermes
 Poseidon
 Gaia
-Geyni
-Angin
-Banyu
-Lemah
+Omega
+Terra
+Magna
+Exa

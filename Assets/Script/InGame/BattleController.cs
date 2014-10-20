@@ -38,6 +38,8 @@ public class BattleController : MonoBehaviour {
 	// 0 => battle
 	// 1 => player win
 	// 3=> lose , kenapa 3? biar bisa dibuat pembagi sekalian
+	private int totalHero;
+	private int totalEnemy;
 	private int battleState = 0;
 	private int nextExp;
 	private float scaleX;
@@ -98,6 +100,7 @@ public class BattleController : MonoBehaviour {
 				if ( u.IsUnlocked && u.Unit.HeroId != 99){
 					GameData.profile.formationList[i].Unit.Refresh();
 					heroList[i].SetActive(true);
+					
 //					heroList[i].GetComponent<SpriteRenderer>().sprite = u.Unit.Sprites;
 					float level = 0; 
 					level = 1 + (GameData.profile.Level * 0.05f);
@@ -110,6 +113,7 @@ public class BattleController : MonoBehaviour {
 					i++;
 				}
 		}
+		totalHero = i;
 		i = 0;
 		tempStats = new List<Unit> ();
 		for ( i = 0 ; i < activeEnemyList.Count ; i++) {
@@ -143,7 +147,8 @@ public class BattleController : MonoBehaviour {
 	
 		ConstantHeroHealthLocalScale = globalHeroHealthBar.transform.localScale;
 		ConstantEnemyHealthLocalScale = globalEnemyHealthBar.transform.localScale;
-
+		totalEnemy = mission.EnemyList.Count;
+	
 		//Debug.Log ("health awal" + heroTotalHealth);
 		ConstantHeroHealth = heroTotalHealth;
 		ConstantEnemyHealth = enemyTotalHealth;
@@ -184,6 +189,7 @@ public class BattleController : MonoBehaviour {
 			pauseScreen.GetComponentInChildren<Unpause>().UnPause();
 		}
 	}
+
 	public void ReceiveDamage(string target,float damage){
 		//if (battleState == 0) {
 				if (target.Contains ("enemy")) {
@@ -192,6 +198,36 @@ public class BattleController : MonoBehaviour {
 						UpdateHeroHealthBar (damage);
 				}
 		//}
+	}
+
+	public int TotalHero {
+		get {
+			return totalHero;
+		}
+		set {
+			totalHero = value;
+			Debug.Log("hero die " + totalHero);
+			if ( totalHero == 0 ){
+				battleState = 5;
+				Lose();
+				Debug.Log("LOSEEE");
+			}
+		}
+	}
+
+	public int TotalEnemy {
+		get {
+			return totalEnemy;
+		}
+		set {
+			totalEnemy = value;
+			Debug.Log("enemy die " + totalEnemy);
+			if ( TotalEnemy == 0 ){ 
+				battleState = 1;
+				Win();
+				Debug.Log("WINN");
+			}
+		}
 	}
 
 	private void UpdateHeroHealthBar(float damage)
@@ -204,16 +240,15 @@ public class BattleController : MonoBehaviour {
 		                           ConstantHeroHealthLocalScale.y,
 		                           ConstantHeroHealthLocalScale.z);
 		globalHeroHealthBar.transform.localScale = temp; 
-		int total = heroList.Where (x => x.activeInHierarchy).ToList ().Count;
-		Debug.Log ("total hero " + total);
-		if (heroTotalHealth <= 0 || total == 0) {
+//		int total = heroList.Where (x => x.activeInHierarchy).ToList ().Count;
+//		Debug.Log ("total hero " + total);
+/*		if (heroTotalHealth <= 0 || total == 0) {
 			battleState = 5;		
 			foreach(GameObject g in heroList){
 				if ( g.activeInHierarchy )
 					g.GetComponent<HeroController>().MoveToGraveyard();
 			}
-			Lose();
-		}
+		}*/
 	}
 
 	private void UpdateEnemyHealthBar(float damage){
@@ -227,9 +262,9 @@ public class BattleController : MonoBehaviour {
 		                            ConstantEnemyHealthLocalScale.y,
 		                            ConstantEnemyHealthLocalScale.z);
 		globalEnemyHealthBar.transform.localScale = temp2; 
-
+		/*
 		int total = enemyList.Where (x => x.activeInHierarchy).ToList ().Count;
-		Debug.Log ("total enemy " + total);
+//		Debug.Log ("total enemy " + total);
 		if (enemyTotalHealth <= 0 || total == 0) {
 			battleState = 1;	
 			foreach (GameObject g in enemyList) {
@@ -238,8 +273,7 @@ public class BattleController : MonoBehaviour {
 					h.MoveToGraveyard();
 				}
 			}
-			Win();
-		}
+		}*/
 	}
 
 	// WIINNNN!!
@@ -268,7 +302,7 @@ public class BattleController : MonoBehaviour {
 
 		ShowOnReport ();
 //		Debug.Log ("win " + GameData.profile.DefeatedArmy);
-		GameData.SaveData ();
+
 	}
 
 	void Lose(){
@@ -276,8 +310,6 @@ public class BattleController : MonoBehaviour {
 		winloseText.text = "You Lose!";
 		GetReward ();
 		ShowOnReport ();
-	
-		GameData.SaveData ();
 		Debug.Log ("lose");
 	}
 
@@ -287,10 +319,6 @@ public class BattleController : MonoBehaviour {
 		isGetReward = Random.Range (0, 99);
 		goldEarn = mission.GoldReward / battleState;
 		GameData.profile.Gold += goldEarn;
-		var m = GameData.profile.questList.Where (x => x.Target.Contains ("gold")).ToList ();
-		foreach (Quest q in m)
-			q.CurrentQuantity = GameData.profile.Gold;
-
 		// semakin tinggi misi, semakin susah dpt reward
 		if (isGetReward < itemChance - GameData.currentMission && battleState == 1) {
 			int get = mission.GetReward;
@@ -314,7 +342,7 @@ public class BattleController : MonoBehaviour {
 			activeEnemyList[i].CopyStats(tempStats[i].HeroId,tempStats[i]);
 		}
 		iTween.MoveTo (reportScreen, iTween.Hash ("position", reportTargetPosition, "time", 1.0f,"delay",3.0f));
-
+		GameData.SaveData ();
 	}
 
 	void ScaleExpBar(){
@@ -366,8 +394,8 @@ public class BattleController : MonoBehaviour {
 					                              "time",0.5f,"delay",4.5f));
 				}
 				u.CurrentExp += reward;
+				i++;
 			}
-			i++;
 		}
 		GameData.profile.RefreshFormation ();
 		mission = null;

@@ -88,7 +88,7 @@ public class Unit : UnitStatus {
 	{
 		SaveStatus (job); // save level
 		PlayerPrefs.SetInt(job+"currentExp"+GameData.tesId,currentExp);
-		Debug.Log ("save job " + job + " " + currentExp);
+//		Debug.Log ("save job " + job + " " + currentExp);
 		PlayerPrefs.SetInt(job+"isUnlocked"+GameData.tesId,(isUnlocked ? 1 : 0 ));
 		PlayerPrefs.SetInt(job+"isActive"+GameData.tesId,(isActive ? 1 : 0 ));
 		weapon.Save();
@@ -97,7 +97,7 @@ public class Unit : UnitStatus {
 	public void Load(){
 		LoadStatus (job); // load job status
 		currentExp = PlayerPrefs.GetInt(job+"currentExp"+GameData.tesId);
-		Debug.Log ("load job " + job + " " + currentExp);
+	//	Debug.Log ("load job " + job + " " + currentExp);
 		isUnlocked = (PlayerPrefs.GetInt(job+"isUnlocked"+GameData.tesId) != 0);
 		isActive = (PlayerPrefs.GetInt(job+"isActive"+GameData.tesId) != 0);
 		nextExp = base_exp;

@@ -34,9 +34,11 @@ public class Drag : MonoBehaviour {
 	}
 
 	void OnMouseUp(){
-		StayOnTrack ();
-		GameData.profile.MapPos = gameObject.transform.position;
-		GameData.SaveData ();
+		if (GameData.gameState == "Map") {
+			StayOnTrack ();
+			GameData.profile.MapPos = gameObject.transform.position;
+			GameData.SaveData ();
+		}
 	}
 
 	void StayOnTrack(){

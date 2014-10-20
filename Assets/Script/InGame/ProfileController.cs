@@ -15,10 +15,13 @@ public class ProfileController : MonoBehaviour {
 	private float scaleAwal = 1.1f;
 	private float scale = 0f;
 	private float expTujuan;
-
+	public GameObject confirmExitScreen;
+	private string prevGameState;
+	public TextMesh text1;
+	public TextMesh text2;
 
 	void Start () {
-		GameData.gameState = "Map";
+	GameData.gameState = "Map";
 		//Debug.Log ("profile contr current gold " + GameData.gold);
 		levelText.text = "Level " + GameData.profile.Level.ToString ();
 		UpdateGoldAndDiamond (0,0);
@@ -70,6 +73,27 @@ public class ProfileController : MonoBehaviour {
 		else
 			money = GameData.profile.Diamond;
 		return money;
+	}
+
+	void Update(){
+		Debug.Log ("state  " + GameData.gameState);
+		if (Input.GetKeyDown (KeyCode.Escape) && GameData.gameState != "ConfirmExit") {
+			iTween.MoveTo ( confirmExitScreen,iTween.Hash("position",new Vector3(0f,0f,-7f),"time", 0.1f,"onComplete","ReadyTween","onCompleteTarget",gameObject));
+			//sound.audio.PlayOneShot (sound.audio.clip);
+			prevGameState = GameData.gameState;
+			text1.text = "Do you want to exit game?";
+			text2.text = "";
+			GameData.gameState = "ConfirmExit";	
+			GameData.readyToTween = false;	
+		}
+		else if (Input.GetKeyDown (KeyCode.Escape) && GameData.readyToTween && GameData.gameState == "ConfirmExit") {
+			iTween.MoveTo ( confirmExitScreen,iTween.Hash("position",new Vector3(0f,-12f,-7f),"time", 0.1f,"onComplete","ReadyTween","onCompleteTarget",gameObject));
+			GameData.gameState = prevGameState;	
+		}
+	}
+
+	void ReadyTween(){
+		GameData.readyToTween = true;
 	}
 
 }

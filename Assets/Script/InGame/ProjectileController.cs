@@ -25,8 +25,8 @@ public class ProjectileController : MonoBehaviour {
 	public void Launch(){
 		Debug.Log("Launch");
 		IsLaunch = true;
-		
-		rigidbody2D.AddForce(new Vector2(heroController.MovementSpeed * heroController.direction,0f));
+		rigidbody2D.velocity = Vector2.zero;
+		rigidbody2D.AddForce(new Vector2(500f * heroController.direction,0f));
 	}
 
 

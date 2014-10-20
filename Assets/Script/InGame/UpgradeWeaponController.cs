@@ -100,7 +100,7 @@ public class UpgradeWeaponController : MonoBehaviour {
 
 	public void UpdateSemuaGambarDiInventory(){
 		for ( int i = 0 ; i < selectItemButton.Count ; i++ )
-			selectItemButton[i].UpdateSlot();
+			selectItemButton[i].UpdateSlotForUpgrade();
 	}
 
 	// jika sudah ada gem/catalyst terpasang, di klik akan balek ke invent

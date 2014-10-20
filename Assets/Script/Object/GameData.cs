@@ -42,7 +42,8 @@ public class GameData : MonoBehaviour {
 		InitializePersistent ();
 		InitializeGameData ();
 	//	PlayerPrefs.DeleteAll ();
-		LoadData ();
+		profile.Gold = 50220;
+	//	LoadData ();
 	}
 
 	public static bool CheckPrefs(string key){
@@ -231,7 +232,6 @@ public class GameData : MonoBehaviour {
 		profile.skillList [0].IsSelected = true;
 		profile.totalSkillUsed = 1;
 //		Debug.Log ("first play ");
-		profile.Gold = 500;
 		//SaveLoad.Save ();
 	}
 }

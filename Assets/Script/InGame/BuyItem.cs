@@ -11,6 +11,9 @@ public class BuyItem : MonoBehaviour {
 	public AudioClip sound;
 	public ConfirmBuy confirm;
 	public GameObject confirmScreen;
+	public SpriteRenderer pricetype;
+	public Sprite gold;
+	public Sprite diamond;
 	// Use this for initialization
 
 	void Start () {
@@ -21,10 +24,11 @@ public class BuyItem : MonoBehaviour {
 		Item i = GameData.shopList [(data.corridorState * 4) + slot];
 		int money = profileController.GetMoneyValue (i.PriceType);
 
-		if (GameData.gameState != "confirm" && GameData.readyToTween && money >= i.Price) {
+		if ( GameData.readyToTween && money >= i.Price) {
 			GameData.readyToTween = false;
 						confirm.text1.text = "Buy " + i.Name;
-						confirm.text2.text = "For " + i.Price + " ? ";
+						confirm.text2.text = "For " + i.Price +" ? ";
+						pricetype.sprite = i.PriceType == 0 ? gold : diamond;
 						confirm.Slot = slot;
 						MusicManager.getMusicEmitter ().audio.PlayOneShot (sound);
 						iTween.MoveTo (confirmScreen, iTween.Hash ("position", new Vector3(0,0,confirmScreen.transform.position.z), "time", 0.1f, "oncomplete", "ReadyTween", "oncompletetarget", gameObject));
@@ -33,6 +37,6 @@ public class BuyItem : MonoBehaviour {
 	
 	void ReadyTween(){
 		GameData.readyToTween = true;
-		GameData.gameState = "confirm";
+		GameData.gameState = "ConfirmBuy";
 	}
 }

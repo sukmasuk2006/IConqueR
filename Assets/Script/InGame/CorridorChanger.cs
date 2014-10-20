@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 
 public class CorridorChanger : MonoBehaviour {
@@ -24,26 +24,31 @@ public class CorridorChanger : MonoBehaviour {
 		// geser kiri
 		else if ( dir < 0 && data.corridorState > 0 )
 			data.corridorState--;
-		if (GameData.gameState.Contains ("Shop")) {
-			for ( int i = 0 ; i < controller.Count ; i++ )
-				if ( data.shopState == 0 ){
-					controller[i].GetComponent<ShopSlotSetter>().UpdateSlotGem ();
-					Debug.Log("shopset");
-			}
-			else
-					data.corridorState = 0;
+		if (GameData.gameState.Contains ("Buy")) {
+						for (int i = 0; i < controller.Count; i++)
+								if (data.shopState == 0) {
+										controller [i].GetComponent<ShopSlotSetter> ().UpdateSlotGem ();
+										Debug.Log ("shopset");
+								} else
+										data.corridorState = 0;
 				
-			corridorState.text = "Page " + (data.corridorState+1).ToString();
-			Debug.Log("setshop");
-		}
-		else if (GameData.gameState.Contains ("Upgrade")) {
-			for ( int i = 0 ; i < controller.Count ; i++ ){
-				controller[i].GetComponent<InventorySetter>().UpdateSlot ();
-				controller[i].GetComponent<InventorySetter>().CheckButton ();
-			corridorState.text = "Page " + (data.corridorState+1).ToString();
-			Debug.Log("setupgrade");
-			}
-		} else if (GameData.gameState.Contains ("Quest")) {
+						corridorState.text = "Page " + (data.corridorState + 1).ToString ();
+						Debug.Log ("setshop");
+				} else if (GameData.gameState.Contains ("Upgrade")) {
+						for (int i = 0; i < controller.Count; i++) {
+								controller [i].GetComponent<InventorySetter> ().UpdateSlotForUpgrade ();
+								controller [i].GetComponent<InventorySetter> ().CheckButtonForUpgrade ();
+								corridorState.text = "Page " + (data.corridorState + 1).ToString ();
+								Debug.Log ("setupgrade");
+						}
+				} else if (GameData.gameState.Contains ("Sell")) {
+						for (int i = 0; i < controller.Count; i++) {
+								controller [i].GetComponent<InventorySetter> ().UpdateSlotForSell ();
+								corridorState.text = "Page " + (data.corridorState + 1).ToString ();
+								Debug.Log ("setupgrade");
+						}
+				}
+			 else if (GameData.gameState.Contains ("Quest")) {
 			Debug.Log("setquest");
 			controller[0].GetComponent<QuestController>().SetQuest();					
 			corridorState.text = "Page " + (data.corridorState+1).ToString();

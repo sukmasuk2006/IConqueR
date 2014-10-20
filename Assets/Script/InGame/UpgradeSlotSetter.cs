@@ -49,7 +49,7 @@ public class UpgradeSlotSetter : MonoBehaviour {
 		iTween.MoveTo (tweenedObject, tempPosition,0.3f);		
 //		Debug.Log ("Oncomplete");
 		foreach (InventorySetter i in controller.selectItemButton){
-			i.CheckButton ();
+			i.CheckButtonForUpgrade ();
 		}
 	}
 }

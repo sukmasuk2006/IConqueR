@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 
 public class UpgradeWeaponSetter : MonoBehaviour {
@@ -14,7 +14,7 @@ public class UpgradeWeaponSetter : MonoBehaviour {
 	void OnMouseDown(){
 		controller.InitializeWeapon ();
 		for ( int i = 0 ; i < listInv.Count ; i++ ){
-			listInv[i].UpdateSlot();
+			listInv[i].UpdateSlotForUpgrade();
 		}
 	}
 }

@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: ac2ad25885316e245968b36b4c8cff53
+guid: 8bcb038e84c54e547b8372abdc2aa739
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Geyni
+    21300000: dark hermes
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -22,13 +22,13 @@ TextureImporter:
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
-  textureFormat: -3
-  maxTextureSize: 128
+  textureFormat: -1
+  maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: 1
+    aniso: -1
     mipBias: -1
-    wrapMode: 1
+    wrapMode: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50

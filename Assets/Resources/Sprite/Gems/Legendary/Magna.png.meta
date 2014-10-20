@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: ddc082e83aa26754183ce7cadaa80106
+guid: 887e619d57c708c418e0d04a2b347965
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Angin
+    21300000: Magna
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -22,13 +22,13 @@ TextureImporter:
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
-  textureFormat: -3
-  maxTextureSize: 128
+  textureFormat: -1
+  maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: 1
+    aniso: -1
     mipBias: -1
-    wrapMode: 1
+    wrapMode: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50

@@ -94,12 +94,15 @@ public class HeroController : MonoBehaviour {
 	}
 
 	public void CheckState(){
-		if (this.stats.HealthPoint <= 0) {
+		if (this.stats.HealthPoint <= 0 && !isDeath) {
 			isDeath = true;
+			if ( name.Contains("hero")) controller.TotalHero--;
+			else if ( name.Contains("enemy")) controller.TotalEnemy--;
+			Debug.Log("name " + name + " die");
 			MoveToGraveyard();
 		}
 		// jika masih battle
-		if (controller.BatlleState == 0 && GameData.gameState != "Paused") {
+		if (controller.BatlleState == 0 && GameData.gameState != "Paused" && !isDeath) {
 			attackSpeed -= Time.deltaTime;
 //			Debug.Log("can cont");
 			// check attack time
@@ -141,7 +144,7 @@ public class HeroController : MonoBehaviour {
 								targetUnit = coll.gameObject.GetComponent<HeroController> ();
 								if (isAttack && attackType == 0) {
 										if (animator.state.GetCurrent (1) == null) {
-						Debug.Log("name " + name + "dodmage 0");
+//						Debug.Log("name " + name + "dodmage 0");
 												animator.state.ClearTrack (0);
 												animator.state.SetAnimation (1, "attack", false);
 												animator.state.GetCurrent (1).Complete += HandleComplete;
@@ -196,13 +199,13 @@ public class HeroController : MonoBehaviour {
 				// damage critical atau tidak, dimasukkan ke unit untuk dihitung evasion
 				//Debug.Log("damaged unit " + gameObject.name +" health " + stats.HealthPoint);
 				float damage = h.stats.ReceiveDamage(stats.Damage,stats.IsCritical);
-				//Debug.Log(" damage " + damage);
+				h.UpdateHealthBar ();
+			//Debug.Log(" damage " + damage);
 				if ( !h.CheckIsCornered() ) // jika gk kepepet nusuhnya, pukul mundur
 					h.PushForward(force);
-			stats.IsCritical = false; // set critical ke semula, tapi chance tetep
+				stats.IsCritical = false; // set critical ke semula, tapi chance tetep
 				controller.ReceiveDamage (target, damage);
-				h.UpdateHealthBar ();
-			GetReadyForNextAttack ();
+				GetReadyForNextAttack ();
 		}
 	}
 
@@ -212,11 +215,11 @@ public class HeroController : MonoBehaviour {
 		movementSpeed = stats.Movement;
 		animator.state.ClearTracks ();
 		animator.state.AddAnimation (0, "run", true, -0.33f);
-		if (animator.state.GetCurrent (0) == null) {
-			Debug.Log("1 null");		
-		}
-		else
-			Debug.Log("1 gak null");	
+		//if (animator.state.GetCurrent (0) == null) {
+		//	Debug.Log("1 null");		
+		//}
+		//else
+		//	Debug.Log("1 gak null");	
 		animator.state.SetAnimation (0, "run", true);
 	}
 
@@ -243,12 +246,13 @@ public class HeroController : MonoBehaviour {
 			foreach( Quest q in m )
 				q.CurrentQuantity++;
 		}
-		transform.position = new Vector2 (-11f, transform.position.y);
+		isAttack = false;
+		rigidbody2D.velocity = Vector2.zero;
+		transform.position = new Vector2 (-14f * direction, transform.position.y);
 		projectile.SetActive(false);
 		stats.HealthPoint = 0f;
-		UpdateHealthBar ();
-		this.gameObject.SetActive (false);	
-//		Debug.Log("DIIEEEE");
+		//UpdateHealthBar ();
+		//this.gameObject.SetActive (false);	
 	}
 
 	void InitializeWeapon(){
