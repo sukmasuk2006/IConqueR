@@ -10,6 +10,7 @@ public class CancelUpgrade : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
-		controller.RemoveSlot ();
+		if ( GameData.readyToTween )
+			controller.RemoveSlot ();
 	}
 }

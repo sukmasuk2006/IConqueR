@@ -14,6 +14,8 @@ public class SelectItem : MonoBehaviour {
 	private Vector3 tempPosition;
 	public ConfirmBuy confirm;
 	public SpriteRenderer priceType;
+	public Sprite gold;
+	public Sprite diamond;
 	// Use this for initialization
 	void Start () {
 	
@@ -55,9 +57,11 @@ public class SelectItem : MonoBehaviour {
 			}
 				else if ( GameData.gameState == "Sell" ){
 				iTween.MoveTo ( confirmScreen,iTween.Hash("position",new Vector3(0,0,-7),"time", 0.1f,"onComplete","ReadyTween2","onCompleteTarget",gameObject));
+				Item i = GameData.profile.inventoryList [(4 * data.corridorState) + slot];
 				confirm.Slot = slot;
-				confirm.text1.text = "Sell " + GameData.profile.inventoryList [(4 * data.corridorState) + slot].Name;
-				confirm.text2.text = "For " + GameData.profile.inventoryList [(4 * data.corridorState) + slot].Price/2 + " ? ";
+				priceType.sprite = i.PriceType == 0 ? gold : diamond;
+				confirm.text1.text = "Sell " + i.Name;
+				confirm.text2.text = "For " + i.Price/2 + " ? ";
 				GameData.gameState = "ConfirmSell";	
 			}
 			//sound.audio.PlayOneShot (sound.audio.clip);

@@ -70,7 +70,7 @@ public class InventorySetter : MonoBehaviour {
 	}
 
 	private void UpdateGem(List<Item> item){
-		Debug.Log("CARI GEM");
+	//	Debug.Log("CARI GEM");
 		try {
 			Gem g = (Gem)item[(4 * data.corridorState) + slot];
 			s = GameData.gemSpriteList[g.Id];
@@ -83,7 +83,7 @@ public class InventorySetter : MonoBehaviour {
 			price.text = "";
 		}
 		catch{
-			Debug.Log("GAK NEMU GEM");
+//			Debug.Log("GAK NEMU GEM");
 			s = null;
 			nameTxt.text = "";
 			grade.text = "";

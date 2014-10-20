@@ -31,6 +31,7 @@ public class SimpleButtonTween : MonoBehaviour {
 		//HOTween.To(tweenedObject,0.5f,"position",targetObject.transform.position);
 		tempPosition = targetObject.transform.position;
 		
+		Debug.Log (" Klik  " + GameData.readyToTween);
 		if (GameData.readyToTween  ) {
 			GameData.readyToTween = false;
 			iTween.MoveTo ( targetObject,iTween.Hash("position",tweenedObject.transform.position,"time", 0.1f,"onComplete","ReadyTween","onCompleteTarget",gameObject));

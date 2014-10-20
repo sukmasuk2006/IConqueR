@@ -72,6 +72,6 @@ public class ConfirmBuy : MonoBehaviour {
 	}
 
 	void ReadyTween(){
-		GameData.readyToTween = true;
+	//	GameData.readyToTween = true;
 	}
 }

@@ -61,7 +61,7 @@ public class ShopSlotSetter : MonoBehaviour {
 	
 	Color GetColor(string tipe){
 		Color ret = new Color();
-		Debug.Log ("UPDET COLOR " + tipe);
+//		Debug.Log ("UPDET COLOR " + tipe);
 
 		switch (tipe.Trim()) {
 		case "Common" : ret = Color.white;break;//white

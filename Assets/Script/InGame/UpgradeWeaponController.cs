@@ -30,6 +30,7 @@ public class UpgradeWeaponController : MonoBehaviour {
 	public TextMesh upgradeInfoText;
 	public TextMesh toText;
 	private bool success;
+	public ParticleSystem particleSystem;
 
 	void Start () {
 		success = false;
@@ -145,6 +146,7 @@ public class UpgradeWeaponController : MonoBehaviour {
 		progressbar.transform.localScale = new Vector3 (0f, progressbar.transform.localScale.y,
 		                                               progressbar.transform.localScale.z);
 
+		Debug.Log (" process upgrade " + GameData.readyToTween);
 		for (int i = 0; i < 100; i++) {
 			penentu = Random.Range(0,100);
 			chances = penentu % 2 == 1 ? chances+1 : chances;
@@ -155,7 +157,7 @@ public class UpgradeWeaponController : MonoBehaviour {
 		iTween.ScaleTo (progressbar, iTween.Hash("scale", new Vector3(1.5f,progressbar.transform.localScale.y,
 		                                                              progressbar.transform.localScale.z),
 		                                    "time", 5f,
-		                                    "delay",0f,"oncomplete","ReadyTween","oncompletetarget",gameObject));
+		                                    "easetype","linear","oncomplete","ReadyTween","oncompletetarget",gameObject));
 		// misal dapat 100-succes rate 10 => 90 , semakin kecil, kemungkinan naik semakin besar
 		//float temp = Random.Range (0, 100) - weaponData.SuccessRate;
 		//Debug.Log ("persentase " + temp + " " + percentages);
@@ -170,6 +172,7 @@ public class UpgradeWeaponController : MonoBehaviour {
 			Gem g = (Gem)slotList [0];
 			weaponData.Upgrade (g.Stats);
 			upgradeInfoText.text = "SUCCESSFULLY UPGRADED!";
+			particleSystem.Play();
 		} else {
 			/// jika gagal naik dong persentasinya
 			/// 
@@ -177,7 +180,9 @@ public class UpgradeWeaponController : MonoBehaviour {
 			weaponData.SuccessRate ++;		
 		}
 		UpdateWeaponInfo ();
-		
+		GameData.readyToTween = true;
+		Debug.Log (" habis upgrade " + GameData.readyToTween);
+
 		// hilanghkan semua gem+catalyst
 		AfterUpgradeAttempt();
 		GameData.SaveData ();

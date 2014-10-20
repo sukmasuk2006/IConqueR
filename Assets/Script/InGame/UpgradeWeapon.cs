@@ -73,6 +73,7 @@ public class UpgradeWeapon : MonoBehaviour {
 		if ( GameData.readyToTween )
 			controller.Percentages = percentages;
 		GameData.gameState = "confirm";
+
 		iTween.MoveTo (confirmScreen,new Vector3(0f,0f,confirmScreen.transform.position.z),0.1f);
 	}
 

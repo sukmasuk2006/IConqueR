@@ -54,7 +54,7 @@ public class SetHeroOnFormation : MonoBehaviour {
 	void ReadyTween(){
 		GameData.readyToTween = true;
 		iTween.MoveTo (tweenedObject, tempPosition,0.3f);		
-		Debug.Log ("Oncomplete");	
+//		Debug.Log ("Oncomplete");	
 		MusicManager.getMusicEmitter().audio.PlayOneShot(sound);
 
 	}

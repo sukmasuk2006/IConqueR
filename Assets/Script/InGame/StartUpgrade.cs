@@ -15,18 +15,17 @@ public class StartUpgrade : MonoBehaviour {
 	void OnMouseDown(){
 		if (button) {// yes
 			controller.StartCrafting();	
-	
+			GameData.readyToTween = false;			
 		} //no
 		else {
+
 		}
 		MusicManager.getMusicEmitter().audio.PlayOneShot(sound);
-
-		iTween.MoveTo ( screen,iTween.Hash("position",new Vector3(0,-12f,-5f),"time", 0.1f,"oncomplete","ReadyTween","oncompletetarget",gameObject));
+		iTween.MoveTo (screen, iTween.Hash ("position", new Vector3 (0, -12f, -5f), "time", 0.1f, "oncomplete", "ReadyTween", "oncompletetarget", gameObject));
 
 	}
 
 	void ReadyTween(){
-		GameData.readyToTween = true;
-		GameData.gameState = "";
+	//	GameData.gameState = "";
 	}
 }
