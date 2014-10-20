@@ -1,6 +1,6 @@
 Sentiyard
-150
-715
+70
+700
 0
 7
 knight

@@ -22,13 +22,18 @@ public class UpgradeWeaponController : MonoBehaviour {
 	private float totalAgi;
 	private float totalVit;
 	public GameObject confirmationScreen;
+	public GameObject progressbar;
 	private int upgradedSlot;
 	private List<Item> slotList;
 	private float percentages;
 	public TextMesh fromText;
+	public TextMesh upgradeInfoText;
 	public TextMesh toText;
+	private bool success;
 
 	void Start () {
+		success = false;
+
 		InitilaizeSlot ();
 	}
 
@@ -133,27 +138,52 @@ public class UpgradeWeaponController : MonoBehaviour {
 
 	// START UPGRADE!
 	public void StartCrafting(){
-		bool success = false;
+		GameData.readyToTween = false;
+		int chances = 0;
+		int penentu = 0;
+		float failpercentages;
+		progressbar.transform.localScale = new Vector3 (0f, progressbar.transform.localScale.y,
+		                                               progressbar.transform.localScale.z);
+
+		for (int i = 0; i < 100; i++) {
+			penentu = Random.Range(0,100);
+			chances = penentu % 2 == 1 ? chances+1 : chances;
+		}
+		failpercentages = 100 - percentages;
+		success = chances > failpercentages ? true : false;
+
+		iTween.ScaleTo (progressbar, iTween.Hash("scale", new Vector3(1.5f,progressbar.transform.localScale.y,
+		                                                              progressbar.transform.localScale.z),
+		                                    "time", 5f,
+		                                    "delay",0f,"oncomplete","ReadyTween","oncompletetarget",gameObject));
 		// misal dapat 100-succes rate 10 => 90 , semakin kecil, kemungkinan naik semakin besar
-		float temp = Random.Range (0, 100) - weaponData.SuccessRate;
-		Debug.Log ("persentase " + temp + " " + percentages);
-		if (temp < percentages) {
-						success = true;
-						weaponData.SuccessRate = 0;
-						Gem g = (Gem)slotList [0];
-						weaponData.Upgrade (g.Stats);
-						UpdateWeaponInfo ();
-				} else {
+		//float temp = Random.Range (0, 100) - weaponData.SuccessRate;
+		//Debug.Log ("persentase " + temp + " " + percentages);
+	
+
+	}
+
+	void ReadyTween(){
+		if (success) {
+			//		success = true;
+			weaponData.SuccessRate = 0;
+			Gem g = (Gem)slotList [0];
+			weaponData.Upgrade (g.Stats);
+			upgradeInfoText.text = "SUCCESSFULLY UPGRADED!";
+		} else {
 			/// jika gagal naik dong persentasinya
 			/// 
+			upgradeInfoText.text = "FAILED!";
 			weaponData.SuccessRate ++;		
 		}
-		Debug.Log("temp " + temp);
+		UpdateWeaponInfo ();
+		
 		// hilanghkan semua gem+catalyst
 		AfterUpgradeAttempt();
 		GameData.SaveData ();
-
+		GameData.readyToTween = true;
 	}
+
 
 	public int UpgradedSlot {
 		get {

@@ -1,6 +1,6 @@
 gulmory
 90
-550
+300
 0
 7
 warrior

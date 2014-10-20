@@ -103,8 +103,8 @@ public class BattleController : MonoBehaviour {
 					
 //					heroList[i].GetComponent<SpriteRenderer>().sprite = u.Unit.Sprites;
 					float level = 0; 
-					level = 1 + (GameData.profile.Level * 0.05f);
-					level += (GameData.profile.Title * 0.25f);
+					level = 1 + (GameData.profile.Level * 0.1f);
+					level += (GameData.profile.Title * 0.5f);
 					u.Unit.Agi *= level;
 					u.Unit.Str *= level;
 					u.Unit.Vit *= level;
@@ -132,7 +132,7 @@ public class BattleController : MonoBehaviour {
 			else if ( GameData.missionType == "Castle") //boss
 				level = 1 + (GameData.currentMission/2)* 0.75f;
 
-			level += (mission.Title * 0.5f);
+			level += (mission.Title * 0.25f);
 			s.Agi *= level;
 			s.Str *= level;
 			s.Vit *= level;

@@ -1,6 +1,6 @@
 guriver
 100
-600
+325
 0
 7
 warrior

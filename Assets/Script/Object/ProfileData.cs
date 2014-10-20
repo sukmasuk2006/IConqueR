@@ -92,7 +92,7 @@ public class ProfileData
 		totalSkillUsed = GameData.CheckPrefs("totalSkillUsed"+GameData.tesId) ? PlayerPrefs.GetInt("totalSkillUsed"+GameData.tesId) : totalSkillUsed;
 		nextExp = base_exp;
 		for (int i = 0; i < level; i++)
-						nextExp *= 2;
+						nextExp *= 3;
 		for (int i = 0; i < 10; i++)
 			unitList [i].Load ();
 

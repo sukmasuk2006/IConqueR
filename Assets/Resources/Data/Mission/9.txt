@@ -1,9 +1,8 @@
 Sentinel
 250
-925
+1000
 1
 15
 knight
 warrior
-knight
 archer

@@ -12,8 +12,7 @@ public class ProfileController : MonoBehaviour {
 	public TextMesh diamondText;
 	public Transform expBar;
 	public SpriteRenderer renderer;
-	private float scaleAwal = 1.1f;
-	private float scale = 0f;
+	private float scaleAwal = 1f;
 	private float expTujuan;
 	public GameObject confirmExitScreen;
 	private string prevGameState;
@@ -21,10 +20,11 @@ public class ProfileController : MonoBehaviour {
 	public TextMesh text2;
 
 	void Start () {
-	GameData.gameState = "Map";
+		GameData.gameState = "Map";
 		//Debug.Log ("profile contr current gold " + GameData.gold);
 		levelText.text = "Level " + GameData.profile.Level.ToString ();
 		UpdateGoldAndDiamond (0,0);
+		Debug.Log ("awal profile " + scaleAwal * GameData.profile.CurrentExp / GameData.profile.NextExp);
 		expBar.localScale = new Vector3 (scaleAwal * GameData.profile.CurrentExp / GameData.profile.NextExp
 		                                 , expBar.localScale.y,
 		                                expBar.localScale.z);
@@ -76,7 +76,6 @@ public class ProfileController : MonoBehaviour {
 	}
 
 	void Update(){
-		Debug.Log ("state  " + GameData.gameState);
 		if (Input.GetKeyDown (KeyCode.Escape) && GameData.gameState != "ConfirmExit") {
 			iTween.MoveTo ( confirmExitScreen,iTween.Hash("position",new Vector3(0f,0f,-7f),"time", 0.1f,"onComplete","ReadyTween","onCompleteTarget",gameObject));
 			//sound.audio.PlayOneShot (sound.audio.clip);

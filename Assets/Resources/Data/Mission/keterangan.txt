@@ -7,6 +7,7 @@ reward item
 16-23
 24-31
 32-35
+story
 List<enemy>
 
 hero exp
