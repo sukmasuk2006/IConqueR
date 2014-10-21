@@ -7,11 +7,11 @@ public class ProjectileController : MonoBehaviour {
 	private bool isLaunch = false;
 	// Use this for initialization
 	void Start () {
-		this.gameObject.transform.position = heroController.gameObject.transform.position;
+		SetPos ();
 	}
 	
 	void OnTriggerEnter2D(Collider2D coll) {
-		if (coll.gameObject.name != "wall"  && isLaunch && coll.gameObject.name != "projectile" ) {
+		if (coll.gameObject.name.Contains(heroController.target) ) {
 					
 			Debug.Log("DOR with " + coll.gameObject.name);
 			HeroController h = coll.gameObject.GetComponent<HeroController> ();
@@ -31,8 +31,16 @@ public class ProjectileController : MonoBehaviour {
 
 
 	void Update(){
-	if (!isLaunch )
-			this.gameObject.transform.position = heroController.gameObject.transform.position;
+	if (!isLaunch)
+		SetPos ();
+	}
+
+	void SetPos(){
+		Vector3 heropos = new Vector3 (heroController.gameObject.transform.position.x,
+		                              heroController.gameObject.transform.position.y + 0.5f,
+		                              heroController.gameObject.transform.position.z);
+
+		this.gameObject.transform.position = heropos;
 	}
 
 	public bool IsLaunch {

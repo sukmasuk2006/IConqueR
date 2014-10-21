@@ -5,99 +5,106 @@ filter: Linear,Linear
 repeat: none
 body
   rotate: false
-  xy: 384, 145
-  size: 84, 99
-  orig: 84, 99
+  xy: 245, 75
+  size: 79, 87
+  orig: 79, 87
   offset: 0, 0
   index: -1
 head
   rotate: false
-  xy: 2, 47
-  size: 171, 197
-  orig: 171, 197
+  xy: 2, 66
+  size: 241, 188
+  orig: 241, 188
   offset: 0, 0
   index: -1
 left_foot
-  rotate: true
-  xy: 495, 170
-  size: 29, 15
-  orig: 29, 15
+  rotate: false
+  xy: 2, 5
+  size: 30, 15
+  orig: 30, 15
   offset: 0, 0
   index: -1
 left_hand_finger
   rotate: false
-  xy: 41, 14
-  size: 30, 31
-  orig: 30, 31
+  xy: 84, 2
+  size: 34, 36
+  orig: 34, 36
   offset: 0, 0
   index: -1
 left_hand_lowef
-  rotate: false
-  xy: 470, 160
-  size: 23, 39
-  orig: 23, 39
+  rotate: true
+  xy: 46, 40
+  size: 24, 49
+  orig: 25, 49
   offset: 0, 0
   index: -1
 left_hand_upper
   rotate: false
-  xy: 2, 2
-  size: 37, 43
-  orig: 37, 43
+  xy: 2, 22
+  size: 42, 42
+  orig: 42, 42
   offset: 0, 0
   index: -1
 left_leg_lower
   rotate: false
-  xy: 272, 48
-  size: 24, 36
-  orig: 24, 36
+  xy: 326, 75
+  size: 22, 35
+  orig: 22, 35
   offset: 0, 0
   index: -1
 left_leg_upper
   rotate: false
-  xy: 299, 87
-  size: 23, 37
-  orig: 23, 37
+  xy: 467, 171
+  size: 25, 39
+  orig: 25, 39
   offset: 0, 0
   index: -1
 right_fingers
   rotate: false
-  xy: 73, 14
-  size: 29, 31
-  orig: 29, 31
+  xy: 46, 2
+  size: 36, 36
+  orig: 36, 36
+  offset: 0, 0
+  index: -1
+right_foot
+  rotate: true
+  xy: 494, 180
+  size: 30, 15
+  orig: 30, 15
   offset: 0, 0
   index: -1
 right_hand_lower
   rotate: false
-  xy: 272, 86
-  size: 25, 38
-  orig: 25, 38
+  xy: 326, 112
+  size: 26, 50
+  orig: 26, 50
   offset: 0, 0
   index: -1
 right_hand_upper
   rotate: false
-  xy: 470, 201
-  size: 40, 43
-  orig: 40, 43
+  xy: 467, 212
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+right_leg_lower
+  rotate: true
+  xy: 97, 42
+  size: 22, 34
+  orig: 22, 34
   offset: 0, 0
   index: -1
 right_leg_upper
   rotate: false
-  xy: 324, 87
-  size: 23, 37
-  orig: 23, 37
+  xy: 354, 123
+  size: 25, 39
+  orig: 25, 39
   offset: 0, 0
   index: -1
-shield
-  rotate: true
-  xy: 175, 46
-  size: 78, 95
-  orig: 78, 95
-  offset: 0, 0
-  index: -1
-weapon
+weapon_hunter
   rotate: false
-  xy: 175, 126
-  size: 207, 118
-  orig: 207, 118
+  xy: 245, 164
+  size: 220, 90
+  orig: 220, 90
   offset: 0, 0
   index: -1

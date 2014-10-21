@@ -18,7 +18,7 @@ public class Unit : UnitStatus {
 
 	public Unit(int id,string name):
 	base(){
-		this.job = this.name = name.Trim();
+		this.job  = name.Trim();
 		heroId = id;
 		InitializeHero ();
 	}
@@ -26,7 +26,7 @@ public class Unit : UnitStatus {
 	private void InitializeHero(){
 
 		//SetSpine ();	
-		TextAsset etxt = (TextAsset)Resources.Load ("Data/Unit/"+name, typeof(TextAsset));
+		TextAsset etxt = (TextAsset)Resources.Load ("Data/Unit/"+job, typeof(TextAsset));
 		string econtent = etxt.text;
 		string[] linesFromFile = econtent.Split ("\n" [0]);
 		isActive = false;

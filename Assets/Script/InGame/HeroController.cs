@@ -80,9 +80,9 @@ public class HeroController : MonoBehaviour {
 		}
 		animator.skeletonDataAsset = GameData.skeleteonDataAssetList[stats.HeroId];
 		animator.calculateNormals = true;
-		animator.loop = true;
 		animator.Awake ();
-		animator.state.SetAnimation (0, "run", true);
+		animator.state.AddAnimation (0, "run", true,0);
+		//animator.state.AddAnimation (1, "attack", false,0);
 		healthConstant = stats.HealthPoint;
 		healthScaleConstant = healthBar.transform.localScale;
 		movementSpeed = stats.Movement;
@@ -121,6 +121,10 @@ public class HeroController : MonoBehaviour {
 				if (attackSpeed <= 0 && !isAttack) {
 					// jika waktunya serang, SERANG!
 					isAttack = true;
+					if (animator.state.GetCurrent (1) == null && attackType == 1) {
+						Debug.Log("name " + name + "dodmage 0");
+						animator.state.AddAnimation (1, "attack", false,0f);
+					}
 					projectile.GetComponent<ProjectileController> ().Launch ();
 					//DoDamageToTarget
 				}
@@ -144,9 +148,8 @@ public class HeroController : MonoBehaviour {
 								targetUnit = coll.gameObject.GetComponent<HeroController> ();
 								if (isAttack && attackType == 0) {
 										if (animator.state.GetCurrent (1) == null) {
-//						Debug.Log("name " + name + "dodmage 0");
-												animator.state.ClearTrack (0);
-												animator.state.SetAnimation (1, "attack", false);
+												Debug.Log("name " + name + "dodmage 0");
+												animator.state.AddAnimation (1, "attack", false,0f);
 												animator.state.GetCurrent (1).Complete += HandleComplete;
 										}
 								}
@@ -213,14 +216,14 @@ public class HeroController : MonoBehaviour {
 		isAttack = false;
 		attackSpeed = stats.AttackSpeed;
 		movementSpeed = stats.Movement;
-		animator.state.ClearTracks ();
-		animator.state.AddAnimation (0, "run", true, -0.33f);
-		//if (animator.state.GetCurrent (0) == null) {
-		//	Debug.Log("1 null");		
-		//}
-		//else
-		//	Debug.Log("1 gak null");	
-		animator.state.SetAnimation (0, "run", true);
+		//animator.state.ClearTracks ();
+		if (animator.state.GetCurrent (1) == null) {
+			Debug.Log("name " + name + "nul 1");
+		}
+		else
+			Debug.Log("name " + name + "gak nul 1");
+
+	//	animator.state.SetAnimation (0, "run", true);
 	}
 
 	public void DeceleratePullBack(){

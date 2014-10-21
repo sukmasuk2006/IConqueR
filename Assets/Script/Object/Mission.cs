@@ -8,7 +8,8 @@
 // </auto-generated>
 using UnityEngine;
 using System.Collections.Generic;
-[System.Serializable]
+using System.Linq;
+
 public class Mission
 {
 	private int id;
@@ -56,9 +57,14 @@ public class Mission
 		diamondReward = int.Parse(linesFromFile [3]);
 		maxReward = int.Parse (linesFromFile [4]);
 		for (int i = 5; i < linesFromFile.Length; i++) {
-			enemyList.Add(new Unit(i,linesFromFile[i].Trim()));		
+			enemyList.Add(new Unit(GetUnitId(linesFromFile[i].Trim()),linesFromFile[i].Trim()));		
 			enemyListName += linesFromFile[i].Trim() + " ";
 		}
+	}
+
+	private int GetUnitId(string job){
+		int ret = GameData.profile.unitList.Where (x => x.Job == job).Select (x => x.HeroId).ToArray()[0];
+		return ret;
 	}
 
 	public int GetReward{

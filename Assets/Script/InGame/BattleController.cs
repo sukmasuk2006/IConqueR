@@ -122,7 +122,7 @@ public class BattleController : MonoBehaviour {
 			enemyList[i].SetActive(true);	
 //			enemyList[i].GetComponent<SpriteRenderer>().sprite = u.Sprites;
 			tempStats.Add(new Unit(s.HeroId,s.Job.Trim()));
-//			Debug.Log("added temp " + tempStats.Count
+			Debug.Log("added enemy " + s.HeroId + " JOB " + s.Job);
 			// tiap 3 stage, naik level musuhnya
 			float level = 0; 
 			if ( GameData.missionType == "Camp") //boss

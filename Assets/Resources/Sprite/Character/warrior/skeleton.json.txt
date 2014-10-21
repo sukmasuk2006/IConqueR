@@ -1,267 +1,421 @@
 {
 "bones": [
-	{ "name": "root", "y": 96 },
-	{ "name": "punggung", "parent": "root", "length": 20, "x": -0.11, "y": -0.11, "rotation": 90.93 },
-	{ "name": "dada", "parent": "punggung", "length": 68.16, "x": 23.39, "y": -0.11 },
-	{ "name": "paha kanan", "parent": "punggung", "length": 25, "x": -8.46, "y": 14.55, "rotation": 137.59 },
-	{ "name": "paha kiri", "parent": "punggung", "length": 25, "x": -10.83, "y": -14.65, "rotation": -133.13 },
-	{ "name": "atastangankanan", "parent": "dada", "length": 66.03, "x": 49.16, "y": 1.27, "rotation": 89.62 },
-	{ "name": "atastangankiri", "parent": "dada", "length": 51.84, "x": 49.47, "y": -0.81, "rotation": -85.84 },
-	{ "name": "kepala", "parent": "dada", "length": 94.71, "x": 68.9, "y": 0.48, "rotation": 0.75 },
-	{ "name": "paha 2 kanan", "parent": "paha kanan", "length": 37.57, "x": 24.83, "y": 2.74, "rotation": 39.35 },
-	{ "name": "paha 2 kiri", "parent": "paha kiri", "length": 32.34, "x": 25.31, "y": -1.73, "rotation": -47.83 },
-	{ "name": "betis kanan", "parent": "paha 2 kanan", "length": 26.79, "x": 33.94, "y": 0.05, "rotation": -0.45 },
-	{ "name": "betis kiri", "parent": "paha 2 kiri", "length": 30.5, "x": 32.33, "y": 0.03, "rotation": 1.36 },
-	{ "name": "lengan atas kanan", "parent": "atastangankanan", "length": 42.85, "x": 65.12, "y": -0.4, "rotation": 70.44 },
-	{ "name": "lengan atas kiri", "parent": "atastangankiri", "length": 50, "x": 50.21, "y": -0.23, "rotation": -66.58 },
-	{ "name": "lengan bawah kanan", "parent": "lengan atas kanan", "length": 40.49, "x": 42.14, "y": -0.49, "rotation": -0.47 },
-	{ "name": "lengan bawah kiri", "parent": "lengan atas kiri", "length": 30, "x": 38.44, "y": -1.33, "rotation": -6.78 },
-	{ "name": "telapak kaki kana", "parent": "betis kanan", "length": 24.87, "x": 24.94, "y": -0.19, "rotation": -75.43 },
-	{ "name": "telapak kaki kiri", "parent": "betis kiri", "length": 22.56, "x": 29.1, "y": -0.19, "rotation": 78.43 },
-	{ "name": "telapak bawah kanan", "parent": "lengan bawah kanan", "length": 24.05, "x": 39.03, "y": -1.77, "rotation": 26.46 },
-	{ "name": "telapak kiri", "parent": "lengan bawah kiri", "length": 24.24, "x": 39.6, "y": -0.11, "rotation": -19.65 },
-	{ "name": "weapon", "parent": "telapak bawah kanan", "length": 249.15, "x": 37.31, "y": -14.67, "rotation": 101.87 }
+	{ "name": "root", "x": 2.45, "y": 94.4 },
+	{ "name": "paha kanan", "parent": "root", "length": 53.51, "x": -18.89, "y": -2.47, "rotation": -113.63 },
+	{ "name": "paha kiri", "parent": "root", "length": 50.16, "x": 17.5, "y": -5.51, "rotation": -57.99 },
+	{ "name": "punggung", "parent": "root", "length": 100, "x": 1.34, "y": 1.79, "rotation": 91.8 },
+	{ "name": "betis kiri", "parent": "paha kiri", "length": 35.23, "x": 50.02, "y": -0.85, "rotation": -34.44 },
+	{ "name": "kepala", "parent": "punggung", "length": 36.77, "x": 99.09, "y": -1.9, "rotation": -2.68 },
+	{ "name": "lengan atas kiri", "parent": "punggung", "length": 58.57, "x": 88.37, "y": -28.46, "rotation": -130.89 },
+	{ "name": "lenganKanan", "parent": "punggung", "length": 62.12, "x": 89.32, "y": 30.79, "rotation": 127.93 },
+	{ "name": "lutut kanan", "parent": "paha kanan", "length": 34, "x": 53.51, "y": -0.02, "rotation": 19.38 },
+	{ "name": "lengan bawah kanan", "parent": "lenganKanan", "length": 42.6, "x": 62.18, "y": -0.51, "rotation": 31.22 },
+	{ "name": "lengan bawah kiri", "parent": "lengan atas kiri", "length": 39.59, "x": 58.87, "y": -0.5, "rotation": -40.11 },
+	{ "name": "telapak kaki kiri", "parent": "betis kiri", "length": 27.41, "x": 33.4, "y": -0.79, "rotation": 88.19 },
+	{ "name": "telapak kanan", "parent": "lutut kanan", "length": 29.16, "x": 32.98, "y": -0.19, "rotation": 94.08 },
+	{ "name": "tangan kanan", "parent": "lengan bawah kanan", "length": 26.95, "x": 42.6, "y": 0.01, "rotation": 13.71 },
+	{ "name": "tangan kiri", "parent": "lengan bawah kiri", "length": 30.18, "x": 40.5, "y": -0.18, "rotation": -6.29 },
+	{ "name": "weapon", "parent": "tangan kanan", "length": 248.08, "x": 18.18, "y": 16.06, "rotation": 95.39 }
 ],
 "slots": [
-	{ "name": "left_leg_upper", "bone": "paha 2 kiri", "attachment": "left_leg_upper" },
-	{ "name": "left_leg_lower", "bone": "betis kiri", "attachment": "left_leg_lower" },
+	{ "name": "left_fist", "bone": "tangan kiri", "attachment": "left_fist" },
 	{ "name": "left_hand_lowef", "bone": "lengan bawah kiri", "attachment": "left_hand_lowef" },
-	{ "name": "left_fist", "bone": "telapak kiri", "attachment": "left_fist" },
 	{ "name": "left_hand_upper", "bone": "lengan atas kiri", "attachment": "left_hand_upper" },
-	{ "name": "right_leg_upper", "bone": "paha 2 kanan", "attachment": "right_leg_upper" },
-	{ "name": "right_foot", "bone": "telapak kaki kana", "attachment": "right_foot" },
-	{ "name": "body2", "bone": "dada", "attachment": "body" },
-	{ "name": "head", "bone": "kepala", "attachment": "head" },
+	{ "name": "left_leg_upper", "bone": "paha kiri", "attachment": "left_leg_upper" },
+	{ "name": "left_leg_lower", "bone": "betis kiri", "attachment": "left_leg_lower" },
 	{ "name": "left_foot", "bone": "telapak kaki kiri", "attachment": "left_foot" },
+	{ "name": "right_leg_upper", "bone": "paha kanan", "attachment": "right_leg_upper" },
+	{ "name": "right_leg_lower", "bone": "lutut kanan", "attachment": "right_leg_lower" },
+	{ "name": "right_foot", "bone": "telapak kanan", "attachment": "right_foot" },
+	{ "name": "body", "bone": "punggung", "attachment": "body" },
 	{ "name": "weapon_warrior", "bone": "weapon", "attachment": "weapon_warrior" },
-	{ "name": "right_fist", "bone": "telapak bawah kanan", "attachment": "right_fist" },
+	{ "name": "right_fist", "bone": "tangan kanan", "attachment": "right_fist" },
 	{ "name": "right_hand_lower", "bone": "lengan bawah kanan", "attachment": "right_hand_lower" },
-	{ "name": "right_hand_upper", "bone": "lengan atas kanan", "attachment": "right_hand_upper" },
-	{ "name": "right_leg_lower", "bone": "betis kanan", "attachment": "right_leg_lower" }
+	{ "name": "right_hand_upper", "bone": "lenganKanan", "attachment": "right_hand_upper" },
+	{ "name": "head", "bone": "kepala", "attachment": "head" }
 ],
 "skins": {
 	"default": {
-		"body2": {
-			"body": { "x": 9.39, "y": 16.34, "rotation": -87.82, "width": 141, "height": 155 }
+		"body": {
+			"body": { "x": 44.85, "y": 16.17, "rotation": -91.8, "width": 141, "height": 155 }
 		},
 		"head": {
-			"head": { "x": 60.21, "y": 12.67, "rotation": -90.17, "width": 166, "height": 172 }
+			"head": { "x": 62.31, "y": 9.35, "rotation": -90, "width": 166, "height": 172 }
 		},
 		"left_fist": {
-			"left_fist": { "x": 27.03, "y": -7.14, "rotation": 87.93, "width": 49, "height": 51 }
+			"left_fist": { "x": 21.26, "y": -3.25, "rotation": 85.49, "width": 49, "height": 51 }
 		},
 		"left_foot": {
-			"left_foot": { "x": 6.33, "y": 2.12, "rotation": 10.24, "width": 49, "height": 26 }
+			"left_foot": { "x": 8.5, "y": 0.3, "rotation": 4.42, "width": 49, "height": 26 }
 		},
 		"left_hand_lowef": {
-			"left_hand_lowef": { "x": 28.85, "y": -3.28, "rotation": 68.28, "width": 42, "height": 64 }
+			"left_hand_lowef": { "x": 19.03, "y": -2.5, "rotation": 79.2, "width": 42, "height": 64 }
 		},
 		"left_hand_upper": {
-			"left_hand_upper": { "x": 20.16, "y": -5.27, "rotation": 61.49, "width": 79, "height": 79 }
+			"left_hand_upper": { "x": 42.12, "rotation": 39.09, "width": 79, "height": 79 }
 		},
 		"left_leg_lower": {
-			"left_leg_lower": { "x": 7.65, "y": -0.17, "rotation": 88.67, "width": 35, "height": 63 }
+			"left_leg_lower": { "x": 9.02, "y": 1.51, "rotation": 92.62, "width": 35, "height": 63 }
 		},
 		"left_leg_upper": {
-			"left_leg_upper": { "x": 16.52, "y": -1.58, "rotation": 90.03, "width": 40, "height": 62 }
+			"left_leg_upper": { "x": 27.07, "y": -3.14, "rotation": 81.05, "width": 40, "height": 62 }
 		},
 		"right_fist": {
-			"right_fist": { "x": 19.95, "y": 5.63, "rotation": 89.81, "width": 49, "height": 51 }
+			"right_fist": { "x": 22.74, "y": 5.92, "rotation": 95.31, "width": 49, "height": 51 }
 		},
 		"right_foot": {
-			"right_foot": { "x": 14.28, "y": -1.01, "rotation": 164.94, "width": 48, "height": 25 }
+			"right_foot": { "x": 11.31, "y": 1.11, "scaleX": -1.002, "rotation": 0.42, "width": 48, "height": 25 }
 		},
 		"right_hand_lower": {
-			"right_hand_lower": { "x": 13.75, "y": -2.99, "rotation": 109.46, "width": 42, "height": 63 }
+			"right_hand_lower": { "x": 19.2, "y": -2.15, "rotation": 109.03, "width": 42, "height": 63 }
 		},
 		"right_hand_upper": {
-			"right_hand_upper": { "x": 15.86, "y": -1.71, "rotation": 108.99, "width": 78, "height": 80 }
+			"right_hand_upper": { "x": 44.82, "y": -6.17, "rotation": 140.25, "width": 78, "height": 80 }
 		},
 		"right_leg_lower": {
-			"right_leg_lower": { "x": 7.62, "y": -3.76, "rotation": 89.51, "width": 35, "height": 63 }
+			"right_leg_lower": { "x": 7.02, "y": 5.16, "scaleX": -1, "rotation": 93.96, "width": 35, "height": 63 }
 		},
 		"right_leg_upper": {
-			"right_leg_upper": { "x": 10.41, "y": 0.48, "rotation": 89.06, "width": 39, "height": 62 }
+			"right_leg_upper": { "x": 25.41, "y": 1.62, "rotation": 99.46, "width": 39, "height": 62 }
 		},
 		"weapon_warrior": {
-			"weapon_warrior": { "x": 162.34, "y": 7.27, "rotation": -116.77, "width": 211, "height": 287 }
+			"weapon_warrior": { "x": 139.4, "y": 3.15, "rotation": -117.51, "width": 211, "height": 287 }
 		}
 	}
 },
 "animations": {
 	"attack": {
 		"bones": {
-			"lengan atas kanan": {
+			"lenganKanan": {
 				"rotate": [
-					{ "time": 0.0666, "angle": 101.72 },
-					{ "time": 0.2, "angle": -189.49 },
-					{ "time": 0.3333, "angle": 80.42 },
-					{ "time": 0.4, "angle": 49.65, "curve": "stepped" },
-					{ "time": 0.4333, "angle": 49.65, "curve": "stepped" },
-					{ "time": 0.4666, "angle": 49.65 }
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.0333, "angle": 17.34 },
+					{ "time": 0.0666, "angle": -305.98 },
+					{ "time": 0.1333, "angle": -269.37, "curve": "stepped" },
+					{ "time": 0.2, "angle": -269.37 },
+					{ "time": 0.2666, "angle": -274.16 },
+					{ "time": 0.3, "angle": -280.03 },
+					{ "time": 0.3333, "angle": 48.3 },
+					{ "time": 0.3666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.3666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.3666, "x": 1, "y": 1 }
 				]
 			},
-			"atastangankanan": {
+			"lengan atas kiri": {
 				"rotate": [
-					{ "time": 0.0333, "angle": 13.78, "curve": "stepped" },
-					{ "time": 0.3666, "angle": 13.78 }
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.0333, "angle": -9.26 },
+					{ "time": 0.0666, "angle": 20.85 },
+					{ "time": 0.1, "angle": 88.13 },
+					{ "time": 0.1333, "angle": 114.35, "curve": "stepped" },
+					{ "time": 0.2, "angle": 114.35 },
+					{ "time": 0.2333, "angle": 88.13 },
+					{ "time": 0.2666, "angle": 35.11 },
+					{ "time": 0.3, "angle": 24.33 },
+					{ "time": 0.3333, "angle": 6.46 },
+					{ "time": 0.3666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.3666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.3666, "x": 1, "y": 1 }
 				]
 			},
-			"weapon": {
+			"lengan bawah kiri": {
 				"rotate": [
-					{ "time": 0.2, "angle": -71.87 },
-					{ "time": 0.2666, "angle": -65.99 },
-					{ "time": 0.3, "angle": -85.79 },
-					{ "time": 0.3333, "angle": -94.16 },
-					{ "time": 0.4, "angle": -67.15 },
-					{ "time": 0.4666, "angle": -17.84 }
-				]
-			},
-			"dada": {
-				"rotate": [
-					{ "time": 0.2, "angle": 11.04 },
-					{ "time": 0.3666, "angle": -9.87 },
-					{ "time": 0.4, "angle": -13.76 }
-				]
-			},
-			"root": {
-				"rotate": [
-					{ "time": 0, "angle": 0 }
-				]
-			}
-		}
-	},
-	"idle": {
-		"bones": {
-			"kepala": {
-				"rotate": [
-					{ "time": 0, "angle": -4.81 }
-				]
-			},
-			"atastangankanan": {
-				"rotate": [
-					{ "time": 0, "angle": -3.62 },
-					{ "time": 0.1666, "angle": -7.53 },
-					{ "time": 0.3333, "angle": -3.62 }
-				]
-			},
-			"atastangankiri": {
-				"rotate": [
-					{ "time": 0, "angle": -2.75 },
-					{ "time": 0.1666, "angle": 10.03 },
-					{ "time": 0.3333, "angle": -4.53 }
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.0333, "angle": 75.32 },
+					{ "time": 0.0666, "angle": 120.72 },
+					{ "time": 0.2666, "angle": 74.32 },
+					{ "time": 0.3, "angle": 75.32 },
+					{ "time": 0.3333, "angle": 39.3 },
+					{ "time": 0.3666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.3666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.3666, "x": 1, "y": 1 }
 				]
 			},
 			"lengan bawah kanan": {
 				"rotate": [
-					{ "time": 0, "angle": 0 }
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1, "angle": 29.28 },
+					{ "time": 0.2, "angle": 25.85 },
+					{ "time": 0.2333, "angle": 29.28 },
+					{ "time": 0.2666, "angle": -8.62 },
+					{ "time": 0.3666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.3666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.3666, "x": 1, "y": 1 }
 				]
 			},
-			"lengan atas kanan": {
+			"punggung": {
 				"rotate": [
-					{ "time": 0, "angle": 0 }
-				]
-			},
-			"telapak bawah kanan": {
-				"rotate": [
-					{ "time": 0, "angle": 0 }
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1333, "angle": 10.65, "curve": "stepped" },
+					{ "time": 0.2, "angle": 10.65 },
+					{ "time": 0.3, "angle": -8.72 },
+					{ "time": 0.3666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.3666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.3666, "x": 1, "y": 1 }
 				]
 			},
 			"weapon": {
 				"rotate": [
-					{ "time": 0, "angle": 0 }
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.2, "angle": -16.11 },
+					{ "time": 0.2666, "angle": -23.8 },
+					{ "time": 0.3, "angle": -31.73 },
+					{ "time": 0.3333, "angle": -30.13 },
+					{ "time": 0.3666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.3666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.3666, "x": 1, "y": 1 }
+				]
+			},
+			"root": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.3666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.3666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.3666, "x": 1, "y": 1 }
+				]
+			},
+			"paha kanan": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.3666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.3666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.3666, "x": 1, "y": 1 }
+				]
+			},
+			"paha kiri": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.3666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.3666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.3666, "x": 1, "y": 1 }
+				]
+			},
+			"betis kiri": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.3666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.3666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.3666, "x": 1, "y": 1 }
+				]
+			},
+			"kepala": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.3666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.3666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.3666, "x": 1, "y": 1 }
+				]
+			},
+			"lutut kanan": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.3666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.3666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.3666, "x": 1, "y": 1 }
+				]
+			},
+			"telapak kaki kiri": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.3666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.3666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.3666, "x": 1, "y": 1 }
+				]
+			},
+			"telapak kanan": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.3666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.3666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.3666, "x": 1, "y": 1 }
+				]
+			},
+			"tangan kanan": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.3666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.3666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.3666, "x": 1, "y": 1 }
+				]
+			},
+			"tangan kiri": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 0.3666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 0.3666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 0.3666, "x": 1, "y": 1 }
 				]
 			}
 		}
 	},
 	"run": {
 		"bones": {
-			"dada": {
-				"rotate": [
-					{ "time": 0, "angle": -9.44 },
-					{ "time": 0.0666, "angle": -12.38 },
-					{ "time": 0.1666, "angle": -16.9 },
-					{ "time": 0.2333, "angle": -20.39 },
-					{ "time": 0.3, "angle": -16.9 },
-					{ "time": 0.4, "angle": -12.38 },
-					{ "time": 0.5, "angle": -9.44 }
-				]
-			},
-			"weapon": {
-				"rotate": [
-					{ "time": 0, "angle": -6.4, "curve": "stepped" },
-					{ "time": 0.5, "angle": -6.4 }
-				]
-			},
-			"telapak kiri": {
-				"rotate": [
-					{ "time": 0, "angle": -7.46, "curve": "stepped" },
-					{ "time": 0.5, "angle": -7.46 }
-				]
-			},
-			"lengan bawah kiri": {
-				"rotate": [
-					{ "time": 0, "angle": 17.04, "curve": "stepped" },
-					{ "time": 0.5, "angle": 17.04 }
-				]
-			},
-			"paha 2 kanan": {
-				"rotate": [
-					{ "time": 0, "angle": -62.39 },
-					{ "time": 0.0666, "angle": -45.71 },
-					{ "time": 0.1666, "angle": -12.98, "curve": "stepped" },
-					{ "time": 0.3333, "angle": -12.98 },
-					{ "time": 0.4333, "angle": -45.71 },
-					{ "time": 0.5, "angle": -62.39 }
-				],
-				"scale": [
-					{ "time": 0, "x": 1, "y": -1, "curve": "stepped" },
-					{ "time": 0.5, "x": 1, "y": -1 }
-				]
-			},
-			"betis kanan": {
-				"rotate": [
-					{ "time": 0, "angle": -64.94 },
-					{ "time": 0.1666, "angle": -28.19 },
-					{ "time": 0.2333, "angle": 5.84 },
-					{ "time": 0.3333, "angle": -28.19, "curve": "stepped" },
-					{ "time": 0.4333, "angle": -28.19 },
-					{ "time": 0.5, "angle": -64.94 }
-				]
-			},
-			"telapak kaki kana": {
-				"rotate": [
-					{ "time": 0, "angle": 165.2, "curve": "stepped" },
-					{ "time": 0.5, "angle": 165.2 }
-				]
-			},
 			"paha kanan": {
 				"rotate": [
-					{ "time": 0, "angle": 14.86 },
-					{ "time": 0.1666, "angle": -309.43, "curve": "stepped" },
-					{ "time": 0.3333, "angle": -309.43, "curve": "stepped" },
-					{ "time": 0.4333, "angle": -309.43 },
-					{ "time": 0.5, "angle": 14.86 }
-				]
-			},
-			"paha 2 kiri": {
-				"rotate": [
-					{ "time": 0, "angle": 56.97 },
-					{ "time": 0.0666, "angle": 35.34 },
-					{ "time": 0.1666, "angle": -29.84, "curve": "stepped" },
-					{ "time": 0.3333, "angle": -29.84 },
-					{ "time": 0.4333, "angle": 35.34 },
-					{ "time": 0.5, "angle": 56.97 }
+					{ "time": 0, "angle": -21.91 },
+					{ "time": 0.0333, "angle": 24.85 },
+					{ "time": 0.0666, "angle": 60.19 },
+					{ "time": 0.1, "angle": 74.74 },
+					{ "time": 0.1666, "angle": 30.49 },
+					{ "time": 0.2, "angle": 12.71 },
+					{ "time": 0.2333, "angle": -4.52 }
 				]
 			},
 			"paha kiri": {
 				"rotate": [
-					{ "time": 0, "angle": -18.52 },
-					{ "time": 0.1666, "angle": -33.12 },
-					{ "time": 0.2333, "angle": 297.73 },
-					{ "time": 0.3333, "angle": -33.12, "curve": "stepped" },
-					{ "time": 0.4333, "angle": -33.12 },
-					{ "time": 0.5, "angle": -18.52 }
+					{ "time": 0, "angle": 19.66 },
+					{ "time": 0.0333, "angle": -0.03 },
+					{ "time": 0.0666, "angle": -46.17 },
+					{ "time": 0.1, "angle": -53.21 },
+					{ "time": 0.1666, "angle": -11.39 },
+					{ "time": 0.2, "angle": -0.38 },
+					{ "time": 0.2333, "angle": 19.66 }
+				]
+			},
+			"betis kiri": {
+				"rotate": [
+					{ "time": 0, "angle": -54.37 },
+					{ "time": 0.0666, "angle": -3.92 },
+					{ "time": 0.1666, "angle": -10.97 },
+					{ "time": 0.2, "angle": 21.87 },
+					{ "time": 0.2333, "angle": -13.14 }
+				]
+			},
+			"telapak kaki kiri": {
+				"rotate": [
+					{ "time": 0.0333, "angle": 12.47 },
+					{ "time": 0.0666, "angle": 25.6 },
+					{ "time": 0.1333, "angle": 33.3 },
+					{ "time": 0.1666, "angle": 21.14 },
+					{ "time": 0.2, "angle": 10.64 }
+				]
+			},
+			"lutut kanan": {
+				"rotate": [
+					{ "time": 0.0333, "angle": -25.48 },
+					{ "time": 0.0666, "angle": -28.12 },
+					{ "time": 0.1333, "angle": -56.36 },
+					{ "time": 0.1666, "angle": -68.88 },
+					{ "time": 0.2, "angle": -44.48 },
+					{ "time": 0.2333, "angle": -8.35 }
+				]
+			},
+			"telapak kanan": {
+				"rotate": [
+					{ "time": 0.0666, "angle": 9.19 },
+					{ "time": 0.1666, "angle": 27.55 },
+					{ "time": 0.2, "angle": 35.11 },
+					{ "time": 0.2333, "angle": 8.06 }
+				]
+			},
+			"kepala": {
+				"rotate": [
+					{ "time": 0.0333, "angle": -2.84 },
+					{ "time": 0.1, "angle": -9.02 },
+					{ "time": 0.1666, "angle": -2.48 },
+					{ "time": 0.2333, "angle": 2.16 }
+				]
+			},
+			"punggung": {
+				"rotate": [
+					{ "time": 0.0666, "angle": -6.08 },
+					{ "time": 0.1333, "angle": -4.64 }
 				]
 			}
 		}

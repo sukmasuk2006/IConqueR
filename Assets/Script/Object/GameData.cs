@@ -42,8 +42,8 @@ public class GameData : MonoBehaviour {
 		InitializePersistent ();
 		InitializeGameData ();
 		//PlayerPrefs.DeleteAll ();
-		profile.Gold = 500;
-		//LoadData ();
+		profile.Gold = 55500;
+		LoadData ();
 	}
 
 	public static bool CheckPrefs(string key){
