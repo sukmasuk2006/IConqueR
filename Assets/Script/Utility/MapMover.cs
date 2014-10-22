@@ -43,7 +43,7 @@ public class MapMover : MonoBehaviour {
 
 	void ReadyTween(){
 		GameData.readyToTween = true;
-		SaveLoad.Save ();
+		GameData.SaveData ();
 	}
 		
 	void SetCoord(){

@@ -53,7 +53,7 @@ public class GameData : MonoBehaviour {
 	}
 
 	public static void SaveData(){
-		profile.SaveNonList ();
+		profile.SaveData ();
 	}
 
 	public void LoadData(){

@@ -34,7 +34,7 @@ public class ProfileData
 
 	}
 
-	public void SaveNonList(){
+	public void SaveData(){
 		
 		PlayerPrefs.SetInt ("level"+GameData.tesId, level);
 		PlayerPrefs.SetInt("title"+GameData.tesId, title);
