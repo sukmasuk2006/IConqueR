@@ -46,7 +46,7 @@ public class UpgradeWeaponController : MonoBehaviour {
 		slotList.Add (new Item (99,""));
 		slotList.Add (new Item (99,""));
 		slotList.Add (new Item (99,""));
-
+		
 	}
 
 	public void InitializeWeapon(){
@@ -152,6 +152,7 @@ public class UpgradeWeaponController : MonoBehaviour {
 			chances = penentu % 2 == 1 ? chances+1 : chances;
 		}
 		failpercentages = 100 - percentages;
+		Debug.Log ("chances " + chances + " fail " + failpercentages);
 		success = chances > failpercentages ? true : false;
 
 		iTween.ScaleTo (progressbar, iTween.Hash("scale", new Vector3(1.5f,progressbar.transform.localScale.y,
@@ -172,7 +173,7 @@ public class UpgradeWeaponController : MonoBehaviour {
 			Gem g = (Gem)slotList [0];
 			weaponData.Upgrade (g.Stats);
 			upgradeInfoText.text = "SUCCESSFULLY UPGRADED!";
-			particleSystem.Play();
+			particleSystem.Emit(weaponData.Rank*10);
 		} else {
 			/// jika gagal naik dong persentasinya
 			/// 

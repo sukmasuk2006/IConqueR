@@ -42,7 +42,7 @@ public class GameData : MonoBehaviour {
 		InitializePersistent ();
 		InitializeGameData ();
 		//PlayerPrefs.DeleteAll ();
-		profile.Gold = 55500;
+		//profile.Gold = 55500;
 		LoadData ();
 	}
 
