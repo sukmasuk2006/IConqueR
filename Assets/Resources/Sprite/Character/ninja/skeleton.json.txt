@@ -5,7 +5,7 @@
 	{ "name": "dada", "parent": "punggung", "length": 50, "x": 15.29, "y": -0.56, "rotation": -19.62 },
 	{ "name": "left paha", "parent": "punggung", "length": 31.96, "x": 14.22, "y": -9.35, "rotation": -171.4 },
 	{ "name": "right paha", "parent": "punggung", "length": 30.83, "x": 6.95, "y": 13.68, "rotation": 172.97 },
-	{ "name": "head", "parent": "dada", "length": 80.48, "x": 51.04, "y": 0.3, "rotation": -0.45 },
+	{ "name": "head", "parent": "dada", "length": 80.48, "x": 51.04, "y": 0.3, "rotation": 17.14 },
 	{ "name": "left betis", "parent": "left paha", "length": 26.83, "x": 34.19, "y": -0.24, "rotation": -43.23 },
 	{ "name": "left shoulder", "parent": "dada", "length": 27.12, "x": 43.27, "y": -33.65, "rotation": -127.4 },
 	{ "name": "right betis", "parent": "right paha", "length": 25.42, "x": 31.51, "y": 0.1, "rotation": -28.65 },
@@ -105,40 +105,41 @@
 			},
 			"left hand": {
 				"rotate": [
-					{ "time": 0, "angle": 17.19 },
-					{ "time": 0.2666, "angle": 25.06 }
+					{ "time": 0, "angle": -16.94 },
+					{ "time": 0.1666, "angle": 38.73 },
+					{ "time": 0.2666, "angle": 68.95 },
+					{ "time": 0.4, "angle": -71.53 }
 				]
 			},
 			"left shoulder": {
 				"rotate": [
 					{ "time": 0, "angle": -5.65 },
-					{ "time": 0.1, "angle": 44.58 },
-					{ "time": 0.3333, "angle": 104.47 },
-					{ "time": 0.4, "angle": 158.42 }
-				]
-			},
-			"left elbow": {
-				"rotate": [
-					{ "time": 0.2, "angle": 89.6 },
-					{ "time": 0.2666, "angle": 154.31 }
+					{ "time": 0.1666, "angle": 188.82 },
+					{ "time": 0.2666, "angle": 108.85 },
+					{ "time": 0.3333, "angle": 39.69 }
 				]
 			},
 			"right shoulder": {
 				"rotate": [
-					{ "time": 0.1, "angle": 31.25 },
-					{ "time": 0.2, "angle": -265.3 },
-					{ "time": 0.2666, "angle": -236.77 },
-					{ "time": 0.3333, "angle": -223.83 }
+					{ "time": 0.1, "angle": -218.83 },
+					{ "time": 0.1666, "angle": -215.69 },
+					{ "time": 0.2666, "angle": -254.34 },
+					{ "time": 0.3333, "angle": 29.63 },
+					{ "time": 0.4, "angle": -2.38 }
 				]
 			},
 			"right elbow": {
 				"rotate": [
-					{ "time": 0.2, "angle": 42.95 }
+					{ "time": 0.1666, "angle": 42.93 },
+					{ "time": 0.2666, "angle": 56.84 },
+					{ "time": 0.3333, "angle": 116.6 },
+					{ "time": 0.4, "angle": -2.72 }
 				]
 			},
-			"right hand": {
+			"left elbow": {
 				"rotate": [
-					{ "time": 0.3, "angle": 38.25 }
+					{ "time": 0, "angle": 22.77 },
+					{ "time": 0.1666, "angle": 112.97 }
 				]
 			}
 		},

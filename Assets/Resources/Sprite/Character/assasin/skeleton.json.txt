@@ -5,7 +5,7 @@
 	{ "name": "dada", "parent": "punggung", "length": 50, "x": 15.29, "y": -0.56, "rotation": -4.72 },
 	{ "name": "left paha", "parent": "punggung", "length": 31.96, "x": 14.22, "y": -9.35, "rotation": -171.4 },
 	{ "name": "right paha", "parent": "punggung", "length": 30.83, "x": 11.97, "y": 11.93, "rotation": 172.97 },
-	{ "name": "head", "parent": "dada", "length": 80.48, "x": 51.04, "y": 0.3, "rotation": -0.45 },
+	{ "name": "head", "parent": "dada", "length": 80.48, "x": 51.04, "y": 0.3, "rotation": 5.37 },
 	{ "name": "left betis", "parent": "left paha", "length": 26.83, "x": 34.19, "y": -0.24, "rotation": -7.62 },
 	{ "name": "left shoulder", "parent": "dada", "length": 27.12, "x": 50.72, "y": -13.81, "rotation": -133.02 },
 	{ "name": "right betis", "parent": "right paha", "length": 25.42, "x": 31.51, "y": 0.1, "rotation": -28.65 },
@@ -30,11 +30,11 @@
 	{ "name": "head2", "bone": "head" },
 	{ "name": "head", "bone": "head", "attachment": "head" },
 	{ "name": "right_foot", "bone": "right foot", "attachment": "right_foot" },
+	{ "name": "weapon_assassin", "bone": "right hand", "attachment": "weapon_assassin" },
 	{ "name": "right hand", "bone": "right hand", "attachment": "right_fingers" },
 	{ "name": "left_hand_finger", "bone": "left hand", "attachment": "left_hand_finger" },
 	{ "name": "right_hand_lower", "bone": "right elbow", "attachment": "right_hand_lower" },
-	{ "name": "right_hand_upper", "bone": "right shoulder", "attachment": "right_hand_upper" },
-	{ "name": "weapon_assassin", "bone": "right hand", "attachment": "weapon_assassin" }
+	{ "name": "right_hand_upper", "bone": "right shoulder", "attachment": "right_hand_upper" }
 ],
 "skins": {
 	"default": {
@@ -81,7 +81,7 @@
 			"right_leg_upper": { "x": 15.85, "y": -2.34, "rotation": 77.92, "width": 25, "height": 40 }
 		},
 		"weapon_assassin": {
-			"weapon_assassin": { "x": 9.38, "y": -36.84, "scaleX": -0.5, "scaleY": 0.5, "rotation": 76.39, "width": 193, "height": 49 }
+			"weapon_assassin": { "x": -3.14, "y": -64.71, "scaleX": -1, "rotation": 76.39, "width": 193, "height": 49 }
 		}
 	}
 },
@@ -107,17 +107,12 @@
 			},
 			"left hand": {
 				"rotate": [
-					{ "time": 0, "angle": 17.19 },
-					{ "time": 0.0666, "angle": -49.96 },
-					{ "time": 0.2666, "angle": -11 }
+					{ "time": 0, "angle": 17.19 }
 				]
 			},
 			"left shoulder": {
 				"rotate": [
-					{ "time": 0, "angle": -5.65 },
-					{ "time": 0.2, "angle": 59.25 },
-					{ "time": 0.2666, "angle": 39.15 },
-					{ "time": 0.4, "angle": 48.44 }
+					{ "time": 0, "angle": 53.2 }
 				]
 			},
 			"right shoulder": {
@@ -125,23 +120,19 @@
 					{ "time": 0.0666, "angle": -20.48 },
 					{ "time": 0.2, "angle": -323.43 },
 					{ "time": 0.2666, "angle": -288.96 },
-					{ "time": 0.3333, "angle": -266.09 }
-				]
-			},
-			"left elbow": {
-				"rotate": [
-					{ "time": 0.0666, "angle": -30.97 },
-					{ "time": 0.2666, "angle": 21.84 }
+					{ "time": 0.3333, "angle": -242.07 },
+					{ "time": 0.4, "angle": -155.57 }
 				]
 			},
 			"right hand": {
 				"rotate": [
-					{ "time": 0.3333, "angle": 77.7 }
+					{ "time": 0.3333, "angle": 77.7 },
+					{ "time": 0.4, "angle": 15.93 }
 				]
 			},
 			"right elbow": {
 				"rotate": [
-					{ "time": 0.4, "angle": 41.61 }
+					{ "time": 0.4, "angle": 17.61 }
 				]
 			}
 		},
