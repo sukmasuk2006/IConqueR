@@ -4,15 +4,18 @@ using System.Collections;
 public class ProjectileController : MonoBehaviour {
 
 	public HeroController heroController;
+	private SpriteRenderer renderer;
 	private bool isLaunch = false;
 	// Use this for initialization
 	void Start () {
-		this.gameObject.GetComponent<SpriteRenderer> ().sprite = 
+		renderer = this.gameObject.GetComponent<SpriteRenderer> ();
+		renderer.sprite = 
 			(Sprite)Resources.Load ("Sprite/Ammo/" + heroController.stats.Job, typeof(Sprite));
 		SetPos ();
 	}
 	
 	void OnTriggerEnter2D(Collider2D coll) {
+		//renderer.enabled = false;
 		if (coll.gameObject.name.Contains(heroController.target) ) {
 			isCollided();
 			Debug.Log("DOR with " + coll.gameObject.name);
@@ -33,6 +36,7 @@ public class ProjectileController : MonoBehaviour {
 	}
 
 	void SetPos(){
+
 		Vector3 heropos = new Vector3 (heroController.gameObject.transform.position.x + (0.5f * heroController.direction),
 		                              heroController.gameObject.transform.position.y + 0.5f,
 		                              heroController.gameObject.transform.position.z);

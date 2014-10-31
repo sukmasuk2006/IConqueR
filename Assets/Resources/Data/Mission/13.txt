@@ -1,8 +1,9 @@
 sedhtron
-250
+100
 900
 0
 15
 tribe
-knight
+warrior
 archer
+knight

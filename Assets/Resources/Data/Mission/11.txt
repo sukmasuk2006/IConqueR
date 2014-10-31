@@ -1,9 +1,8 @@
 Savanna
-205
+255
 825
 0
 15
-knight
-knight
+warrior
 warrior
 archer

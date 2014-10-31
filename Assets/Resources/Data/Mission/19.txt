@@ -1,9 +1,9 @@
 Duhu
-500
-2000
+750
+1500
 0
 23
-tribe
+warrior
 knight
 tribe
 archer

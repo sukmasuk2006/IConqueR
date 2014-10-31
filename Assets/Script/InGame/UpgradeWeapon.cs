@@ -17,10 +17,11 @@ public class UpgradeWeapon : MonoBehaviour {
 		percentages = 0;
 	}
 	
-	void OnMouseDown(){
-		CheckRequirement ();
-				MusicManager.getMusicEmitter().audio.PlayOneShot(sound);
-
+	void OnMouseUp(){
+		if (GameData.readyToTween) {
+					CheckRequirement ();
+					MusicManager.getMusicEmitter ().audio.PlayOneShot (sound);
+		}
 	}
 
 	void CheckRequirement(){

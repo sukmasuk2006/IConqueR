@@ -58,11 +58,11 @@ public class BattleController : MonoBehaviour {
 	private int diamondEarn;
 	private Mission mission;
 	private int isGetReward;
-	private const int itemChance = 40;
+	private const int itemChance = 70;
 
 	// Use this for initialization
 	void Start () {
-		Debug.Log ("batltecontrol START");
+	//	Debug.Log ("batltecontrol START");
 
 		heroTitle.sprite = GameData.titleSpriteList [GameData.profile.Title];
 		mission = GameData.missionList [GameData.currentMission];
@@ -95,7 +95,8 @@ public class BattleController : MonoBehaviour {
 		}
 		/*awal2 semua hero mati, kemudian dicek ada brp yang aktif*/
 		i = 0;
-		GameData.gameState = GameConstant.GAMEPLAY_SCENE;
+	//	if ( GameData.profile.TutorialState == 1 )
+		//	GameData.gameState = GameConstant.GAMEPLAY_SCENE;
 		foreach (FormationUnit u in GameData.profile.formationList) {
 				if ( u.IsUnlocked && u.Unit.HeroId != 99){
 					GameData.profile.formationList[i].Unit.Refresh();
@@ -104,7 +105,7 @@ public class BattleController : MonoBehaviour {
 //					heroList[i].GetComponent<SpriteRenderer>().sprite = u.Unit.Sprites;
 					float level = 0; 
 					level = 1 + (GameData.profile.Level * 0.1f);
-					level += (GameData.profile.Title * 0.5f);
+					level += (GameData.profile.Title * 0.1f);
 					u.Unit.Agi *= level;
 					u.Unit.Str *= level;
 					u.Unit.Vit *= level;
@@ -122,15 +123,15 @@ public class BattleController : MonoBehaviour {
 			enemyList[i].SetActive(true);	
 //			enemyList[i].GetComponent<SpriteRenderer>().sprite = u.Sprites;
 			tempStats.Add(new Unit(s.HeroId,s.Job.Trim()));
-			Debug.Log("added enemy " + s.HeroId + " JOB " + s.Job);
+	//		Debug.Log("added enemy " + s.HeroId + " JOB " + s.Job);
 			// tiap 3 stage, naik level musuhnya
 			float level = 0; 
 			if ( GameData.missionType == "Camp") //boss
-				level = 1 + (GameData.currentMission/2)*0.25f;
+				level = 1 + (GameData.currentMission/2)*0.35f;
 			else if ( GameData.missionType == "Fortress") //boss
-				level = 1 + (GameData.currentMission/2)*0.5f;
+				level = 1 + (GameData.currentMission/2)*0.45f;
 			else if ( GameData.missionType == "Castle") //boss
-				level = 1 + (GameData.currentMission/2)* 0.75f;
+				level = 1 + (GameData.currentMission/2)* 0.55f;
 
 			level += (mission.Title * 0.25f);
 			s.Agi *= level;
@@ -206,11 +207,11 @@ public class BattleController : MonoBehaviour {
 		}
 		set {
 			totalHero = value;
-			Debug.Log("hero die " + totalHero);
+	//		Debug.Log("hero die " + totalHero);
 			if ( totalHero == 0 ){
 				battleState = 5;
 				Lose();
-				Debug.Log("LOSEEE");
+	//			Debug.Log("LOSEEE");
 			}
 		}
 	}
@@ -221,11 +222,11 @@ public class BattleController : MonoBehaviour {
 		}
 		set {
 			totalEnemy = value;
-			Debug.Log("enemy die " + totalEnemy);
+	//		Debug.Log("enemy die " + totalEnemy);
 			if ( TotalEnemy == 0 ){ 
 				battleState = 1;
 				Win();
-				Debug.Log("WINN");
+	//			Debug.Log("WINN");
 			}
 		}
 	}
@@ -304,13 +305,20 @@ public class BattleController : MonoBehaviour {
 //		Debug.Log ("win " + GameData.profile.DefeatedArmy);
 
 	}
+			
+	void CheckTutorialState(){
+		if ( GameData.profile.TutorialState < 2 )
+			isGetReward = 100;
+	//	    GameData.profile.TutorialState++;
+	//	Debug.Log ("after battle " + GameData.profile.TutorialState);
+	}
 
 	void Lose(){
 		
 		winloseText.text = "You Lose!";
 		GetReward ();
 		ShowOnReport ();
-		Debug.Log ("lose");
+	//	Debug.Log ("lose");
 	}
 
 	void GetReward(){
@@ -320,7 +328,9 @@ public class BattleController : MonoBehaviour {
 		goldEarn = mission.GoldReward / battleState;
 		GameData.profile.Gold += goldEarn;
 		// semakin tinggi misi, semakin susah dpt reward
-		if (isGetReward < itemChance - GameData.currentMission && battleState == 1) {
+		// item chance - mis/6
+		CheckTutorialState();
+		if (isGetReward < itemChance - (GameData.currentMission/6) && battleState == 1) {
 			int get = mission.GetReward;
 			itemGained.SetActive(true);
 			itemGainedSprite.sprite = GameData.gemSpriteList[get];
@@ -337,7 +347,7 @@ public class BattleController : MonoBehaviour {
 		goldTextMesh.text ="+"+goldEarn.ToString ();
 		diamondText.text ="+"+diamondEarn.ToString ();
 		expEarnedText.text ="+"+expEarn.ToString ();
-		Debug.Log ("report " + activeEnemyList.Count + " " + tempStats.Count);
+	//	Debug.Log ("report " + activeEnemyList.Count + " " + tempStats.Count);
 		for (int i = 0; i < activeEnemyList.Count; i++) {
 			activeEnemyList[i].CopyStats(tempStats[i].HeroId,tempStats[i]);
 		}

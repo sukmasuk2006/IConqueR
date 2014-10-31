@@ -32,12 +32,12 @@ public class LogoSceneController : MonoBehaviour {
 		if (GameData.readyToTween) {
 						GameData.readyToTween = false;
 						//	Debug.Log ("GO");
-						iTween.ColorTo (removedObject, iTween.Hash ("delay", 1f, "a", 0f, "time", time, "EaseType", "linear"));
-						iTween.MoveTo (removedObject, iTween.Hash ("delay", 4f, "position", new Vector3 (0, 0, 3), "time", time, "EaseType", "linear"));
+						iTween.ColorTo (removedObject, iTween.Hash ("delay", 0f, "a", 0f, "time", time, "EaseType", "linear"));
+						iTween.MoveTo (removedObject, iTween.Hash ("delay", 3f, "position", new Vector3 (0, 0, 5), "time", time, "EaseType", "linear"));
 
-						iTween.MoveTo (tweenedObject, iTween.Hash ("delay", 2f, "position", LogoTarget, "time", 0.1f, "EaseType", "linear"
+						iTween.MoveTo (tweenedObject, iTween.Hash ("delay", 2f, "position", LogoTarget, "time", 2f, "EaseType", "linear"
 						));
-						iTween.MoveTo (button, iTween.Hash ("delay", 2f, "position", buttonTarget, "time", 1f, "EaseType", "linear"
+						iTween.MoveTo (button, iTween.Hash ("delay", 2f, "position", buttonTarget, "time", 2f, "EaseType", "linear"
 		                                           , "onComplete", "ReadyTween", "onCompleteTarget", gameObject));
 				}
 	}

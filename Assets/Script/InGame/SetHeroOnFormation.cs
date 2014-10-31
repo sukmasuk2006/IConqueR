@@ -13,7 +13,7 @@ public class SetHeroOnFormation : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		infoText.text = "Select your hero!";
+		infoText.text = "Select your units!";
 		}
 	
 
@@ -23,7 +23,7 @@ public class SetHeroOnFormation : MonoBehaviour {
 				//copy status, dan id biar gampang nanti itung2an expnya setelah battle
 //				Debug.Log("slot formasi yang akan di set di barackscreen " + screenData.formationSlot);
 		if (GameData.profile.activeHeroes == 0) {
-			infoText.text = "Please select at least one hero";
+			infoText.text = "Select at least one units";
 		} else {// slot di formation
 				int formationSlot = 0;
 			for (int i = 0; i < GameData.profile.unitList.Count; i++) {
@@ -42,7 +42,7 @@ public class SetHeroOnFormation : MonoBehaviour {
 												formationSlot++;
 										}
 								}
-							infoText.text = "Select your hero!";
+							infoText.text = "Select your units";
 							if (GameData.readyToTween ) {
 								GameData.readyToTween = false;
 								iTween.MoveTo ( targetObject,iTween.Hash("position",tweenedObject.transform.position,"time", 0.1f,"onComplete","ReadyTween","onCompleteTarget",gameObject));

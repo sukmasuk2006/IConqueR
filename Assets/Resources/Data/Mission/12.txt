@@ -1,8 +1,8 @@
 Gosert
-225
-850
+275
+450
 0
 15
-tribe
-knight
 warrior
+knight
+archer

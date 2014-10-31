@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Linq;
 using System.Collections.Generic;
 
 public class ProfileData 
@@ -11,6 +12,8 @@ public class ProfileData
 	private int gold;
 	private int diamond;
 	private int title;
+	private int tutorialState;
+	private int tutorialChatState;
 	//private int nextStage;
 
 	// untuk quest
@@ -29,7 +32,7 @@ public class ProfileData
 	public  List<Quest> questList;
 	public  List<Unit> unitList;
 
-	private const int base_exp = 75;
+	private const int base_exp = 50;
 	public ProfileData(){
 
 	}
@@ -42,8 +45,9 @@ public class ProfileData
 		PlayerPrefs.SetInt("currentExp"+GameData.tesId, currentExp);
 		PlayerPrefs.SetInt("gold"+GameData.tesId, gold);
 		PlayerPrefs.SetInt("diamond"+GameData.tesId, diamond);
+		PlayerPrefs.SetInt("tutorialState"+GameData.tesId, tutorialState);
 		PlayerPrefs.SetInt("unlockedTroop"+GameData.tesId,  unlockedTroop);
-		PlayerPrefsX.SetVector3 ("mapPos", mapPos);
+		PlayerPrefsX.SetVector3 ("mapPos"+GameData.tesId, mapPos);
 		PlayerPrefs.SetInt("unlockedSlot"+GameData.tesId, unlockedSlot);
 		PlayerPrefs.SetInt("activeHeroes"+GameData.tesId,  activeHeroes);
 		PlayerPrefs.SetInt("totalSkillUsed"+GameData.tesId, totalSkillUsed);
@@ -86,7 +90,8 @@ public class ProfileData
 		gold = GameData.CheckPrefs("gold"+GameData.tesId) ? PlayerPrefs.GetInt("gold"+GameData.tesId) : gold;
 		diamond = GameData.CheckPrefs("diamond"+GameData.tesId) ? PlayerPrefs.GetInt("diamond"+GameData.tesId) : diamond;
 		unlockedTroop =  GameData.CheckPrefs("unlockedTroop"+GameData.tesId) ? PlayerPrefs.GetInt("unlockedTroop"+GameData.tesId) : unlockedTroop;
-		mapPos = PlayerPrefsX.GetVector3 ("mapPos");
+		tutorialState = PlayerPrefs.GetInt ("tutorialState" + GameData.tesId);
+		mapPos = PlayerPrefsX.GetVector3 ("mapPos"+GameData.tesId);
 		unlockedSlot = GameData.CheckPrefs("unlockedSlot"+GameData.tesId) ? PlayerPrefs.GetInt("unlockedSlot"+GameData.tesId) : unlockedSlot;
 		activeHeroes = GameData.CheckPrefs("activeHeroes"+GameData.tesId) ? PlayerPrefs.GetInt("activeHeroes"+GameData.tesId) : activeHeroes;
 		totalSkillUsed = GameData.CheckPrefs("totalSkillUsed"+GameData.tesId) ? PlayerPrefs.GetInt("totalSkillUsed"+GameData.tesId) : totalSkillUsed;
@@ -148,18 +153,21 @@ public class ProfileData
 		level = 1;
 		nextMission = 0;
 		currentExp = 0;
-		gold = 500;
+		gold = 1500;
 		diamond = 0;
+		mapPos = new Vector3 (-0.5f, 2.5f, -1f);
 		//nextStage = 1;
 		unlockedSlot = 1;
 		activeHeroes = 1;
 		totalSkillUsed = 1;
+		tutorialState = 0;
+		tutorialChatState = 0;
 		nextExp = base_exp;
-		formationList = new List<FormationUnit> ();
-		skillList = new List<Skill> ();
+		formationList = new List<FormationUnit> (5);
+		skillList = new List<Skill> (10);
 		inventoryList = new List<Item> ();
 		questList = new List<Quest> ();
-		unitList = new List<Unit> ();
+		unitList = new List<Unit> (10);
 //			Debug.Log ("next exp " + nextExp);
 	}
 
@@ -279,6 +287,24 @@ public class ProfileData
 		}
 		set {
 			title = value;
+		}
+	}
+
+	public int TutorialState {
+		get {
+			return tutorialState;
+		}
+		set {
+			tutorialState = value;
+		}
+	}
+
+	public int TutorialChatState {
+		get {
+			return tutorialChatState;
+		}
+		set {
+			tutorialChatState = value;
 		}
 	}
 }

@@ -59,9 +59,7 @@ public class ConfirmBuy : MonoBehaviour {
 					data.corridorState = 0;
 					GameData.gameState = "Sell";
 			}
-			else if ( GameData.gameState == "ConfirmExit"){
-				Application.Quit();
-			}
+
 		} else {
 			if (GameData.gameState == "ConfirmBuy") GameData.gameState = "Buy";
 			else GameData.gameState = "Sell";

@@ -17,8 +17,8 @@ public class UnlockSkill : MonoBehaviour {
 
 	void Start(){
 		Skill s = GameData.profile.skillList [slot];
-		Debug.Log ("di button skill ke " + slot + " unlock " + s.IsUnlocked +
-		           " selected " + s.IsSelected);
+//		Debug.Log ("di button skill ke " + slot + " unlock " + s.IsUnlocked +
+//		           " selected " + s.IsSelected);
 		if (!GameData.profile.skillList [slot].IsUnlocked) {
 			renderer.sprite = deselectedSprite;
 			buttonInfo.text = "unlock";

@@ -5,112 +5,119 @@ filter: Linear,Linear
 repeat: none
 body
   rotate: false
-  xy: 189, 74
+  xy: 189, 77
   size: 97, 95
   orig: 97, 95
   offset: 0, 0
   index: -1
 head
   rotate: false
-  xy: 2, 75
+  xy: 2, 78
   size: 185, 176
   orig: 185, 176
   offset: 0, 0
   index: -1
+head_syal
+  rotate: false
+  xy: 2, 40
+  size: 91, 36
+  orig: 91, 36
+  offset: 0, 0
+  index: -1
 left_foot
   rotate: true
-  xy: 334, 138
+  xy: 334, 141
   size: 31, 16
   orig: 31, 16
   offset: 0, 0
   index: -1
 left_hand_finger
-  rotate: false
-  xy: 427, 214
+  rotate: true
+  xy: 2, 2
   size: 36, 37
   orig: 36, 37
   offset: 0, 0
   index: -1
 left_hand_lowef
-  rotate: true
-  xy: 48, 47
+  rotate: false
+  xy: 288, 80
   size: 26, 47
   orig: 26, 47
   offset: 0, 0
   index: -1
 left_hand_upper
   rotate: false
-  xy: 2, 30
+  xy: 288, 129
   size: 44, 43
   orig: 44, 43
   offset: 0, 0
   index: -1
 left_leg_lower
   rotate: true
-  xy: 146, 50
+  xy: 144, 53
   size: 23, 35
   orig: 23, 35
   offset: 0, 0
   index: -1
 left_leg_upper
-  rotate: true
-  xy: 465, 226
+  rotate: false
+  xy: 473, 214
   size: 25, 40
   orig: 25, 40
   offset: 0, 0
   index: -1
 right_fingers
-  rotate: false
-  xy: 288, 88
+  rotate: true
+  xy: 41, 2
   size: 36, 37
   orig: 36, 37
   offset: 0, 0
   index: -1
 right_foot
-  rotate: false
-  xy: 465, 208
+  rotate: true
+  xy: 316, 96
   size: 31, 16
   orig: 31, 16
   offset: 0, 0
   index: -1
 right_hand_lower
   rotate: true
-  xy: 97, 47
+  xy: 95, 50
   size: 26, 47
   orig: 26, 47
   offset: 0, 0
   index: -1
 right_hand_upper
   rotate: false
-  xy: 288, 127
+  xy: 427, 212
   size: 44, 42
   orig: 44, 42
   offset: 0, 0
   index: -1
 right_leg_lower
-  rotate: true
-  xy: 427, 189
+  rotate: false
+  xy: 80, 2
   size: 23, 36
   orig: 23, 36
   offset: 0, 0
   index: -1
 right_leg_upper
   rotate: true
-  xy: 2, 2
+  xy: 427, 184
   size: 26, 40
   orig: 26, 40
   offset: 0, 0
   index: -1
 weapon_ninja_kunai
   rotate: false
-  xy: 189, 171
+  xy: 189, 174
   size: 164, 80
   orig: 164, 80
   offset: 0, 0
   index: -1
 weapon_ninja_shuriken
   rotate: false
-  xy: 355, 181
+  xy: 355, 184
   size: 70, 70
   orig: 70, 70
   offset: 0, 0

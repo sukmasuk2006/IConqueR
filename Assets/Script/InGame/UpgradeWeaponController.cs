@@ -31,9 +31,11 @@ public class UpgradeWeaponController : MonoBehaviour {
 	public TextMesh toText;
 	private bool success;
 	public ParticleSystem particleSystem;
+	public TutorialPrefabList tutorialObject;
 
 	void Start () {
 		success = false;
+		tutorialObject = GameObject.Find ("TutorialController").GetComponent<TutorialPrefabList>();
 
 		InitilaizeSlot ();
 	}
@@ -180,7 +182,14 @@ public class UpgradeWeaponController : MonoBehaviour {
 			upgradeInfoText.text = "FAILED!";
 			weaponData.SuccessRate ++;		
 		}
-		UpdateWeaponInfo ();
+		/**
+tutorial
+		 */
+		if ( GameData.profile.TutorialState > 14 )
+			tutorialObject.DestoryPrefab ();
+		/**/
+
+	    UpdateWeaponInfo ();
 		GameData.readyToTween = true;
 		Debug.Log (" habis upgrade " + GameData.readyToTween);
 

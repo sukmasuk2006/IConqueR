@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class GameData : MonoBehaviour {
 	
@@ -15,6 +16,7 @@ public class GameData : MonoBehaviour {
 	public static string selectedToViewProfileName = "knight"; // nama hero yang ditampilkan
 	public static int selectedToViewProfileIdFromFormation = 0; // formasi slot ke berapa
 	public static string gameState = "LOGO"; // untuk state dari layar
+	public static string prevGameState = "LOGO"; // untuk state dari layar
 	public static int currentMission = 0; // cek misi yang dijalankan
 	public static string missionType = "Fortress";
 	// apakah serang fort atau castle, untuk dicek achivementnya
@@ -22,6 +24,7 @@ public class GameData : MonoBehaviour {
 	private string[] linesFromFile;
 	
 	public static List<Item> shopList;
+	public static List<TutorialText> tutorialTextList;
 	public static  List<Mission> missionList;
 	public static List<int> expList;
 	public static List<Sprite> unitSpriteList;
@@ -42,8 +45,8 @@ public class GameData : MonoBehaviour {
 		InitializePersistent ();
 		InitializeGameData ();
 		//PlayerPrefs.DeleteAll ();
-		//profile.Gold = 55500;
-		LoadData ();
+		//profile.Gold = 500;
+		//LoadData ();
 	}
 
 	public static bool CheckPrefs(string key){
@@ -68,6 +71,11 @@ public class GameData : MonoBehaviour {
 	}
 
 	void InitializePersistent(){
+		tutorialTextList = new List<TutorialText> ();
+		tutorialTextList.Add (new TutorialText (0, GameConstant.tutorialTextOne));
+		tutorialTextList.Add (new TutorialText(1,GameConstant.two));
+		tutorialTextList.Add (new TutorialText(4, GameConstant.three));
+
 		expList = new List<int> ();
 		TextAsset etxt = (TextAsset)Resources.Load ("Data/Exp/hero", typeof(TextAsset));
 		string econtent = etxt.text;
@@ -233,5 +241,15 @@ public class GameData : MonoBehaviour {
 		profile.totalSkillUsed = 1;
 //		Debug.Log ("first play ");
 		//SaveLoad.Save ();
+	}
+
+	public static bool UpdateGoldQuest(){
+		bool ret = false;
+		var m = profile.questList.Where (x => x.Target.Contains ("gold")).ToList ();
+		foreach (Quest q in m){
+			q.CurrentQuantity = profile.Gold;
+			if ( q.IsCompleted ) ret = true;
+		}
+		return ret;
 	}
 }

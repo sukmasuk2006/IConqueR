@@ -1,6 +1,7 @@
 Staport
-55
-225
+25
+400
 0
 7
 knight
+warrior

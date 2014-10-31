@@ -14,11 +14,18 @@ public class StartUpgrade : MonoBehaviour {
 
 	void OnMouseDown(){
 		if (button) {// yes
-			controller.StartCrafting();	
-			GameData.readyToTween = false;			
+			 if ( GameData.gameState == "ConfirmExit"){
+				Application.Quit();
+			}
+			else{
+				controller.StartCrafting();	
+				GameData.readyToTween = false;			
+			}
 		} //no
 		else {
-
+			if ( GameData.gameState == "ConfirmExit"){
+				GameData.gameState = GameData.prevGameState;
+			}
 		}
 		MusicManager.getMusicEmitter().audio.PlayOneShot(sound);
 		iTween.MoveTo (screen, iTween.Hash ("position", new Vector3 (0, -12f, -5f), "time", 0.1f, "oncomplete", "ReadyTween", "oncompletetarget", gameObject));

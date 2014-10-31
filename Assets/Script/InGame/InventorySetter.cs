@@ -35,7 +35,7 @@ public class InventorySetter : MonoBehaviour {
 		//CheckButton ();
 		tes = controller.UpgradedSlot == 0 ? true : false;
 		if (tes) {
-			Debug.Log("upgrade slot ke " + controller.upgradeSlot + " cou " + GameData.profile.inventoryList.Count);
+//			Debug.Log("upgrade slot ke " + controller.upgradeSlot + " cou " + GameData.profile.inventoryList.Count);
 			controller.queriedList = GameData.profile.inventoryList.Where (x => x is Gem).ToList();	
 			UpdateGem(controller.queriedList);
 				} else {
@@ -63,7 +63,7 @@ public class InventorySetter : MonoBehaviour {
 			agi.text = "";
 			vit.text = "";
 			price.text = ""; 
-			Debug.Log("masuk catch");	
+//			Debug.Log("masuk catch");	
 		}
 		CheckButtonForSell ();
 		spriteRenderer.sprite = s;

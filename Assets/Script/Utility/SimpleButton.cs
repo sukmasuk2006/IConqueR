@@ -13,10 +13,12 @@ public class SimpleButton : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
+		if (GameData.gameState == "ConfirmExit")
+						Application.Quit ();
 		if (GameData.readyToTween) {
-						MusicManager.getMusicEmitter ().audio.PlayOneShot (sound);
-						camera.GetComponent<ScreenFader> ().FadeOut (targetScene);
-						GameData.gameState = targetScene;
-				}
+			MusicManager.getMusicEmitter ().audio.PlayOneShot (sound);
+			camera.GetComponent<ScreenFader> ().FadeOut (targetScene);
+			GameData.gameState = targetScene;
+		}
 	}
 }

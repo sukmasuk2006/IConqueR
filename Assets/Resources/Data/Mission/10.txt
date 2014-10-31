@@ -1,9 +1,8 @@
 Greeasis
-175
-775
+200
+400
 0
 15
 knight
 knight
-archer
 archer

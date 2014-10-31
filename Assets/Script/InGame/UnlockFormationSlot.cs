@@ -6,6 +6,7 @@ public class UnlockFormationSlot : MonoBehaviour {
 	public ProfileController profileController; // profile master
 	public List<GameObject> lockSprite;
 	public AudioClip sound;
+	public int price = 500;
 	// Use this for initialization
 	void Start () {
 		if (GameData.profile.unlockedSlot == 5)
@@ -15,12 +16,12 @@ public class UnlockFormationSlot : MonoBehaviour {
 	}
 	
 	void OnMouseDown(){
-		if (GameData.profile.unlockedSlot < 5 && GameData.profile.Gold >= GameConstant.UNLOCK_SLOT_PRICE) {
+		if (GameData.profile.unlockedSlot < 5 && GameData.profile.Gold >= price) {
 			GameData.profile.formationList[GameData.profile.unlockedSlot].IsUnlocked = true;
 			lockSprite[GameData.profile.unlockedSlot++].SetActive(false);
 			// awal buka kasih knight
 			//	ReloadSprite(GameData.unitList[0].Sprites);
-				profileController.UpdateGoldAndDiamond(0,GameConstant.UNLOCK_SLOT_PRICE);
+				profileController.UpdateGoldAndDiamond(0,price);
 			SetPos();
 
 			if (GameData.profile.unlockedSlot == 5)

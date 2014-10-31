@@ -1,9 +1,9 @@
 Sedhtuos
 300
-1000
+450
 0
 15
+archer
 tribe
-knight
-knight
+tribe
 archer

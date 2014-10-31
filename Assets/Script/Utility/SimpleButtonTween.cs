@@ -30,14 +30,22 @@ public class SimpleButtonTween : MonoBehaviour {
 		MusicManager.getMusicEmitter().audio.PlayOneShot(sound);
 		//HOTween.To(tweenedObject,0.5f,"position",targetObject.transform.position);
 		tempPosition = targetObject.transform.position;
-		
+			
 		Debug.Log (" Klik  " + GameData.readyToTween);
 		if (GameData.readyToTween  ) {
 			GameData.readyToTween = false;
-			iTween.MoveTo ( targetObject,iTween.Hash("position",tweenedObject.transform.position,"time", 0.1f,"onComplete","ReadyTween","onCompleteTarget",gameObject));
-			//sound.audio.PlayOneShot (sound.audio.clip);
-			GameData.gameState = gameStateTarget;	
-			                                         
+			if ( GameData.gameState == "ConfirmExit"){
+				iTween.MoveTo ( tweenedObject,iTween.Hash("position",new Vector3(0,-12f,0f),"time", 0.1f));
+				GameData.gameState = GameData.prevGameState;
+				GameData.readyToTween = true;
+				Debug.Log("gk jadi exit");
+			}
+			else {
+				iTween.MoveTo ( targetObject,iTween.Hash("position",tweenedObject.transform.position,"time", 0.1f,"onComplete","ReadyTween","onCompleteTarget",gameObject));
+				//sound.audio.PlayOneShot (sound.audio.clip);
+				Debug.Log("what");
+				GameData.gameState = gameStateTarget;	
+			}                                   
 		}
 	}
 	

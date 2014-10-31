@@ -17,13 +17,13 @@ public class Drag : MonoBehaviour {
 	}
 	
 	void OnMouseDown() {
-		if( GameData.gameState == "Map" )
+		if( GameData.gameState == "Map" && GameData.profile.TutorialState > GameConstant.TOTAL_TUTORIAL)
 			offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
 	}
 	
 	void OnMouseDrag()
 	{
-		if (GameData.gameState == "Map" ) {
+		if (GameData.gameState == "Map" && GameData.profile.TutorialState > GameConstant.TOTAL_TUTORIAL) {
 			pos = gameObject.transform.position;
 			if (pos.x < minX && pos.x > maxX && pos.y > maxY && pos.y < minY) {
 					Vector3 curScreenPoint = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
@@ -34,13 +34,14 @@ public class Drag : MonoBehaviour {
 	}
 
 	void OnMouseUp(){
-		if (GameData.gameState == "Map") {
+		if (GameData.gameState == "Map" && GameData.profile.TutorialState > GameConstant.TOTAL_TUTORIAL) {
 			StayOnTrack ();
 			GameData.profile.MapPos = gameObject.transform.position;
 			GameData.SaveData ();
 		}
 	}
 
+	// biar gak keluar map
 	void StayOnTrack(){
 		Debug.Log ("stay ontrack");
 		float ofset = 0.1f;

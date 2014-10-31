@@ -20,6 +20,7 @@ public class QuestController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	//	rendererOne.sprite =
+		GameData.UpdateGoldQuest ();
 		SetQuest ();
 	}
 

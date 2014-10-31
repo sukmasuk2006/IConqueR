@@ -23,10 +23,10 @@ public class HeroSlotController : MonoBehaviour {
 	public void UpdateData(){
 		nameText.text = GameData.profile.unitList [heroSlot].Name;
 		jobText.text = GameData.profile.unitList [heroSlot].Job;
-		lvlText.text = "Level " + GameData.profile.unitList [heroSlot].Level.ToString();
-		str.text = "Str :"+GameData.profile.unitList [heroSlot].Str.ToString();
-		agi.text = "Agi :"+GameData.profile.unitList [heroSlot].Agi.ToString();
-		vit.text = "Vit :"+GameData.profile.unitList [heroSlot].Vit.ToString();
+		lvlText.text = "Level\n" + GameData.profile.unitList [heroSlot].Level.ToString();
+		str.text = "Str  "+GameData.profile.unitList [heroSlot].Str.ToString();
+		agi.text = "Agi  "+GameData.profile.unitList [heroSlot].Agi.ToString();
+		vit.text = "Vit  "+GameData.profile.unitList [heroSlot].Vit.ToString();
 		goldText.text = GameData.profile.unitList [heroSlot].GoldNeeded.ToString();
 		
 		if (GameData.profile.unitList [heroSlot].IsUnlocked) {

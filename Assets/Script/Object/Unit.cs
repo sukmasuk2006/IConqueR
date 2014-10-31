@@ -76,7 +76,7 @@ public class Unit : UnitStatus {
 		//
 		attackSpeed = float.Parse( Round(1f - (tempAgi - 1f) * 0.0050408f).ToString()); // min 2.5f max 0.5f  
 		if (weapon.Range == 5)
-						AttackSpeed *= 1.5f;
+						AttackSpeed *= 0.75f;
 		critical =  float.Parse( Round(((tempStr + tempAgi *2 ) / 3)*0.55f).ToString()); // min 1 max 55 
 		critChance = critical;
 		evasionRate = float.Parse(Round(((tempVit + tempAgi *2 ) / 3)*0.55f).ToString()); // min 1 max 55
@@ -102,14 +102,14 @@ public class Unit : UnitStatus {
 		isActive = (PlayerPrefs.GetInt(job+"isActive"+GameData.tesId) != 0);
 		nextExp = base_exp;
 		for (int i = 0; i < level; i++)
-			nextExp *= 2;
+			nextExp = ((nextExp * 2) - (nextExp/2));
 		weapon.Load ();
 	}
 
 	private void LevelUp(){
 		currentExp -= nextExp;
 		level++;
-		nextExp *= 2;
+		nextExp = ((nextExp * 2) - (nextExp/2));
 		// laju pertumbuhan status bergantung id
 		str += (heroId / 4) + 1;
 		agi += (heroId / 4) + 1;

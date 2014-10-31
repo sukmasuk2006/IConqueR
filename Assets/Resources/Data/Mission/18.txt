@@ -1,8 +1,8 @@
 Duhu
-400
-1700
+450
+500
 0
-21
+19
 tribe
 knight
 tribe

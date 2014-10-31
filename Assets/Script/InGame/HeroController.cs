@@ -104,15 +104,17 @@ public class HeroController : MonoBehaviour {
 		// jika masih battle
 		if (controller.BatlleState == 0 && GameData.gameState != "Paused" && !isDeath) {
 			attackSpeed -= Time.deltaTime;
-//			Debug.Log("can cont");
+//			animator.state.ClearTracks ();
 			// check attack time
 			if (attackType == 0) {		
 				// MELEE
 //				Debug.Log("melee " + attackSpeed + " isat " + isAttack);
 				if (attackSpeed <= 0 && !isAttack) {
 					// jika waktunya serang, SERANG!
+					animator.state.ClearTracks ();
 					isAttack = true;
 					movementSpeed = stats.Movement;
+					animator.state.AddAnimation (0, "run", true,0);
 					PushForward (1f);
 				} else {
 					DeceleratePullBack ();
@@ -120,12 +122,13 @@ public class HeroController : MonoBehaviour {
 			} else {
 				if (attackSpeed <= 0 && !isAttack) {
 					// jika waktunya serang, SERANG!
-					isAttack = true;
+						isAttack = true;
 					if (animator.state.GetCurrent (1) == null && attackType == 1) {
 						Debug.Log("name " + name + "dodmage 0");
-						animator.state.AddAnimation (1, "attack", false,0f);
+						animator.state.SetAnimation (0, "attack", false);
+						animator.state.GetCurrent (0).Complete += HandleComplete;
 					}
-					projectile.GetComponent<ProjectileController> ().Launch ();
+
 					//DoDamageToTarget
 				}
 			}//	Push();
@@ -147,6 +150,7 @@ public class HeroController : MonoBehaviour {
 								rigidbody2D.velocity = Vector2.zero;
 								targetUnit = coll.gameObject.GetComponent<HeroController> ();
 								if (isAttack && attackType == 0) {
+										
 										if (animator.state.GetCurrent (1) == null) {
 												Debug.Log("name " + name + "dodmage 0");
 												animator.state.AddAnimation (1, "attack", false,0f);
@@ -156,6 +160,8 @@ public class HeroController : MonoBehaviour {
 						} 
 				}
 	}
+
+
 	void OnTriggerStay2D(Collider2D coll) {
 		if (GameData.gameState != "Paused") {
 						if (coll.gameObject.name.Contains ("wall")) {
@@ -183,8 +189,11 @@ public class HeroController : MonoBehaviour {
 
 	void HandleComplete (Spine.AnimationState state, int trackIndex, int loopCount)
 	{
-		DoDamageToTarget (targetUnit,-0.5f);
-	
+		if ( attackType == 0 )
+			DoDamageToTarget (targetUnit,-0.5f);
+		else
+			projectile.GetComponent<ProjectileController> ().Launch ();
+		GetReadyForNextAttack ();
 	}
 
 	// jika F- => mundurin kita/musuh
@@ -208,7 +217,7 @@ public class HeroController : MonoBehaviour {
 					h.PushForward(force);
 				stats.IsCritical = false; // set critical ke semula, tapi chance tetep
 				controller.ReceiveDamage (target, damage);
-				GetReadyForNextAttack ();
+				
 		}
 	}
 
@@ -222,8 +231,10 @@ public class HeroController : MonoBehaviour {
 		}
 		else
 			Debug.Log("name " + name + "gak nul 1");
-
-	//	animator.state.SetAnimation (0, "run", true);
+		
+//		animator.state.ClearTracks ();
+		//animator.state.AddAnimation (0, "idle", false,1.5f);
+		animator.state.AddAnimation (0, "idle", true,0.5f);
 	}
 
 	public void DeceleratePullBack(){
