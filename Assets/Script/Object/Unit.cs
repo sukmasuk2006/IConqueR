@@ -12,7 +12,7 @@ public class Unit : UnitStatus {
 	private bool isActive;
 	private int goldNeeded;
 	private bool isCritical;
-	private const int base_exp = 75;
+	private const int base_exp = 30;
 
 	private Weapon weapon;
 
@@ -102,14 +102,14 @@ public class Unit : UnitStatus {
 		isActive = (PlayerPrefs.GetInt(job+"isActive"+GameData.tesId) != 0);
 		nextExp = base_exp;
 		for (int i = 0; i < level; i++)
-			nextExp = ((nextExp * 2) - (nextExp/2));
+			nextExp = ((nextExp * 2) - (nextExp/3));  // 1.1/3
 		weapon.Load ();
 	}
 
 	private void LevelUp(){
 		currentExp -= nextExp;
 		level++;
-		nextExp = ((nextExp * 2) - (nextExp/2));
+		nextExp = ((nextExp * 2) - (nextExp/3));
 		// laju pertumbuhan status bergantung id
 		str += (heroId / 4) + 1;
 		agi += (heroId / 4) + 1;
@@ -226,7 +226,7 @@ public class Unit : UnitStatus {
 		}
 		set {
 			currentExp = value;
-			if ( currentExp >= nextExp ){
+			while ( currentExp >= nextExp ){
 				LevelUp();
 			}
 		}

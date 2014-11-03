@@ -9,11 +9,16 @@ public class SimpleButtonTween : MonoBehaviour {
 	public string gameStateTarget;
 	private Vector3 tempPosition;
 	public AudioClip sound;
-
+	private ProfileController prof;
 	public bool isRemoved = true;
 
 	// Use this for initialization
 	void Start () {
+		try{
+			prof = GameObject.Find("Profile").GetComponent<ProfileController>();
+		}
+		catch{
+		}
 	}
 
 
@@ -30,7 +35,11 @@ public class SimpleButtonTween : MonoBehaviour {
 		MusicManager.getMusicEmitter().audio.PlayOneShot(sound);
 		//HOTween.To(tweenedObject,0.5f,"position",targetObject.transform.position);
 		tempPosition = targetObject.transform.position;
-			
+		try {
+			prof.CheckIsCompletedAchievement();
+		}
+		catch{
+		}
 		Debug.Log (" Klik  " + GameData.readyToTween);
 		if (GameData.readyToTween  ) {
 			GameData.readyToTween = false;

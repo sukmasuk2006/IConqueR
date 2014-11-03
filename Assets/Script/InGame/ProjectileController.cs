@@ -11,7 +11,6 @@ public class ProjectileController : MonoBehaviour {
 		renderer = this.gameObject.GetComponent<SpriteRenderer> ();
 		renderer.sprite = 
 			(Sprite)Resources.Load ("Sprite/Ammo/" + heroController.stats.Job, typeof(Sprite));
-		SetPos ();
 	}
 	
 	void OnTriggerEnter2D(Collider2D coll) {
@@ -25,6 +24,9 @@ public class ProjectileController : MonoBehaviour {
 			heroController.DoDamageToTarget (h,0f);
 					
 		}
+		else{
+			transform.position = new Vector2(0,-12);
+		}
 	}
 
 	public void Launch(){
@@ -33,6 +35,16 @@ public class ProjectileController : MonoBehaviour {
 		IsLaunch = true;
 		rigidbody2D.velocity = Vector2.zero;
 		rigidbody2D.AddForce(new Vector2(500f * heroController.direction,0f));
+	}
+
+	void Muter(){
+	}
+
+	void Update(){
+		if ( heroController.stats.Job.Contains("ribe")){
+			transform.Rotate(0,0,30f);
+		}
+
 	}
 
 	void SetPos(){

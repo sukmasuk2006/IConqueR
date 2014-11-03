@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: b1e2f98aefc08df4fa084de69641876c
+guid: d7e367185babdd742b84a7793d296edb
 TextureImporter:
   fileIDToRecycleName:
-    21300000: panel_empty
+    21300000: Battle_health_bar_base
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -22,13 +22,13 @@ TextureImporter:
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
-  textureFormat: -3
-  maxTextureSize: 512
+  textureFormat: -1
+  maxTextureSize: 1024
   textureSettings:
-    filterMode: 1
-    aniso: 1
+    filterMode: -1
+    aniso: -1
     mipBias: -1
-    wrapMode: 1
+    wrapMode: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50

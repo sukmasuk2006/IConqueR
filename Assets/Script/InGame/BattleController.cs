@@ -16,6 +16,7 @@ public class BattleController : MonoBehaviour {
 	public TextMesh itemName;
 	private float[] positionList;
 	private bool[] positionAvailableList;
+	public List<Transform> listPrefab;
 
 	public GameObject pauseScreen;
 	public GameObject globalHeroHealthBar;
@@ -28,7 +29,6 @@ public class BattleController : MonoBehaviour {
 	public List<Skill> activeSkill;
 	public List<Unit> activeEnemyList;
 	public List<Unit> tempStats;
-	public Vector3 reportTargetPosition;	
 	public TextMesh goldTextMesh;
 	public TextMesh diamondText;
 	public TextMesh expEarnedText;
@@ -43,6 +43,9 @@ public class BattleController : MonoBehaviour {
 	private int battleState = 0;
 	private int nextExp;
 	private float scaleX;
+
+	const float MaxExpBarScaleX = 0.85f;
+
 	/*
      * Report
 	 */
@@ -63,14 +66,17 @@ public class BattleController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	//	Debug.Log ("batltecontrol START");
-
 		heroTitle.sprite = GameData.titleSpriteList [GameData.profile.Title];
 		mission = GameData.missionList [GameData.currentMission];
 		enemyTitle.sprite = GameData.titleSpriteList [mission.Title];
 		int cur = (GameData.currentMission/10)+1;
-
 		battleState = 0;
-		MusicManager.play ("Music/royal2", 0.1f, 0.1f);
+		if ( GameData.profile.TutorialState < 5 ){
+			battleState = 6;// tutorialstate
+				SetPrefab();
+		}
+
+		 MusicManager.play ("Music/royal2", 0.1f, 0.1f);
 		Sprite back = null;
 		back = (Sprite)Resources.Load ("Sprite/Background/"+cur,typeof(Sprite));
 		bg.sprite = back;
@@ -78,8 +84,6 @@ public class BattleController : MonoBehaviour {
 		positionList = new float[12]{1.75f,3f,4.25f,5.5f,6.25f,7.5f,1.75f,3f,4.25f,5.5f,6.25f,7.5f};
 		positionAvailableList = new bool[12]{true,true,true,true,true,true,true,true,true,true,true,true};
 		isGetReward = 0;
-		battleState = 0;
-		//Debug.Log ("Misi ke-" + (GameData.profile.CurrentMission - 1).ToString());
 		activeEnemyList = mission.EnemyList;
 		//Debug.Log ("Jumlah musuh " + activeEnemyList.Count);
 		activeSkill = new List<Skill> ();
@@ -121,17 +125,14 @@ public class BattleController : MonoBehaviour {
 			Unit s = activeEnemyList[i];
 			s.Refresh();
 			enemyList[i].SetActive(true);	
-//			enemyList[i].GetComponent<SpriteRenderer>().sprite = u.Sprites;
 			tempStats.Add(new Unit(s.HeroId,s.Job.Trim()));
-	//		Debug.Log("added enemy " + s.HeroId + " JOB " + s.Job);
-			// tiap 3 stage, naik level musuhnya
 			float level = 0; 
 			if ( GameData.missionType == "Camp") //boss
-				level = 1 + (GameData.currentMission/2)*0.35f;
+				level = 1 + (GameData.currentMission/2)*0.5f;
 			else if ( GameData.missionType == "Fortress") //boss
-				level = 1 + (GameData.currentMission/2)*0.45f;
+				level = 1 + (GameData.currentMission/2)*0.6f;
 			else if ( GameData.missionType == "Castle") //boss
-				level = 1 + (GameData.currentMission/2)* 0.55f;
+				level = 1 + (GameData.currentMission/2)* 0.75f;
 
 			level += (mission.Title * 0.25f);
 			s.Agi *= level;
@@ -143,17 +144,11 @@ public class BattleController : MonoBehaviour {
 			enemyTotalHealth += s.HealthPoint;
 
 		}
-	//	Debug.Log ("report " + activeEnemyList.Count + " " + tempStats.Count);
-
-	
-		ConstantHeroHealthLocalScale = globalHeroHealthBar.transform.localScale;
-		ConstantEnemyHealthLocalScale = globalEnemyHealthBar.transform.localScale;
+		ConstantHeroHealthLocalScale = new Vector3(1.02f,globalHeroHealthBar.transform.localScale.y,globalHeroHealthBar.transform.localScale.z);
+		ConstantEnemyHealthLocalScale = new Vector3(1.02f,globalEnemyHealthBar.transform.localScale.y,globalEnemyHealthBar.transform.localScale.z);
 		totalEnemy = mission.EnemyList.Count;
-	
-		//Debug.Log ("health awal" + heroTotalHealth);
 		ConstantHeroHealth = heroTotalHealth;
 		ConstantEnemyHealth = enemyTotalHealth;
-//		Debug.Log ("start mission");
 		ScaleExpBar ();
 
 	}
@@ -179,6 +174,7 @@ public class BattleController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+
 		if (Input.GetKeyDown (KeyCode.Escape) && GameData.gameState != "Paused") {
 			iTween.MoveTo ( pauseScreen,iTween.Hash("position",new Vector3(3.7f,-0.3f,-3f),"time", 0.1f,"onComplete","ReadyTween","onCompleteTarget",gameObject));
 			//sound.audio.PlayOneShot (sound.audio.clip);
@@ -192,13 +188,11 @@ public class BattleController : MonoBehaviour {
 	}
 
 	public void ReceiveDamage(string target,float damage){
-		//if (battleState == 0) {
 				if (target.Contains ("enemy")) {
 						UpdateEnemyHealthBar (damage);
 				} else {
 						UpdateHeroHealthBar (damage);
 				}
-		//}
 	}
 
 	public int TotalHero {
@@ -207,11 +201,9 @@ public class BattleController : MonoBehaviour {
 		}
 		set {
 			totalHero = value;
-	//		Debug.Log("hero die " + totalHero);
 			if ( totalHero == 0 ){
 				battleState = 5;
 				Lose();
-	//			Debug.Log("LOSEEE");
 			}
 		}
 	}
@@ -222,11 +214,9 @@ public class BattleController : MonoBehaviour {
 		}
 		set {
 			totalEnemy = value;
-	//		Debug.Log("enemy die " + totalEnemy);
 			if ( TotalEnemy == 0 ){ 
 				battleState = 1;
 				Win();
-	//			Debug.Log("WINN");
 			}
 		}
 	}
@@ -236,20 +226,11 @@ public class BattleController : MonoBehaviour {
 		HeroTotalHealth -= damage;
 		if (heroTotalHealth <= 0)
 						heroTotalHealth = 0;
-		Vector3 temp = new Vector3((ConstantHeroHealthLocalScale * heroTotalHealth / 
+		Vector3 temp = new Vector3(1.02f-(ConstantHeroHealthLocalScale * heroTotalHealth / 
 		                            ConstantHeroHealth).x,
 		                           ConstantHeroHealthLocalScale.y,
 		                           ConstantHeroHealthLocalScale.z);
 		globalHeroHealthBar.transform.localScale = temp; 
-//		int total = heroList.Where (x => x.activeInHierarchy).ToList ().Count;
-//		Debug.Log ("total hero " + total);
-/*		if (heroTotalHealth <= 0 || total == 0) {
-			battleState = 5;		
-			foreach(GameObject g in heroList){
-				if ( g.activeInHierarchy )
-					g.GetComponent<HeroController>().MoveToGraveyard();
-			}
-		}*/
 	}
 
 	private void UpdateEnemyHealthBar(float damage){
@@ -259,22 +240,10 @@ public class BattleController : MonoBehaviour {
 		}
 
 		Vector3 temp2 = new Vector3((ConstantEnemyHealthLocalScale * enemyTotalHealth / 
-		                             ConstantEnemyHealth).x,
+		                             ConstantEnemyHealth).x - 1.02f,
 		                            ConstantEnemyHealthLocalScale.y,
 		                            ConstantEnemyHealthLocalScale.z);
 		globalEnemyHealthBar.transform.localScale = temp2; 
-		/*
-		int total = enemyList.Where (x => x.activeInHierarchy).ToList ().Count;
-//		Debug.Log ("total enemy " + total);
-		if (enemyTotalHealth <= 0 || total == 0) {
-			battleState = 1;	
-			foreach (GameObject g in enemyList) {
-				HeroController h = g.GetComponent<HeroController>();
-				if ( g.activeInHierarchy  ){
-					h.MoveToGraveyard();
-				}
-			}
-		}*/
 	}
 
 	// WIINNNN!!
@@ -304,13 +273,6 @@ public class BattleController : MonoBehaviour {
 		ShowOnReport ();
 //		Debug.Log ("win " + GameData.profile.DefeatedArmy);
 
-	}
-			
-	void CheckTutorialState(){
-		if ( GameData.profile.TutorialState < 2 )
-			isGetReward = 100;
-	//	    GameData.profile.TutorialState++;
-	//	Debug.Log ("after battle " + GameData.profile.TutorialState);
 	}
 
 	void Lose(){
@@ -351,13 +313,13 @@ public class BattleController : MonoBehaviour {
 		for (int i = 0; i < activeEnemyList.Count; i++) {
 			activeEnemyList[i].CopyStats(tempStats[i].HeroId,tempStats[i]);
 		}
-		iTween.MoveTo (reportScreen, iTween.Hash ("position", reportTargetPosition, "time", 1.0f,"delay",3.0f));
+		iTween.MoveTo (reportScreen, iTween.Hash ("position", new Vector3(0,0,reportScreen.transform.position.z), "time", 1.0f,"delay",3.0f));
 		GameData.SaveData ();
 	}
 
 	void ScaleExpBar(){
 		int gotExp = mission.ExpReward; // buat ngitung
-		scaleX = GameData.profile.CurrentExp * 1f / GameData.profile.NextExp; // cek awal2
+		scaleX = GameData.profile.CurrentExp * MaxExpBarScaleX / GameData.profile.NextExp; // cek awal2
 
 		//Debug.Log ("DI BATLE cur " + GameData.profile.CurrentExp + " got " + gotExp + " nesx " + GameData.profile.NextExp);
 		if ( battleState == 1 || battleState == 5 ){
@@ -366,15 +328,15 @@ public class BattleController : MonoBehaviour {
 			if (GameData.profile.IsLevelUp(gotExp) ) {
 			//LEVELUP
 				GameData.profile.CurrentExp += gotExp;
-				scaleX = 0.99f;
+				scaleX = 0.85f;
 			//	Debug.Log ("LEVEL UP");
-				iTween.MoveTo (levelUpScreen, iTween.Hash ("position", new Vector3(levelUpScreen.transform.position.x,reportTargetPosition.y,
+				iTween.MoveTo (levelUpScreen, iTween.Hash ("position", new Vector3(levelUpScreen.transform.position.x,1,
 				                                                                   levelUpScreen.transform.position.z), "time", 1.0f,"delay",5.0f));
 			}
 			else{
 				// rescale
 				GameData.profile.CurrentExp += gotExp;
-				scaleX = GameData.profile.CurrentExp * 1f / GameData.profile.NextExp; // cek awal2
+				scaleX = GameData.profile.CurrentExp * MaxExpBarScaleX / GameData.profile.NextExp; // cek awal2
 			}
 			//Debug.Log("get exp");
 
@@ -411,7 +373,34 @@ public class BattleController : MonoBehaviour {
 		mission = null;
 	}
 
-
+	
+	void CheckTutorialState(){
+		if ( GameData.profile.TutorialState < 2 )
+			isGetReward = 100;
+	}
+	
+	public void SetPrefab(){
+		Debug.Log("set tutorial state " + GameData.profile.TutorialState);
+		if ( GameData.profile.TutorialState < GameConstant.TOTAL_TUTORIAL ){
+			Transform t = listPrefab [GameData.profile.TutorialState-3];
+			Instantiate (t, new Vector3(t.position.x,t.position.y,t.position.z), Quaternion.identity);
+		}
+		GameData.profile.TutorialState++;
+	}
+	
+	public void DestoryPrefab(){
+		GameObject temp = GameObject.FindGameObjectWithTag ("Tutorial");
+		Debug.Log ("at tutor destroy " + temp);
+		Destroy (temp);
+		if ( GameData.profile.TutorialState < 5){
+			SetPrefab();//tutorialObject = null;// kalau belum 2x diset prefab
+		}
+		
+		else {// dua kali aja{
+			GameData.profile.TutorialState = 3;
+			battleState = 0;
+		}
+	}
 
 	public int BatlleState {
 		get {

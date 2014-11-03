@@ -18,13 +18,11 @@ public class ProfileController : MonoBehaviour {
 	public SpriteRenderer questShade;
 
 	void Start () {
-		if (GameData.profile.TutorialState < 5)
+		if (GameData.profile.TutorialState > GameConstant.TOTAL_TUTORIAL)
 						GameData.gameState = "Map";
 				else
 						GameData.gameState = "Tutorial";
 		//Debug.Log ("profile contr current gold " + GameData.gold);
-		int cek = GameData.profile.questList.Where( x => !x.IsRewardTaken && x.IsCompleted ).ToList().Count;
-		questShade.enabled =  cek > 0 ? true : false;
 		levelText.text = "Level " + GameData.profile.Level.ToString ();
 		UpdateGoldAndDiamond (0,0);
 		Debug.Log ("Profile, state " + GameData.gameState);
@@ -35,6 +33,11 @@ public class ProfileController : MonoBehaviour {
 //		Debug.Log ("MUSIC PLAYED " + MusicManager.getMusicPlayer ().audio.clip.name);
 		if ( MusicManager.getMusicPlayer().audio.clip.name != "royal")
 			MusicManager.play ("Music/royal");
+	}
+
+	public void CheckIsCompletedAchievement(){
+		int cek = GameData.profile.questList.Where( x => !x.IsRewardTaken && x.IsCompleted ).ToList().Count;
+		questShade.enabled =  cek > 0 ? true : false;
 	}
 
 	public void UpdateGoldAndDiamond(int type, int money){

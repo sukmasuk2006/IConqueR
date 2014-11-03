@@ -34,8 +34,32 @@ public class ProfileData
 
 	private const int base_exp = 50;
 	public ProfileData(){
-
+		NewData("FLoo");
 	}
+
+	private void NewData(string n){
+		name = "Floo";
+		title = 0;
+		level = 1;
+		nextMission = 0;
+		currentExp = 0;
+		gold = 1500;
+		diamond = 0;
+		mapPos = new Vector3 (-0.5f, 2.5f, -1f);
+		//nextStage = 1;
+		unlockedSlot = 1;
+		activeHeroes = 1;
+		totalSkillUsed = 1;
+		tutorialState = 0;
+		tutorialChatState = 0;
+		nextExp = base_exp;
+		formationList = new List<FormationUnit> (5);
+		skillList = new List<Skill> (10);
+		inventoryList = new List<Item> ();
+		questList = new List<Quest> ();
+		unitList = new List<Unit> (10);
+	}
+
 
 	public void SaveData(){
 		
@@ -146,31 +170,6 @@ public class ProfileData
 			}
 		}
 	}
-
-	public void NewData(string n){
-		name = "Floo";
-		title = 0;
-		level = 1;
-		nextMission = 0;
-		currentExp = 0;
-		gold = 1500;
-		diamond = 0;
-		mapPos = new Vector3 (-0.5f, 2.5f, -1f);
-		//nextStage = 1;
-		unlockedSlot = 1;
-		activeHeroes = 1;
-		totalSkillUsed = 1;
-		tutorialState = 0;
-		tutorialChatState = 0;
-		nextExp = base_exp;
-		formationList = new List<FormationUnit> (5);
-		skillList = new List<Skill> (10);
-		inventoryList = new List<Item> ();
-		questList = new List<Quest> ();
-		unitList = new List<Unit> (10);
-//			Debug.Log ("next exp " + nextExp);
-	}
-
 
 	public void ProfileLevelUp(){
 		currentExp -= nextExp;
