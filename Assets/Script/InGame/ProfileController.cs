@@ -81,7 +81,7 @@ public class ProfileController : MonoBehaviour {
 	}
 
 	void Update(){
-		if (GameData.gameState != "Tutorial") {
+		if (GameData.profile.TutorialState > GameConstant.TOTAL_TUTORIAL) {
 			if (Input.GetKeyDown (KeyCode.Escape) && GameData.gameState != "ConfirmExit") {
 					iTween.MoveTo (confirmExitScreen, iTween.Hash ("position", new Vector3 (0f, 0f, -7f), "time", 0.1f, "onComplete", "ReadyTween", "onCompleteTarget", gameObject));
 					//sound.audio.PlayOneShot (sound.audio.clip);

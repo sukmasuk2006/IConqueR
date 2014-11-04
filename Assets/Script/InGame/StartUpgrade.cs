@@ -19,6 +19,7 @@ public class StartUpgrade : MonoBehaviour {
 			}
 			else{
 				controller.StartCrafting();	
+				Debug.Log("MOUSEDOWN start craft " + GameData.gameState);
 				GameData.readyToTween = false;			
 			}
 		} //no

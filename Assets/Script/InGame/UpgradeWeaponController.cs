@@ -185,7 +185,7 @@ public class UpgradeWeaponController : MonoBehaviour {
 		/**
 tutorial
 		 */
-		if ( GameData.profile.TutorialState > 14 )
+		if ( GameData.profile.TutorialState > 14 && GameData.profile.TutorialState <= GameConstant.TOTAL_TUTORIAL )
 			tutorialObject.DestoryPrefab ();
 		/**/
 
@@ -195,6 +195,7 @@ tutorial
 
 		// hilanghkan semua gem+catalyst
 		AfterUpgradeAttempt();
+		GameData.gameState = "Upgrade";
 		GameData.SaveData ();
 		GameData.readyToTween = true;
 	}

@@ -37,13 +37,13 @@ public class ProfileData
 		NewData("FLoo");
 	}
 
-	private void NewData(string n){
+	public void NewData(string n){
 		name = "Floo";
 		title = 0;
 		level = 1;
 		nextMission = 0;
 		currentExp = 0;
-		gold = 1500;
+		gold = 2000;
 		diamond = 0;
 		mapPos = new Vector3 (-0.5f, 2.5f, -1f);
 		//nextStage = 1;

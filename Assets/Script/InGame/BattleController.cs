@@ -108,7 +108,7 @@ public class BattleController : MonoBehaviour {
 					
 //					heroList[i].GetComponent<SpriteRenderer>().sprite = u.Unit.Sprites;
 					float level = 0; 
-					level = 1 + (GameData.profile.Level * 0.1f);
+					level = 1 + (GameData.profile.Level * 0.05f);
 					level += (GameData.profile.Title * 0.1f);
 					u.Unit.Agi *= level;
 					u.Unit.Str *= level;
@@ -128,11 +128,11 @@ public class BattleController : MonoBehaviour {
 			tempStats.Add(new Unit(s.HeroId,s.Job.Trim()));
 			float level = 0; 
 			if ( GameData.missionType == "Camp") //boss
-				level = 1 + (GameData.currentMission/2)*0.5f;
+				level = 1 + (GameData.currentMission/2)*0.55f;
 			else if ( GameData.missionType == "Fortress") //boss
-				level = 1 + (GameData.currentMission/2)*0.6f;
+				level = 1 + (GameData.currentMission/2)*0.65f;
 			else if ( GameData.missionType == "Castle") //boss
-				level = 1 + (GameData.currentMission/2)* 0.75f;
+				level = 1 + (GameData.currentMission/2)* 0.8f;
 
 			level += (mission.Title * 0.25f);
 			s.Agi *= level;
@@ -174,7 +174,7 @@ public class BattleController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
+		
 		if (Input.GetKeyDown (KeyCode.Escape) && GameData.gameState != "Paused") {
 			iTween.MoveTo ( pauseScreen,iTween.Hash("position",new Vector3(3.7f,-0.3f,-3f),"time", 0.1f,"onComplete","ReadyTween","onCompleteTarget",gameObject));
 			//sound.audio.PlayOneShot (sound.audio.clip);
@@ -248,9 +248,9 @@ public class BattleController : MonoBehaviour {
 
 	// WIINNNN!!
 	void Win(){
-		Debug.Log ("WIN3");
 		winloseText.text = "Conquered!";
-		GetReward ();
+		GetNonObjectReward();
+		GetObjectReward ();
 		// diamond kalau win doang + caslte + 1x doang dptnya
 		if (GameData.currentMission == GameData.profile.NextMission) {
 			diamondEarn = mission.DiamondReward;
@@ -278,29 +278,31 @@ public class BattleController : MonoBehaviour {
 	void Lose(){
 		
 		winloseText.text = "You Lose!";
-		GetReward ();
+		GetNonObjectReward ();
 		ShowOnReport ();
 	//	Debug.Log ("lose");
 	}
 
-	void GetReward(){
-		// gold pasti
-		// win, kadang dapat item kadang ngga
-		isGetReward = Random.Range (0, 99);
+	void GetNonObjectReward(){
 		goldEarn = mission.GoldReward / battleState;
 		GameData.profile.Gold += goldEarn;
-		// semakin tinggi misi, semakin susah dpt reward
-		// item chance - mis/6
+	
+	}
+
+	void GetObjectReward(){
+		isGetReward = Random.Range (0, 99);
 		CheckTutorialState();
-		if (isGetReward < itemChance - (GameData.currentMission/6) && battleState == 1) {
+		float getChance = itemChance - (GameData.currentMission/6);
+		// tiap battle chance 70. dikurangi tiap misi naik/6. misal 70 - misi 49/6 => 22
+		Debug.Log("Reward chance " + isGetReward + " mision chance " + getChance);
+		if (isGetReward < getChance && battleState == 1) {
 			int get = mission.GetReward;
 			itemGained.SetActive(true);
 			itemGainedSprite.sprite = GameData.gemSpriteList[get];
 			itemName.text = GameData.shopList[get].Name;
 			GameData.profile.inventoryList.Add(GameData.shopList[get]);
-//			Debug.Log("get reward");
+			//			Debug.Log("get reward");
 		}
-
 	}
 	
 	void ShowOnReport(){
@@ -375,7 +377,7 @@ public class BattleController : MonoBehaviour {
 
 	
 	void CheckTutorialState(){
-		if ( GameData.profile.TutorialState < 2 )
+		if ( GameData.profile.TutorialState < 3 )
 			isGetReward = 100;
 	}
 	

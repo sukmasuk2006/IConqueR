@@ -27,7 +27,7 @@ public class ObjectTweener : MonoBehaviour {
 		else if (dir < 0 && data.corridorState > 0)
 								data.corridorState--;
 				iTween.MoveTo (obj, iTween.Hash ("position", new Vector3 (corridorSize * -data.corridorState,
-	                                                          ySize, -3f), "time", 0.1f,"onComplete", "ReadyTween", "onCompleteTarget", gameObject));
+	                                                          ySize, obj.transform.position.z), "time", 0.1f,"onComplete", "ReadyTween", "onCompleteTarget", gameObject));
 				corridorState.text = "Page " + (data.corridorState + 1).ToString ();
 		}
 	}

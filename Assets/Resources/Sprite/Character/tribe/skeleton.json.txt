@@ -335,6 +335,44 @@
 			}
 		}
 	},
+	"die": {
+		"bones": {
+			"dada": {
+				"rotate": [
+					{ "time": 0, "angle": 4.91 },
+					{ "time": 0.3333, "angle": -35.02 }
+				]
+			},
+			"root": {
+				"rotate": [
+					{ "time": 0.1, "angle": 65.2 },
+					{ "time": 0.1666, "angle": 114.29 }
+				]
+			},
+			"head": {
+				"rotate": [
+					{ "time": 0, "angle": -56.65 },
+					{ "time": 0.1666, "angle": -55.59 },
+					{ "time": 0.3333, "angle": -11.18 }
+				]
+			},
+			"punggung": {
+				"translate": [
+					{ "time": 0.3333, "x": -25.92, "y": 11.7 }
+				]
+			},
+			"right paha": {
+				"rotate": [
+					{ "time": 0.3, "angle": -20.98 }
+				]
+			},
+			"left paha": {
+				"rotate": [
+					{ "time": 0.3, "angle": 314.82 }
+				]
+			}
+		}
+	},
 	"idle": {
 		"bones": {
 			"root": {

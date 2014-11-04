@@ -17,6 +17,7 @@ public class UnlockFormationSlot : MonoBehaviour {
 	
 	void OnMouseDown(){
 		if (GameData.profile.unlockedSlot < 5 && GameData.profile.Gold >= price) {
+			
 			GameData.profile.formationList[GameData.profile.unlockedSlot].IsUnlocked = true;
 			lockSprite[GameData.profile.unlockedSlot++].SetActive(false);
 			// awal buka kasih knight

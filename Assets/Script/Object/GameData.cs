@@ -42,14 +42,14 @@ public class GameData : MonoBehaviour {
 	}
 
 	void Awake(){
-		InitializePersistent ();
-		InitializeGameData ();
-		//LoadData ();
-		reset();
+		LoadData ();
 	}
 
-	void reset(){
-		PlayerPrefs.DeleteAll ();
+	void Reset(){
+		InitializePersistent ();
+		InitializeGameData ();
+
+		//PlayerPrefs.DeleteAll ();
 		//profile.Gold = 150000;
 		//profile.TutorialState = 21;
 		//profile.NextMission = 40;
@@ -66,17 +66,24 @@ public class GameData : MonoBehaviour {
 	}
 
 	public void LoadData(){
+		Reset();
 		if (PlayerPrefs.HasKey ("level"+GameData.tesId)) {
-						profile.LoadData ();
+			profile.LoadData ();
 			Debug.Log("LOADED");
 		}
 		else{
 			SaveData();
 			Debug.Log("NEW GAME");
 		}
+		if ( GameData.profile.TutorialState < GameConstant.TOTAL_TUTORIAL ){
+			profile = null;
+			Reset();
+			SaveData();	Debug.Log("TUTORIAL NOT DONE");
+		}
 	}
 
 	void InitializePersistent(){
+		profile = new ProfileData ();
 		tutorialTextList = new List<TutorialText> ();
 		tutorialTextList.Add (new TutorialText (0, GameConstant.tutorialTextOne));
 		tutorialTextList.Add (new TutorialText(1,GameConstant.two));
@@ -89,8 +96,7 @@ public class GameData : MonoBehaviour {
 		for (int i = 0; i < linesFromFile.Length; i++) {
 			expList.Add(int.Parse(linesFromFile[i]));		
 		}
-		profile = new ProfileData ();
-		linesFromFile = null;
+			linesFromFile = null;
 
 		/*SHOP*/
 		linesFromFile = null;

@@ -213,7 +213,7 @@ public class HeroController : MonoBehaviour {
 				float damage = h.stats.ReceiveDamage(stats.Damage,stats.IsCritical);
 				h.UpdateHealthBar ();
 			//Debug.Log(" damage " + damage);
-				if ( !h.CheckIsCornered() ) // jika gk kepepet nusuhnya, pukul mundur
+				if ( !h.CheckIsCornered() && !h.isAttack ) // jika gk kepepet nusuhnya, pukul mundur
 					h.PushForward(force);
 				stats.IsCritical = false; // set critical ke semula, tapi chance tetep
 				controller.ReceiveDamage (target, damage);
@@ -262,11 +262,21 @@ public class HeroController : MonoBehaviour {
 		}
 		isAttack = false;
 		rigidbody2D.velocity = Vector2.zero;
-		transform.position = new Vector2 (-14f * direction, transform.position.y);
-		projectile.SetActive(false);
-		stats.HealthPoint = 0f;
+		healthBar.SetActive(false);
+		animator.state.ClearTracks();
+		animator.state.AddAnimation(0,"die",false,0);
+		animator.state.GetCurrent (0).Complete += HandleComplete1;
+
 		//UpdateHealthBar ();
 		//this.gameObject.SetActive (false);	
+	}
+
+	void HandleComplete1 (Spine.AnimationState state, int trackIndex, int loopCount)
+	{
+		transform.position = new Vector2 (-14f * direction, transform.position.y);
+		
+		projectile.SetActive(false);
+
 	}
 
 	void InitializeWeapon(){
