@@ -9,10 +9,10 @@ public class GetQuestReward : MonoBehaviour {
 	Quest q;
 	public TextMesh teks;
 	public AudioClip sound;
-
+	private QuestController questController;
 	// Use this for initialization
 	void Start () {
-		
+		questController = GameObject.Find("QuestScreen").GetComponent<QuestController>();
 	}
 	
 	void OnMouseDown(){
@@ -20,8 +20,10 @@ public class GetQuestReward : MonoBehaviour {
 		q.IsRewardTaken = true;
 		profile.UpdateGoldAndDiamond (0,-q.RewardMoney);
 		profile.UpdateGoldAndDiamond (1,-q.RewardDiamond);
+		profile.CheckIsCompletedAchievement();
 		gameObject.SetActive (false);
 		teks.text = "Completed!";
+		questController.SetQuest();
 		MusicManager.getMusicEmitter().audio.PlayOneShot(sound);
 
 	}

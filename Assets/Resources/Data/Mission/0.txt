@@ -3,4 +3,5 @@ Bevillage
 200
 0
 7
-warrior
+knight
+1

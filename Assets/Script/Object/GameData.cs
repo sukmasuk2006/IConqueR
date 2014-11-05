@@ -42,7 +42,10 @@ public class GameData : MonoBehaviour {
 	}
 
 	void Awake(){
-		LoadData ();
+		Reset();
+	//	profile.Gold = 150000;
+	//	profile.TutorialState = 21;
+	//	LoadData ();
 	}
 
 	void Reset(){
@@ -50,7 +53,7 @@ public class GameData : MonoBehaviour {
 		InitializeGameData ();
 
 		//PlayerPrefs.DeleteAll ();
-		//profile.Gold = 150000;
+		//profile.Gold = 99750;
 		//profile.TutorialState = 21;
 		//profile.NextMission = 40;
 	}
@@ -260,8 +263,10 @@ public class GameData : MonoBehaviour {
 		var m = profile.questList.Where (x => x.Target.Contains ("gold")).ToList ();
 		foreach (Quest q in m){
 			q.CurrentQuantity = profile.Gold;
-			if ( q.IsCompleted ) ret = true;
+			if ( q.IsCompleted  ) ret = true;
 		}
+		if ( !GameData.gameState.Contains("Sell"))
+			ret = false;
 		return ret;
 	}
 }

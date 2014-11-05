@@ -23,6 +23,7 @@ public class ProfileController : MonoBehaviour {
 				else
 						GameData.gameState = "Tutorial";
 		//Debug.Log ("profile contr current gold " + GameData.gold);
+		questShade.color = new Color(255f,255f,255f,0.50f);
 		levelText.text = "Level " + GameData.profile.Level.ToString ();
 		UpdateGoldAndDiamond (0,0);
 		Debug.Log ("Profile, state " + GameData.gameState);
@@ -50,6 +51,7 @@ public class ProfileController : MonoBehaviour {
 		diamondText.text = GameData.profile.Diamond.ToString ();
 		goldText.text = GameData.profile.Gold.ToString ();
 		//SaveLoad.Save ();
+		// misal nge-sell barang, uang udah cukup quest maka di enable
 		questShade.enabled =  GameData.UpdateGoldQuest ();
 		SetTitle ();
 		GameData.SaveData ();

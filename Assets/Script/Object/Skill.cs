@@ -69,7 +69,7 @@ public class Skill
 			break;
 		case 3 :  u.AttackSpeed -= (effect.Amount / 100)* u.AttackSpeed;
 			break;
-		case 4 :  u.EvasionRate+= (effect.Amount / 100)* u.EvasionRate; // sek
+		case 4 :  u.EvasionRate+= (effect.Amount / 100)* u.AttackPoint; // sek
 		break;	
 		case 5 :  u.Critical+= (effect.Amount / 100)* u.Critical;   
 			break; 

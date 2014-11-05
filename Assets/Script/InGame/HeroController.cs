@@ -124,7 +124,7 @@ public class HeroController : MonoBehaviour {
 					// jika waktunya serang, SERANG!
 						isAttack = true;
 					if (animator.state.GetCurrent (1) == null && attackType == 1) {
-						Debug.Log("name " + name + "dodmage 0");
+					//	Debug.Log("name " + name + "dodmage 0");
 						animator.state.SetAnimation (0, "attack", false);
 						animator.state.GetCurrent (0).Complete += HandleComplete;
 					}
@@ -152,7 +152,7 @@ public class HeroController : MonoBehaviour {
 								if (isAttack && attackType == 0) {
 										
 										if (animator.state.GetCurrent (1) == null) {
-												Debug.Log("name " + name + "dodmage 0");
+					//							Debug.Log("name " + name + "dodmage 0");
 												animator.state.AddAnimation (1, "attack", false,0f);
 												animator.state.GetCurrent (1).Complete += HandleComplete;
 										}
@@ -206,13 +206,13 @@ public class HeroController : MonoBehaviour {
 	}
 
 	public void DoDamageToTarget(HeroController h,float force){
+		// h : target, force : force untuk dorong kebelakang
 		// ATTACK!! kalau masih hidup
 		if (stats.HealthPoint > 0) {
 				// damage critical atau tidak, dimasukkan ke unit untuk dihitung evasion
-				//Debug.Log("damaged unit " + gameObject.name +" health " + stats.HealthPoint);
-				float damage = h.stats.ReceiveDamage(stats.Damage,stats.IsCritical);
+				float damage = h.stats.ReceiveDamage(stats.Damage,stats.IsCritical,stats.StatsType);
 				h.UpdateHealthBar ();
-			//Debug.Log(" damage " + damage);
+				Debug.Log(stats.Job +" nggepuk " + h.stats.Job + " damage asli " + stats.Damage + " hasil " + damage);
 				if ( !h.CheckIsCornered() && !h.isAttack ) // jika gk kepepet nusuhnya, pukul mundur
 					h.PushForward(force);
 				stats.IsCritical = false; // set critical ke semula, tapi chance tetep
@@ -221,16 +221,18 @@ public class HeroController : MonoBehaviour {
 		}
 	}
 
+
+
 	public void GetReadyForNextAttack(){
 		isAttack = false;
 		attackSpeed = stats.AttackSpeed;
 		movementSpeed = stats.Movement;
 		//animator.state.ClearTracks ();
 		if (animator.state.GetCurrent (1) == null) {
-			Debug.Log("name " + name + "nul 1");
+		//	Debug.Log("name " + name + "nul 1");
 		}
 		else
-			Debug.Log("name " + name + "gak nul 1");
+	//		Debug.Log("name " + name + "gak nul 1");
 		
 //		animator.state.ClearTracks ();
 		//animator.state.AddAnimation (0, "idle", false,1.5f);
@@ -283,7 +285,7 @@ public class HeroController : MonoBehaviour {
 		if (stats.Weapon.Range == 5) {
 			attackType = 1;		
 			projectile.SetActive(true);
-			Debug.Log("name " + name + " isarcher " );
+		//	Debug.Log("name " + name + " isarcher " );
 		}
 		
 	}

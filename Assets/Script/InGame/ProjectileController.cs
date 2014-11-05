@@ -24,9 +24,7 @@ public class ProjectileController : MonoBehaviour {
 			heroController.DoDamageToTarget (h,0f);
 					
 		}
-		else{
-			transform.position = new Vector2(0,-12);
-		}
+		transform.position = new Vector3(0f,-12f,-0.14f);
 	}
 
 	public void Launch(){

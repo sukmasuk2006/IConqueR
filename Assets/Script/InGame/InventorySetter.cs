@@ -46,6 +46,9 @@ public class InventorySetter : MonoBehaviour {
 	}
 
 	public void UpdateSlotForSell(){
+		data.maxCorridorState = GameData.profile.inventoryList.Count / 4;
+		if (GameData.profile.inventoryList.Count % 4 == 0)
+			data.maxCorridorState--;
 		try {
 		Item i = GameData.profile.inventoryList [(4 * data.corridorState) + slot];
 		tes = i is Gem ? true : false;

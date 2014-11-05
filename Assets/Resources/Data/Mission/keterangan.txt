@@ -1,3 +1,4 @@
+nama
 reward exp
 reward gold
 reward diamond

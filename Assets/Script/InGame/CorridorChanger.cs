@@ -45,7 +45,7 @@ public class CorridorChanger : MonoBehaviour {
 						for (int i = 0; i < controller.Count; i++) {
 								controller [i].GetComponent<InventorySetter> ().UpdateSlotForSell ();
 								corridorState.text = "Page " + (data.corridorState + 1).ToString ();
-								Debug.Log ("setupgrade");
+								Debug.Log ("set sell");
 						}
 				}
 			 else if (GameData.gameState.Contains ("Quest")) {

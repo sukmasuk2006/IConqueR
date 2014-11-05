@@ -4,6 +4,11 @@ using System.Collections.Generic;
 [System.Serializable]
 public class Unit : UnitStatus {
 
+	
+	const int STR = 0;
+	const int AGI = 1;
+	const int VIT = 2;
+
 	private int heroId;
 	private string job;
 	private int currentExp;
@@ -12,6 +17,7 @@ public class Unit : UnitStatus {
 	private bool isActive;
 	private int goldNeeded;
 	private bool isCritical;
+	private int statsType;
 	private const int base_exp = 30;
 
 	private Weapon weapon;
@@ -37,6 +43,7 @@ public class Unit : UnitStatus {
 		this.level = 1;
 		this.goldNeeded = int.Parse( linesFromFile [1]);
 		weapon = new Weapon (heroId,job ,float.Parse(linesFromFile[5]),float.Parse(linesFromFile[6]));
+		this.statsType = int.Parse(linesFromFile[7]);
 		this.str = int.Parse (linesFromFile [2]) + weapon.WeaponStats.Str;
 		this.agi = int.Parse( linesFromFile [3]) + weapon.WeaponStats.Agi;
 		this.vit = int.Parse( linesFromFile [4]) + weapon.WeaponStats.Vit;
@@ -57,6 +64,7 @@ public class Unit : UnitStatus {
 		this.currentExp = u.currentExp;
 		this.nextExp = u.nextExp;
 		this.level = u.level;
+		this.statsType = u.statsType;
 		SetStats ();
 
 	}
@@ -111,9 +119,9 @@ public class Unit : UnitStatus {
 		level++;
 		nextExp = ((nextExp * 2) - (nextExp/3));
 		// laju pertumbuhan status bergantung id
-		str += (heroId / 4) + 1;
-		agi += (heroId / 4) + 1;
-		vit +=  (heroId / 4) + 1;
+		str += (heroId / 4)  + statsType == 0 ? 2 : 1;
+		agi += (heroId / 4) + statsType == 1 ? 2 : 1;
+		vit +=  (heroId / 4)  + statsType == 2 ? 2 : 1;
 		SetStats ();
 	}
 
@@ -156,10 +164,13 @@ public class Unit : UnitStatus {
 		}
 	}
 
-	public float ReceiveDamage(float dmg, bool crit){
+	public float ReceiveDamage(float dmg, bool crit, int dealerType){
+		// dmg : damage yg diterima, crit : chance critical dari musuh, dealertype : type musuh yg nggebuk
 		int isEvade = UnityEngine.Random.Range(0,99);
 		float returnDamage = dmg;
-				if (isEvade >= evasionRate || crit) 
+		float multiplier = CheckDealerType(dealerType);
+		returnDamage *= multiplier;
+		if (isEvade >= evasionRate || crit) 
 				{
 					// jaga2 biar gak splash attack
 					if ( returnDamage >= healthPoint ){
@@ -182,8 +193,26 @@ public class Unit : UnitStatus {
 				else if (isEvade < evasionRate && !crit) {
 					returnDamage = 0;
 			// jika sukses dan tidak crit
-				} 
+				}
+		Debug.Log(statsType + " digepuk sama " + dealerType + " damage " + multiplier + " hasl " + returnDamage); 
 		return returnDamage;
+	}
+
+	private float CheckDealerType(int dealerType){
+		float ret = 1f;
+		if ( StatsType == STR ){
+			if ( dealerType == AGI ) ret = 0.5f;
+			else if ( dealerType == VIT ) ret = 1.5f;
+		}
+		else if ( StatsType == AGI ){
+			if ( dealerType == VIT ) ret = 0.5f;
+			else if ( dealerType == STR ) ret = 1.5f;
+		}
+		else if ( statsType == VIT ){
+			if ( dealerType == STR ) ret = 0.5f;
+			else if ( dealerType == AGI ) ret = 1.5f;
+		}
+		return ret;
 	}
 
 	public void Refresh(){
@@ -193,6 +222,15 @@ public class Unit : UnitStatus {
 	
 	private double Round(float value){
 		return	System.Math.Round (value, 2);
+	}
+
+	public int StatsType {
+		get {
+			return statsType;
+		}
+		set {
+			statsType = value;
+		}
 	}
 
 	public int GoldNeeded {

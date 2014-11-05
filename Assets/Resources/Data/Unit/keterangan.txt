@@ -1,8 +1,8 @@
-desc
+nama
 UANG
 STR
 AGI
 VIT
 weaponbasedamage
 range
-name
+tipe 0 str 1 agi 2 vit
