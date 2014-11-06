@@ -1,8 +1,9 @@
 Sedhtuos
-400
+500
 450
 0
 15
+2
 archer
 tribe
 tribe

@@ -1,8 +1,9 @@
 Nabut
-550
+650
 500
 0
 19
+2
 tribe
 knight
 tribe

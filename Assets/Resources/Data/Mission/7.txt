@@ -1,8 +1,9 @@
 bown
-150
+200
 330
 0
 7
+1
 warrior
 knight
 warrior

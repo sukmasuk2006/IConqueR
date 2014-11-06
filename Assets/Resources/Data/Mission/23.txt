@@ -1,6 +1,10 @@
-Haha
-100
-100
-1
-6
-monk
+Hibel
+875
+645
+0
+23
+3
+tribe
+knight
+tribe
+archer

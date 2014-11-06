@@ -1,6 +1,10 @@
-Smallwood
-30
+Ojraodis
 300
+2000
 0
-7
+23
+2
+tribe
+tribe
 warrior
+knight

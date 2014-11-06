@@ -1,8 +1,9 @@
 Gosert
-375
+475
 450
 0
 15
+2
 warrior
 knight
 archer

@@ -1,8 +1,9 @@
 Greeasis
-300
+400
 400
 0
 15
+1
 knight
 knight
 archer

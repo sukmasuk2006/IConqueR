@@ -3,5 +3,6 @@ Farfield
 500
 0
 7
+1
 warrior
 warrior

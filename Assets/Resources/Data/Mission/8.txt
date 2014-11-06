@@ -1,8 +1,9 @@
 Sentiyard
-70
+110
 700
 0
 7
+1
 knight
-warrior
+knight
 warrior

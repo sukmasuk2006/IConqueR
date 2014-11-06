@@ -3,5 +3,6 @@ gulmory
 300
 0
 7
+1
 warrior
 knight

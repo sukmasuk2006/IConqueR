@@ -1,8 +1,9 @@
 sedhtron
-200
+400
 900
 0
 15
+2
 tribe
 warrior
 archer

@@ -1,9 +1,10 @@
 Iagnuslin
-220
+320
 1200
 0
 19
-tribe
+2
+archer
 tribe
 warrior
 knight

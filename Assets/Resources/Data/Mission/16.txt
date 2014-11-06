@@ -1,8 +1,9 @@
 Irahalak
-475
+575
 475
 0
 19
+2
 knight
 warrior
 knight

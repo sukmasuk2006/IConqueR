@@ -1,8 +1,9 @@
 Savanna
-355
+455
 825
 0
 15
+2
 warrior
 warrior
 archer

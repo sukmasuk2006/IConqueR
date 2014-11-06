@@ -1,7 +1,8 @@
 guriver
-100
+150
 325
 0
 7
+1
 warrior
 warrior

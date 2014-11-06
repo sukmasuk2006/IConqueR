@@ -1,7 +1,8 @@
 behill
-55
+100
 610
 0
 7
+1
 knight
 knight

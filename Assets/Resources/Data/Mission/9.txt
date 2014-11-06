@@ -1,8 +1,9 @@
 Sentinel
-250
+400
 1000
 1
 15
+1
 knight
 warrior
 archer

@@ -1,8 +1,9 @@
 Sisaoneerg
-450
+550
 470
 0
 15
+2
 warrior
 warrior
 warrior

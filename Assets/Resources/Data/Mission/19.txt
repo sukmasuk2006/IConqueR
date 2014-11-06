@@ -1,8 +1,9 @@
 Duhu
-1050
+1250
 1500
 0
 23
+2
 warrior
 knight
 tribe

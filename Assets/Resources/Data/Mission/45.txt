@@ -1,7 +1,0 @@
-Dumai
-50
-500
-0
-7
-warrior
-knight

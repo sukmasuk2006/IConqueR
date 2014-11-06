@@ -1,7 +1,10 @@
-Ambarawa
-90
-800
+Ngetipas
+1250
+770
 0
-11
+23
+3
+tribe
 knight
 tribe
+archer
