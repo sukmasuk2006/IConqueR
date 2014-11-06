@@ -42,10 +42,10 @@ public class GameData : MonoBehaviour {
 	}
 
 	void Awake(){
-	//	Reset();
+		Reset();
 	//	profile.Gold = 150000;
 	//	profile.TutorialState = 21;
-		LoadData ();
+	//	LoadData ();
 	}
 
 	void Reset(){
@@ -240,7 +240,7 @@ public class GameData : MonoBehaviour {
 		/*INIT*/
 		linesFromFile = null;
 		missionList = new List<Mission> ();
-		for (int i = 0; i < 30 /*GameConstant.MISSION_LIST*/ ; i++) {
+		for (int i = 0; i < GameConstant.MISSION_LIST; i++) {
 			missionList.Add(new Mission(i));		
 		}
 		/*SKILL DATA*/

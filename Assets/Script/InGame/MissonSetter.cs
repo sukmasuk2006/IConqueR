@@ -12,7 +12,6 @@ public class MissonSetter : MonoBehaviour {
 	public EnemySetter setter;
 	public int enemyLeaderTitle;
 	private SpriteRenderer render;
-	public int profileLevelRequired = 1;
 
 	// Use this for initialization
 	void Start () {
