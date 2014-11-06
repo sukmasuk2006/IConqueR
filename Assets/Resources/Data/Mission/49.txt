@@ -1,0 +1,11 @@
+Pandemona
+7500
+15000
+0
+31
+4
+hunter
+assasin
+tribe
+archer
+thief

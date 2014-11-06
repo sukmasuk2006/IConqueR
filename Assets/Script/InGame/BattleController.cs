@@ -61,7 +61,7 @@ public class BattleController : MonoBehaviour {
 	private int diamondEarn;
 	private Mission mission;
 	private int isGetReward;
-	private const int itemChance = 70;
+	private const int itemChance = 50;
 
 	// Use this for initialization
 	void Start () {
@@ -69,16 +69,15 @@ public class BattleController : MonoBehaviour {
 		heroTitle.sprite = GameData.titleSpriteList [GameData.profile.Title];
 		mission = GameData.missionList [GameData.currentMission];
 		enemyTitle.sprite = GameData.titleSpriteList [mission.Title];
-		int cur = (GameData.currentMission/10)+1;
 		battleState = 0;
-		if ( GameData.profile.TutorialState < 5 ){
+		if ( GameData.profile.TutorialState < 6 ){
 			battleState = 6;// tutorialstate
 				SetPrefab();
 		}
 
 		 MusicManager.play ("Music/royal2", 0.1f, 0.1f);
 		Sprite back = null;
-		back = (Sprite)Resources.Load ("Sprite/Background/"+cur,typeof(Sprite));
+		back = (Sprite)Resources.Load ("Sprite/Background/"+mission.Place,typeof(Sprite));
 		bg.sprite = back;
 		//		Debug.Log ("battle activate");
 		positionList = new float[12]{1.75f,3f,4.25f,5.5f,6.25f,7.5f,1.75f,3f,4.25f,5.5f,6.25f,7.5f};
@@ -384,7 +383,7 @@ public class BattleController : MonoBehaviour {
 	public void SetPrefab(){
 		Debug.Log("set tutorial state " + GameData.profile.TutorialState);
 		if ( GameData.profile.TutorialState < GameConstant.TOTAL_TUTORIAL ){
-			Transform t = listPrefab [GameData.profile.TutorialState-3];
+			Transform t = listPrefab [GameData.profile.TutorialState-4];
 			Instantiate (t, new Vector3(t.position.x,t.position.y,t.position.z), Quaternion.identity);
 		}
 		GameData.profile.TutorialState++;
@@ -394,12 +393,12 @@ public class BattleController : MonoBehaviour {
 		GameObject temp = GameObject.FindGameObjectWithTag ("Tutorial");
 		Debug.Log ("at tutor destroy " + temp);
 		Destroy (temp);
-		if ( GameData.profile.TutorialState < 5){
+		if ( GameData.profile.TutorialState < 6){
 			SetPrefab();//tutorialObject = null;// kalau belum 2x diset prefab
 		}
 		
 		else {// dua kali aja{
-			GameData.profile.TutorialState = 3;
+			GameData.profile.TutorialState = 4;
 			battleState = 0;
 		}
 	}

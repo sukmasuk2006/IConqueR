@@ -1,0 +1,11 @@
+Arabasta
+3200
+7300
+0
+31
+4
+hunter
+assasin
+tribe
+archer
+thief

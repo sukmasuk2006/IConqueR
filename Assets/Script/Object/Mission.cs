@@ -30,6 +30,7 @@ public class Mission
 	private List<Unit> enemyList;
 	private string enemyListName;
 	private int title; // icon di battle controller
+	private int place;
 
 	public string EnemyListName {
 		get {
@@ -56,7 +57,8 @@ public class Mission
 		goldReward = int.Parse(linesFromFile [2]);
 		diamondReward = int.Parse(linesFromFile [3]);
 		maxReward = int.Parse (linesFromFile [4]);
-		for (int i = 5; i < linesFromFile.Length; i++) {
+		place = int.Parse (linesFromFile [5]);
+		for (int i = 6; i < linesFromFile.Length; i++) {
 			enemyList.Add(new Unit(GetUnitId(linesFromFile[i].Trim()),linesFromFile[i].Trim()));		
 			enemyListName += linesFromFile[i].Trim() + " ";
 		}
@@ -134,6 +136,15 @@ public class Mission
 		}
 		set {
 			enemyList = value;
+		}
+	}
+
+	public int Place {
+		get {
+			return place;
+		}
+		set {
+			place = value;
 		}
 	}
 

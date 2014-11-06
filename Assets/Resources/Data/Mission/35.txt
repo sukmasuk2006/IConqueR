@@ -1,0 +1,10 @@
+Ngetipas
+2200
+1305
+0
+29
+4
+tribe
+knight
+tribe
+archer

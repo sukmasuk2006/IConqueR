@@ -13,6 +13,7 @@ public class UnlockHero : MonoBehaviour {
 	public TextMesh teks;
 	public AudioClip sound;
 	public TextMesh warningText;
+	public int profileLevelRequired = 1;
 
 	void Start(){
 		//Debug.Log ("awal2 slot " + slot + " isunlock " + GameData.skillList [slot].IsUnlocked + " selec " + GameData.skillList [slot].IsSelected);
@@ -34,7 +35,10 @@ public class UnlockHero : MonoBehaviour {
 
 	void OnMouseDown(){
 		// UNLOCK HERO
-		if (GameData.profile.Gold >= GameData.profile.unitList [slot].GoldNeeded && !GameData.profile.unitList [slot].IsUnlocked) {
+		if ( GameData.profile.Level < profileLevelRequired && !GameData.profile.unitList [slot].IsUnlocked ) {
+			warningText.text = "Profile must at least level " + profileLevelRequired + ", fight more!";
+		}
+		else if (GameData.profile.Gold >= GameData.profile.unitList [slot].GoldNeeded && !GameData.profile.unitList [slot].IsUnlocked) {
 						GameData.profile.unitList [slot].IsUnlocked = true;
 						frame.SetActive (false);
 						profileController.UpdateGoldAndDiamond(0,GameData.profile.unitList [slot].GoldNeeded);	
@@ -43,7 +47,7 @@ public class UnlockHero : MonoBehaviour {
 		} else if ( GameData.profile.Gold < GameData.profile.unitList [slot].GoldNeeded 
 		           && !GameData.profile.unitList [slot].IsUnlocked ) {
 			warningText.text = "Not enough Gold to Unlock, fight more!";
-		}
+		} 
 		// gak dipake heronya
 		if (GameData.profile.unitList [slot].IsActive && GameData.profile.unitList [slot].IsUnlocked  && GameData.profile.activeHeroes > 0) {
 			GameData.profile.activeHeroes--;
