@@ -84,7 +84,7 @@ public class BattleController : MonoBehaviour {
 		positionAvailableList = new bool[12]{true,true,true,true,true,true,true,true,true,true,true,true};
 		isGetReward = 0;
 		activeEnemyList = mission.EnemyList;
-		//Debug.Log ("Jumlah musuh " + activeEnemyList.Count);
+		Debug.Log ("Jumlah musuh " + activeEnemyList.Count);
 		activeSkill = new List<Skill> ();
 		int i = 0,j = 0;
 
@@ -132,7 +132,8 @@ public class BattleController : MonoBehaviour {
 				level = 1 + (GameData.currentMission/2)*0.65f;
 			else if ( GameData.missionType == "Castle") //boss
 				level = 1 + (GameData.currentMission/2)* 0.8f;
-
+			if ( GameData.profile.TutorialState < GameConstant.TOTAL_TUTORIAL )
+				level = GameData.profile.TutorialState*0.25f;
 			level += (mission.Title * 0.25f);
 			s.Agi *= level;
 			s.Str *= level;

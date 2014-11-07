@@ -44,7 +44,7 @@ public class GameData : MonoBehaviour {
 	void Awake(){
 		Reset();
 	//	profile.Gold = 150000;
-	//	profile.TutorialState = 21;
+	//	profile.TutorialState = 22;
 	//	LoadData ();
 	}
 

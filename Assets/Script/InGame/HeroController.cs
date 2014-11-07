@@ -9,7 +9,6 @@ Bug list
 
 public class HeroController : MonoBehaviour {
 
-	public List<GameObject> enemyList;
 	public SpriteRenderer icon;
 	public BattleController controller;
 	public GameObject healthBar;
@@ -74,6 +73,7 @@ public class HeroController : MonoBehaviour {
 			InitializePosition(-1);
 		} else if (gameObject.name.Contains ("enemy")) {
 			stats =  controller.activeEnemyList[slot];
+			icon.sprite = GameData.unitIconList[stats.HeroId];
 			isHero = false;
 			InitializeWeapon();
 			InitializePosition(1);

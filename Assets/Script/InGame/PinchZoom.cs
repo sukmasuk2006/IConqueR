@@ -26,22 +26,23 @@ public class PinchZoom : MonoBehaviour
 			// Find the difference in the distances between each frame.
 			float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
 			
-			// If the camera is orthographic...
-			if (camera.isOrthoGraphic)
+			// If the Camera.main is orthographic...
+			if (Camera.main.isOrthoGraphic)
 			{
+
 				// ... change the orthographic size based on the change in distance between the touches.
-				camera.orthographicSize += deltaMagnitudeDiff * orthoZoomSpeed;
+				Camera.main.orthographicSize += deltaMagnitudeDiff * orthoZoomSpeed;
 				
 				// Make sure the orthographic size never drops below zero.
-				camera.orthographicSize = Mathf.Max(camera.orthographicSize, 0.1f);
+				Camera.main.orthographicSize = Mathf.Max(Camera.main.orthographicSize, 0.1f);
 			}
 			else
 			{
 				// Otherwise change the field of view based on the change in distance between the touches.
-				camera.fieldOfView += deltaMagnitudeDiff * perspectiveZoomSpeed;
+				Camera.main.fieldOfView += deltaMagnitudeDiff * perspectiveZoomSpeed;
 				
 				// Clamp the field of view to make sure it's between 0 and 180.
-				camera.fieldOfView = Mathf.Clamp(camera.fieldOfView, 0.1f, 179.9f);
+				Camera.main.fieldOfView = Mathf.Clamp(Camera.main.fieldOfView, 0.1f, 179.9f);
 			}
 		}
 	}
