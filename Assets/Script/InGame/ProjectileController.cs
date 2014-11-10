@@ -57,6 +57,7 @@ public class ProjectileController : MonoBehaviour {
 	void isCollided(){
 		Vector3 heropos = new Vector3 (0,-12f,0f);
 		this.gameObject.transform.position = heropos;
+		//
 	}
 
 	public bool IsLaunch {
