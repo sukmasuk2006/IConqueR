@@ -9,6 +9,7 @@ Bug list
 
 public class HeroController : MonoBehaviour {
 
+	public List<GameObject> enemyList;
 	public SpriteRenderer icon;
 	public BattleController controller;
 	public GameObject healthBar;
@@ -53,11 +54,12 @@ public class HeroController : MonoBehaviour {
 			return isDeath;
 		}
 	}
+	private AudioClip weaponSound;
 
 
 	// Use this for initialization
 	void Start () {
-	//	Debug.Log ("HERO START");
+		Debug.Log ("HERO START");
 		isDeath = false;
 		attackSpeed = 0;
 		if (gameObject.activeInHierarchy) {
@@ -73,11 +75,11 @@ public class HeroController : MonoBehaviour {
 			InitializePosition(-1);
 		} else if (gameObject.name.Contains ("enemy")) {
 			stats =  controller.activeEnemyList[slot];
-			icon.sprite = GameData.unitIconList[stats.HeroId];
 			isHero = false;
 			InitializeWeapon();
 			InitializePosition(1);
 		}
+		weaponSound = (AudioClip)Resources.Load("Music/"+stats.Weapon.SoundEffectName,typeof(AudioClip));
 		animator.skeletonDataAsset = GameData.skeleteonDataAssetList[stats.HeroId];
 		animator.calculateNormals = true;
 		animator.Awake ();
@@ -193,6 +195,8 @@ public class HeroController : MonoBehaviour {
 			DoDamageToTarget (targetUnit,-0.5f);
 		else
 			projectile.GetComponent<ProjectileController> ().Launch ();
+
+		MusicManager.getMusicPlayer().audio.PlayOneShot(weaponSound);
 		GetReadyForNextAttack ();
 	}
 
@@ -217,7 +221,7 @@ public class HeroController : MonoBehaviour {
 					h.PushForward(force);
 				stats.IsCritical = false; // set critical ke semula, tapi chance tetep
 				controller.ReceiveDamage (target, damage);
-				
+	//			GetReadyForNextAttack();
 		}
 	}
 
@@ -234,7 +238,7 @@ public class HeroController : MonoBehaviour {
 		else
 	//		Debug.Log("name " + name + "gak nul 1");
 		
-//		animator.state.ClearTracks ();
+		animator.state.ClearTracks ();
 		//animator.state.AddAnimation (0, "idle", false,1.5f);
 		animator.state.AddAnimation (0, "idle", true,0.5f);
 	}
@@ -276,7 +280,8 @@ public class HeroController : MonoBehaviour {
 	void HandleComplete1 (Spine.AnimationState state, int trackIndex, int loopCount)
 	{
 		transform.position = new Vector2 (-14f * direction, transform.position.y);
-		
+		Debug.Log("COMPLETED1");
+
 		projectile.SetActive(false);
 
 	}
@@ -285,7 +290,7 @@ public class HeroController : MonoBehaviour {
 		if (stats.Weapon.Range == 5) {
 			attackType = 1;		
 			projectile.SetActive(true);
-		//	Debug.Log("name " + name + " isarcher " );
+			//	Debug.Log("name " + name + " isarcher " );
 		}
 		
 	}

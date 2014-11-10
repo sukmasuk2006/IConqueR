@@ -6,3 +6,4 @@ Ponzi
 5
 1
 1
+knife

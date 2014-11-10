@@ -8,6 +8,7 @@ public class Weapon : Item {
 	private int rank;
 	private UnitStatus weaponStats;
 	private string gemRequired;
+	private string soundEffectName;
 
 	public string GemRequired {
 		get {
@@ -17,10 +18,11 @@ public class Weapon : Item {
 
 	//private ArrayList<Item> equippedGem;
 
-	public Weapon(int id,string name,float damage, float range):
+	public Weapon(int id,string name,string soundEffName, float damage, float range):
 		base(id,name){
 		this.damage = damage;
 		this.range = range;
+		soundEffectName = soundEffName;
 		weaponStats = new UnitStatus ();
 		SuccessRate = 0;
 		rank = 0;
@@ -104,6 +106,12 @@ public class Weapon : Item {
 			if ( grade.Contains("Legendary"))
 				ret = true;
 		return ret;
+	}
+
+	public string SoundEffectName {
+		get {
+			return soundEffectName;
+		}
 	}
 
 	public int CheckMinLevelReq(){

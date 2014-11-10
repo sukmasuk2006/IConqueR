@@ -12,9 +12,13 @@ public class ConfirmBuy : MonoBehaviour {
 	private  int slot;
 	public GameObject parent;
 	public List<InventorySetter> inventoryList;
+	public AudioClip coinSound;
+	public AudioClip failSound;
+	private AudioSource audio;
+
 	// Use this for initialization
 	void Start () {
-	
+		audio =	MusicManager.getMusicPlayer().audio;
 	}
 
 	public int Slot {
@@ -44,10 +48,12 @@ public class ConfirmBuy : MonoBehaviour {
 							if (GameData.profile.inventoryList.Count % 4 == 0)
 									inventoryData.maxCorridorState--;
 							inventoryData.UpdateMaxCorridor ();
+							audio.PlayOneShot(coinSound);
 							GameData.gameState = "Buy";
 					} else {
 							Debug.Log ("not enough money");		
-					}
+							audio.PlayOneShot(failSound);
+				}
 			} else if (GameData.gameState == "ConfirmSell") {
 					Debug.Log ("sell slot " + (inventoryData.corridorState * 4) + slot);
 					Item j = GameData.profile.inventoryList [(inventoryData.corridorState * 4) + slot];
@@ -58,6 +64,7 @@ public class ConfirmBuy : MonoBehaviour {
 					}
 					data.corridorState = 0;
 					GameData.gameState = "Sell";
+				audio.PlayOneShot(coinSound);
 			}
 
 		} else {

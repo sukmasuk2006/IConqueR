@@ -65,12 +65,12 @@ public class BattleController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	//	Debug.Log ("batltecontrol START");
+		Debug.Log ("batltecontrol START");
 		heroTitle.sprite = GameData.titleSpriteList [GameData.profile.Title];
 		mission = GameData.missionList [GameData.currentMission];
 		enemyTitle.sprite = GameData.titleSpriteList [mission.Title];
 		battleState = 0;
-		if ( GameData.profile.TutorialState < 6 ){
+		if ( GameData.profile.TutorialState < 3 ){
 			battleState = 6;// tutorialstate
 				SetPrefab();
 		}
@@ -384,7 +384,7 @@ public class BattleController : MonoBehaviour {
 	public void SetPrefab(){
 		Debug.Log("set tutorial state " + GameData.profile.TutorialState);
 		if ( GameData.profile.TutorialState < GameConstant.TOTAL_TUTORIAL ){
-			Transform t = listPrefab [GameData.profile.TutorialState-4];
+			Transform t = listPrefab [GameData.profile.TutorialState-2];
 			Instantiate (t, new Vector3(t.position.x,t.position.y,t.position.z), Quaternion.identity);
 		}
 		GameData.profile.TutorialState++;
@@ -394,12 +394,13 @@ public class BattleController : MonoBehaviour {
 		GameObject temp = GameObject.FindGameObjectWithTag ("Tutorial");
 		Debug.Log ("at tutor destroy " + temp);
 		Destroy (temp);
-		if ( GameData.profile.TutorialState < 6){
+		if ( GameData.profile.TutorialState < 4){
 			SetPrefab();//tutorialObject = null;// kalau belum 2x diset prefab
 		}
 		
 		else {// dua kali aja{
-			GameData.profile.TutorialState = 4;
+			GameData.profile.TutorialState = 2;
+			GameData.gameState = "";
 			battleState = 0;
 		}
 	}

@@ -45,7 +45,9 @@ public class GameData : MonoBehaviour {
 		Reset();
 	//	profile.Gold = 150000;
 	//	profile.TutorialState = 22;
-	//	LoadData ();
+		LoadData ();
+		//profile.Gold = 99750;
+		//profile.Level = 15;
 	}
 
 	void Reset(){
@@ -54,7 +56,8 @@ public class GameData : MonoBehaviour {
 
 		//PlayerPrefs.DeleteAll ();
 		//profile.Gold = 99750;
-		//profile.TutorialState = 21;
+		//profile.TutorialState = 23;
+		//profile.Level = 15;
 		//profile.NextMission = 40;
 	}
 
@@ -114,7 +117,7 @@ public class GameData : MonoBehaviour {
 			Gem g = (Gem)shopList[i];
 			gemSpriteList.Add(LoadGemSprite(g.Grade.Trim()+"/"+linesFromFile[i].Trim()));
 		}
-		GameData.profile.inventoryList.Add(new Gem(0,linesFromFile[0]));
+		GameData.profile.inventoryList.Add(new Gem(3,linesFromFile[0]));
 //		Debug.Log ("Jumlah gambar gem " + gemSpriteList.Count);
 		linesFromFile = null;
 		TextAsset shop2Txt = (TextAsset)Resources.Load ("Data/Catalyst/list", typeof(TextAsset));

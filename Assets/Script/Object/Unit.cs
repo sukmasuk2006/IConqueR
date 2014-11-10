@@ -42,7 +42,7 @@ public class Unit : UnitStatus {
 		this.name = linesFromFile [0];
 		this.level = 1;
 		this.goldNeeded = int.Parse( linesFromFile [1]);
-		weapon = new Weapon (heroId,job ,float.Parse(linesFromFile[5]),float.Parse(linesFromFile[6]));
+		weapon = new Weapon (heroId,job ,linesFromFile[8].Trim(),float.Parse(linesFromFile[5]),float.Parse(linesFromFile[6]));
 		this.statsType = int.Parse(linesFromFile[7]);
 		this.str = int.Parse (linesFromFile [2]) + weapon.WeaponStats.Str;
 		this.agi = int.Parse( linesFromFile [3]) + weapon.WeaponStats.Agi;
