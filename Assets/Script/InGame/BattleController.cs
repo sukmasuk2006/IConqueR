@@ -70,7 +70,7 @@ public class BattleController : MonoBehaviour {
 		mission = GameData.missionList [GameData.currentMission];
 		enemyTitle.sprite = GameData.titleSpriteList [mission.Title];
 		battleState = 0;
-		if ( GameData.profile.TutorialState < 3 ){
+		if ( GameData.profile.TutorialState < 2 ){
 			battleState = 6;// tutorialstate
 				SetPrefab();
 		}
@@ -127,16 +127,16 @@ public class BattleController : MonoBehaviour {
 			tempStats.Add(new Unit(s.HeroId,s.Job.Trim()));
 			float level = 0; 
 			if ( GameData.missionType == "Camp") //boss
-				level = 1 + (GameData.currentMission/2)*0.55f;
-			else if ( GameData.missionType == "Fortress") //boss
 				level = 1 + (GameData.currentMission/2)*0.65f;
+			else if ( GameData.missionType == "Fortress") //boss
+				level = 1 + (GameData.currentMission/2)*0.75f;
 			else if ( GameData.missionType == "Castle") //boss
-				level = 1 + (GameData.currentMission/2)* 0.8f;
-
+				level = 1 + (GameData.currentMission/2)* 0.85f;
+			/*
 			if ( GameData.profile.TutorialState < 5 ){
 				level = 1 + GameData.profile.TutorialState*0.125f;
 				Debug.Log("TUtorial coy " ) ;
-			}
+			}*/
 			level += (mission.Title * 0.25f);
 			s.Agi *= level;
 			s.Str *= level;
@@ -387,7 +387,7 @@ public class BattleController : MonoBehaviour {
 	public void SetPrefab(){
 		Debug.Log("set tutorial state " + GameData.profile.TutorialState);
 		if ( GameData.profile.TutorialState < GameConstant.TOTAL_TUTORIAL ){
-			Transform t = listPrefab [GameData.profile.TutorialState-2];
+			Transform t = listPrefab [GameData.profile.TutorialState-1];
 			Instantiate (t, new Vector3(t.position.x,t.position.y,t.position.z), Quaternion.identity);
 		}
 		GameData.profile.TutorialState++;
@@ -397,12 +397,12 @@ public class BattleController : MonoBehaviour {
 		GameObject temp = GameObject.FindGameObjectWithTag ("Tutorial");
 		Debug.Log ("at tutor destroy " + temp);
 		Destroy (temp);
-		if ( GameData.profile.TutorialState < 4){
+		if ( GameData.profile.TutorialState < 3){
 			SetPrefab();//tutorialObject = null;// kalau belum 2x diset prefab
 		}
 		
 		else {// dua kali aja{
-			GameData.profile.TutorialState = 2;
+			GameData.profile.TutorialState = 1;
 			GameData.gameState = "";
 			battleState = 0;
 		}

@@ -13,7 +13,7 @@ public class TutorialPrefabList : MonoBehaviour {
 	public void SetPrefab(){
 		Debug.Log("set tutorial state " + GameData.profile.TutorialState);
 		if ( GameData.profile.TutorialState < GameConstant.TOTAL_TUTORIAL ){
-			Transform t = listPrefab [GameData.profile.TutorialState];
+			Transform t = listPrefab [GameData.profile.TutorialState-1];
 			Instantiate (t, new Vector3(t.position.x,t.position.y,t.position.z), Quaternion.identity);
 		}
 		GameData.profile.TutorialState++;

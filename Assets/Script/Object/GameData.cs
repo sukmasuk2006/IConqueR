@@ -46,7 +46,7 @@ public class GameData : MonoBehaviour {
 		Reset();
 	//	profile.Gold = 150000;
 	//	profile.TutorialState = 22;
-		LoadData ();
+	//	LoadData ();
 		//profile.Gold = 99750;
 		//profile.Level = 15;
 	}

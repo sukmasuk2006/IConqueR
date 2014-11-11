@@ -52,7 +52,7 @@ public class ProfileData
 		unlockedSlot = 1;
 		activeHeroes = 1;
 		totalSkillUsed = 1;
-		tutorialState = 0;
+		tutorialState = 1;
 		tutorialChatState = 0;
 		nextExp = base_exp;
 		formationList = new List<FormationUnit> (5);
