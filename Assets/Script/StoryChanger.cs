@@ -9,6 +9,7 @@ public class StoryChanger : MonoBehaviour {
 	}
 	
 	void OnMouseDown(){
-	  Camera.main.GetComponent<StoryFader> ().FadeOut ();
+		if ( GameData.readyToTween )
+			Camera.main.GetComponent<StoryFader> ().FadeOut ();
 	}
 }

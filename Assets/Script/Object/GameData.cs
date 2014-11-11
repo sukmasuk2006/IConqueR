@@ -10,6 +10,7 @@ public class GameData : MonoBehaviour {
 	public static int tesId = 1;
 
 	// GAME STATS
+	public static bool isPremium = false;
 	public static bool isFirstPlay = true;
 	public static bool readyToTween = true;
 	public static int selectedToViewProfileId = 0; // hero yg ditampilkan di troopprofile
@@ -117,7 +118,7 @@ public class GameData : MonoBehaviour {
 			Gem g = (Gem)shopList[i];
 			gemSpriteList.Add(LoadGemSprite(g.Grade.Trim()+"/"+linesFromFile[i].Trim()));
 		}
-		GameData.profile.inventoryList.Add(new Gem(3,linesFromFile[0]));
+		GameData.profile.inventoryList.Add(new Gem(3,linesFromFile[3]));
 //		Debug.Log ("Jumlah gambar gem " + gemSpriteList.Count);
 		linesFromFile = null;
 		TextAsset shop2Txt = (TextAsset)Resources.Load ("Data/Catalyst/list", typeof(TextAsset));

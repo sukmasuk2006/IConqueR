@@ -19,6 +19,7 @@ public class StoryFader : MonoBehaviour {
 	{
 		timer = fadeTime;
 		fadeIn = true;
+		GameData.readyToTween = true;
 	}
 	
 	public void FadeOut()
@@ -32,7 +33,7 @@ public class StoryFader : MonoBehaviour {
 	{
 		storyState = 1;
 		FadeIn();
-		ChangeStory();
+		//FadeOut();
 	}
 	
 	 void OnGUI()
@@ -65,6 +66,13 @@ public class StoryFader : MonoBehaviour {
 			Destroy(g);
 			Instantiate(storyList[storyState]);
 			storyState++;
+			GameData.readyToTween = false;
+			FadeIn();
+		}
+		else{
+			GameData.profile.StoryCompleted = true;
+			Camera.main.GetComponent<ScreenFader>().FadeOut("HomeScene");
+			GameData.SaveData();
 		}
 	}
 

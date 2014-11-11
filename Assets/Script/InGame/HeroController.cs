@@ -117,6 +117,7 @@ public class HeroController : MonoBehaviour {
 					isAttack = true;
 					movementSpeed = stats.Movement;
 					animator.state.AddAnimation (0, "run", true,0);
+					rigidbody2D.velocity = Vector2.zero;
 					PushForward (1f);
 				} else {
 					DeceleratePullBack ();
@@ -191,8 +192,11 @@ public class HeroController : MonoBehaviour {
 
 	void HandleComplete (Spine.AnimationState state, int trackIndex, int loopCount)
 	{
-		if ( attackType == 0 )
-			DoDamageToTarget (targetUnit,-0.5f);
+		if ( attackType == 0 ){
+			float force = (stats.Str/100)+0.5f;
+			DoDamageToTarget (targetUnit,-force);
+			
+		}
 		else
 			projectile.GetComponent<ProjectileController> ().Launch ();
 
@@ -217,7 +221,7 @@ public class HeroController : MonoBehaviour {
 				float damage = h.stats.ReceiveDamage(stats.Damage,stats.IsCritical,stats.StatsType);
 				h.UpdateHealthBar ();
 				Debug.Log(stats.Job +" nggepuk " + h.stats.Job + " damage asli " + stats.Damage + " hasil " + damage);
-				if ( !h.CheckIsCornered() && !h.isAttack ) // jika gk kepepet nusuhnya, pukul mundur
+				if ( !h.CheckIsCornered() ) // jika gk kepepet nusuhnya, pukul mundur
 					h.PushForward(force);
 				stats.IsCritical = false; // set critical ke semula, tapi chance tetep
 				controller.ReceiveDamage (target, damage);

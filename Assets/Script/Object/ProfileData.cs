@@ -14,6 +14,7 @@ public class ProfileData
 	private int title;
 	private int tutorialState;
 	private int tutorialChatState;
+	private bool storyCompleted;
 	//private int nextStage;
 
 	// untuk quest
@@ -46,6 +47,7 @@ public class ProfileData
 		gold = 2000;
 		diamond = 0;
 		mapPos = new Vector3 (-0.5f, 2.5f, -1f);
+		storyCompleted = false;
 		//nextStage = 1;
 		unlockedSlot = 1;
 		activeHeroes = 1;
@@ -65,6 +67,7 @@ public class ProfileData
 		
 		PlayerPrefs.SetInt ("level"+GameData.tesId, level);
 		PlayerPrefs.SetInt("title"+GameData.tesId, title);
+		PlayerPrefsX.SetBool("storyCompleted"+GameData.tesId, storyCompleted);
 		PlayerPrefs.SetInt("nextMission"+GameData.tesId,nextMission);
 		PlayerPrefs.SetInt("currentExp"+GameData.tesId, currentExp);
 		PlayerPrefs.SetInt("gold"+GameData.tesId, gold);
@@ -109,6 +112,7 @@ public class ProfileData
 
 		title = PlayerPrefs.GetInt("title"+GameData.tesId);
 		level =  GameData.CheckPrefs("level"+GameData.tesId) ? PlayerPrefs.GetInt("level"+GameData.tesId): level;
+		storyCompleted = PlayerPrefsX.GetBool("storyCompleted"+GameData.tesId);
 		nextMission = GameData.CheckPrefs("nextMission"+GameData.tesId) ? PlayerPrefs.GetInt("nextMission"+GameData.tesId): nextMission;
 		currentExp = GameData.CheckPrefs("currentExp"+GameData.tesId) ? PlayerPrefs.GetInt("currentExp"+GameData.tesId) :currentExp;
 		gold = GameData.CheckPrefs("gold"+GameData.tesId) ? PlayerPrefs.GetInt("gold"+GameData.tesId) : gold;
@@ -304,6 +308,15 @@ public class ProfileData
 		}
 		set {
 			tutorialChatState = value;
+		}
+	}
+
+	public bool StoryCompleted {
+		get {
+			return storyCompleted;
+		}
+		set {
+			storyCompleted = value;
 		}
 	}
 }

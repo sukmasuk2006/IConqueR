@@ -61,7 +61,7 @@ public class BattleController : MonoBehaviour {
 	private int diamondEarn;
 	private Mission mission;
 	private int isGetReward;
-	private const int itemChance = 50;
+	private const int itemChance = 60;
 
 	// Use this for initialization
 	void Start () {
@@ -132,8 +132,11 @@ public class BattleController : MonoBehaviour {
 				level = 1 + (GameData.currentMission/2)*0.65f;
 			else if ( GameData.missionType == "Castle") //boss
 				level = 1 + (GameData.currentMission/2)* 0.8f;
-			if ( GameData.profile.TutorialState < GameConstant.TOTAL_TUTORIAL )
-				level = GameData.profile.TutorialState*0.25f;
+
+			if ( GameData.profile.TutorialState < 5 ){
+				level = 1 + GameData.profile.TutorialState*0.125f;
+				Debug.Log("TUtorial coy " ) ;
+			}
 			level += (mission.Title * 0.25f);
 			s.Agi *= level;
 			s.Str *= level;

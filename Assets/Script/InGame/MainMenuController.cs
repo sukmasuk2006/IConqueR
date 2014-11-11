@@ -3,15 +3,17 @@ using System.Collections;
 
 public class MainMenuController : MonoBehaviour {
 
-	public Texture playBtn;
-	// Use this for initialization
+	private ScreenFader fader;
+
 	void Start () {
-		
+		fader = Camera.main.GetComponent<ScreenFader>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
+	void OnMouseDown(){
+		if ( GameData.profile.StoryCompleted )
+			fader.FadeOut("HomeScene");
+		else
+			fader.FadeOut("StoryScene");
 	}
 
 
