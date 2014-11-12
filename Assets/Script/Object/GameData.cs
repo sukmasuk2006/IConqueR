@@ -11,6 +11,7 @@ public class GameData : MonoBehaviour {
 
 	// GAME STATS
 	public static bool isPremium = false;
+
 	public static bool isFirstPlay = true;
 	public static bool readyToTween = true;
 	public static int selectedToViewProfileId = 0; // hero yg ditampilkan di troopprofile
@@ -46,7 +47,7 @@ public class GameData : MonoBehaviour {
 		Reset();
 	//	profile.Gold = 150000;
 	//	profile.TutorialState = 22;
-	//	LoadData ();
+		LoadData ();
 		//profile.Gold = 99750;
 		//profile.Level = 15;
 	}
