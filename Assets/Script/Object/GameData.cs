@@ -10,7 +10,7 @@ public class GameData : MonoBehaviour {
 	public static int tesId = 1;
 
 	// GAME STATS
-	public static bool isPremium = false;
+	public static bool isPremium = true;
 
 	public static bool isFirstPlay = true;
 	public static bool readyToTween = true;
@@ -47,7 +47,7 @@ public class GameData : MonoBehaviour {
 		Reset();
 	//	profile.Gold = 150000;
 	//	profile.TutorialState = 22;
-		LoadData ();
+		//LoadData ();
 		//profile.Gold = 99750;
 		//profile.Level = 15;
 	}
@@ -57,8 +57,9 @@ public class GameData : MonoBehaviour {
 		InitializeGameData ();
 
 		//PlayerPrefs.DeleteAll ();
-		//profile.Gold = 99750;
-		//profile.TutorialState = 23;
+		profile.StoryCompleted = true;
+		profile.Gold = 299750;
+		profile.TutorialState = 23;
 		//profile.Level = 15;
 		//profile.NextMission = 40;
 	}

@@ -15,6 +15,9 @@ public class UnlockHero : MonoBehaviour {
 	public TextMesh warningText;
 	public int profileLevelRequired = 1;
 
+	public GameObject confirmationScreen;
+	public ConfirmUnlockHero confirm;
+
 	void Start(){
 		//Debug.Log ("awal2 slot " + slot + " isunlock " + GameData.skillList [slot].IsUnlocked + " selec " + GameData.skillList [slot].IsSelected);
 		// aktif dan terunlock
@@ -39,38 +42,23 @@ public class UnlockHero : MonoBehaviour {
 			warningText.text = "Profile must at least level " + profileLevelRequired + ", fight more!";
 		}
 		else if (GameData.profile.Gold >= GameData.profile.unitList [slot].GoldNeeded && !GameData.profile.unitList [slot].IsUnlocked) {
-						GameData.profile.unitList [slot].IsUnlocked = true;
-						frame.SetActive (false);
-						profileController.UpdateGoldAndDiamond(0,GameData.profile.unitList [slot].GoldNeeded);	
-						teks.text = "Select";
-						renderer.sprite = spriteBiru;
-		} else if ( GameData.profile.Gold < GameData.profile.unitList [slot].GoldNeeded 
-		           && !GameData.profile.unitList [slot].IsUnlocked ) {
+			GameData.readyToTween = false;
+			confirm.text1.text = "Unlock " + GameData.profile.unitList[slot].Name + " ? ";
+			confirm.text2.text = " " + GameData.profile.unitList[slot].GoldNeeded;
+			confirm.Slot = slot;
+			MusicManager.getMusicEmitter ().audio.PlayOneShot (sound);
+			iTween.MoveTo (confirmationScreen, iTween.Hash ("position", new Vector3(0,0,confirmationScreen.transform.position.z), "time", 0.1f, "oncomplete", "ReadyTween", "oncompletetarget", gameObject));
+		}
+		else if ( GameData.profile.Gold < GameData.profile.unitList [slot].GoldNeeded 
+		         && !GameData.profile.unitList [slot].IsUnlocked ) {
 			warningText.text = "Not enough Gold to Unlock, fight more!";
 		} 
-		// gak dipake heronya
-		if (GameData.profile.unitList [slot].IsActive && GameData.profile.unitList [slot].IsUnlocked  && GameData.profile.activeHeroes > 0) {
-			GameData.profile.activeHeroes--;
-			teks.text = "Select";		
-			renderer.sprite = spriteBiru;
-			GameData.profile.unitList[slot].IsActive = false;
-		}
-		// make heronya
-		else if (!GameData.profile.unitList [slot].IsActive && GameData.profile.unitList [slot].IsUnlocked ){  
-	        if  (GameData.profile.activeHeroes < GameData.profile.unlockedSlot) {
-				GameData.profile.activeHeroes++;
-				teks.text = "Deselect";		
-				renderer.sprite = spriteKuning;
-				GameData.profile.unitList[slot].IsActive = true;
-			}
-			else
-				warningText.text = "Please deselect another hero first";
-
-		}
-		Debug.Log ("aktif hero " + GameData.profile.activeHeroes);
-
 	}
-
+	
+	void ReadyTween(){
+		GameData.readyToTween = true;
+		///GameData.gameState = "ConfirmUnlockHero";
+	}
 	void OnMouseUp(){
 		MusicManager.getMusicEmitter().audio.PlayOneShot(sound);
 	
