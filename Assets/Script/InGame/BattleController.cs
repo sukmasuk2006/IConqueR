@@ -17,6 +17,7 @@ public class BattleController : MonoBehaviour {
 	private float[] positionList;
 	private bool[] positionAvailableList;
 	public List<Transform> listPrefab;
+	public GameObject blackScreen;
 
 	public GameObject pauseScreen;
 	public GameObject globalHeroHealthBar;
@@ -65,6 +66,7 @@ public class BattleController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		iTween.ColorTo (blackScreen, iTween.Hash ("delay", 0f, "a", 0f, "time", 0.1f, "EaseType", "linear"));
 		Debug.Log ("batltecontrol START");
 		heroTitle.sprite = GameData.titleSpriteList [GameData.profile.Title];
 		mission = GameData.missionList [GameData.currentMission];
@@ -317,6 +319,8 @@ public class BattleController : MonoBehaviour {
 			activeEnemyList[i].CopyStats(tempStats[i].HeroId,tempStats[i]);
 		}
 		iTween.MoveTo (reportScreen, iTween.Hash ("position", new Vector3(0,0,reportScreen.transform.position.z), "time", 1.0f,"delay",3.0f));
+		iTween.ColorTo (blackScreen, iTween.Hash ("delay", 2f, "a", 1f, "time", 1f, "EaseType", "linear"));
+
 		GameData.SaveData ();
 	}
 
