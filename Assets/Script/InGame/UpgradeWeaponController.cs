@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 // DI SCREEN UPGRADE
 public class UpgradeWeaponController : MonoBehaviour {
@@ -66,11 +66,11 @@ public class UpgradeWeaponController : MonoBehaviour {
 	public void UpdateWeaponInfo(){
 		// JIKA SUKSES UPDATE INFO SENJATA DI UNIT DAN FORMATION
 		GameData.profile.unitList [GameData.selectedToViewProfileId].Weapon = weaponData; 
-		GameData.profile.formationList [GameData.selectedToViewProfileIdFromFormation].Unit.Weapon = weaponData; 
+		GameData.profile.formationList [GameData.unitSlotYangDiSet].Unit.Weapon = weaponData; 
 
 		// update stats unit
 		GameData.profile.unitList [GameData.selectedToViewProfileId].SetStats ();
-		GameData.profile.formationList [GameData.selectedToViewProfileIdFromFormation].Unit.SetStats (); 
+		GameData.profile.formationList [GameData.unitSlotYangDiSet].Unit.SetStats (); 
 		profileController.SetPictureAndStatsFromFormation ();
 
 		spriteRenderer.sprite = GameData.weaponSpriteList[weaponData.Id];

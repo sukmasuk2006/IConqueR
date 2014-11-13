@@ -16,7 +16,7 @@ public class GameData : MonoBehaviour {
 	public static bool readyToTween = true;
 	public static int selectedToViewProfileId = 0; // hero yg ditampilkan di troopprofile
 	public static string selectedToViewProfileName = "knight"; // nama hero yang ditampilkan
-	public static int selectedToViewProfileIdFromFormation = 0; // formasi slot ke berapa
+	public static int unitSlotYangDiSet = 0; // formasi slot ke berapa
 	public static string gameState = "LOGO"; // untuk state dari layar
 	public static string prevGameState = "LOGO"; // untuk state dari layar
 	public static int currentMission = 0; // cek misi yang dijalankan
@@ -259,6 +259,7 @@ public class GameData : MonoBehaviour {
 		}
 		profile.skillList [0].IsUnlocked = true;
 		profile.skillList [0].IsSelected = true;
+		profile.skillList [0].Level = 1;
 		profile.totalSkillUsed = 1;
 //		Debug.Log ("first play ");
 		//SaveLoad.Save ();

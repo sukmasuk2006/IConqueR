@@ -5,15 +5,17 @@ using System.Collections;
 public class SetHeroOnFormation : MonoBehaviour {
 	
 	public List<FormationSetter> listForm;
+	public List<GameObject> listDismissButton;
 	public TextMesh infoText;
 	public GameObject tweenedObject;
 	public GameObject targetObject;
 	private Vector3 tempPosition;
+	public int slot;
 	public AudioClip sound;
 
 	// Use this for initialization
 	void Start () {
-		infoText.text = "Select your units!";
+	//	infoText.text = "Select your units!";
 		}
 	
 
@@ -22,33 +24,47 @@ public class SetHeroOnFormation : MonoBehaviour {
 		// SET FORMATION		
 				//copy status, dan id biar gampang nanti itung2an expnya setelah battle
 //				Debug.Log("slot formasi yang akan di set di barackscreen " + screenData.formationSlot);
-		if (GameData.profile.activeHeroes == 0) {
-			infoText.text = "Select at least one units";
-		} else {// slot di formation
-				int formationSlot = 0;
-			for (int i = 0; i < GameData.profile.unitList.Count; i++) {
-							if (i < 5) {
-							// BUAT JADI KOSONG DULU
-							GameData.profile.formationList [i].SetUnit (99, GameData.profile.unitList [i]);
-									listForm [i].ReloadSprite (null);
-							}
+		Debug.Log("yg ditekan " + GameData.profile.unitList[slot].IsActive + " state " + GameData.gameState);
+		if ( !GameData.profile.unitList[slot].IsActive && GameData.gameState == "SelectUnit" 
+		    && GameData.profile.unitList[slot].IsUnlocked) {
+					int currentActiveUnitId = GameData.profile.formationList[GameData.unitSlotYangDiSet]
+					.Unit.HeroId;
+					Debug.Log(" hero id " + currentActiveUnitId + " diset false " ) ;
 
-							// SET HERO JIKA ADA
-							if (GameData.profile.unitList [i].IsActive && GameData.profile.formationList [formationSlot].IsUnlocked) {
-								GameData.profile.formationList [formationSlot].
-								SetUnit (GameData.profile.unitList [i].HeroId,GameData.profile.unitList [i]);
-								// load sprite
-								listForm [formationSlot].ReloadSprite (GameData.unitSpriteList[GameData.profile.unitList [i].HeroId]);
-												formationSlot++;
-										}
-								}
-							infoText.text = "Select your units";
-							if (GameData.readyToTween ) {
-								GameData.readyToTween = false;
-								iTween.MoveTo ( targetObject,iTween.Hash("position",tweenedObject.transform.position,"time", 0.1f,"onComplete","ReadyTween","onCompleteTarget",gameObject));
-							}
+					if ( currentActiveUnitId != 99 ) {// inisialisasi awal pas buka slot id =99;
+						GameData.profile.unitList[currentActiveUnitId].IsActive = false;
+						GameData.profile.unitList[currentActiveUnitId].HeroId = 99;
+					}
+					GameData.profile.formationList [GameData.unitSlotYangDiSet].
+					SetUnit (GameData.profile.unitList[slot].HeroId,GameData.profile.unitList [slot]);
+					GameData.profile.unitList[slot].IsActive = true;
+					GameData.profile.activeHeroes++;
+					listForm [GameData.unitSlotYangDiSet].ReloadSprite (GameData.unitSpriteList[slot]);
+					listDismissButton[GameData.unitSlotYangDiSet].SetActive(true);
+					infoText.text = "Select Unit";
+			if (GameData.readyToTween ) {
+					GameData.readyToTween = false;
+					GameData.gameState = "Home";
+					iTween.MoveTo ( targetObject,iTween.Hash("position",tweenedObject.transform.position,"time", 0.1f,"oncomplete","ReadyTween","onCompleteTarget",gameObject));
+				}
+		}
+		else{
+			if ( !GameData.profile.unitList[slot].IsUnlocked )
+				infoText.text = "Unlock first!";
+			else{
+				if ( GameData.gameState == "SelectUnit" )
+					infoText.text = "This unit already assigned";
 			}
+		}
+		StartCoroutine(alp());
+
 		GameData.SaveData ();
+	}
+
+	public IEnumerator alp(){
+		yield return new WaitForSeconds(1.5f);
+		infoText.text = "Select Unit";
+		
 	}
 
 	void ReadyTween(){
@@ -56,6 +72,6 @@ public class SetHeroOnFormation : MonoBehaviour {
 		iTween.MoveTo (tweenedObject, tempPosition,0.3f);		
 //		Debug.Log ("Oncomplete");	
 		MusicManager.getMusicEmitter().audio.PlayOneShot(sound);
-
+//		this.gameObject.SetActive(false);
 	}
 }

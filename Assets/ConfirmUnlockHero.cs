@@ -44,6 +44,6 @@ public class ConfirmUnlockHero : MonoBehaviour {
 	
 
 	void ReadyTween(){
-		//	GameData.readyToTween = true;
+		GameData.readyToTween = true;
 	}
 }

@@ -72,7 +72,6 @@ public class HeroController : MonoBehaviour {
 			isHero = true;
 //			Debug.Log("di hero cont " + stats.HeroId);
 			InitializeWeapon();
-			InitializePosition(-1);
 		} else if (gameObject.name.Contains ("enemy")) {
 			stats =  controller.activeEnemyList[slot];
 			isHero = false;

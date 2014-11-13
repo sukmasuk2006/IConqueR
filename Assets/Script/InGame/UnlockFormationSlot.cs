@@ -4,39 +4,42 @@ using System.Collections.Generic;
 public class UnlockFormationSlot : MonoBehaviour {
 
 	public ProfileController profileController; // profile master
-	public List<GameObject> lockSprite;
+	public SpriteRenderer renderer;
+	public GameObject lockSprite;
 	public AudioClip sound;
 	public int price = 500;
+	public int state = 0; // 0 => unlock, 1 => dismiss
+	public int slot;
 	// Use this for initialization
 	void Start () {
-		if (GameData.profile.unlockedSlot == 5)
-						this.gameObject.SetActive (false);
-				else
-						SetPos ();
+		if( state == 0 ){
+			if (GameData.profile.formationList[slot].IsUnlocked){
+				lockSprite.SetActive(false);
+				this.gameObject.SetActive (false);
+			}
+		}
 	}
 	
 	void OnMouseDown(){
-		if (GameData.profile.unlockedSlot < 5 && GameData.profile.Gold >= price) {
-			
-			GameData.profile.formationList[GameData.profile.unlockedSlot].IsUnlocked = true;
-			lockSprite[GameData.profile.unlockedSlot++].SetActive(false);
+		if ( state == 0 ){
+		if (GameData.profile.Gold >= price) {
+			GameData.profile.formationList[slot].IsUnlocked = true;
+			lockSprite.SetActive(false);
+			this.gameObject.SetActive(false);
 			// awal buka kasih knight
 			//	ReloadSprite(GameData.unitList[0].Sprites);
-				profileController.UpdateGoldAndDiamond(0,price);
-			SetPos();
-
-			if (GameData.profile.unlockedSlot == 5)
-				this.gameObject.SetActive (false);
+			profileController.UpdateGoldAndDiamond(0,price);
+			}
+		}
+		else{
+			if ( GameData.profile.activeHeroes > 1 ){
+				GameData.profile.unitList[GameData.profile.formationList[slot].Unit.HeroId].IsActive = false;
+				GameData.profile.formationList[slot].Unit.HeroId = 99;
+				renderer.sprite = null;
+				GameData.profile.activeHeroes--;
+				this.gameObject.SetActive(false);
+			}
 		}
 		MusicManager.getMusicEmitter().audio.PlayOneShot(sound);
-
-	}
-
-	private void SetPos(){
-		if (GameData.profile.unlockedSlot < 5 )
-		this.gameObject.transform.position = new Vector3 (lockSprite [GameData.profile.unlockedSlot].transform.position.x,
-		                                                  this.gameObject.transform.position.y,
-		                                                  this.gameObject.transform.position.z);
-
 	}
 }

@@ -100,12 +100,17 @@ public class BattleController : MonoBehaviour {
 		i = 0;
 	//	if ( GameData.profile.TutorialState == 1 )
 		//	GameData.gameState = GameConstant.GAMEPLAY_SCENE;
-		foreach (FormationUnit u in GameData.profile.formationList) {
-				if ( u.IsUnlocked && u.Unit.HeroId != 99){
+		for ( i = 0 ; i < 5 ; i ++ ) {
+			FormationUnit u = GameData.profile.formationList[i];
+				if ( u.IsUnlocked ){
+					if (  u.Unit.HeroId == 99 ){
+						continue;
+					}
+					totalHero++;
+					Debug.Log("Hero ke " + i + " aktif");
 					GameData.profile.formationList[i].Unit.Refresh();
-					heroList[i].SetActive(true);
-					
 //					heroList[i].GetComponent<SpriteRenderer>().sprite = u.Unit.Sprites;
+					heroList[i].SetActive(true);
 					float level = 0; 
 					level = 1 + (GameData.profile.Level * 0.05f);
 					level += (GameData.profile.Title * 0.1f);
@@ -114,10 +119,9 @@ public class BattleController : MonoBehaviour {
 					u.Unit.Vit *= level;
 					u.Unit.SetStats();
 					heroTotalHealth += u.Unit.HealthPoint;
-					i++;
+					
 				}
 		}
-		totalHero = i;
 		i = 0;
 		tempStats = new List<Unit> ();
 		for ( i = 0 ; i < activeEnemyList.Count ; i++) {

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 // DI TOMBOL UPGRADE 
@@ -32,7 +32,7 @@ public class UpgradeWeapon : MonoBehaviour {
 		if (w.Rank < 10) {
 			// check dulu + brp 
 			int minLevelReq = w.CheckMinLevelReq();
-			Unit u = GameData.profile.formationList [GameData.selectedToViewProfileIdFromFormation].Unit;
+			Unit u = GameData.profile.formationList [GameData.unitSlotYangDiSet].Unit;
 			if (u.Level >= minLevelReq) {
 				if (controller.SlotList [0] is Gem) {
 					gem = (Gem)controller.SlotList [0];
