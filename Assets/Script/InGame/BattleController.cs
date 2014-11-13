@@ -87,15 +87,7 @@ public class BattleController : MonoBehaviour {
 		Debug.Log ("Jumlah musuh " + activeEnemyList.Count);
 		activeSkill = new List<Skill> ();
 		int i = 0,j = 0;
-
-		for ( i =0; i < GameData.profile.skillList.Count; i++) {
-			if ( GameData.profile.skillList[i].IsSelected ){
-				activeSkill.Add(GameData.profile.skillList[i]);
-				skillList[j].SetActive(true);
-				//Debug.Log("selected skill " + i);
-				j++;
-			}
-		}
+		totalHero = 0;
 		/*awal2 semua hero mati, kemudian dicek ada brp yang aktif*/
 		i = 0;
 	//	if ( GameData.profile.TutorialState == 1 )
@@ -106,6 +98,8 @@ public class BattleController : MonoBehaviour {
 					if (  u.Unit.HeroId == 99 ){
 						continue;
 					}
+					activeSkill.Add(GameData.profile.skillList[u.Unit.HeroId]);
+					skillList[totalHero].SetActive(true);
 					totalHero++;
 					Debug.Log("Hero ke " + i + " aktif");
 					GameData.profile.formationList[i].Unit.Refresh();
