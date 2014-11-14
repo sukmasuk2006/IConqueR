@@ -45,11 +45,13 @@ public class HeroSlotController : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
+		Debug.Log("klik di hero unlock hero " + heroSlot + " "  + GameData.profile.unitList [heroSlot].IsUnlocked);
+
 		if (GameData.readyToTween && GameData.gameState == "UnitShowcase" ) {
 			if (GameData.profile.unitList [heroSlot].IsUnlocked){
 				//				Debug.Log("masuk 2 " + GameData.profile.formationList [slot].IsUnlocked + " " + GameData.profile.formationList [slot].Unit.HeroId);
 				// view profile controller set gambar dan status		
-				GameData.selectedToViewProfileId = GameData.profile.unitList[heroSlot].HeroId;
+				GameData.selectedToViewProfileId = heroSlot;
 				GameData.selectedToViewProfileName = GameData.profile.unitList[heroSlot].Name;
 				GameData.gameState = "HeroProfileScene";
 				iTween.MoveTo ( tweenedObject,iTween.Hash("position",targetObject.transform.position,"time", 0.1f,"oncomplete","MoveTarget","oncompletetarget",gameObject));

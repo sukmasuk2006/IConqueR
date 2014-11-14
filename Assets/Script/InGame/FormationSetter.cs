@@ -17,15 +17,16 @@ public class FormationSetter : MonoBehaviour {
 	private Vector3 tempPosition;
 	// Use this for initialization
 	void Start () {
+//		Debug.Log ("at slot  " + slot + " job " + GameData.profile.formationList [slot].Unit.HeroId);
 
 		if (GameData.profile.formationList [slot].IsUnlocked) {
 			heroLock.SetActive (false);
-			if ( GameData.profile.formationList[slot].Unit.HeroId == 99 )
-				ReloadSprite(null);
-				else
-				ReloadSprite(GameData.unitSpriteList[GameData.profile.formationList[slot].Unit.HeroId]);
 		}
-//		Debug.Log ("slot isunlock " + slot + " " + GameData.profile.formationList [slot].IsUnlocked);
+		if ( GameData.profile.formationList[slot].UnitHeroId != 99 ) // kalau form slot idnya gk 99
+			ReloadSprite(GameData.unitSpriteList[GameData.profile.formationList[slot].Unit.HeroId]);
+		else{
+			ReloadSprite(null);
+		}
 	}
 
 	void OnMouseDown(){

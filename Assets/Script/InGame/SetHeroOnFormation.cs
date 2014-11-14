@@ -24,24 +24,35 @@ public class SetHeroOnFormation : MonoBehaviour {
 		// SET FORMATION		
 				//copy status, dan id biar gampang nanti itung2an expnya setelah battle
 //				Debug.Log("slot formasi yang akan di set di barackscreen " + screenData.formationSlot);
-		Debug.Log("yg ditekan " + GameData.profile.unitList[slot].IsActive + " state " + GameData.gameState);
+		// SELECT UNIT
+		// ALGORITHM:
+		// jika unit ke slot tidak aktif, dan state select unit dan sudah terunlock 
 		if ( !GameData.profile.unitList[slot].IsActive && GameData.gameState == "SelectUnit" 
 		    && GameData.profile.unitList[slot].IsUnlocked) {
+					
+					// cek apakah di formationSlot ke unitSlotYangDiSet ada hero yang aktif
 					int currentActiveUnitId = GameData.profile.formationList[GameData.unitSlotYangDiSet]
-					.Unit.HeroId;
+					.UnitHeroId;
 					Debug.Log(" hero id " + currentActiveUnitId + " diset false " ) ;
 
+					// kalau gak 99 brarti masih ada heronya
 					if ( currentActiveUnitId != 99 ) {// inisialisasi awal pas buka slot id =99;
-						GameData.profile.unitList[currentActiveUnitId].IsActive = false;
-						GameData.profile.unitList[currentActiveUnitId].HeroId = 99;
+						GameData.profile.unitList[currentActiveUnitId].IsActive = false; // non aktifkan unit yang aktif
+						GameData.profile.formationList[currentActiveUnitId].UnitHeroId = 99; // jadikan formationslot idnya 99, dianggap kosong dulu
 					}
 					GameData.profile.formationList [GameData.unitSlotYangDiSet].
-					SetUnit (GameData.profile.unitList[slot].HeroId,GameData.profile.unitList [slot]);
-					GameData.profile.unitList[slot].IsActive = true;
+					SetUnit (slot,GameData.profile.unitList [slot]);  // isi slot dengan unit dan idnya
+					GameData.profile.unitList[slot].IsActive = true; // aktifkan unit
 					GameData.profile.activeHeroes++;
 					listForm [GameData.unitSlotYangDiSet].ReloadSprite (GameData.unitSpriteList[slot]);
 					listDismissButton[GameData.unitSlotYangDiSet].SetActive(true);
 					infoText.text = "Select Unit";
+
+					Debug.Log("Cek FS");
+					foreach ( FormationUnit u in GameData.profile.formationList ){
+						Debug.Log(" u " + u.Unit.HeroId);
+				GameData.SaveData();
+					}
 			if (GameData.readyToTween ) {
 					GameData.readyToTween = false;
 					GameData.gameState = "Home";

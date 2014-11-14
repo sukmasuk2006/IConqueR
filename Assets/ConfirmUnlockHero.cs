@@ -38,6 +38,7 @@ public class ConfirmUnlockHero : MonoBehaviour {
 	
 	void ConfirmingBuy(){
 		GameData.profile.unitList [slot].IsUnlocked = true;
+		Debug.Log("Berhasil unlock hero " + slot + " "  + GameData.profile.unitList [slot].IsUnlocked);
 		frameList[slot].SetActive (false);
 		profileController.UpdateGoldAndDiamond(0,GameData.profile.unitList [slot].GoldNeeded);	
 	}

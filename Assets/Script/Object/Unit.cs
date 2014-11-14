@@ -52,10 +52,10 @@ public class Unit : UnitStatus {
 	}
 
 	/**/
-	public void CopyStats(int id,Unit u){
+	public void CopyStats(Unit u){
 		name = u.name;
 		job = u.job;
-		heroId = id;
+		heroId = u.heroId;
 		this.str = u.str;
 		this.agi = u.agi;
 		this.vit = u.vit;

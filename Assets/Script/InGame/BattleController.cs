@@ -94,18 +94,17 @@ public class BattleController : MonoBehaviour {
 		i = 0;
 	//	if ( GameData.profile.TutorialState == 1 )
 		//	GameData.gameState = GameConstant.GAMEPLAY_SCENE;
+		GameData.profile.RefreshFormation();
 		for ( i = 0 ; i < 5 ; i ++ ) {
 			FormationUnit u = GameData.profile.formationList[i];
 				if ( u.IsUnlocked ){
-					if (  u.Unit.HeroId == 99 ){
+					if (  u.UnitHeroId == 99 ){
 						continue;
 					}
 					activeSkill.Add(GameData.profile.skillList[u.Unit.HeroId]);
 					skillList[totalHero].SetActive(true);
 					totalHero++;
 					Debug.Log("Hero ke " + i + " aktif");
-					GameData.profile.formationList[i].Unit.Refresh();
-//					heroList[i].GetComponent<SpriteRenderer>().sprite = u.Unit.Sprites;
 					heroList[i].SetActive(true);
 					float level = 0; 
 					level = 1 + (GameData.profile.Level * 0.05f);
@@ -316,7 +315,7 @@ public class BattleController : MonoBehaviour {
 		expEarnedText.text ="+"+expEarn.ToString ();
 	//	Debug.Log ("report " + activeEnemyList.Count + " " + tempStats.Count);
 		for (int i = 0; i < activeEnemyList.Count; i++) {
-			activeEnemyList[i].CopyStats(tempStats[i].HeroId,tempStats[i]);
+			activeEnemyList[i].CopyStats(tempStats[i]);
 		}
 		iTween.MoveTo (reportScreen, iTween.Hash ("position", new Vector3(0,0,reportScreen.transform.position.z), "time", 1.0f,"delay",3.0f));
 		iTween.ColorTo (blackScreen, iTween.Hash ("delay", 2f, "a", 1f, "time", 1f, "EaseType", "linear"));
@@ -367,16 +366,22 @@ public class BattleController : MonoBehaviour {
 		int i = 0;
 		foreach (Unit u in GameData.profile.unitList) {
 			if ( u.IsActive ){
-				if ( u.IsLevelUp(reward)){
-					GameObject spr = heroLevelUpSpriteList[i];
-					iTween.MoveTo(spr,iTween.Hash("position",new Vector3(spr.transform.position.x,-4.3f,-3.3f),
-					                              "time",0.5f,"delay",4.5f));
-				}
 				u.CurrentExp += reward;
 				i++;
 			}
 		}
-		GameData.profile.RefreshFormation ();
+		for (int j = 0 ; j <  GameData.profile.formationList.Count ; j++) {
+			FormationUnit u = GameData.profile.formationList[j];
+			if ( u.UnitHeroId != 99 ){
+				if ( u.Unit.IsLevelUp(reward)){
+					GameObject spr = heroLevelUpSpriteList[j];
+					
+					iTween.MoveTo(spr,iTween.Hash("position",new Vector3(spr.transform.position.x,-4.3f,-3.3f),
+					                              "time",0.5f,"delay",4.5f));
+				}
+			}
+		}
+		//GameData.profile.RefreshFormation ();
 		mission = null;
 	}
 

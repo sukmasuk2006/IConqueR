@@ -28,7 +28,7 @@ public class HeroProfileController : MonoBehaviour {
 	}
 	
 	public void SetPictureAndStatsFromFormation(){
-		Unit u = GameData.profile.formationList [GameData.selectedToViewProfileId].Unit;
+		Unit u = GameData.profile.unitList [GameData.selectedToViewProfileId];
 		name.text = GameData.selectedToViewProfileName;
 		job.text = u.Job;
 		lvl.text = "Level\n"+u.Level.ToString();

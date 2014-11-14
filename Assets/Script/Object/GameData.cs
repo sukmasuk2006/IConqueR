@@ -60,7 +60,7 @@ public class GameData : MonoBehaviour {
 		profile.StoryCompleted = true;
 		profile.Gold = 299750;
 		profile.TutorialState = 23;
-		//profile.Level = 15;
+		profile.Level = 15;
 		//profile.NextMission = 40;
 	}
 
@@ -150,12 +150,13 @@ public class GameData : MonoBehaviour {
 			skeleteonDataAssetList.Add(LoadSkeleton(linesFromFile[i].Trim()));
 			weaponSpriteList.Add(LoadWeaponSprite(linesFromFile[i].Trim()));
 			if ( i < 5 )
-				profile.formationList.Add(new FormationUnit(new Unit(99,linesFromFile[0].Trim())));		
+				profile.formationList.Add(new FormationUnit(99,new Unit(i,linesFromFile[0].Trim())));	
+			// buat list kayak unit cuman, idnya 99 semua
 		}
 		profile.unitList [0].IsUnlocked = true;
 		profile.unitList [0].IsActive = true;
 		profile.formationList [0].IsUnlocked = true;
-		profile.formationList [0].Unit.HeroId = 0;
+		profile.formationList[0].UnitHeroId = 0;
 //		Debug.Log ("JUm sprite char " + unitSpriteList.Count);
 
 		/*QUEST*/

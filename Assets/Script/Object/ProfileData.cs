@@ -130,9 +130,7 @@ public class ProfileData
 			unitList [i].Load ();
 
 //		Debug.Log ("load unlocked slot " + unlockedSlot);
-		for (int i = 0; i < unlockedSlot; i++) {
-			formationList [i].IsUnlocked = true;
-		}
+
 
 		RefreshFormation ();
 	//	Debug.Log("slot " + slot + " isunlock " + formationList[slot].IsUnlocked);
@@ -166,12 +164,15 @@ public class ProfileData
 	}
 
 	public void RefreshFormation(){
-		int slot = 0;
-		for (int i = 0; i < 10; i++) {
-			if ( unitList[i].IsActive ){
-				formationList[slot].SetUnit(i,unitList[i]);
-				slot++;
-			}
+		Debug.Log("MAU Refresh " + formationList.Count );
+
+		for (int i = 0; i < 5; i++) {
+			Debug.Log("Refresh " + i );
+			formationList[i].Load(i);
+		}
+		Debug.Log("Cek FS after battle");
+		foreach ( FormationUnit u in GameData.profile.formationList ){
+			Debug.Log(" u " + u.Unit.HeroId);
 		}
 	}
 

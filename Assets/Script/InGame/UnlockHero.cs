@@ -21,7 +21,7 @@ public class UnlockHero : MonoBehaviour {
 	void Start(){
 		//Debug.Log ("awal2 slot " + slot + " isunlock " + GameData.skillList [slot].IsUnlocked + " selec " + GameData.skillList [slot].IsSelected);
 		// aktif dan terunlock
-		if (GameData.profile.unitList [slot].IsActive && GameData.profile.unitList [slot].IsUnlocked) {
+		/*if (GameData.profile.unitList [slot].IsActive && GameData.profile.unitList [slot].IsUnlocked) {
 			renderer.sprite = spriteKuning;
 			teks.text = "Deselect";
 			//tidak aktif tapi terunlock
@@ -33,7 +33,7 @@ public class UnlockHero : MonoBehaviour {
 		else if (!GameData.profile.unitList [slot].IsUnlocked) {
 			renderer.sprite = spriteBiru;
 			teks.text = "Unlock";		
-		} 
+		} */
 	}
 
 	void OnMouseDown(){
