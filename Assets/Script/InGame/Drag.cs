@@ -7,8 +7,10 @@ public class Drag : MonoBehaviour {
 	private Vector3 offset;
 	private Vector2 pos;
 	private float minX,maxX,minY,maxY;
+	private bool isDrag;
 
 	void Start(){
+		isDrag =false;
 		gameObject.transform.position = GameData.profile.MapPos;
 		minX = 4.5f; // selama x lebih kecil dari minX
 		maxX = -23.2f; // selama x lebih besar dari maxX
@@ -17,13 +19,17 @@ public class Drag : MonoBehaviour {
 	}
 	
 	void OnMouseDown() {
-		if( GameData.gameState == "Map" && GameData.profile.TutorialState > GameConstant.TOTAL_TUTORIAL)
+		Debug.Log(" DRag down " + GameData.gameState + " " + isDrag );
+		if( GameData.gameState == "Map" && !isDrag ){//&& GameData.profile.TutorialState > GameConstant.TOTAL_TUTORIAL && !isDrag){
 			offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+			isDrag = true;
+
+		}
 	}
 	
 	void OnMouseDrag()
 	{
-		if (GameData.gameState == "Map" && GameData.profile.TutorialState > GameConstant.TOTAL_TUTORIAL) {
+		if (GameData.gameState == "Map" && isDrag ){//&& GameData.profile.TutorialState > GameConstant.TOTAL_TUTORIAL && !isDrag) {
 			pos = gameObject.transform.position;
 			if (pos.x < minX && pos.x > maxX && pos.y > maxY && pos.y < minY) {
 					Vector3 curScreenPoint = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
@@ -33,11 +39,17 @@ public class Drag : MonoBehaviour {
 		}
 	}
 
+	void OnMouseUp(){
+		Debug.Log(" DRag up " + GameData.gameState + " " + isDrag );
+		if (GameData.gameState == "Map" && GameData.profile.TutorialState > GameConstant.TOTAL_TUTORIAL && isDrag) {
+			StayOnTrack ();
+			GameData.profile.MapPos = gameObject.transform.position;
+			isDrag = false;
+		}
+
+	}
+
 	void Update(){
-			if (GameData.gameState == "Map" && GameData.profile.TutorialState > GameConstant.TOTAL_TUTORIAL) {
-				StayOnTrack ();
-				GameData.profile.MapPos = gameObject.transform.position;
-			}
 	}
 	// biar gak keluar map
 	void StayOnTrack(){

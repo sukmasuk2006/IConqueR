@@ -57,10 +57,10 @@ public class GameData : MonoBehaviour {
 		InitializeGameData ();
 
 		//PlayerPrefs.DeleteAll ();
-		//profile.StoryCompleted = true;
-		//profile.Gold = 299750;
-		//profile.TutorialState = 22;
-		//profile.Level = 15;
+		profile.StoryCompleted = true;
+		profile.Gold = 299750;
+		profile.TutorialState = 22;
+		profile.Level = 15;
 		//profile.NextMission = 40;
 	}
 
