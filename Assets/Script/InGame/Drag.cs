@@ -33,14 +33,12 @@ public class Drag : MonoBehaviour {
 		}
 	}
 
-	void OnMouseUp(){
-		if (GameData.gameState == "Map" && GameData.profile.TutorialState > GameConstant.TOTAL_TUTORIAL) {
-			StayOnTrack ();
-			GameData.profile.MapPos = gameObject.transform.position;
-			GameData.SaveData ();
-		}
+	void Update(){
+			if (GameData.gameState == "Map" && GameData.profile.TutorialState > GameConstant.TOTAL_TUTORIAL) {
+				StayOnTrack ();
+				GameData.profile.MapPos = gameObject.transform.position;
+			}
 	}
-
 	// biar gak keluar map
 	void StayOnTrack(){
 		Debug.Log ("stay ontrack");

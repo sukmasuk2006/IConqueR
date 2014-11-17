@@ -32,7 +32,7 @@ public class ConfirmUnlockHero : MonoBehaviour {
 		if (state == 0) { // state 0 -> tombol ok
 			ConfirmingBuy();
 		} 
-		iTween.MoveTo (parent, iTween.Hash ("position", new Vector3 (0, -12f, -6f), "time", 0.1f, "oncomplete", "ReadyTween", "oncompletetarget", gameObject));
+		iTween.MoveTo (parent, iTween.Hash ("position", new Vector3 (0, -12f, -7.7f), "time", 0.1f, "oncomplete", "ReadyTween", "oncompletetarget", gameObject));
 		
 	}
 	

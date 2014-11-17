@@ -19,6 +19,7 @@ public class SimpleButton : MonoBehaviour {
 			MusicManager.getMusicEmitter ().audio.PlayOneShot (sound);
 			camera.GetComponent<ScreenFader> ().FadeOut (targetScene);
 			GameData.gameState = targetScene;
+			GameData.SaveData();
 		}
 	}
 }

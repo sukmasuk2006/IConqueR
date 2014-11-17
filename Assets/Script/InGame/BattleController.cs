@@ -133,7 +133,7 @@ public class BattleController : MonoBehaviour {
 				level = 1 + (GameData.currentMission/2)* 0.85f;
 
 			if ( GameData.profile.TutorialState < 5 ){
-				level = 1 + GameData.profile.TutorialState*0.135f;
+				level = 1 + GameData.profile.TutorialState*0.125f;
 				Debug.Log("TUtorial coy " ) ;
 				if ( GameData.profile.TutorialState > 2 )
 					level += GameData.profile.TutorialState*0.25f;

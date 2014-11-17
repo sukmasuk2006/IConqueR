@@ -29,19 +29,7 @@ public class SelectItem : MonoBehaviour {
 			// pasang di slot upgrade
 		//	Debug.Log("slot " + controller.SlotList.Count+ " itemlistke " + itemlist[(4 * data.corridorState)+slot]);
 			// pasang gem di slot yang di upgrade dengan item yang dipilih
-			if (GameData.gameState == "Upgrade") {
-						controller.SlotList [controller.UpgradedSlot] = controller.queriedList [(4 * data.corridorState) + slot];
-						// pasang gambar gem di slot yang diupgrade
-						controller.UpdateSlot (controller.queriedList [(4 * data.corridorState) + slot].Id);
-						//biar gak dobel pas nyari lagi di invent
-						GameData.profile.inventoryList.Remove (controller.queriedList [(4 * data.corridorState) + slot]);
-						// UPDATE SLOT DI CHOOSE GEM SCREEN ke slot
-						data.corridorState = 0;controller.UpdateSemuaGambarDiInventory ();
-						data.maxCorridorState = (GameData.profile.inventoryList.Count / 4);
-						if (GameData.profile.inventoryList.Count % 4 == 0)
-								data.maxCorridorState--;
-						data.UpdateMaxCorridor ();
-				}
+
 	}
 
 	void OnMouseUp(){
@@ -52,6 +40,17 @@ public class SelectItem : MonoBehaviour {
 		if (GameData.readyToTween  ) {
 			GameData.readyToTween = false;
 			if ( GameData.gameState == "Upgrade" ){
+				controller.SlotList [controller.UpgradedSlot] = controller.queriedList [(4 * data.corridorState) + slot];
+				// pasang gambar gem di slot yang diupgrade
+				controller.UpdateSlot (controller.queriedList [(4 * data.corridorState) + slot].Id);
+				//biar gak dobel pas nyari lagi di invent
+				GameData.profile.inventoryList.Remove (controller.queriedList [(4 * data.corridorState) + slot]);
+				// UPDATE SLOT DI CHOOSE GEM SCREEN ke slot
+				data.corridorState = 0;controller.UpdateSemuaGambarDiInventory ();
+				data.maxCorridorState = (GameData.profile.inventoryList.Count / 4);
+				if (GameData.profile.inventoryList.Count % 4 == 0)
+					data.maxCorridorState--;
+				data.UpdateMaxCorridor ();
 				iTween.MoveTo ( targetObject,iTween.Hash("position",upgradeScreen.transform.position,"time", 0.1f,"onComplete","ReadyTween","onCompleteTarget",gameObject));
 				GameData.gameState = "Upgrade";	
 			}
