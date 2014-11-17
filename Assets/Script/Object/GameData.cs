@@ -47,7 +47,7 @@ public class GameData : MonoBehaviour {
 		Reset();
 	//	profile.Gold = 150000;
 	//	profile.TutorialState = 22;
-		//LoadData ();
+	//	LoadData ();
 		//profile.Gold = 99750;
 		//profile.Level = 15;
 	}
@@ -57,10 +57,10 @@ public class GameData : MonoBehaviour {
 		InitializeGameData ();
 
 		//PlayerPrefs.DeleteAll ();
-		profile.StoryCompleted = true;
-		profile.Gold = 299750;
-		profile.TutorialState = 23;
-		profile.Level = 15;
+		//profile.StoryCompleted = true;
+		//profile.Gold = 299750;
+		//profile.TutorialState = 22;
+		//profile.Level = 15;
 		//profile.NextMission = 40;
 	}
 
@@ -156,6 +156,7 @@ public class GameData : MonoBehaviour {
 		profile.unitList [0].IsUnlocked = true;
 		profile.unitList [0].IsActive = true;
 		profile.formationList [0].IsUnlocked = true;
+		profile.formationList [1].IsUnlocked = true;
 		profile.formationList[0].UnitHeroId = 0;
 //		Debug.Log ("JUm sprite char " + unitSpriteList.Count);
 

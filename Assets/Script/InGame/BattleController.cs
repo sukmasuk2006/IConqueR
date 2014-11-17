@@ -131,11 +131,13 @@ public class BattleController : MonoBehaviour {
 				level = 1 + (GameData.currentMission/2)*0.75f;
 			else if ( GameData.missionType == "Castle") //boss
 				level = 1 + (GameData.currentMission/2)* 0.85f;
-			/*
+
 			if ( GameData.profile.TutorialState < 5 ){
-				level = 1 + GameData.profile.TutorialState*0.125f;
+				level = 1 + GameData.profile.TutorialState*0.135f;
 				Debug.Log("TUtorial coy " ) ;
-			}*/
+				if ( GameData.profile.TutorialState > 2 )
+					level += GameData.profile.TutorialState*0.25f;
+			}
 			level += (mission.Title * 0.25f);
 			s.Agi *= level;
 			s.Str *= level;

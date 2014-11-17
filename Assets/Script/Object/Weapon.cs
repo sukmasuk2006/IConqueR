@@ -115,7 +115,7 @@ public class Weapon : Item {
 	}
 
 	public int CheckMinLevelReq(){
-		return (rank + 1) * 3;
+		return (rank) * 2 + 1;
 	}
 
 	public int Rank {
