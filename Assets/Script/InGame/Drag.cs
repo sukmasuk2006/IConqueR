@@ -8,6 +8,13 @@ public class Drag : MonoBehaviour {
 	private Vector2 pos;
 	private float minX,maxX,minY,maxY;
 	private bool isDrag;
+	
+	private Vector2 leftFingerPos = Vector2.zero;
+	private Vector2 leftLastPos = Vector2.zero;
+	private Vector2 leftFingerMovedBy = Vector2.zero;
+
+	public float slideMagnitudeX = 0.0f;
+	public float slideMagnitudeY = 0.0f;
 
 	void Start(){
 		isDrag =false;
@@ -29,7 +36,7 @@ public class Drag : MonoBehaviour {
 	
 	void OnMouseDrag()
 	{
-		if (GameData.gameState == "Map" && isDrag ){//&& GameData.profile.TutorialState > GameConstant.TOTAL_TUTORIAL && !isDrag) {
+	if (GameData.gameState == "Map" && isDrag ){//&& GameData.profile.TutorialState > GameConstant.TOTAL_TUTORIAL && !isDrag) {
 			pos = gameObject.transform.position;
 			if (pos.x < minX && pos.x > maxX && pos.y > maxY && pos.y < minY) {
 					Vector3 curScreenPoint = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
@@ -50,6 +57,40 @@ public class Drag : MonoBehaviour {
 	}
 
 	void Update(){
+
+		if( GameData.gameState == "Map"&& GameData.profile.TutorialState > GameConstant.TOTAL_TUTORIAL  ){
+			if (Input.touchCount == 1)
+			{
+				Touch touchZero = Input.GetTouch(0);
+
+				if ( touchZero.phase == TouchPhase.Began ){
+					offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+
+				}
+				else if ( touchZero.phase == TouchPhase.Moved ){
+				
+					pos = gameObject.transform.position;
+					if (pos.x < minX && pos.x > maxX && pos.y > maxY && pos.y < minY) {
+						Vector3 curScreenPoint = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+						Vector3 curPosition = Camera.main.ScreenToWorldPoint (curScreenPoint) + offset;
+						transform.position = curPosition;
+					}
+				}
+				else if ( touchZero.phase == TouchPhase.Stationary){
+					leftLastPos = leftFingerPos;
+					leftFingerPos = touchZero.position;
+					
+					slideMagnitudeX = 0.0f;
+					slideMagnitudeY = 0.0f;
+
+				}
+				else if (touchZero.phase == TouchPhase.Ended || touchZero.phase == TouchPhase.Canceled)
+				{
+					StayOnTrack ();
+					GameData.profile.MapPos = gameObject.transform.position;
+				}
+			}
+		}
 	}
 	// biar gak keluar map
 	void StayOnTrack(){

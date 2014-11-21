@@ -7,3 +7,4 @@ Arok
 1
 2
 sword
+Patih

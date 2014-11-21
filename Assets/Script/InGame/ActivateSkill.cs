@@ -6,6 +6,7 @@ public class ActivateSkill : MonoBehaviour {
 
 	public BattleController controller;
 	public SpriteRenderer render;
+	public HeroController hero;
 	private List<GameObject> affectedUnitList;
 	public int slot;
 
@@ -14,8 +15,12 @@ public class ActivateSkill : MonoBehaviour {
 		if ( this.gameObject.activeInHierarchy ){
 			render.sprite = GameData.skillSpriteList[controller.activeSkill[slot].Id];
 			Debug.Log ("slot " + slot + " id " + controller.activeSkill [slot].Id);
-			controller.activeSkill[slot].DoEffect(GameData.profile.unitList[controller.activeSkill[slot].Id]);
+			controller.activeSkill[slot].DoPassiveEffect(GameData.profile.unitList[controller.activeSkill[slot].Id]);
 		}
+	}
+
+	void OnMouseDown(){
+		hero.DoSpecial();
 	}
 
 	// Update is called once per frame

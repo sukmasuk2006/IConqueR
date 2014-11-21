@@ -18,30 +18,11 @@ public class HeroSlotController : MonoBehaviour {
 	public GameObject targetObject;
 	public HeroProfileController controller; // screen troops
 	public GameObject assignButton;
+	public SpriteRenderer spriteRenderer;
 
 	// Use this for initialization
 	void Start () {
-		UpdateData ();
-	}
-
-	public void UpdateData(){
-	//	if ( GameData.gameState == "UnitShowcase" )
-		//	assignButton.SetActive(false);
-	//	else 
-	//		assignButton.SetActive(true);
-		nameText.text = GameData.profile.unitList [heroSlot].Name;
-		jobText.text = GameData.profile.unitList [heroSlot].Job;
-		lvlText.text = "Level " + GameData.profile.unitList [heroSlot].Level.ToString();
-		str.text = "Str  "+GameData.profile.unitList [heroSlot].Str.ToString();
-		agi.text = "Agi  "+GameData.profile.unitList [heroSlot].Agi.ToString();
-		vit.text = "Vit  "+GameData.profile.unitList [heroSlot].Vit.ToString();
-		goldText.text = GameData.profile.unitList [heroSlot].GoldNeeded.ToString();
-		
-		if (GameData.profile.unitList [heroSlot].IsUnlocked) {
-			goldText.gameObject.SetActive(false);
-			heroState = true;
-			heroLockedFrame.SetActive(false);
-		}
+		ReloadData();
 	}
 
 	void OnMouseDown(){
@@ -58,6 +39,23 @@ public class HeroSlotController : MonoBehaviour {
 				iTween.MoveTo (targetObject, tweenedObject.transform.position,0.1f);					
 				controller.SetPictureAndStatsFromFormation();
 			}
+		}
+	}
+
+	public void ReloadData(){
+		Unit u = GameData.profile.unitList[heroSlot];
+		nameText.text = u.Name;
+		jobText.text = u.JobList[u.CurrentJob];
+		lvlText.text = "Level " + u.Level.ToString();
+		str.text = "Str  "+u.Str.ToString();
+		agi.text = "Agi  "+u.Agi.ToString();
+		vit.text = "Vit  "+u.Vit.ToString();
+		goldText.text = u.GoldNeeded.ToString();
+		
+		if (u.IsUnlocked) {
+			goldText.gameObject.SetActive(false);
+			heroState = true;
+			heroLockedFrame.SetActive(false);
 		}
 	}
 }

@@ -1,22 +1,9 @@
-DESC
+hero
+aktif tipe target
+aktif damage
+passive tipe skill
+passive amount
+range
+
+
 TIPE ATK SKILL: 1 [ENEMY] / 2 [SELF]
-EFFECT TIPE SKILL : 1 def => knight only. 10% def dari def total
-                    2 atk => war only. 10% atk dari atk total
-                    3 attackspeed
--10% dari aspd total -> ARCHER
-                    4 evasion
-10% DARI EVA TOTAL -> tribe
-		    5 critical
--> 10% critical
-		    6 atk def
--> 12% atk 12 % def
-                    7 aspd critical evasion
--> 13%   
-			 8 atk evasion attackspeed
-15%
-                    9 atk critical evasion attackspeed
-17%
-                   10 all
-20%
-AMOUNT
-levelReq

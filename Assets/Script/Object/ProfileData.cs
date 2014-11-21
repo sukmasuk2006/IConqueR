@@ -167,10 +167,10 @@ public class ProfileData
 		Debug.Log("MAU Refresh " + formationList.Count );
 
 		for (int i = 0; i < 5; i++) {
-			Debug.Log("Refresh " + i );
+//			Debug.Log("Refresh " + i );
 			formationList[i].Load(i);
 		}
-		Debug.Log("Cek FS after battle");
+//		Debug.Log("Cek FS after battle");
 		foreach ( FormationUnit u in GameData.profile.formationList ){
 			Debug.Log(" u " + u.Unit.HeroId);
 		}

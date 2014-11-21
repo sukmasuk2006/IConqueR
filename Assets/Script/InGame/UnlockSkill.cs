@@ -47,6 +47,7 @@ public class UnlockSkill : MonoBehaviour {
 		if (GameData.profile.Gold >= skill.Price * skill.Level  ){// uang cukup
 			Debug.Log("uang cukup");
 			if (skill.Level < 1   && GameData.profile.unitList[skill.HeroesRequired].IsUnlocked) {//locked & hero udah dilock
+				skill.IsUnlocked = true;
 				frame.SetActive (false); 					// UNLOCK
 				renderer.sprite = selectedSprite;
 				buttonInfo.text = "Upgrade";
@@ -62,14 +63,14 @@ public class UnlockSkill : MonoBehaviour {
 				Debug.Log("upgrade");
 			}
 		}
-		if ( skill.Level > 2 )
+		else if ( skill.Level > 2 )
 		{
 			priceText.text = "-";
 			text.text = "Max Level";
 		}
-		if ( !GameData.profile.unitList[GameData.profile.skillList[slot].HeroesRequired].IsUnlocked )
+		else if ( !GameData.profile.unitList[GameData.profile.skillList[slot].HeroesRequired].IsUnlocked )
 			text.text = "You must unlock " + GameData.profile.unitList[GameData.profile.skillList[slot].HeroesRequired].Name + " first!";		
-		if ( GameData.profile.Gold < skill.Price * skill.Level )
+		else if ( GameData.profile.Gold < skill.Price * skill.Level )
 				text.text = "Not enough money..";
 	
 		Debug.Log("skil end");

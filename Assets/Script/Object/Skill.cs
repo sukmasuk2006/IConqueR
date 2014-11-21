@@ -16,12 +16,12 @@ public class Skill
 	private int heroesRequired;
 	private int id;
 	private int level;
-	private int type;
-	private SkillEffect effect;
+	private SkillEffect activeEffect;
+	private SkillEffect passiveEffect;
 	private bool isUnlocked;
 	private string[] linesFromFile;
 	private bool isSelected;
-	private float levelRequired;
+	private float range;
 	private int price;
 	private string desc;
 
@@ -44,10 +44,10 @@ public class Skill
 		string content = txt.text;
 		linesFromFile = content.Split ("\n" [0]);
 		heroesRequired = int.Parse (linesFromFile [0]);
-		int.TryParse(linesFromFile [1],out type);
-		effect = new SkillEffect (int.Parse(linesFromFile [2]),
-		                          int.Parse(linesFromFile [3]));
-		levelRequired = float.Parse (linesFromFile [4]);
+		activeEffect = new SkillEffect(int.Parse(linesFromFile[1]),int.Parse(linesFromFile[2]));
+		passiveEffect = new SkillEffect (int.Parse(linesFromFile [3]),
+		                          int.Parse(linesFromFile [4]));
+		range = float.Parse (linesFromFile [5]);
 
 	}
 
@@ -62,42 +62,65 @@ public class Skill
 //		Debug.Log ("slot u " + isUnlocked + " s " + isSelected);
 	}
 
-	public void DoEffect(Unit u){
-		int tipe = effect.Tipe;
+	public void DoPassiveEffect(Unit u){
+		int tipe = passiveEffect.Tipe;
 		switch (tipe) {
-		case 1 :  u.DefensePoint+= (effect.Amount * level / 100)* u.DefensePoint;   // knight
+		case 1 :  u.DefensePoint+= (passiveEffect.Amount * level / 100)* u.DefensePoint;   // knight
 			break; 
-		case 2 : u.AttackPoint+= (effect.Amount * level / 100)* u.AttackPoint; // warrior
+		case 2 : u.AttackPoint+= (passiveEffect.Amount * level / 100)* u.AttackPoint; // warrior
 			break;
-		case 3 :  u.AttackSpeed -= (effect.Amount * level/ 100)* u.AttackSpeed;
+		case 3 :  u.AttackSpeed -= (passiveEffect.Amount * level/ 100)* u.AttackSpeed;
 			break;
-		case 4 :  u.EvasionRate+= (effect.Amount * level/ 100)* u.AttackPoint; // sek
+		case 4 :  u.EvasionRate+= (passiveEffect.Amount * level/ 100)* u.AttackPoint; // sek
 		break;	
-		case 5 :  u.Critical+= (effect.Amount * level / 100)* u.Critical;   
+		case 5 :  u.Critical+= (passiveEffect.Amount * level / 100)* u.Critical;   
 			break; 
-		case 6 : u.AttackPoint+= (effect.Amount* level / 200)* u.AttackPoint;
-			u.DefensePoint+= (effect.Amount* level / 200)* u.DefensePoint;   // knight
+		case 6 : u.AttackPoint+= (passiveEffect.Amount* level / 100)* u.AttackPoint;
+			u.DefensePoint+= (passiveEffect.Amount* level / 100)* u.DefensePoint;   // knight
 			break;
-		case 7 : u.AttackSpeed+= (effect.Amount* level / 100)* u.AttackSpeed;   
-			u.Critical+= (effect.Amount* level / 100)* u.Critical;   
-			u.EvasionRate+= (effect.Amount* level / 100)* u.EvasionRate;
+		case 7 : u.AttackSpeed+= (passiveEffect.Amount* level / 100)* u.AttackSpeed;   
+			u.Critical+= (passiveEffect.Amount* level / 100)* u.Critical;   
+			u.EvasionRate+= (passiveEffect.Amount* level / 100)* u.EvasionRate;
 			break;
-		case 8 : u.AttackPoint+= (effect.Amount * level/ 100)* u.AttackPoint;
-			u.AttackSpeed+= (effect.Amount* level / 100)* u.AttackSpeed;   
-			u.EvasionRate+= (effect.Amount* level / 100)* u.EvasionRate;
+		case 8 : u.AttackPoint+= (passiveEffect.Amount * level/ 100)* u.AttackPoint;
+			u.AttackSpeed+= (passiveEffect.Amount* level / 100)* u.AttackSpeed;   
+			u.EvasionRate+= (passiveEffect.Amount* level / 100)* u.EvasionRate;
 			break;
-		case 9 :  u.AttackPoint+= (effect.Amount* level / 100)* u.AttackPoint;
-			u.AttackSpeed+= (effect.Amount * level/ 100)* u.AttackSpeed;   
-			u.EvasionRate+= (effect.Amount * level/ 100)* u.EvasionRate;
-			u.Critical+= (effect.Amount* level / 100)* u.Critical;   
+		case 9 :  u.AttackPoint+= (passiveEffect.Amount* level / 100)* u.AttackPoint;
+			u.AttackSpeed+= (passiveEffect.Amount * level/ 100)* u.AttackSpeed;   
+			u.EvasionRate+= (passiveEffect.Amount * level/ 100)* u.EvasionRate;
+			u.Critical+= (passiveEffect.Amount* level / 100)* u.Critical;   
 			break;
-		case 10 :  u.AttackPoint+= (effect.Amount* level / 100)* u.AttackPoint;
-			u.AttackSpeed+= (effect.Amount* level / 100)* u.AttackSpeed;   
-			u.EvasionRate+= (effect.Amount* level / 100)* u.EvasionRate;
-			u.Critical+= (effect.Amount* level / 100)* u.Critical;  
-			u.DefensePoint+= (effect.Amount* level / 100)* u.DefensePoint;   // knight
+		case 10 :  u.AttackPoint+= (passiveEffect.Amount* level / 100)* u.AttackPoint;
+			u.AttackSpeed+= (passiveEffect.Amount* level / 100)* u.AttackSpeed;   
+			u.EvasionRate+= (passiveEffect.Amount* level / 100)* u.EvasionRate;
+			u.Critical+= (passiveEffect.Amount* level / 100)* u.Critical;  
+			u.DefensePoint+= (passiveEffect.Amount* level / 100)* u.DefensePoint;   // knight
 			break;
 		}
+	}
+
+	public float DoActiveEffect(float heroDamage, Unit u){
+		int tipe = activeEffect.Tipe;
+		//foreach ( Uni
+		float damageRet = 0f;
+		switch (tipe) {
+			case 1 :  damageRet = ((activeEffect.Amount * level / 100)* heroDamage) + heroDamage;   // knight
+				break; 
+			case 2 : damageRet = -((activeEffect.Amount * level / 100)* heroDamage) + heroDamage; // warrior
+				break;
+		}
+		return damageRet;
+		Debug.Log("special damage");
+	}
+
+	public bool IsInRange(float x1,float x2){
+		bool ret = false;
+		Debug.Log("special range " + Mathf.Abs(x1-x2));
+
+		if ( Mathf.Abs(x1-x2) <= range )
+			return true;
+		return ret;
 	}
 
 	public bool IsSelected {
@@ -111,10 +134,10 @@ public class Skill
 
 	public SkillEffect Effect {
 		get {
-			return effect;
+			return passiveEffect;
 		}
 		set {
-			effect = value;
+			passiveEffect = value;
 		}
 	}
 
@@ -145,12 +168,12 @@ public class Skill
 		}
 	}
 
-	public int Type {
+	public SkillEffect ActiveSkillEffect {
 		get {
-			return type;
+			return activeEffect;
 		}
 		set {
-			type = value;
+			activeEffect = value;
 		}
 	}
 
@@ -165,10 +188,10 @@ public class Skill
 
 	public float LevelRequired {
 		get {
-			return levelRequired;
+			return range;
 		}
 		set {
-			levelRequired = value;
+			range = value;
 		}
 	}
 

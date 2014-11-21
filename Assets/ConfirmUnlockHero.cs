@@ -12,7 +12,9 @@ public class ConfirmUnlockHero : MonoBehaviour {
 	public AudioClip coinSound;
 	private AudioSource audio;
 	public List<GameObject> frameList;
-	
+	public List<GameObject> buttonList;
+	public List<HeroSlotController> heroSlot;
+
 	// Use this for initialization
 	void Start () {
 		audio =	MusicManager.getMusicPlayer().audio;
@@ -28,10 +30,15 @@ public class ConfirmUnlockHero : MonoBehaviour {
 	}
 	
 	void OnMouseDown(){
-		
-		if (state == 0) { // state 0 -> tombol ok
+
+
+		if (state == 0 && GameData.gameState == "UnlockHero") { // state 0 -> tombol ok
 			ConfirmingBuy();
 		} 
+		else if (state == 0 && GameData.gameState == "UpgradeJob") { // state 0 -> tombol ok
+			ConfirmingUpgradeJob();
+		} 
+		GameData.gameState = GameData.prevGameState;
 		iTween.MoveTo (parent, iTween.Hash ("position", new Vector3 (0, -12f, -7.7f), "time", 0.1f, "oncomplete", "ReadyTween", "oncompletetarget", gameObject));
 		
 	}
@@ -40,7 +47,21 @@ public class ConfirmUnlockHero : MonoBehaviour {
 		GameData.profile.unitList [slot].IsUnlocked = true;
 		Debug.Log("Berhasil unlock hero " + slot + " "  + GameData.profile.unitList [slot].IsUnlocked);
 		frameList[slot].SetActive (false);
-		profileController.UpdateGoldAndDiamond(0,GameData.profile.unitList [slot].GoldNeeded);	
+		profileController.UpdateGoldAndDiamond(0,GameData.profile.unitList [slot].GoldNeeded);
+		buttonList[slot].GetComponentInChildren<TextMesh>().text = "Enhance";
+		GameData.profile.unitList [slot].EnhanceJob();
+		heroSlot[slot].ReloadData();
+	}
+
+	void ConfirmingUpgradeJob(){
+		GameData.profile.unitList [slot].IsUnlocked = true;
+		Debug.Log("Berhasil unlock hero " + slot + " "  + GameData.profile.unitList [slot].IsUnlocked);
+		frameList[slot].SetActive (false);
+		profileController.UpdateGoldAndDiamond(0,GameData.profile.unitList [slot].GoldNeeded);
+		GameData.profile.unitList [slot].CurrentJob++;
+		buttonList[slot].SetActive(false); // temp
+		heroSlot[slot].ReloadData();
+
 	}
 	
 

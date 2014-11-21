@@ -7,3 +7,4 @@ Lina
 5
 1
 bow
+Ranger

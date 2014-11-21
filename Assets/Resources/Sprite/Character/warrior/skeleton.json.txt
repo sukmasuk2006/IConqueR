@@ -18,68 +18,68 @@
 	{ "name": "weapon", "parent": "tangan kanan", "length": 248.08, "x": 18.18, "y": 16.06, "rotation": 95.39 }
 ],
 "slots": [
-	{ "name": "left_fist", "bone": "tangan kiri", "attachment": "left_fist" },
-	{ "name": "left_hand_lowef", "bone": "lengan bawah kiri", "attachment": "left_hand_lowef" },
-	{ "name": "left_hand_upper", "bone": "lengan atas kiri", "attachment": "left_hand_upper" },
-	{ "name": "left_leg_upper", "bone": "paha kiri", "attachment": "left_leg_upper" },
-	{ "name": "left_leg_lower", "bone": "betis kiri", "attachment": "left_leg_lower" },
-	{ "name": "left_foot", "bone": "telapak kaki kiri", "attachment": "left_foot" },
-	{ "name": "right_leg_upper", "bone": "paha kanan", "attachment": "right_leg_upper" },
-	{ "name": "right_leg_lower", "bone": "lutut kanan", "attachment": "right_leg_lower" },
-	{ "name": "right_foot", "bone": "telapak kanan", "attachment": "right_foot" },
-	{ "name": "body", "bone": "punggung", "attachment": "body" },
-	{ "name": "weapon_warrior", "bone": "weapon", "attachment": "weapon_warrior" },
-	{ "name": "right_fist", "bone": "tangan kanan", "attachment": "right_fist" },
-	{ "name": "right_hand_lower", "bone": "lengan bawah kanan", "attachment": "right_hand_lower" },
-	{ "name": "right_hand_upper", "bone": "lenganKanan", "attachment": "right_hand_upper" },
-	{ "name": "head", "bone": "kepala", "attachment": "head" }
+	{ "name": "left_fist", "bone": "tangan kiri", "attachment": "lf" },
+	{ "name": "left_hand_lowef", "bone": "lengan bawah kiri", "attachment": "lhl" },
+	{ "name": "left_hand_upper", "bone": "lengan atas kiri", "attachment": "lhu" },
+	{ "name": "left_leg_upper", "bone": "paha kiri", "attachment": "llu" },
+	{ "name": "left_leg_lower", "bone": "betis kiri", "attachment": "lll" },
+	{ "name": "left_foot", "bone": "telapak kaki kiri", "attachment": "lr" },
+	{ "name": "right_leg_upper", "bone": "paha kanan", "attachment": "rlu" },
+	{ "name": "right_leg_lower", "bone": "lutut kanan", "attachment": "rll" },
+	{ "name": "right_foot", "bone": "telapak kanan", "attachment": "rf" },
+	{ "name": "body", "bone": "punggung", "attachment": "bd" },
+	{ "name": "weapon_warrior", "bone": "weapon", "attachment": "w" },
+	{ "name": "right_fist", "bone": "tangan kanan", "attachment": "r" },
+	{ "name": "right_hand_lower", "bone": "lengan bawah kanan", "attachment": "rhl" },
+	{ "name": "right_hand_upper", "bone": "lenganKanan", "attachment": "rhu" },
+	{ "name": "head", "bone": "kepala", "attachment": "h" }
 ],
 "skins": {
-	"default": {
+	"warrior": {
 		"body": {
-			"body": { "x": 44.85, "y": 16.17, "rotation": -91.8, "width": 141, "height": 155 }
+			"bd": { "name": "body", "x": 44.85, "y": 16.17, "rotation": -91.8, "width": 141, "height": 155 }
 		},
 		"head": {
-			"head": { "x": 62.31, "y": 9.35, "rotation": -90, "width": 166, "height": 172 }
+			"h": { "name": "head", "x": 62.31, "y": 9.35, "rotation": -90, "width": 166, "height": 172 }
 		},
 		"left_fist": {
-			"left_fist": { "x": 21.26, "y": -3.25, "rotation": 85.49, "width": 49, "height": 51 }
+			"lf": { "name": "left_fist", "x": 21.26, "y": -3.25, "rotation": 85.49, "width": 49, "height": 51 }
 		},
 		"left_foot": {
-			"left_foot": { "x": 8.5, "y": 0.3, "rotation": 4.42, "width": 49, "height": 26 }
+			"lr": { "name": "left_foot", "x": 8.5, "y": 0.3, "rotation": 4.42, "width": 49, "height": 26 }
 		},
 		"left_hand_lowef": {
-			"left_hand_lowef": { "x": 19.03, "y": -2.5, "rotation": 79.2, "width": 42, "height": 64 }
+			"lhl": { "name": "left_hand_lowef", "x": 19.03, "y": -2.5, "rotation": 79.2, "width": 42, "height": 64 }
 		},
 		"left_hand_upper": {
-			"left_hand_upper": { "x": 42.12, "rotation": 39.09, "width": 79, "height": 79 }
+			"lhu": { "name": "left_hand_upper", "x": 42.12, "rotation": 39.09, "width": 79, "height": 79 }
 		},
 		"left_leg_lower": {
-			"left_leg_lower": { "x": 9.02, "y": 1.51, "rotation": 92.62, "width": 35, "height": 63 }
+			"lll": { "name": "left_leg_lower", "x": 9.02, "y": 1.51, "rotation": 92.62, "width": 35, "height": 63 }
 		},
 		"left_leg_upper": {
-			"left_leg_upper": { "x": 27.07, "y": -3.14, "rotation": 81.05, "width": 40, "height": 62 }
+			"llu": { "name": "left_leg_upper", "x": 27.07, "y": -3.14, "rotation": 81.05, "width": 40, "height": 62 }
 		},
 		"right_fist": {
-			"right_fist": { "x": 22.74, "y": 5.92, "rotation": 95.31, "width": 49, "height": 51 }
+			"r": { "name": "right_fist", "x": 22.74, "y": 5.92, "rotation": 94.31, "width": 49, "height": 51 }
 		},
 		"right_foot": {
-			"right_foot": { "x": 11.31, "y": 1.11, "scaleX": -1.002, "rotation": 0.42, "width": 48, "height": 25 }
+			"rf": { "name": "right_foot", "x": 11.31, "y": 1.11, "scaleX": -1.002, "rotation": 0.42, "width": 48, "height": 25 }
 		},
 		"right_hand_lower": {
-			"right_hand_lower": { "x": 19.2, "y": -2.15, "rotation": 109.03, "width": 42, "height": 63 }
+			"rhl": { "name": "right_hand_lower", "x": 19.2, "y": -2.15, "rotation": 109.03, "width": 42, "height": 63 }
 		},
 		"right_hand_upper": {
-			"right_hand_upper": { "x": 44.82, "y": -6.17, "rotation": 140.25, "width": 78, "height": 80 }
+			"rhu": { "name": "right_hand_upper", "x": 44.82, "y": -6.17, "rotation": 140.25, "width": 78, "height": 80 }
 		},
 		"right_leg_lower": {
-			"right_leg_lower": { "x": 7.02, "y": 5.16, "scaleX": -1, "rotation": 93.96, "width": 35, "height": 63 }
+			"rll": { "name": "right_leg_lower", "x": 7.02, "y": 5.16, "scaleX": -1, "rotation": 93.96, "width": 35, "height": 63 }
 		},
 		"right_leg_upper": {
-			"right_leg_upper": { "x": 25.41, "y": 1.62, "rotation": 99.46, "width": 39, "height": 62 }
+			"rlu": { "name": "right_leg_upper", "x": 25.41, "y": 1.62, "rotation": 99.46, "width": 39, "height": 62 }
 		},
 		"weapon_warrior": {
-			"weapon_warrior": { "x": 139.4, "y": 3.15, "rotation": -117.51, "width": 211, "height": 287 }
+			"w": { "name": "weapon_warrior", "x": 139.4, "y": 3.15, "rotation": -117.51, "width": 211, "height": 287 }
 		}
 	}
 },
@@ -850,6 +850,7 @@
 				]
 			}
 		}
-	}
+	},
+	"special": {}
 }
 }

@@ -18,6 +18,8 @@ public class Unit : UnitStatus {
 	private int goldNeeded;
 	private bool isCritical;
 	private int statsType;
+	private List<string> jobList;
+	private int currentJob;
 	private const int base_exp = 30;
 
 	private Weapon weapon;
@@ -25,12 +27,13 @@ public class Unit : UnitStatus {
 	public Unit(int id,string name):
 	base(){
 		this.job  = name.Trim();
+		this.currentJob = 0;
 		heroId = id;
 		InitializeHero ();
 	}
 
 	private void InitializeHero(){
-
+		jobList = new List<string>();
 		//SetSpine ();	
 		TextAsset etxt = (TextAsset)Resources.Load ("Data/Unit/"+job, typeof(TextAsset));
 		string econtent = etxt.text;
@@ -47,8 +50,19 @@ public class Unit : UnitStatus {
 		this.str = int.Parse (linesFromFile [2]) + weapon.WeaponStats.Str;
 		this.agi = int.Parse( linesFromFile [3]) + weapon.WeaponStats.Agi;
 		this.vit = int.Parse( linesFromFile [4]) + weapon.WeaponStats.Vit;
+		this.jobList.Add(job);
+		this.jobList.Add(linesFromFile[9].Trim());
+
 		SetStats ();
 	
+	}
+
+	public void EnhanceJob(){
+		currentJob++;
+		goldNeeded *= 2;
+		str += (heroId *statsType == 0 ? 7 : 5);   
+		agi += (heroId * statsType == 1 ? 7 : 5);
+		vit +=  (heroId *statsType == 2 ? 7 : 5); 
 	}
 
 	/**/
@@ -194,7 +208,7 @@ public class Unit : UnitStatus {
 					returnDamage = 0;
 			// jika sukses dan tidak crit
 				}
-		Debug.Log(statsType + " digepuk sama " + dealerType + " damage " + multiplier + " hasl " + returnDamage); 
+//		Debug.Log(statsType + " digepuk sama " + dealerType + " damage " + multiplier + " hasl " + returnDamage); 
 		return returnDamage;
 	}
 
@@ -304,6 +318,21 @@ public class Unit : UnitStatus {
 		}
 		set {
 			weapon = value;
+		}
+	}
+
+	public int CurrentJob {
+		get {
+			return currentJob;
+		}
+		set {
+			currentJob = value;
+		}
+	}
+
+	public List<string> JobList {
+		get {
+			return jobList;
 		}
 	}
 }

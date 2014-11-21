@@ -55,13 +55,17 @@ public class GameData : MonoBehaviour {
 	void Reset(){
 		InitializePersistent ();
 		InitializeGameData ();
+		Cheat();
+	}
 
+	private void Cheat(){
 		//PlayerPrefs.DeleteAll ();
 		profile.StoryCompleted = true;
 		profile.Gold = 299750;
 		profile.TutorialState = 22;
 		profile.Level = 15;
-		//profile.NextMission = 40;
+		profile.NextMission = 40;
+
 	}
 
 	public static bool CheckPrefs(string key){

@@ -17,7 +17,7 @@ public class BattleController : MonoBehaviour {
 	private float[] positionList;
 	private bool[] positionAvailableList;
 	public List<Transform> listPrefab;
-	public GameObject blackScreen;
+	public GameObject shadeScreen;
 
 	public GameObject pauseScreen;
 	public GameObject globalHeroHealthBar;
@@ -66,7 +66,7 @@ public class BattleController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		iTween.ColorTo (blackScreen, iTween.Hash ("delay", 0f, "a", 0f, "time", 0.1f, "EaseType", "linear"));
+		DeactivateShade(0f,0f);
 		Debug.Log ("batltecontrol START");
 		heroTitle.sprite = GameData.titleSpriteList [GameData.profile.Title];
 		mission = GameData.missionList [GameData.currentMission];
@@ -101,8 +101,10 @@ public class BattleController : MonoBehaviour {
 					if (  u.UnitHeroId == 99 ){
 						continue;
 					}
-					activeSkill.Add(GameData.profile.skillList[u.Unit.HeroId]);
-					skillList[totalHero].SetActive(true);
+					if ( GameData.profile.skillList[u.Unit.HeroId].IsUnlocked ){
+						activeSkill.Add(GameData.profile.skillList[u.Unit.HeroId]);
+						skillList[totalHero].SetActive(true);
+					}
 					totalHero++;
 					Debug.Log("Hero ke " + i + " aktif");
 					heroList[i].SetActive(true);
@@ -121,6 +123,7 @@ public class BattleController : MonoBehaviour {
 		tempStats = new List<Unit> ();
 		for ( i = 0 ; i < activeEnemyList.Count ; i++) {
 			Unit s = activeEnemyList[i];
+			Debug.Log("enemy ke " + i + " " + s.Job);
 			s.Refresh();
 			enemyList[i].SetActive(true);	
 			tempStats.Add(new Unit(s.HeroId,s.Job.Trim()));
@@ -178,7 +181,9 @@ public class BattleController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		
+
+		//Debug.Log("range " + Mathf.Abs(heroList[0].transform.position.x - enemyList[0].transform.position.x));
+
 		if (Input.GetKeyDown (KeyCode.Escape) && GameData.gameState != "Paused") {
 			iTween.MoveTo ( pauseScreen,iTween.Hash("position",new Vector3(3.7f,-0.3f,-3f),"time", 0.1f,"onComplete","ReadyTween","onCompleteTarget",gameObject));
 			//sound.audio.PlayOneShot (sound.audio.clip);
@@ -308,6 +313,14 @@ public class BattleController : MonoBehaviour {
 			//			Debug.Log("get reward");
 		}
 	}
+
+	public void ActivateShade(float delay,float time){
+		iTween.ColorTo (shadeScreen, iTween.Hash ("delay", delay, "a", 1f, "time", time, "EaseType", "linear"));
+	}
+
+	public void DeactivateShade(float delay,float time){
+		iTween.ColorTo (shadeScreen, iTween.Hash ("delay", delay, "a", 0f, "time", time, "EaseType", "linear"));
+	}
 	
 	void ShowOnReport(){
 		ScaleExpBar ();
@@ -319,8 +332,8 @@ public class BattleController : MonoBehaviour {
 		for (int i = 0; i < activeEnemyList.Count; i++) {
 			activeEnemyList[i].CopyStats(tempStats[i]);
 		}
+		ActivateShade(2f,1f);
 		iTween.MoveTo (reportScreen, iTween.Hash ("position", new Vector3(0,0,reportScreen.transform.position.z), "time", 1.0f,"delay",3.0f));
-		iTween.ColorTo (blackScreen, iTween.Hash ("delay", 2f, "a", 1f, "time", 1f, "EaseType", "linear"));
 
 		GameData.SaveData ();
 	}

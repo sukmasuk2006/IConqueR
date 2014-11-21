@@ -13,6 +13,7 @@ public class HeroController : MonoBehaviour {
 	public SpriteRenderer icon;
 	public BattleController controller;
 	public GameObject healthBar;
+	public Transform manaBar;
 	public SpriteRenderer lockSprite;
 	public Unit stats;
 	public GameObject projectile;
@@ -21,23 +22,12 @@ public class HeroController : MonoBehaviour {
 	public string target;
 	private Vector3 healthScaleConstant;
 	private float movementSpeed = 0f;
-	public float MovementSpeed {
-		get {
-			return movementSpeed;
-		}
-	}
 
    // kecepatan gerak
 	public float antiBug = 0f;
 	private int states = 0;
 	private bool isHero = false;
-	public float AntiBug {
-		get {
-			return antiBug;
-		}
-	}
-
- 			// menentukan animasi
+		// menentukan animasi
 	public int direction = 1;
 	private int attackType = 0; // 0  melee, 1 range
 	private float attackSpeed = 0f;
@@ -48,12 +38,10 @@ public class HeroController : MonoBehaviour {
 	public SkeletonAnimation animator;
 	private bool isDeath;
 	private HeroController targetUnit;
+	private const float MAXMANABAR = 0.37f;
+	private bool isDoSpecial = false;
+	private Skill skill;
 
-	public bool IsDeath {
-		get {
-			return isDeath;
-		}
-	}
 	private AudioClip weaponSound;
 
 
@@ -70,19 +58,25 @@ public class HeroController : MonoBehaviour {
 			stats = GameData.profile.formationList[slot].Unit;
 			icon.sprite = GameData.unitIconList[stats.HeroId];
 			isHero = true;
+			skill = GameData.profile.skillList[stats.HeroId];
 //			Debug.Log("di hero cont " + stats.HeroId);
 			InitializeWeapon();
 		} else if (gameObject.name.Contains ("enemy")) {
 			stats =  controller.activeEnemyList[slot];
 			isHero = false;
 			InitializeWeapon();
+			manaBar = healthBar.transform;
 			InitializePosition(1);
 		}
+		manaBar.localScale =  new Vector3(0f,manaBar.localScale.y,manaBar.localScale.z);
 		weaponSound = (AudioClip)Resources.Load("Music/"+stats.Weapon.SoundEffectName,typeof(AudioClip));
+		Debug.Log(" heroid " + stats.HeroId + " nama  " + name + " job " + stats.Job );
 		animator.skeletonDataAsset = GameData.skeleteonDataAssetList[stats.HeroId];
 		animator.calculateNormals = true;
 		animator.Awake ();
 		animator.state.AddAnimation (0, "run", true,0);
+		animator.skeleton.SetSkin(stats.Job);
+	//	Debug.Log(" jum material " + animator.skeletonDataAsset.atlasAsset.materials.Length);
 		//animator.state.AddAnimation (1, "attack", false,0);
 		healthConstant = stats.HealthPoint;
 		healthScaleConstant = healthBar.transform.localScale;
@@ -94,6 +88,34 @@ public class HeroController : MonoBehaviour {
 		CheckState ();
 	}
 
+	void InitializeWeapon(){
+		if (stats.Weapon.Range == 5) {
+			attackType = 1;		
+			projectile.SetActive(true);
+			//	Debug.Log("name " + name + " isarcher " );
+		}
+		
+	}
+	
+	void InitializePosition(int pos){
+		
+		int dest = 0;
+		dest = RandomPos (dest);
+		while (!controller.PositionAvailableList[dest]) {
+			dest = RandomPos (dest);
+		}
+		controller.PositionAvailableList [dest] = false;
+		transform.position = new Vector2 (controller.PositionList[dest] * pos, gameObject.transform.position.y);
+	}
+	
+	int RandomPos(int dest){
+		if ( gameObject.name.Contains("hero") ) //hero range
+			return Random.Range (0,6);
+		else
+			return Random.Range (6,12); // enemy
+	}
+
+
 	public void CheckState(){
 		if (this.stats.HealthPoint <= 0 && !isDeath) {
 			isDeath = true;
@@ -103,8 +125,14 @@ public class HeroController : MonoBehaviour {
 			MoveToGraveyard();
 		}
 		// jika masih battle
-		if (controller.BatlleState == 0 && GameData.gameState != "Paused" && !isDeath) {
+		if (controller.BatlleState == 0 && GameData.gameState != "Paused" && !isDeath && !isDoSpecial) {
 			attackSpeed -= Time.deltaTime;
+			if ( manaBar.localScale.x < MAXMANABAR )
+			{
+				Debug.Log("update mana bar");
+				float scaleX = manaBar.localScale.x + 0.5f * Time.deltaTime;
+				manaBar.localScale = new Vector3(scaleX,manaBar.localScale.y,manaBar.localScale.z);
+			}
 //			animator.state.ClearTracks ();
 			// check attack time
 			if (attackType == 0) {		
@@ -203,6 +231,16 @@ public class HeroController : MonoBehaviour {
 		GetReadyForNextAttack ();
 	}
 
+	void HandleComplete1 (Spine.AnimationState state, int trackIndex, int loopCount)
+	{
+		transform.position = new Vector2 (-14f * direction, transform.position.y);
+		Debug.Log("COMPLETED1");
+		
+		projectile.SetActive(false);
+		
+	}
+
+
 	// jika F- => mundurin kita/musuh
 	// F + => majuin kita/musuh
 	public void PushForward(float f){
@@ -219,13 +257,49 @@ public class HeroController : MonoBehaviour {
 				// damage critical atau tidak, dimasukkan ke unit untuk dihitung evasion
 				float damage = h.stats.ReceiveDamage(stats.Damage,stats.IsCritical,stats.StatsType);
 				h.UpdateHealthBar ();
-				Debug.Log(stats.Job +" nggepuk " + h.stats.Job + " damage asli " + stats.Damage + " hasil " + damage);
+//				Debug.Log(stats.Job +" nggepuk " + h.stats.Job + " damage asli " + stats.Damage + " hasil " + damage);
 				if ( !h.CheckIsCornered() ) // jika gk kepepet nusuhnya, pukul mundur
 					h.PushForward(force);
 				stats.IsCritical = false; // set critical ke semula, tapi chance tetep
 				controller.ReceiveDamage (target, damage);
 	//			GetReadyForNextAttack();
 		}
+	}
+
+	void OnMouseDown(){
+
+	}
+
+	public void  DoSpecial(){
+		if ( manaBar.localScale.x >= MAXMANABAR && skill.IsUnlocked ){
+			//controller.ActivateShade(0f,0.5f);
+			animator.state.ClearTracks();
+			manaBar.localScale = new Vector3(0f,manaBar.localScale.y,manaBar.localScale.z);
+			isDoSpecial = true;
+			animator.state.AddAnimation(0,"special",false,0f);
+			animator.state.GetCurrent (0).Complete += HandleComplete2;
+			Debug.Log(stats.Job+" special");
+		}
+	}
+
+	void HandleComplete2 (Spine.AnimationState state, int trackIndex, int loopCount)
+	{
+		animator.state.ClearTracks();
+		List<GameObject> unitList = skill.ActiveSkillEffect.Tipe == 1 ? 
+									controller.enemyList : controller.heroList;
+		Debug.Log ( "ENEMT LIUT " + unitList.Count);
+		foreach( GameObject t in unitList ){
+			if ( skill.IsInRange(transform.position.x,t.transform.position.x) && t.activeInHierarchy ){
+				HeroController u = t.GetComponent<HeroController>();
+				float dmg = skill.DoActiveEffect(stats.Damage,u.stats);
+				u.stats.ReceiveDamage(dmg,false,stats.StatsType);
+				u.UpdateHealthBar ();
+				controller.ReceiveDamage (target, dmg);
+			}
+		}
+		isDoSpecial = false;
+		animator.state.AddAnimation(0,"idle",true,0f);
+		//controller.DeactivateShade(0f,0.5f);
 	}
 
 
@@ -280,41 +354,7 @@ public class HeroController : MonoBehaviour {
 		//this.gameObject.SetActive (false);	
 	}
 
-	void HandleComplete1 (Spine.AnimationState state, int trackIndex, int loopCount)
-	{
-		transform.position = new Vector2 (-14f * direction, transform.position.y);
-		Debug.Log("COMPLETED1");
 
-		projectile.SetActive(false);
-
-	}
-
-	void InitializeWeapon(){
-		if (stats.Weapon.Range == 5) {
-			attackType = 1;		
-			projectile.SetActive(true);
-			//	Debug.Log("name " + name + " isarcher " );
-		}
-		
-	}
-
-	void InitializePosition(int pos){
-
-		int dest = 0;
-		dest = RandomPos (dest);
-		while (!controller.PositionAvailableList[dest]) {
-			dest = RandomPos (dest);
-		}
-		controller.PositionAvailableList [dest] = false;
-		transform.position = new Vector2 (controller.PositionList[dest] * pos, gameObject.transform.position.y);
-	}
-
-	int RandomPos(int dest){
-			if ( gameObject.name.Contains("hero") ) //hero range
-				return Random.Range (0,6);
-			else
-				return Random.Range (6,12); // enemy
-	}
 
 	public bool IsAttack {
 		get {
@@ -324,4 +364,21 @@ public class HeroController : MonoBehaviour {
 			isAttack = value;
 		}
 	}
+	public float AntiBug {
+		get {
+			return antiBug;
+		}
+	}
+	public float MovementSpeed {
+		get {
+			return movementSpeed;
+		}
+	}
+	
+	public bool IsDeath {
+		get {
+			return isDeath;
+		}
+	}
+
 }

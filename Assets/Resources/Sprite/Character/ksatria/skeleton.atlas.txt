@@ -5,105 +5,112 @@ filter: Linear,Linear
 repeat: none
 body
   rotate: false
-  xy: 189, 139
+  xy: 398, 140
   size: 86, 114
   orig: 86, 114
   offset: 0, 0
   index: -1
 head
   rotate: false
-  xy: 2, 71
+  xy: 2, 72
   size: 185, 182
   orig: 185, 183
   offset: 0, 0
   index: -1
 left_fist
   rotate: false
-  xy: 2, 2
+  xy: 239, 101
   size: 35, 33
   orig: 35, 33
   offset: 0, 0
   index: -1
 right_fist
   rotate: false
-  xy: 2, 2
+  xy: 239, 101
   size: 35, 33
   orig: 35, 33
   offset: 0, 0
   index: -1
 left_foot
   rotate: false
-  xy: 309, 237
+  xy: 51, 2
   size: 30, 16
   orig: 30, 16
   offset: 0, 0
   index: -1
 left_hand_lowef
   rotate: false
-  xy: 189, 91
+  xy: 189, 88
   size: 48, 46
   orig: 48, 46
   offset: 0, 0
   index: -1
 right_hand_lower
   rotate: false
-  xy: 189, 91
+  xy: 189, 88
   size: 48, 46
   orig: 48, 46
   offset: 0, 0
   index: -1
 left_hand_upper
-  rotate: false
-  xy: 277, 206
+  rotate: true
+  xy: 2, 6
   size: 30, 47
   orig: 30, 47
   offset: 0, 0
   index: -1
 right_hand_upper
-  rotate: false
-  xy: 277, 206
+  rotate: true
+  xy: 2, 6
   size: 30, 47
   orig: 30, 47
   offset: 0, 0
   index: -1
 left_leg_lower
-  rotate: true
-  xy: 189, 73
+  rotate: false
+  xy: 486, 182
   size: 16, 32
   orig: 16, 32
   offset: 0, 0
   index: -1
 left_leg_upper
   rotate: true
-  xy: 148, 44
+  xy: 148, 45
   size: 25, 38
   orig: 25, 38
   offset: 0, 0
   index: -1
 right_foot
   rotate: false
-  xy: 39, 19
+  xy: 83, 2
   size: 29, 16
   orig: 29, 16
   offset: 0, 0
   index: -1
 right_leg_lower
-  rotate: false
-  xy: 277, 172
+  rotate: true
+  xy: 51, 20
   size: 16, 32
   orig: 16, 32
   offset: 0, 0
   index: -1
 right_leg_upper
   rotate: false
-  xy: 239, 99
+  xy: 486, 216
   size: 24, 38
   orig: 24, 38
   offset: 0, 0
   index: -1
+weapon
+  rotate: false
+  xy: 189, 136
+  size: 207, 118
+  orig: 207, 118
+  offset: 0, 0
+  index: -1
 weapon_ksatria
   rotate: false
-  xy: 2, 37
+  xy: 2, 38
   size: 144, 32
   orig: 145, 32
   offset: 0, 0

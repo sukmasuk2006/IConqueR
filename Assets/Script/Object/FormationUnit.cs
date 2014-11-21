@@ -37,13 +37,13 @@ public class FormationUnit
 	}
 
 	public void Load(int slot){
-		Debug.Log("Load 1 " + slot );
+//		Debug.Log("Load 1 " + slot );
 		IsUnlocked = (PlayerPrefs.GetInt ("formationSlot" + slot)!= 0);
-		Debug.Log("Load 2 " + slot );
+//		Debug.Log("Load 2 " + slot );
 		unitHeroId = PlayerPrefs.GetInt	("formationSlotHeroId" + slot);
-		Debug.Log("Load 3 " + slot );
+//		Debug.Log("Load 3 " + slot );
 		SetUnit(unitHeroId,GameData.profile.unitList[unitHeroId == 99 ? 0 : unitHeroId]);
-		Debug.Log("Load 4 " + slot );
+//		Debug.Log("Load 4 " + slot );
 	}
 
 /*	public int UnitSlot {
