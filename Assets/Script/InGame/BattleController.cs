@@ -17,7 +17,8 @@ public class BattleController : MonoBehaviour {
 	private float[] positionList;
 	private bool[] positionAvailableList;
 	public List<Transform> listPrefab;
-	public GameObject shadeScreen;
+	public GameObject skillShade;
+	public GameObject reportShade;
 
 	public GameObject pauseScreen;
 	public GameObject globalHeroHealthBar;
@@ -67,6 +68,7 @@ public class BattleController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		DeactivateShade(0f,0f);
+		DeactivateSkillShade(0f,0f);
 		Debug.Log ("batltecontrol START");
 		heroTitle.sprite = GameData.titleSpriteList [GameData.profile.Title];
 		mission = GameData.missionList [GameData.currentMission];
@@ -315,13 +317,21 @@ public class BattleController : MonoBehaviour {
 	}
 
 	public void ActivateShade(float delay,float time){
-		iTween.ColorTo (shadeScreen, iTween.Hash ("delay", delay, "a", 1f, "time", time, "EaseType", "linear"));
-	}
-
-	public void DeactivateShade(float delay,float time){
-		iTween.ColorTo (shadeScreen, iTween.Hash ("delay", delay, "a", 0f, "time", time, "EaseType", "linear"));
+		iTween.ColorTo (reportShade, iTween.Hash ("delay", delay, "a", 1f, "time", time, "EaseType", "linear"));
 	}
 	
+	public void DeactivateShade(float delay,float time){
+		iTween.ColorTo (reportShade, iTween.Hash ("delay", delay, "a", 0f, "time", time, "EaseType", "linear"));
+	}
+
+	public void ActivateSkillShade(float delay,float time){
+		iTween.ColorTo (skillShade, iTween.Hash ("delay", delay, "a", 1f, "time", time, "EaseType", "linear"));
+	}
+	
+	public void DeactivateSkillShade(float delay,float time){
+		iTween.ColorTo (skillShade, iTween.Hash ("delay", delay, "a", 0f, "time", time, "EaseType", "linear"));
+	}
+
 	void ShowOnReport(){
 		ScaleExpBar ();
 		GetExpReward ();
@@ -391,7 +401,7 @@ public class BattleController : MonoBehaviour {
 				if ( u.Unit.IsLevelUp(reward)){
 					GameObject spr = heroLevelUpSpriteList[j];
 					
-					iTween.MoveTo(spr,iTween.Hash("position",new Vector3(spr.transform.position.x,-4.3f,-3.3f),
+					iTween.MoveTo(spr,iTween.Hash("position",new Vector3(spr.transform.position.x,-5f,-3.3f),
 					                              "time",0.5f,"delay",4.5f));
 				}
 			}

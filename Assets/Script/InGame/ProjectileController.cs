@@ -15,13 +15,14 @@ public class ProjectileController : MonoBehaviour {
 	
 	void OnTriggerEnter2D(Collider2D coll) {
 		//renderer.enabled = false;
-		if (coll.gameObject.name.Contains(heroController.target) ) {
+		if (coll.gameObject.name.Contains(heroController.target)  ) {
 			isCollided();
 			Debug.Log("DOR with " + coll.gameObject.name);
 			HeroController h = coll.gameObject.GetComponent<HeroController> ();
 						//h.PushForward ();
 			isLaunch = false;
-			heroController.DoDamageToTarget (h,0f);
+			if ( heroController.controller.BatlleState == 0 )
+				heroController.DoDamageToTarget (h,0f);
 					
 		}
 		transform.position = new Vector3(0f,-12f,-0.14f);

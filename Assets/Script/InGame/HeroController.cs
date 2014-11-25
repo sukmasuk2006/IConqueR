@@ -43,6 +43,7 @@ public class HeroController : MonoBehaviour {
 	private Skill skill;
 
 	private AudioClip weaponSound;
+	private AudioClip skillSound;
 
 
 	// Use this for initialization
@@ -70,6 +71,7 @@ public class HeroController : MonoBehaviour {
 		}
 		manaBar.localScale =  new Vector3(0f,manaBar.localScale.y,manaBar.localScale.z);
 		weaponSound = (AudioClip)Resources.Load("Music/"+stats.Weapon.SoundEffectName,typeof(AudioClip));
+		skillSound = (AudioClip)Resources.Load("Music/Skill/"+stats.Job+"Skill",typeof(AudioClip));
 		Debug.Log(" heroid " + stats.HeroId + " nama  " + name + " job " + stats.Job );
 		animator.skeletonDataAsset = GameData.skeleteonDataAssetList[stats.HeroId];
 		animator.calculateNormals = true;
@@ -125,7 +127,7 @@ public class HeroController : MonoBehaviour {
 			MoveToGraveyard();
 		}
 		// jika masih battle
-		if (controller.BatlleState == 0 && GameData.gameState != "Paused" && !isDeath && !isDoSpecial) {
+		if (controller.BatlleState == 0 && GameData.gameState != "Paused" && !isDeath ) {
 			attackSpeed -= Time.deltaTime;
 			if ( manaBar.localScale.x < MAXMANABAR )
 			{
@@ -165,6 +167,7 @@ public class HeroController : MonoBehaviour {
 			
 		} else {
 			// battle end
+
 			rigidbody2D.velocity = Vector2.zero;
 			isAttack = false;
 		}
@@ -272,18 +275,20 @@ public class HeroController : MonoBehaviour {
 
 	public void  DoSpecial(){
 		if ( manaBar.localScale.x >= MAXMANABAR && skill.IsUnlocked ){
-			//controller.ActivateShade(0f,0.5f);
+			controller.ActivateSkillShade(0f,0.1f);
 			animator.state.ClearTracks();
 			manaBar.localScale = new Vector3(0f,manaBar.localScale.y,manaBar.localScale.z);
 			isDoSpecial = true;
-			animator.state.AddAnimation(0,"special",false,0f);
-			animator.state.GetCurrent (0).Complete += HandleComplete2;
+			controller.BatlleState = 99;
+			animator.state.AddAnimation(1,"special",false,0f);
+			animator.state.GetCurrent (1).Complete += HandleComplete2;
 			Debug.Log(stats.Job+" special");
 		}
 	}
 
 	void HandleComplete2 (Spine.AnimationState state, int trackIndex, int loopCount)
 	{
+		MusicManager.getMusicPlayer().audio.PlayOneShot(skillSound);
 		animator.state.ClearTracks();
 		List<GameObject> unitList = skill.ActiveSkillEffect.Tipe == 1 ? 
 									controller.enemyList : controller.heroList;
@@ -297,9 +302,12 @@ public class HeroController : MonoBehaviour {
 				controller.ReceiveDamage (target, dmg);
 			}
 		}
+		controller.BatlleState = 0;
 		isDoSpecial = false;
-		animator.state.AddAnimation(0,"idle",true,0f);
-		//controller.DeactivateShade(0f,0.5f);
+		animator.state.SetAnimation(1,"idle",true);
+		animator.state.ClearTracks();
+		animator.state.SetAnimation(0,"idle",true);
+		controller.DeactivateSkillShade(0f,0.1f);
 	}
 
 

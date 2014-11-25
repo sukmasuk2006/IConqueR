@@ -4,100 +4,154 @@ format: RGBA8888
 filter: Linear,Linear
 repeat: none
 body
-  rotate: false
-  xy: 384, 145
+  rotate: true
+  xy: 771, 93
   size: 84, 99
   orig: 84, 99
   offset: 0, 0
   index: -1
 head
   rotate: false
-  xy: 2, 47
+  xy: 787, 601
   size: 171, 197
   orig: 171, 197
   offset: 0, 0
   index: -1
 left_foot
   rotate: true
-  xy: 495, 170
+  xy: 99, 10
   size: 29, 15
   orig: 29, 15
   offset: 0, 0
   index: -1
 left_hand_finger
   rotate: false
-  xy: 41, 14
+  xy: 992, 988
   size: 30, 31
   orig: 30, 31
   offset: 0, 0
   index: -1
 left_hand_lowef
   rotate: false
-  xy: 470, 160
+  xy: 99, 41
   size: 23, 39
   orig: 23, 39
   offset: 0, 0
   index: -1
 left_hand_upper
   rotate: false
-  xy: 2, 2
+  xy: 953, 976
   size: 37, 43
   orig: 37, 43
   offset: 0, 0
   index: -1
 left_leg_lower
   rotate: false
-  xy: 272, 48
+  xy: 832, 563
   size: 24, 36
   orig: 24, 36
   offset: 0, 0
   index: -1
 left_leg_upper
   rotate: false
-  xy: 299, 87
+  xy: 953, 937
   size: 23, 37
   orig: 23, 37
   offset: 0, 0
   index: -1
 right_fingers
   rotate: false
-  xy: 73, 14
+  xy: 899, 146
   size: 29, 31
   orig: 29, 31
   offset: 0, 0
   index: -1
 right_hand_lower
   rotate: false
-  xy: 272, 86
+  xy: 872, 139
   size: 25, 38
   orig: 25, 38
   offset: 0, 0
   index: -1
 right_hand_upper
-  rotate: false
-  xy: 470, 201
+  rotate: true
+  xy: 787, 559
   size: 40, 43
   orig: 40, 43
   offset: 0, 0
   index: -1
 right_leg_upper
   rotate: false
-  xy: 324, 87
+  xy: 872, 100
   size: 23, 37
   orig: 23, 37
   offset: 0, 0
   index: -1
 shield
   rotate: true
-  xy: 175, 46
+  xy: 2, 2
   size: 78, 95
   orig: 78, 95
   offset: 0, 0
   index: -1
-weapon
+skill1
   rotate: false
-  xy: 175, 126
+  xy: 771, 179
+  size: 165, 169
+  orig: 873, 512
+  offset: 1, 237
+  index: -1
+skill2
+  rotate: false
+  xy: 787, 800
+  size: 164, 219
+  orig: 873, 512
+  offset: 112, 202
+  index: -1
+skill3
+  rotate: false
+  xy: 2, 82
+  size: 767, 475
+  orig: 873, 512
+  offset: 35, 37
+  index: -1
+skill4
+  rotate: false
+  xy: 2, 559
+  size: 783, 460
+  orig: 873, 512
+  offset: 86, 36
+  index: -1
+weapon
+  rotate: true
+  xy: 771, 350
   size: 207, 118
   orig: 207, 118
   offset: 0, 0
+  index: -1
+
+skeleton2.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+skill5
+  rotate: false
+  xy: 2, 537
+  size: 771, 436
+  orig: 873, 512
+  offset: 102, 35
+  index: -1
+skill6
+  rotate: true
+  xy: 559, 2
+  size: 533, 308
+  orig: 873, 512
+  offset: 277, 44
+  index: -1
+skill7
+  rotate: false
+  xy: 2, 231
+  size: 555, 304
+  orig: 873, 512
+  offset: 277, 60
   index: -1

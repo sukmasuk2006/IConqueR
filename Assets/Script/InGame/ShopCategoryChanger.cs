@@ -7,9 +7,14 @@ public class ShopCategoryChanger : MonoBehaviour {
 	public ScreenData data;
 	public int state;
 	public TextMesh corridorState;
+	public Sprite activeSprite;
+	public Sprite deactiveSprite;
+	private SpriteRenderer ren;
+	public SpriteRenderer otherButton;
 	// Use this for initialization
 	void Start () {
-	
+		ren = gameObject.GetComponent<SpriteRenderer>();
+		ren.sprite = state == 0 ? activeSprite : deactiveSprite;
 	}
 	
 	void OnMouseDown(){
@@ -23,6 +28,12 @@ public class ShopCategoryChanger : MonoBehaviour {
 				controller[i].GetComponent<ShopSlotSetter>().UpdateSlotCatalyst ();
 		
 		corridorState.text = "Page 1";
+		CheckButtonColor();
 		Debug.Log("setshop");
+	}
+
+	void CheckButtonColor(){
+		otherButton.sprite = deactiveSprite;
+		ren.sprite = activeSprite;
 	}
 }

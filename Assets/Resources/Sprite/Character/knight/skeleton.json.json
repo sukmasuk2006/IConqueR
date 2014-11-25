@@ -2,6 +2,7 @@
 "bones": [
 	{ "name": "root", "y": 107.56 },
 	{ "name": "body", "parent": "root", "length": 70.83, "x": -4.09, "y": -73.61, "rotation": 89.54 },
+	{ "name": "effect", "parent": "root", "length": 24.52, "x": 289.04, "y": -91.23, "rotation": 21.53 },
 	{ "name": "head", "parent": "body", "length": 105.02, "x": 80.3, "y": -3.3, "rotation": -5.66 },
 	{ "name": "left feet", "parent": "body", "length": 30.16, "x": 25.25, "y": -9.24, "rotation": -164.59 },
 	{ "name": "left hand", "parent": "body", "length": 29.91, "x": 78.85, "y": -19.84, "rotation": -99.57 },
@@ -19,6 +20,7 @@
 	{ "name": "pedang", "parent": "telapak", "length": 167.21, "x": 15.22, "y": 1.33, "rotation": 34.47 }
 ],
 "slots": [
+	{ "name": "1", "bone": "effect" },
 	{ "name": "left_leg_upper", "bone": "left feet", "attachment": "left_leg" },
 	{ "name": "left_leg_lower", "bone": "bone12", "attachment": "left_leg_lowerk" },
 	{ "name": "left_foot", "bone": "bone13", "attachment": "left_footk" },
@@ -39,6 +41,15 @@
 ],
 "skins": {
 	"knight": {
+		"1": {
+			"1": { "name": "skill1", "x": 39.46, "y": 100.06, "rotation": -21.53, "width": 873, "height": 512 },
+			"2": { "name": "skill2", "x": 39.46, "y": 100.06, "rotation": -21.53, "width": 873, "height": 512 },
+			"3": { "name": "skill3", "x": 39.46, "y": 100.06, "rotation": -21.53, "width": 873, "height": 512 },
+			"4": { "name": "skill4", "x": 39.46, "y": 100.06, "rotation": -21.53, "width": 873, "height": 512 },
+			"5": { "name": "skill5", "x": 39.46, "y": 100.06, "rotation": -21.53, "width": 873, "height": 512 },
+			"6": { "name": "skill6", "x": 39.46, "y": 100.06, "rotation": -21.53, "width": 873, "height": 512 },
+			"7": { "name": "skill7", "x": 39.46, "y": 100.06, "rotation": -21.53, "width": 873, "height": 512 }
+		},
 		"body": {
 			"body_k": { "name": "body", "x": 47.38, "y": 9.91, "rotation": -89.54, "width": 84, "height": 99 }
 		},
@@ -689,6 +700,86 @@
 			}
 		}
 	},
-	"special": {}
+	"special": {
+		"bones": {
+			"left hand": {
+				"rotate": [
+					{ "time": 0, "angle": -20.72 },
+					{ "time": 0.3666, "angle": 39.66 },
+					{ "time": 0.6333, "angle": 79.14 },
+					{ "time": 0.6666, "angle": 123.19 },
+					{ "time": 0.7333, "angle": 77.37 },
+					{ "time": 0.8, "angle": -34.63 },
+					{ "time": 1.1666, "angle": -20.72 }
+				]
+			},
+			"head": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.6333, "angle": 17.57 },
+					{ "time": 0.8, "angle": -5.02 },
+					{ "time": 1.1666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 1.1666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 1.1666, "x": 1, "y": 1 }
+				]
+			},
+			"effect": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.6666, "angle": -1.27 },
+					{ "time": 0.8, "angle": -1.53, "curve": "stepped" },
+					{ "time": 0.8666, "angle": -1.53, "curve": "stepped" },
+					{ "time": 0.9333, "angle": -1.53 },
+					{ "time": 1.1666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.6666, "x": -24.66, "y": 69.73 },
+					{ "time": 0.7333, "x": -73.26, "y": 101.06 },
+					{ "time": 0.8, "x": -36.99, "y": 3.29 },
+					{ "time": 0.8666, "x": -22.86, "y": 4.89 },
+					{ "time": 1.1666, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 0.6666, "x": 1, "y": 1 }
+				]
+			},
+			"body": {
+				"rotate": [
+					{ "time": 0.6666, "angle": 0.02 }
+				]
+			}
+		},
+		"slots": {
+			"1": {
+				"attachment": [
+					{ "time": 0, "name": null },
+					{ "time": 0.6666, "name": "1" },
+					{ "time": 0.7333, "name": "2" },
+					{ "time": 0.8, "name": "3" },
+					{ "time": 0.8666, "name": "4" },
+					{ "time": 0.9333, "name": "5" },
+					{ "time": 1, "name": "6" },
+					{ "time": 1.0666, "name": "7" },
+					{ "time": 1.1, "name": null },
+					{ "time": 1.1666, "name": null }
+				]
+			}
+		},
+		"draworder": [
+			{
+				"time": 0.6666,
+				"offsets": [
+					{ "slot": "1", "offset": 9 }
+				]
+			}
+		]
+	}
 }
 }
