@@ -20,7 +20,8 @@ public class ActivateSkill : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
-		hero.DoSpecial();
+		if ( controller.BatlleState == 0 )
+			hero.DoSpecial();
 	}
 
 	// Update is called once per frame

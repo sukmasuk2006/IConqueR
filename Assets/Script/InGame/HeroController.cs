@@ -72,16 +72,10 @@ public class HeroController : MonoBehaviour {
 		manaBar.localScale =  new Vector3(0f,manaBar.localScale.y,manaBar.localScale.z);
 		weaponSound = (AudioClip)Resources.Load("Music/"+stats.Weapon.SoundEffectName,typeof(AudioClip));
 		skillSound = (AudioClip)Resources.Load("Music/Skill/"+stats.Job+"Skill",typeof(AudioClip));
-		Debug.Log(" heroid " + stats.HeroId + " nama  " + name + " job " + stats.Job );
 		animator.skeletonDataAsset = GameData.skeleteonDataAssetList[stats.HeroId];
-		Debug.Log(" 1 ");
 		animator.calculateNormals = true;
-		Debug.Log(" 2 ");
-		Debug.Log(" 3 ");
 		animator.Awake ();
-		Debug.Log(" 4 ");
 		animator.skeleton.SetSkin(stats.Job);
-		Debug.Log(" 5 ");
 		animator.state.AddAnimation (0, "run", true,0);
 		//	Debug.Log(" jum material " + animator.skeletonDataAsset.atlasAsset.materials.Length);
 		//animator.state.AddAnimation (1, "attack", false,0);
@@ -356,6 +350,7 @@ public class HeroController : MonoBehaviour {
 			foreach( Quest q in m )
 				q.CurrentQuantity++;
 		}
+		controller.DeactivateSkillShade(0.0f,0.0f);
 		isAttack = false;
 		rigidbody2D.velocity = Vector2.zero;
 		healthBar.SetActive(false);

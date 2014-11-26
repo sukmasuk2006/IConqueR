@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿	using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 
@@ -37,6 +37,7 @@ public class UnlockSkill : MonoBehaviour {
 			priceText.text = "";
 			frame.SetActive(false);
 		}
+		skillLevel.text = "Level " + s.Level;
 	}
 
 	void OnMouseDown(){
@@ -55,25 +56,27 @@ public class UnlockSkill : MonoBehaviour {
 				priceText.text = skill.Price * (skill.Level + 1) + "";
 				Debug.Log("unlock");
 			}
-			else if ( skill.Level > 0 ){// ady unlocked
+			else if ( skill.Level > 0 && skill.Level < 3 ){// ady unlocked
 				skill.Level++;
 				priceText.text = skill.Price * (skill.Level + 1) + "";
 				//		skillEffect.text = (skill.Effect.Amount * skill.Level) + "";
 				profileController.UpdateGoldAndDiamond(0,GameData.profile.skillList[slot].Price);
 				Debug.Log("upgrade");
 			}
+			else if ( !GameData.profile.unitList[GameData.profile.skillList[slot].HeroesRequired].IsUnlocked )
+				text.text = "You must unlock " + GameData.profile.unitList[GameData.profile.skillList[slot].HeroesRequired].Name + " first!";		
+
 		}
-		else if ( skill.Level > 2 )
+		else if ( GameData.profile.Gold < skill.Price * skill.Level )
+			text.text = "Not enough money..";
+		if ( skill.Level > 2 )
 		{
 			priceText.text = "-";
 			text.text = "Max Level";
 		}
-		else if ( !GameData.profile.unitList[GameData.profile.skillList[slot].HeroesRequired].IsUnlocked )
-			text.text = "You must unlock " + GameData.profile.unitList[GameData.profile.skillList[slot].HeroesRequired].Name + " first!";		
-		else if ( GameData.profile.Gold < skill.Price * skill.Level )
-				text.text = "Not enough money..";
-	
-		Debug.Log("skil end");
+		skillLevel.text = "Level " + GameData.profile.skillList[slot].Level;
+
+//		Debug.Log("skil end");
 		StartCoroutine(alp());
 		GameData.SaveData ();
 	}
