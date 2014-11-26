@@ -74,11 +74,16 @@ public class HeroController : MonoBehaviour {
 		skillSound = (AudioClip)Resources.Load("Music/Skill/"+stats.Job+"Skill",typeof(AudioClip));
 		Debug.Log(" heroid " + stats.HeroId + " nama  " + name + " job " + stats.Job );
 		animator.skeletonDataAsset = GameData.skeleteonDataAssetList[stats.HeroId];
+		Debug.Log(" 1 ");
 		animator.calculateNormals = true;
+		Debug.Log(" 2 ");
+		Debug.Log(" 3 ");
 		animator.Awake ();
-		animator.state.AddAnimation (0, "run", true,0);
+		Debug.Log(" 4 ");
 		animator.skeleton.SetSkin(stats.Job);
-	//	Debug.Log(" jum material " + animator.skeletonDataAsset.atlasAsset.materials.Length);
+		Debug.Log(" 5 ");
+		animator.state.AddAnimation (0, "run", true,0);
+		//	Debug.Log(" jum material " + animator.skeletonDataAsset.atlasAsset.materials.Length);
 		//animator.state.AddAnimation (1, "attack", false,0);
 		healthConstant = stats.HealthPoint;
 		healthScaleConstant = healthBar.transform.localScale;
@@ -131,7 +136,7 @@ public class HeroController : MonoBehaviour {
 			attackSpeed -= Time.deltaTime;
 			if ( manaBar.localScale.x < MAXMANABAR )
 			{
-				Debug.Log("update mana bar");
+//				Debug.Log("update mana bar");
 				float scaleX = manaBar.localScale.x + 0.5f * Time.deltaTime;
 				manaBar.localScale = new Vector3(scaleX,manaBar.localScale.y,manaBar.localScale.z);
 			}

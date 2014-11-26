@@ -49,7 +49,6 @@ public class ConfirmUnlockHero : MonoBehaviour {
 		frameList[slot].SetActive (false);
 		profileController.UpdateGoldAndDiamond(0,GameData.profile.unitList [slot].GoldNeeded);
 		buttonList[slot].GetComponentInChildren<TextMesh>().text = "Enhance";
-		GameData.profile.unitList [slot].EnhanceJob();
 		heroSlot[slot].ReloadData();
 	}
 
@@ -59,6 +58,7 @@ public class ConfirmUnlockHero : MonoBehaviour {
 		frameList[slot].SetActive (false);
 		profileController.UpdateGoldAndDiamond(0,GameData.profile.unitList [slot].GoldNeeded);
 		GameData.profile.unitList [slot].CurrentJob++;
+		GameData.profile.unitList [slot].EnhanceJob();
 		buttonList[slot].SetActive(false); // temp
 		heroSlot[slot].ReloadData();
 

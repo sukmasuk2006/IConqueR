@@ -41,12 +41,16 @@ public class UnlockFormationSlot : MonoBehaviour {
 			profileController.UpdateGoldAndDiamond(0,price);
 			}
 		}
-		else{
+		else if ( state == 1 ){
+			Debug.Log("aktif hero sebelum " + GameData.profile.activeHeroes);
 			if ( GameData.profile.activeHeroes > 1 ){
+				Debug.Log(" non aktifkan hero " +GameData.profile.formationList[slot].Unit.Job
+				          );
 				GameData.profile.unitList[GameData.profile.formationList[slot].Unit.HeroId].IsActive = false;
 				GameData.profile.formationList[slot].UnitHeroId = 99;
 				renderer.sprite = null;
 				GameData.profile.activeHeroes--;
+				Debug.Log("aktif hero sesudah " + GameData.profile.activeHeroes);
 				this.gameObject.SetActive(false);
 			}
 		}
