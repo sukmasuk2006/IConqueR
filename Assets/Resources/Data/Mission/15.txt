@@ -4,7 +4,4 @@ Sisaoneerg
 0
 15
 2
-warrior
-warrior
-warrior
-warrior
+Knight

@@ -7,4 +7,5 @@ Robin
 5
 0
 gun
+Hunter
 Gunslinger

@@ -2,7 +2,17 @@
 "bones": [
 	{ "name": "root", "y": 49.39 },
 	{ "name": "punggung", "parent": "root", "length": 14.96, "x": -1.48, "y": -0.32, "rotation": 87.74 },
-	{ "name": "dada", "parent": "punggung", "length": 50, "x": 15.29, "y": -0.56, "rotation": 2.7 },
+	{
+		"name": "skil",
+		"parent": "root",
+		"length": 55.78,
+		"x": 172.28,
+		"y": -22.44,
+		"scaleX": 1.905,
+		"scaleY": 1.905,
+		"rotation": -0.45
+	},
+	{ "name": "dada", "parent": "punggung", "length": 50, "x": 15.07, "y": 5.07, "rotation": 2.7 },
 	{ "name": "left paha", "parent": "punggung", "length": 31.96, "x": 14.22, "y": -9.35, "rotation": -171.4 },
 	{ "name": "right paha", "parent": "punggung", "length": 30.83, "x": 11.97, "y": 11.93, "rotation": 179.56 },
 	{ "name": "head", "parent": "dada", "length": 80.48, "x": 51.04, "y": 0.3, "rotation": -10.12 },
@@ -18,76 +28,150 @@
 	{ "name": "right hand", "parent": "right elbow", "length": 17.99, "x": 34.07, "y": -0.14, "rotation": 47.36 }
 ],
 "slots": [
-	{ "name": "left_leg_lower", "bone": "left betis", "attachment": "left_leg_lower" },
-	{ "name": "left_leg_upper", "bone": "left paha", "attachment": "left_leg_upper" },
-	{ "name": "left_foot", "bone": "left kaki", "attachment": "left_foot" },
-	{ "name": "left_hand_finger", "bone": "left hand", "attachment": "left_hand_finger" },
-	{ "name": "left_hand_lowef", "bone": "left elbow", "attachment": "left_hand_lowef" },
-	{ "name": "left_hand_upper", "bone": "left shoulder", "attachment": "left_hand_upper" },
-	{ "name": "head3", "bone": "head", "attachment": "head_kuncir" },
-	{ "name": "right_leg_lower", "bone": "right betis", "attachment": "right_leg_lower" },
-	{ "name": "right_leg_upper", "bone": "right paha", "attachment": "right_leg_upper" },
-	{ "name": "body", "bone": "dada", "attachment": "body" },
-	{ "name": "weapon", "bone": "left hand", "attachment": "weapon_archer_bow" },
-	{ "name": "head", "bone": "head", "attachment": "head" },
-	{ "name": "head2", "bone": "head", "attachment": "head_bangs" },
-	{ "name": "right_fingers", "bone": "right hand", "attachment": "right_fingers" },
-	{ "name": "right_foot", "bone": "right foot", "attachment": "right_foot" },
-	{ "name": "right_hand_lower", "bone": "right elbow", "attachment": "right_hand_lower" },
-	{ "name": "right_hand_upper", "bone": "right shoulder", "attachment": "right_hand_upper" }
+	{ "name": "left_leg_lower", "bone": "left betis", "attachment": "lll" },
+	{ "name": "left_leg_upper", "bone": "left paha", "attachment": "llu" },
+	{ "name": "left_foot", "bone": "left kaki", "attachment": "lf" },
+	{ "name": "left_hand_finger", "bone": "left hand", "attachment": "lhf" },
+	{ "name": "left_hand_lowef", "bone": "left elbow", "attachment": "lhl" },
+	{ "name": "left_hand_upper", "bone": "left shoulder", "attachment": "lhu" },
+	{ "name": "head3", "bone": "head", "attachment": "h3" },
+	{ "name": "right_leg_lower", "bone": "right betis", "attachment": "rll" },
+	{ "name": "right_leg_upper", "bone": "right paha", "attachment": "rlu" },
+	{ "name": "body", "bone": "dada", "attachment": "bd" },
+	{ "name": "weapon", "bone": "left hand", "attachment": "wab" },
+	{ "name": "head", "bone": "head", "attachment": "h" },
+	{ "name": "head2", "bone": "head", "attachment": "h2" },
+	{ "name": "right_fingers", "bone": "right hand", "attachment": "rf" },
+	{ "name": "right_foot", "bone": "right foot", "attachment": "rf" },
+	{ "name": "right_hand_lower", "bone": "right elbow", "attachment": "rhl" },
+	{ "name": "right_hand_upper", "bone": "right shoulder", "attachment": "rhu" },
+	{ "name": "sk", "bone": "skil" }
 ],
 "skins": {
-	"default": {
+	"Archer": {
 		"body": {
-			"body": { "x": 34.88, "y": 36.43, "rotation": -90.45, "width": 141, "height": 124 }
+			"bd": { "name": "body", "x": 34.88, "y": 36.43, "rotation": -90.45, "width": 141, "height": 124 }
 		},
 		"head": {
-			"head": { "x": 73.92, "y": 8.02, "rotation": -89.54, "width": 180, "height": 171 }
+			"h": { "name": "head", "x": 73.92, "y": 8.02, "rotation": -89.54, "width": 180, "height": 171 }
 		},
 		"head2": {
-			"head_bangs": { "x": 71.7, "y": -50.26, "rotation": -89.54, "width": 17, "height": 42 }
+			"h2": { "name": "head_bangs", "x": 71.7, "y": -50.26, "rotation": -89.54, "width": 17, "height": 42 }
 		},
 		"head3": {
-			"head_kuncir": { "x": -7.53, "y": 60.65, "rotation": -89.54, "width": 66, "height": 42 }
+			"h3": { "name": "head_kuncir", "x": -7.53, "y": 60.65, "rotation": -89.54, "width": 66, "height": 42 }
 		},
 		"left_foot": {
-			"left_foot": { "x": 5.42, "y": 1.73, "rotation": 10.67, "width": 27, "height": 14 }
+			"lf": { "name": "left_foot", "x": 5.42, "y": 1.73, "rotation": 10.67, "width": 27, "height": 14 }
 		},
 		"left_hand_finger": {
-			"left_hand_finger": { "x": 17.76, "y": -3.79, "rotation": 123.84, "width": 29, "height": 30 }
+			"lhf": { "name": "left_hand_finger", "x": 17.76, "y": -3.79, "rotation": 123.84, "width": 29, "height": 30 }
 		},
 		"left_hand_lowef": {
-			"left_hand_lowef": { "x": 14.72, "y": -2.27, "rotation": 96.35, "width": 30, "height": 51 }
+			"lhl": { "name": "left_hand_lowef", "x": 14.72, "y": -2.27, "rotation": 96.35, "width": 30, "height": 51 }
 		},
 		"left_hand_upper": {
-			"left_hand_upper": { "x": 17.24, "y": -5.87, "rotation": 30.73, "width": 37, "height": 41 }
+			"lhu": { "name": "left_hand_upper", "x": 17.24, "y": -5.87, "rotation": 30.73, "width": 37, "height": 41 }
 		},
 		"left_leg_lower": {
-			"left_leg_lower": { "x": 12.75, "y": -1.83, "rotation": 91.28, "width": 22, "height": 32 }
+			"lll": { "name": "left_leg_lower", "x": 12.75, "y": -1.83, "rotation": 91.28, "width": 22, "height": 32 }
 		},
 		"left_leg_upper": {
-			"left_leg_upper": { "x": 24.56, "y": -2.72, "scaleX": -0.899, "rotation": -68.89, "width": 34, "height": 47 }
+			"llu": { "name": "left_leg_upper", "x": 24.56, "y": -2.72, "scaleX": -0.899, "rotation": -68.89, "width": 34, "height": 47 }
 		},
 		"right_fingers": {
-			"right_fingers": { "x": 15.59, "y": -1.59, "rotation": 48.33, "width": 32, "height": 33 }
+			"rf": { "name": "right_fingers", "x": 15.59, "y": -1.59, "rotation": 48.33, "width": 32, "height": 33 }
 		},
 		"right_foot": {
-			"right_foot": { "x": 7.18, "y": -0.4, "rotation": 8.1, "width": 27, "height": 14 }
+			"rf": { "name": "right_foot", "x": 7.18, "y": -0.4, "rotation": 8.1, "width": 27, "height": 14 }
 		},
 		"right_hand_lower": {
-			"right_hand_lower": { "x": 19.81, "y": 0.55, "rotation": 95.69, "width": 30, "height": 52 }
+			"rhl": { "name": "right_hand_lower", "x": 19.81, "y": 0.55, "rotation": 95.69, "width": 30, "height": 52 }
 		},
 		"right_hand_upper": {
-			"right_hand_upper": { "x": 22.9, "y": 2.57, "rotation": 146.38, "width": 37, "height": 40 }
+			"rhu": { "name": "right_hand_upper", "x": 22.9, "y": 2.57, "rotation": 146.38, "width": 37, "height": 40 }
 		},
 		"right_leg_lower": {
-			"right_leg_lower": { "x": 13.42, "y": 0.4, "rotation": 91.65, "width": 22, "height": 32 }
+			"rll": { "name": "right_leg_lower", "x": 13.42, "y": 0.4, "rotation": 91.65, "width": 22, "height": 32 }
 		},
 		"right_leg_upper": {
-			"right_leg_upper": { "x": 21.04, "y": 0.81, "rotation": -70.13, "width": 34, "height": 47 }
+			"rlu": { "name": "right_leg_upper", "x": 21.04, "y": 0.81, "rotation": -70.13, "width": 34, "height": 47 }
+		},
+		"sk": {
+			"1": { "x": -0.36, "y": 49.39, "rotation": 0.45, "width": 470, "height": 193 },
+			"12": { "name": "2", "x": -0.36, "y": 49.39, "rotation": 0.45, "width": 470, "height": 193 },
+			"122": { "name": "3", "x": -0.36, "y": 49.39, "rotation": 0.45, "width": 470, "height": 193 },
+			"1222": { "name": "4", "x": -53.22, "y": 52.1, "rotation": 0.45, "width": 470, "height": 193 },
+			"12222": { "name": "5", "x": -0.36, "y": 49.39, "rotation": 0.45, "width": 470, "height": 193 },
+			"122222": { "name": "6", "x": 92.85, "y": 50.09, "rotation": 0.45, "width": 470, "height": 193 },
+			"1222222": { "name": "7", "x": -0.36, "y": 49.39, "rotation": 0.45, "width": 470, "height": 193 },
+			"12222222": { "name": "8", "x": -0.36, "y": 49.39, "rotation": 0.45, "width": 470, "height": 193 }
 		},
 		"weapon": {
-			"weapon_archer_bow": { "x": 21.96, "y": 4.78, "rotation": -11.39, "width": 37, "height": 205 }
+			"wab": { "name": "weapon_archer_bow", "x": 21.96, "y": 4.78, "rotation": -11.39, "width": 37, "height": 205 }
+		}
+	},
+	"Ranger": {
+		"body": {
+			"bd": { "name": "body2", "x": 34.79, "y": 25.34, "rotation": -90.45, "width": 145, "height": 114 }
+		},
+		"head": {
+			"h": { "name": "head2", "x": 70.39, "y": 0.1, "rotation": -89.54, "width": 167, "height": 162 }
+		},
+		"head2": {
+			"h2": { "name": "head_bangs", "x": 71.7, "y": -50.26, "rotation": -89.54, "width": 17, "height": 42 }
+		},
+		"head3": {
+			"h3": { "name": "head_kuncir", "x": -7.53, "y": 60.65, "rotation": -89.54, "width": 66, "height": 42 }
+		},
+		"left_foot": {
+			"lf": { "name": "right_foot2", "x": 5.42, "y": 1.73, "scaleX": -1, "rotation": 10.67, "width": 26, "height": 15 }
+		},
+		"left_hand_finger": {
+			"lhf": { "name": "left_hand_finger", "x": 17.76, "y": -3.79, "rotation": 123.84, "width": 29, "height": 30 }
+		},
+		"left_hand_lowef": {
+			"lhl": { "name": "left_hand_lowef", "x": 14.72, "y": -2.27, "rotation": 96.35, "width": 30, "height": 51 }
+		},
+		"left_hand_upper": {
+			"lhu": { "name": "right_hand_upper2", "x": 23.16, "y": -0.21, "scaleX": -1, "rotation": 30.73, "width": 47, "height": 51 }
+		},
+		"left_leg_lower": {
+			"lll": { "name": "left_leg_lower2", "x": 12.75, "y": -1.83, "rotation": 91.28, "width": 22, "height": 28 }
+		},
+		"left_leg_upper": {
+			"llu": { "name": "right_leg_upper2", "x": 24.56, "y": -2.72, "scaleX": -0.899, "rotation": -101.69, "width": 35, "height": 48 }
+		},
+		"right_fingers": {
+			"rf": { "name": "right_fingers", "x": 15.59, "y": -1.59, "rotation": 48.33, "width": 32, "height": 33 }
+		},
+		"right_foot": {
+			"rf": { "name": "right_foot2", "x": 7.18, "y": -0.4, "scaleX": -1, "rotation": 8.1, "width": 26, "height": 15 }
+		},
+		"right_hand_lower": {
+			"rhl": { "name": "right_hand_lower2", "x": 19.81, "y": 0.55, "rotation": 95.69, "width": 34, "height": 55 }
+		},
+		"right_hand_upper": {
+			"rhu": { "name": "right_hand_upper2", "x": 22.9, "y": 2.57, "rotation": 146.38, "width": 47, "height": 51 }
+		},
+		"right_leg_lower": {
+			"rll": { "name": "right_leg_lower", "x": 13.42, "y": 0.4, "rotation": 91.65, "width": 22, "height": 32 }
+		},
+		"right_leg_upper": {
+			"rlu": { "name": "right_leg_upper2", "x": 21.04, "y": 0.81, "rotation": -70.13, "width": 35, "height": 48 }
+		},
+		"sk": {
+			"1": { "x": -0.36, "y": 49.39, "rotation": 0.45, "width": 470, "height": 193 },
+			"12": { "name": "2", "x": -0.36, "y": 49.39, "rotation": 0.45, "width": 470, "height": 193 },
+			"122": { "name": "3", "x": -0.36, "y": 49.39, "rotation": 0.45, "width": 470, "height": 193 },
+			"1222": { "name": "4", "x": -53.22, "y": 52.1, "rotation": 0.45, "width": 470, "height": 193 },
+			"12222": { "name": "5", "x": -0.36, "y": 49.39, "rotation": 0.45, "width": 470, "height": 193 },
+			"122222": { "name": "6", "x": 92.85, "y": 50.09, "rotation": 0.45, "width": 470, "height": 193 },
+			"1222222": { "name": "7", "x": -0.36, "y": 49.39, "rotation": 0.45, "width": 470, "height": 193 },
+			"12222222": { "name": "8", "x": -0.36, "y": 49.39, "rotation": 0.45, "width": 470, "height": 193 }
+		},
+		"weapon": {
+			"wab": { "name": "weapon_archer_bow", "x": 21.96, "y": 4.78, "rotation": -11.39, "width": 37, "height": 205 }
 		}
 	}
 },
@@ -659,6 +743,126 @@
 			}
 		}
 	},
-	"special": {}
+	"special": {
+		"bones": {
+			"root": {
+				"rotate": [
+					{ "time": 0, "angle": 0, "curve": "stepped" },
+					{ "time": 1.2, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 1.2, "x": 0, "y": 4.56 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
+					{ "time": 1.2, "x": 1, "y": 1 }
+				]
+			},
+			"dada": {
+				"rotate": [
+					{ "time": 0.0333, "angle": 4.97, "curve": "stepped" },
+					{ "time": 0.9666, "angle": 4.97 }
+				]
+			},
+			"left shoulder": {
+				"rotate": [
+					{ "time": 0.0333, "angle": 0.23 },
+					{ "time": 0.0666, "angle": 11 },
+					{ "time": 0.1, "angle": 22.85, "curve": "stepped" },
+					{ "time": 0.9, "angle": 22.85 },
+					{ "time": 0.9333, "angle": 11 },
+					{ "time": 0.9666, "angle": 0.23 }
+				]
+			},
+			"left elbow": {
+				"rotate": [
+					{ "time": 0.0333, "angle": 11.1 },
+					{ "time": 0.0666, "angle": 16.32, "curve": "stepped" },
+					{ "time": 0.9333, "angle": 16.32 },
+					{ "time": 0.9666, "angle": 11.1 }
+				]
+			},
+			"left hand": {
+				"rotate": [
+					{ "time": 0.0666, "angle": 1.12 },
+					{ "time": 0.1333, "angle": 8.77 },
+					{ "time": 0.9333, "angle": 1.12 }
+				]
+			},
+			"head": {
+				"rotate": [
+					{ "time": 0.1, "angle": 8.05, "curve": "stepped" },
+					{ "time": 0.9, "angle": 8.05, "curve": "stepped" },
+					{ "time": 0.9333, "angle": 8.05 }
+				]
+			},
+			"right shoulder": {
+				"rotate": [
+					{ "time": 0.1333, "angle": -312.72 },
+					{ "time": 0.2, "angle": 4.26 },
+					{ "time": 0.2333, "angle": 2.56 },
+					{ "time": 0.8666, "angle": -30.19 }
+				]
+			},
+			"right hand": {
+				"rotate": [
+					{ "time": 0.1333, "angle": -24.27 },
+					{ "time": 0.2333, "angle": -45.49 }
+				]
+			},
+			"right elbow": {
+				"rotate": [
+					{ "time": 0.1666, "angle": 31.49 },
+					{ "time": 0.2, "angle": 42.83 },
+					{ "time": 0.2333, "angle": 74.16 },
+					{ "time": 0.8666, "angle": 96.43 },
+					{ "time": 0.9, "angle": -208.21 }
+				]
+			},
+			"punggung": {
+				"rotate": [
+					{ "time": 1.2, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 1.2, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{ "time": 1.2, "x": 1, "y": 1 }
+				]
+			},
+			"skil": {
+				"rotate": [
+					{ "time": 0.3333, "angle": 0, "curve": "stepped" },
+					{ "time": 0.3666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0.3333, "x": 0, "y": 0 },
+					{ "time": 0.7333, "x": -63.37, "y": 31.68 },
+					{ "time": 0.8, "x": 0, "y": 0 },
+					{ "time": 1.1666, "x": 2404.33, "y": 59.21 }
+				],
+				"scale": [
+					{ "time": 0.3333, "x": 0.999, "y": 0.999 },
+					{ "time": 0.7333, "x": 0.018, "y": 0.018 },
+					{ "time": 0.8333, "x": 0.95, "y": 0.95 },
+					{ "time": 1, "x": 1.088, "y": 1.088 }
+				]
+			}
+		},
+		"slots": {
+			"sk": {
+				"attachment": [
+					{ "time": 0.1333, "name": "1" },
+					{ "time": 0.2, "name": "12" },
+					{ "time": 0.2666, "name": "122" },
+					{ "time": 0.7333, "name": "1222" },
+					{ "time": 0.8, "name": "122222" },
+					{ "time": 0.9333, "name": "1222222" },
+					{ "time": 1.1, "name": null }
+				]
+			}
+		}
+	}
 }
 }

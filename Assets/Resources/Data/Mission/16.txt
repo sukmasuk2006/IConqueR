@@ -4,7 +4,4 @@ Irahalak
 0
 19
 2
-knight
-warrior
-knight
-tribe
+Knight

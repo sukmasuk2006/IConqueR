@@ -3,122 +3,190 @@ skeleton.png
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
+4
+  rotate: true
+  xy: 518, 670
+  size: 352, 469
+  orig: 650, 526
+  offset: 185, 0
+  index: -1
+5
+  rotate: false
+  xy: 2, 83
+  size: 390, 500
+  orig: 650, 526
+  offset: 134, 0
+  index: -1
+6
+  rotate: false
+  xy: 2, 585
+  size: 514, 437
+  orig: 650, 526
+  offset: 0, 3
+  index: -1
+7
+  rotate: true
+  xy: 394, 74
+  size: 509, 361
+  orig: 650, 526
+  offset: 141, 155
+  index: -1
+9
+  rotate: false
+  xy: 757, 331
+  size: 176, 337
+  orig: 650, 526
+  offset: 152, 181
+  index: -1
 body
   rotate: false
-  xy: 189, 77
+  xy: 757, 47
   size: 97, 95
   orig: 97, 95
   offset: 0, 0
   index: -1
 head
-  rotate: false
-  xy: 2, 78
+  rotate: true
+  xy: 757, 144
   size: 185, 176
   orig: 185, 176
   offset: 0, 0
   index: -1
 head_syal
-  rotate: false
-  xy: 2, 40
+  rotate: true
+  xy: 935, 577
   size: 91, 36
   orig: 91, 36
   offset: 0, 0
   index: -1
 left_foot
-  rotate: true
-  xy: 334, 141
+  rotate: false
+  xy: 112, 65
   size: 31, 16
   orig: 31, 16
   offset: 0, 0
   index: -1
 left_hand_finger
-  rotate: true
-  xy: 2, 2
+  rotate: false
+  xy: 74, 44
   size: 36, 37
   orig: 36, 37
   offset: 0, 0
   index: -1
 left_hand_lowef
   rotate: false
-  xy: 288, 80
+  xy: 989, 975
   size: 26, 47
   orig: 26, 47
   offset: 0, 0
   index: -1
 left_hand_upper
   rotate: false
-  xy: 288, 129
+  xy: 684, 625
   size: 44, 43
   orig: 44, 43
   offset: 0, 0
   index: -1
 left_leg_lower
-  rotate: true
-  xy: 144, 53
+  rotate: false
+  xy: 902, 107
   size: 23, 35
   orig: 23, 35
   offset: 0, 0
   index: -1
 left_leg_upper
   rotate: false
-  xy: 473, 214
+  xy: 730, 628
   size: 25, 40
   orig: 25, 40
   offset: 0, 0
   index: -1
 right_fingers
-  rotate: true
-  xy: 41, 2
+  rotate: false
+  xy: 935, 538
   size: 36, 37
   orig: 36, 37
   offset: 0, 0
   index: -1
 right_foot
   rotate: true
-  xy: 316, 96
+  xy: 989, 942
   size: 31, 16
   orig: 31, 16
   offset: 0, 0
   index: -1
 right_hand_lower
-  rotate: true
-  xy: 95, 50
+  rotate: false
+  xy: 856, 51
   size: 26, 47
   orig: 26, 47
   offset: 0, 0
   index: -1
 right_hand_upper
   rotate: false
-  xy: 427, 212
+  xy: 856, 100
   size: 44, 42
   orig: 44, 42
   offset: 0, 0
   index: -1
 right_leg_lower
-  rotate: false
-  xy: 80, 2
+  rotate: true
+  xy: 684, 600
   size: 23, 36
   orig: 23, 36
   offset: 0, 0
   index: -1
 right_leg_upper
-  rotate: true
-  xy: 427, 184
+  rotate: false
+  xy: 74, 2
   size: 26, 40
   orig: 26, 40
   offset: 0, 0
   index: -1
 weapon_ninja_kunai
   rotate: false
-  xy: 189, 174
+  xy: 518, 588
   size: 164, 80
   orig: 164, 80
   offset: 0, 0
   index: -1
 weapon_ninja_shuriken
   rotate: false
-  xy: 355, 184
+  xy: 2, 11
   size: 70, 70
   orig: 70, 70
   offset: 0, 0
+  index: -1
+
+skeleton2.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: true
+  xy: 2, 2
+  size: 271, 351
+  orig: 650, 526
+  offset: 250, 0
+  index: -1
+2
+  rotate: true
+  xy: 441, 639
+  size: 354, 366
+  orig: 650, 526
+  offset: 175, 6
+  index: -1
+3
+  rotate: false
+  xy: 2, 275
+  size: 374, 359
+  orig: 650, 526
+  offset: 160, 0
+  index: -1
+8
+  rotate: false
+  xy: 2, 636
+  size: 437, 357
+  orig: 650, 526
+  offset: 142, 163
   index: -1

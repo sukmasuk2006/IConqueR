@@ -74,9 +74,8 @@ public class BattleController : MonoBehaviour {
 		mission = GameData.missionList [GameData.currentMission];
 		enemyTitle.sprite = GameData.titleSpriteList [mission.Title];
 		battleState = 0;
-		if ( GameData.profile.TutorialState < 2 ){
-			battleState = 6;// tutorialstate
-				SetPrefab();
+		if ( GameData.profile.TutorialState < 3 ){
+			SetPrefab();
 		}
 
 		 MusicManager.play ("Music/royal2", 0.1f, 0.1f);
@@ -98,27 +97,28 @@ public class BattleController : MonoBehaviour {
 		//	GameData.gameState = GameConstant.GAMEPLAY_SCENE;
 		GameData.profile.RefreshFormation();
 		for ( i = 0 ; i < 5 ; i ++ ) {
-			FormationUnit u = GameData.profile.formationList[i];
-				if ( u.IsUnlocked ){
-					if (  u.UnitHeroId == 99 ){
-						continue;
-					}
-					if ( GameData.profile.skillList[u.Unit.HeroId].IsUnlocked ){
-						activeSkill.Add(GameData.profile.skillList[u.Unit.HeroId]);
-						skillList[totalHero].SetActive(true);
-					}
-					totalHero++;
-					Debug.Log("Hero ke " + i + " aktif");
-					heroList[i].SetActive(true);
-					float level = 0; 
-					level = 1 + (GameData.profile.Level * 0.05f);
-					level += (GameData.profile.Title * 0.1f);
-					u.Unit.Agi *= level;
-					u.Unit.Str *= level;
-					u.Unit.Vit *= level;
-					u.Unit.SetStats();
-					heroTotalHealth += u.Unit.HealthPoint;
+			FormationUnit u = GameData.profile.formationList[i];// ambil unit di formation ke-i
+			activeSkill.Add(GameData.profile.skillList[0]); // tambahkan skill default
+				if ( u.IsUnlocked ){ // jika formation ke-i udah keunlock
 					
+					if (  u.UnitHeroId != 99 ){ // jika bukan unit template
+						if ( GameData.profile.skillList[u.Unit.HeroId].IsUnlocked ){ // jika skill milik unit di form
+							// udah keunlock
+							activeSkill[i] = GameData.profile.skillList[u.Unit.HeroId];
+							skillList[i].SetActive(true);
+						}
+						heroList[i].SetActive(true);
+						totalHero++;
+						float level = 0; 
+						level = 1 + (GameData.profile.Level * 0.05f);
+						level += (GameData.profile.Title * 0.1f);
+						u.Unit.Agi *= level;
+						u.Unit.Str *= level;
+						u.Unit.Vit *= level;
+						u.Unit.SetStats();
+						Debug.Log("Hero ke " + i + " weapon lev " + u.Unit.Weapon.Rank);
+						heroTotalHealth += u.Unit.HealthPoint;
+					}
 				}
 		}
 		i = 0;
@@ -153,8 +153,8 @@ public class BattleController : MonoBehaviour {
 			enemyTotalHealth += s.HealthPoint;
 
 		}
-		ConstantHeroHealthLocalScale = new Vector3(1.02f,globalHeroHealthBar.transform.localScale.y,globalHeroHealthBar.transform.localScale.z);
-		ConstantEnemyHealthLocalScale = new Vector3(1.02f,globalEnemyHealthBar.transform.localScale.y,globalEnemyHealthBar.transform.localScale.z);
+		ConstantHeroHealthLocalScale = new Vector3(1f,globalHeroHealthBar.transform.localScale.y,globalHeroHealthBar.transform.localScale.z);
+		ConstantEnemyHealthLocalScale = new Vector3(1f,globalEnemyHealthBar.transform.localScale.y,globalEnemyHealthBar.transform.localScale.z);
 		totalEnemy = mission.EnemyList.Count;
 		ConstantHeroHealth = heroTotalHealth;
 		ConstantEnemyHealth = enemyTotalHealth;
@@ -418,26 +418,21 @@ public class BattleController : MonoBehaviour {
 	
 	public void SetPrefab(){
 		Debug.Log("set tutorial state " + GameData.profile.TutorialState);
+		iTween.MoveTo ( this.gameObject,iTween.Hash("time",3.5f,"onComplete","ShowPrefab","onCompleteTarget",gameObject));	
+	}
+
+	void ShowPrefab(){
 		if ( GameData.profile.TutorialState < GameConstant.TOTAL_TUTORIAL ){
-			Transform t = listPrefab [GameData.profile.TutorialState-1];
+			//battleState = 6;// tutorialstate
+			Transform t = listPrefab [GameData.profile.TutorialState-2];
 			Instantiate (t, new Vector3(t.position.x,t.position.y,t.position.z), Quaternion.identity);
 		}
-		GameData.profile.TutorialState++;
 	}
-	
+
 	public void DestoryPrefab(){
 		GameObject temp = GameObject.FindGameObjectWithTag ("Tutorial");
 		Debug.Log ("at tutor destroy " + temp);
 		Destroy (temp);
-		if ( GameData.profile.TutorialState < 3){
-			SetPrefab();//tutorialObject = null;// kalau belum 2x diset prefab
-		}
-		
-		else {// dua kali aja{
-			GameData.profile.TutorialState = 1;
-			GameData.gameState = "";
-			battleState = 0;
-		}
 	}
 
 	public int BatlleState {

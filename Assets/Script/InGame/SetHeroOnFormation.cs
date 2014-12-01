@@ -37,15 +37,15 @@ public class SetHeroOnFormation : MonoBehaviour {
 
 					// kalau gak 99 brarti masih ada heronya
 					if ( currentActiveUnitId != 99 ) {// inisialisasi awal pas buka slot id =99;
-						GameData.profile.unitList[currentActiveUnitId].IsActive = false; // non aktifkan unit yang aktif
-						GameData.profile.formationList[currentActiveUnitId].UnitHeroId = 99; // jadikan formationslot idnya 99, dianggap kosong dulu
-						GameData.profile.activeHeroes--;
-					}
-					GameData.profile.formationList [GameData.unitSlotYangDiSet].
-					SetUnit (slot,GameData.profile.unitList [slot]);  // isi slot dengan unit dan idnya
-					GameData.profile.unitList[slot].IsActive = true; // aktifkan unit
-					GameData.profile.activeHeroes++;
-					listForm [GameData.unitSlotYangDiSet].ReloadSprite (GameData.unitSpriteList[slot]);
+					GameData.profile.unitList[currentActiveUnitId].IsActive = false; // non aktifkan unit yang aktif
+					GameData.profile.formationList[GameData.unitSlotYangDiSet].UnitHeroId = 99; // jadikan formationslot idnya 99, dianggap kosong dulu
+					GameData.profile.activeHeroes--;
+			}
+			GameData.profile.formationList [GameData.unitSlotYangDiSet].
+			SetUnit (slot,GameData.profile.unitList [slot]);  // isi slot dengan unit dan idnya
+			GameData.profile.unitList[slot].IsActive = true; // aktifkan unit
+			GameData.profile.activeHeroes++;
+			listForm [GameData.unitSlotYangDiSet].ReloadSprite (GameData.unitSpriteList[slot]);
 					listDismissButton[GameData.unitSlotYangDiSet].SetActive(true);
 					infoText.text = "Select Unit";
 

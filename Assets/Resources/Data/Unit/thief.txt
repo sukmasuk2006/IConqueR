@@ -7,4 +7,5 @@ Ponzi
 1
 1
 knife
+Thief
 Master Thief

@@ -3,72 +3,142 @@ skeleton.png
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
+1
+  rotate: false
+  xy: 562, 724
+  size: 215, 116
+  orig: 560, 227
+  offset: 21, 27
+  index: -1
+2
+  rotate: false
+  xy: 562, 842
+  size: 246, 174
+  orig: 560, 227
+  offset: 11, 39
+  index: -1
+3
+  rotate: false
+  xy: 2, 201
+  size: 541, 157
+  orig: 560, 227
+  offset: 19, 70
+  index: -1
+4
+  rotate: false
+  xy: 2, 789
+  size: 558, 227
+  orig: 560, 227
+  offset: 2, 0
+  index: -1
+5
+  rotate: false
+  xy: 2, 560
+  size: 542, 227
+  orig: 560, 227
+  offset: 17, 0
+  index: -1
+6
+  rotate: false
+  xy: 2, 360
+  size: 534, 198
+  orig: 560, 227
+  offset: 0, 0
+  index: -1
+7
+  rotate: false
+  xy: 2, 49
+  size: 477, 150
+  orig: 560, 227
+  offset: 0, 0
+  index: -1
+8
+  rotate: false
+  xy: 538, 381
+  size: 477, 150
+  orig: 560, 227
+  offset: 0, 0
+  index: -1
 body
   rotate: false
-  xy: 193, 116
+  xy: 654, 252
   size: 88, 127
   orig: 88, 127
   offset: 0, 0
   index: -1
-head
+body2
   rotate: false
-  xy: 2, 49
+  xy: 545, 249
+  size: 107, 130
+  orig: 107, 130
+  offset: 0, 0
+  index: -1
+head
+  rotate: true
+  xy: 546, 533
   size: 189, 194
   orig: 189, 194
   offset: 0, 0
   index: -1
+head2
+  rotate: true
+  xy: 810, 827
+  size: 189, 208
+  orig: 189, 208
+  offset: 0, 0
+  index: -1
 left_foot
-  rotate: false
-  xy: 310, 191
+  rotate: true
+  xy: 742, 641
   size: 31, 17
   orig: 31, 17
   offset: 0, 0
   index: -1
 left_hand_finger
   rotate: false
-  xy: 235, 81
+  xy: 545, 214
   size: 37, 33
   orig: 37, 33
   offset: 0, 0
   index: -1
 left_hand_lowef
   rotate: false
-  xy: 193, 69
+  xy: 481, 154
   size: 40, 45
   orig: 40, 45
   offset: 0, 0
   index: -1
 left_hand_upper
-  rotate: true
-  xy: 45, 22
+  rotate: false
+  xy: 742, 674
   size: 25, 48
   orig: 25, 48
   offset: 0, 0
   index: -1
 left_leg_lower
-  rotate: true
-  xy: 193, 50
+  rotate: false
+  xy: 523, 165
   size: 17, 34
   orig: 17, 34
   offset: 0, 0
   index: -1
 left_leg_upper
   rotate: false
-  xy: 283, 151
+  xy: 45, 6
   size: 25, 41
   orig: 25, 41
   offset: 0, 0
   index: -1
 right_fingers
   rotate: false
-  xy: 310, 210
+  xy: 744, 346
   size: 37, 33
   orig: 37, 33
   offset: 0, 0
   index: -1
 right_foot
   rotate: false
-  xy: 349, 227
+  xy: 584, 231
   size: 31, 16
   orig: 31, 16
   offset: 0, 0
@@ -82,21 +152,21 @@ right_hand_lower
   index: -1
 right_hand_upper
   rotate: false
-  xy: 283, 194
+  xy: 779, 791
   size: 25, 49
   orig: 25, 49
   offset: 0, 0
   index: -1
 right_leg_lower
-  rotate: true
-  xy: 45, 4
+  rotate: false
+  xy: 779, 755
   size: 16, 34
   orig: 16, 34
   offset: 0, 0
   index: -1
 right_leg_upper
-  rotate: true
-  xy: 95, 22
+  rotate: false
+  xy: 481, 112
   size: 25, 40
   orig: 25, 40
   offset: 0, 0

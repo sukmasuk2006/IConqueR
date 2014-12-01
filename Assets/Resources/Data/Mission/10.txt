@@ -4,6 +4,4 @@ Greeasis
 0
 15
 1
-knight
-knight
-archer
+Knight

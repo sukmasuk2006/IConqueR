@@ -32,7 +32,8 @@ public class UpgradeWeapon : MonoBehaviour {
 		if (w.Rank < 10) {
 			// check dulu + brp 
 			int minLevelReq = w.CheckMinLevelReq();
-			Unit u = GameData.profile.formationList [GameData.unitSlotYangDiSet].Unit;
+			Unit u = GameData.profile.unitList[GameData.selectedToViewProfileId];
+			Debug.Log(" slot " + GameData.unitSlotYangDiSet + " leve " + u.Level );
 			if (u.Level >= minLevelReq) {
 				if (controller.SlotList [0] is Gem) {
 					gem = (Gem)controller.SlotList [0];

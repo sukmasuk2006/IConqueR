@@ -2,7 +2,7 @@
 
 	/*	 CONSTANT   */
 	public static int UNLOCK_SLOT_PRICE = 500;
-	public static int MISSION_LIST = 50;
+	public static int MISSION_LIST = 30;
 	public static int TOTAL_TUTORIAL = 20;
 
 	/*Screen state*/

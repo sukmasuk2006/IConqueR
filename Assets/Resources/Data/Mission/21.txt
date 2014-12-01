@@ -4,7 +4,4 @@ Ngalam
 0
 23
 0
-tribe
-knight
-tribe
-archer
+Knight

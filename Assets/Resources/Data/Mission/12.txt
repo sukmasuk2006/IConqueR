@@ -4,6 +4,4 @@ Gosert
 0
 15
 2
-warrior
-knight
-archer
+Knight

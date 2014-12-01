@@ -4,7 +4,4 @@ Ngetipas
 0
 23
 3
-tribe
-knight
-tribe
-archer
+Knight

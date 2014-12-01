@@ -4,4 +4,4 @@ Bevillage
 0
 7
 1
-knight
+Knight

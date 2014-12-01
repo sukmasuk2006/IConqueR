@@ -4,7 +4,4 @@ Nabut
 0
 19
 2
-tribe
-knight
-tribe
-archer
+Knight

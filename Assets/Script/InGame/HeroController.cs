@@ -131,7 +131,7 @@ public class HeroController : MonoBehaviour {
 			if ( manaBar.localScale.x < MAXMANABAR )
 			{
 //				Debug.Log("update mana bar");
-				float scaleX = manaBar.localScale.x + 0.5f * Time.deltaTime;
+				float scaleX = manaBar.localScale.x + 0.1f * Time.deltaTime;
 				manaBar.localScale = new Vector3(scaleX,manaBar.localScale.y,manaBar.localScale.z);
 			}
 //			animator.state.ClearTracks ();
@@ -224,19 +224,17 @@ public class HeroController : MonoBehaviour {
 		if ( attackType == 0 ){
 			float force = (stats.Str/100)+0.5f;
 			DoDamageToTarget (targetUnit,-force);
-			
 		}
 		else
 			projectile.GetComponent<ProjectileController> ().Launch ();
 
-		MusicManager.getMusicPlayer().audio.PlayOneShot(weaponSound);
 		GetReadyForNextAttack ();
 	}
 
 	void HandleComplete1 (Spine.AnimationState state, int trackIndex, int loopCount)
 	{
 		transform.position = new Vector2 (-14f * direction, transform.position.y);
-		Debug.Log("COMPLETED1");
+//		Debug.Log("COMPLETED1");
 		
 		projectile.SetActive(false);
 		
@@ -255,15 +253,18 @@ public class HeroController : MonoBehaviour {
 	public void DoDamageToTarget(HeroController h,float force){
 		// h : target, force : force untuk dorong kebelakang
 		// ATTACK!! kalau masih hidup
-		if (stats.HealthPoint > 0) {
+		if (stats.HealthPoint > 0 && !h.isDoSpecial) {
 				// damage critical atau tidak, dimasukkan ke unit untuk dihitung evasion
 				float damage = h.stats.ReceiveDamage(stats.Damage,stats.IsCritical,stats.StatsType);
+				if ( damage > 0 )
+					MusicManager.getMusicPlayer().audio.PlayOneShot(weaponSound);
 				h.UpdateHealthBar ();
 //				Debug.Log(stats.Job +" nggepuk " + h.stats.Job + " damage asli " + stats.Damage + " hasil " + damage);
-				if ( !h.CheckIsCornered() ) // jika gk kepepet nusuhnya, pukul mundur
-					h.PushForward(force);
 				stats.IsCritical = false; // set critical ke semula, tapi chance tetep
 				controller.ReceiveDamage (target, damage);
+				if ( !h.CheckIsCornered()  ) // jika gk kepepet nusuhnya, pukul mundur
+					h.PushForward(force);
+
 	//			GetReadyForNextAttack();
 		}
 	}
@@ -273,7 +274,7 @@ public class HeroController : MonoBehaviour {
 	}
 
 	public void  DoSpecial(){
-		if ( manaBar.localScale.x >= MAXMANABAR && skill.IsUnlocked ){
+		if ( manaBar.localScale.x >= MAXMANABAR && skill.IsUnlocked && controller.BatlleState == 0 && !isDeath ){
 			controller.ActivateSkillShade(0f,0.1f);
 			animator.state.ClearTracks();
 			manaBar.localScale = new Vector3(0f,manaBar.localScale.y,manaBar.localScale.z);
@@ -281,7 +282,7 @@ public class HeroController : MonoBehaviour {
 			controller.BatlleState = 99;
 			animator.state.AddAnimation(1,"special",false,0f);
 			animator.state.GetCurrent (1).Complete += HandleComplete2;
-			Debug.Log(stats.Job+" special");
+//			Debug.Log(stats.Job+" special");
 		}
 	}
 
@@ -291,14 +292,15 @@ public class HeroController : MonoBehaviour {
 		animator.state.ClearTracks();
 		List<GameObject> unitList = skill.ActiveSkillEffect.Tipe == 1 ? 
 									controller.enemyList : controller.heroList;
-		Debug.Log ( "ENEMT LIUT " + unitList.Count);
+//		Debug.Log ( "ENEMT LIUT " + unitList.Count);
 		foreach( GameObject t in unitList ){
 			if ( skill.IsInRange(transform.position.x,t.transform.position.x) && t.activeInHierarchy ){
 				HeroController u = t.GetComponent<HeroController>();
 				float dmg = skill.DoActiveEffect(stats.Damage,u.stats);
-				u.stats.ReceiveDamage(dmg,false,stats.StatsType);
+				float dmgCalculated =  u.stats.ReceiveDamage(dmg,true,stats.StatsType);
 				u.UpdateHealthBar ();
-				controller.ReceiveDamage (target, dmg);
+				Debug.Log(" hit by skill " + u.gameObject.name + " sisa healh " + u.stats.HealthPoint);
+				controller.ReceiveDamage (target, dmgCalculated);
 			}
 		}
 		controller.BatlleState = 0;
@@ -350,7 +352,8 @@ public class HeroController : MonoBehaviour {
 			foreach( Quest q in m )
 				q.CurrentQuantity++;
 		}
-		controller.DeactivateSkillShade(0.0f,0.0f);
+		if ( isDoSpecial )
+			controller.DeactivateSkillShade(0.0f,0.0f);
 		isAttack = false;
 		rigidbody2D.velocity = Vector2.zero;
 		healthBar.SetActive(false);

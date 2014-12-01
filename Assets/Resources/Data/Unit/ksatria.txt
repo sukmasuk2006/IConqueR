@@ -7,4 +7,5 @@ Arok
 1
 2
 sword
+Ksatria
 Patih

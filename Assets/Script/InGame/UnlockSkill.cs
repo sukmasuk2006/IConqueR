@@ -24,7 +24,7 @@ public class UnlockSkill : MonoBehaviour {
 		Skill s = GameData.profile.skillList [slot];
 //		Debug.Log ("di button skill ke " + slot + " unlock " + s.IsUnlocked +
 //		           " selected " + s.IsSelected);
-		priceText.text = (s.Price * (s.Level + 1)) + "";
+		priceText.text =s.Price + "";
 		skillLevel.text = "Level " + s.Level + "";
 		//skillEffect.text = s.Effect.Amount + " % ";
 		if (GameData.profile.skillList [slot].Level < 1 ) {
@@ -37,7 +37,6 @@ public class UnlockSkill : MonoBehaviour {
 			priceText.text = "";
 			frame.SetActive(false);
 		}
-		skillLevel.text = "Level " + s.Level;
 	}
 
 	void OnMouseDown(){
@@ -45,22 +44,24 @@ public class UnlockSkill : MonoBehaviour {
 
 		Skill skill = GameData.profile.skillList[slot];
 		//Debug.Log ("slot " + slot + " isunlock " + GameData.profile.skillList [slot].IsUnlocked + " selec " + GameData.profile.skillList [slot].IsSelected);
-		if (GameData.profile.Gold >= skill.Price * skill.Level  ){// uang cukup
+
+		if (GameData.profile.Gold >= skill.Price  ){// uang cukup
 			Debug.Log("uang cukup");
 			if (skill.Level < 1   && GameData.profile.unitList[skill.HeroesRequired].IsUnlocked) {//locked & hero udah dilock
 				skill.IsUnlocked = true;
 				frame.SetActive (false); 					// UNLOCK
 				renderer.sprite = selectedSprite;
 				buttonInfo.text = "Upgrade";
+				profileController.UpdateGoldAndDiamond(0,skill.Price);
 				skill.Level++;
-				priceText.text = skill.Price * (skill.Level + 1) + "";
+				priceText.text = skill.Price + "";
 				Debug.Log("unlock");
 			}
 			else if ( skill.Level > 0 && skill.Level < 3 ){// ady unlocked
-				skill.Level++;
-				priceText.text = skill.Price * (skill.Level + 1) + "";
-				//		skillEffect.text = (skill.Effect.Amount * skill.Level) + "";
 				profileController.UpdateGoldAndDiamond(0,GameData.profile.skillList[slot].Price);
+				skill.Level++; //  otomatis setprice
+				priceText.text = skill.Price  + "";
+				//		skillEffect.text = (skill.Effect.Amount * skill.Level) + "";
 				Debug.Log("upgrade");
 			}
 			else if ( !GameData.profile.unitList[GameData.profile.skillList[slot].HeroesRequired].IsUnlocked )

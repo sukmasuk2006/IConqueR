@@ -4,6 +4,4 @@ Sentiyard
 0
 7
 1
-knight
-knight
-warrior
+Knight

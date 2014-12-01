@@ -4,7 +4,4 @@ Sedhtuos
 0
 15
 2
-archer
-tribe
-tribe
-archer
+Knight

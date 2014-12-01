@@ -4,7 +4,4 @@ Ojraodis
 0
 23
 2
-tribe
-tribe
-warrior
-knight
+Knight

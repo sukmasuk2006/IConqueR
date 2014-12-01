@@ -4,7 +4,4 @@ Orogenojob
 0
 23
 2
-tribe
-knight
-tribe
-archer
+Knight

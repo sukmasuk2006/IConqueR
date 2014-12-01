@@ -12,7 +12,7 @@ public class BattleTutorialSetter : MonoBehaviour {
 	
 	void OnMouseDown(){
 	//	Instantiate(
-		if ( activeAt < GameData.profile.TutorialState ){
+		if ( GameData.profile.TutorialState < 3){
 			tutorialObject.DestoryPrefab ();
 
 		}

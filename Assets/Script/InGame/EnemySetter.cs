@@ -22,16 +22,16 @@ public class EnemySetter : MonoBehaviour {
 	Sprite SwitchSprite(string s){
 		Sprite sprite = null;
 		switch (s) {
-		case "knight" : sprite = GameData.unitIconList[0];break;
-		case "warrior" : sprite = GameData.unitIconList[1];break;
-		case "archer" : sprite = GameData.unitIconList[2];break;
-		case "tribe" : sprite = GameData.unitIconList[3];break;
-		case "thief" : sprite = GameData.unitIconList[4];break;
-		case "monk" : sprite = GameData.unitIconList[5];break;
-		case "assasin" : sprite = GameData.unitIconList[6];break;
-		case "hunter" : sprite = GameData.unitIconList[7];break;
-		case "ninja" : sprite = GameData.unitIconList[8];break;
-		case "ksatria" : sprite = GameData.unitIconList[9];break;
+		case "Knight" : sprite = GameData.unitIconList[0];break;
+		case "Warrior" : sprite = GameData.unitIconList[1];break;
+		case "Archer" : sprite = GameData.unitIconList[2];break;
+		case "Tribe" : sprite = GameData.unitIconList[3];break;
+		case "Thief" : sprite = GameData.unitIconList[4];break;
+		case "Monk" : sprite = GameData.unitIconList[5];break;
+		case "Assasin" : sprite = GameData.unitIconList[6];break;
+		case "Hunter" : sprite = GameData.unitIconList[7];break;
+		case "Ninja" : sprite = GameData.unitIconList[8];break;
+		case "Ksatria" : sprite = GameData.unitIconList[9];break;
 
 		}
 		return sprite;

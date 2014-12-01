@@ -4,7 +4,4 @@ Iagnuslin
 0
 19
 2
-archer
-tribe
-warrior
-knight
+Knight

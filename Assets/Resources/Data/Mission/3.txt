@@ -4,5 +4,5 @@ Farfield
 0
 7
 1
-warrior
-warrior
+Knight
+Warrior

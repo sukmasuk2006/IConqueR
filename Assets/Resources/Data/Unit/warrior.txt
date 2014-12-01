@@ -7,4 +7,5 @@ Barda
 1
 0
 axe
+Warrior
 Berserker

@@ -1,7 +1,7 @@
 {
 "bones": [
 	{ "name": "root", "x": 2.45, "y": 94.4 },
-	{ "name": "effect", "parent": "root", "x": 272.55, "y": -53.67 },
+	{ "name": "effect", "parent": "root", "x": 396.65, "y": 70.41, "scaleX": 3.228, "scaleY": 3.228 },
 	{ "name": "paha kanan", "parent": "root", "length": 53.51, "x": -18.89, "y": -2.47, "rotation": -113.63 },
 	{ "name": "paha kiri", "parent": "root", "length": 50.16, "x": 17.5, "y": -5.51, "rotation": -57.99 },
 	{ "name": "punggung", "parent": "root", "length": 100, "x": 1.34, "y": 1.79, "rotation": 91.8 },
@@ -37,7 +37,73 @@
 	{ "name": "eff", "bone": "effect" }
 ],
 "skins": {
-	"warrior": {
+	"Berserker": {
+		"body": {
+			"bd": { "name": "body2", "x": 31.97, "y": 16.58, "rotation": -91.8, "width": 163, "height": 172 }
+		},
+		"eff": {
+			"1": { "x": 2.45, "y": 94.4, "width": 360, "height": 306 },
+			"2": { "x": 2.45, "y": 94.4, "width": 360, "height": 306 },
+			"3": { "x": 2.45, "y": 94.4, "width": 360, "height": 306 },
+			"4": { "x": 2.45, "y": 94.4, "width": 360, "height": 306 },
+			"5": { "x": 2.45, "y": 94.4, "width": 360, "height": 306 },
+			"6": { "x": 2.45, "y": 94.4, "width": 360, "height": 306 },
+			"7": { "x": 2.45, "y": 94.4, "width": 360, "height": 306 },
+			"8": { "x": 2.45, "y": 94.4, "width": 360, "height": 306 }
+		},
+		"head": {
+			"h": { "name": "head", "x": 62.31, "y": 9.35, "rotation": -90, "width": 166, "height": 172 }
+		},
+		"left_fist": {
+			"lf": { "name": "left_fist", "x": 21.26, "y": -3.25, "rotation": 85.49, "width": 49, "height": 51 }
+		},
+		"left_foot": {
+			"lr": { "name": "left_foot", "x": 8.5, "y": 0.3, "rotation": 4.42, "width": 49, "height": 26 }
+		},
+		"left_hand_lowef": {
+			"lhl": { "name": "left_hand_lowef", "x": 19.03, "y": -2.5, "rotation": 79.2, "width": 42, "height": 64 }
+		},
+		"left_hand_upper": {
+			"lhu": { "name": "left_hand_upper2", "x": 42.12, "rotation": 39.09, "width": 89, "height": 90 }
+		},
+		"left_leg_lower": {
+			"lll": { "name": "left_leg_lower", "x": 9.02, "y": 1.51, "rotation": 92.62, "width": 35, "height": 63 }
+		},
+		"left_leg_upper": {
+			"llu": { "name": "left_leg_upper", "x": 27.07, "y": -3.14, "rotation": 81.05, "width": 40, "height": 62 }
+		},
+		"right_fist": {
+			"r": { "name": "right_fist", "x": 22.74, "y": 5.92, "rotation": 94.31, "width": 49, "height": 51 }
+		},
+		"right_foot": {
+			"rf": { "name": "right_foot", "x": 11.31, "y": 1.11, "scaleX": -1.002, "rotation": 0.42, "width": 48, "height": 25 }
+		},
+		"right_hand_lower": {
+			"rhl": { "name": "right_hand_lower", "x": 19.2, "y": -2.15, "rotation": 109.03, "width": 42, "height": 63 }
+		},
+		"right_hand_upper": {
+			"rhu": { "name": "right_hand_upper2", "x": 44.82, "y": -6.17, "rotation": 140.25, "width": 89, "height": 90 }
+		},
+		"right_leg_lower": {
+			"rll": { "name": "right_leg_lower", "x": 7.02, "y": 5.16, "scaleX": -1, "rotation": 93.96, "width": 35, "height": 63 }
+		},
+		"right_leg_upper": {
+			"rlu": { "name": "right_leg_upper", "x": 25.41, "y": 1.62, "rotation": 99.46, "width": 39, "height": 62 }
+		},
+		"weapon_warrior": {
+			"w": {
+				"name": "weapon_warrior2",
+				"x": 139.35,
+				"y": -31.21,
+				"scaleX": 1.224,
+				"scaleY": 1.224,
+				"rotation": -71.06,
+				"width": 153,
+				"height": 282
+			}
+		}
+	},
+	"Warrior": {
 		"body": {
 			"bd": { "name": "body", "x": 44.85, "y": 16.17, "rotation": -91.8, "width": 141, "height": 155 }
 		},

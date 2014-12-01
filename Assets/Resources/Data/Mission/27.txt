@@ -4,8 +4,4 @@ Frostmourne
 0
 23
 3
-warrior
-knight
-tribe
-archer
-thief
+Knight

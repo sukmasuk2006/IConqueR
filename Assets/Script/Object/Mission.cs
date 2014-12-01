@@ -65,7 +65,8 @@ public class Mission
 	}
 
 	private int GetUnitId(string job){
-		int ret = GameData.profile.unitList.Where (x => x.Job == job).Select (x => x.HeroId).ToArray()[0];
+		int ret = GameData.profile.unitList.Where (x => x.JobList[x.CurrentJob].Contains(job)).Select (x => x.HeroId).ToArray()[0];
+		Debug.Log(" mis " + id + " loaded " );
 		return ret;
 	}
 

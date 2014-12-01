@@ -4,6 +4,4 @@ Sentinel
 1
 15
 1
-knight
-warrior
-archer
+Knight

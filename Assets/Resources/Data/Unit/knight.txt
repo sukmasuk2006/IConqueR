@@ -7,4 +7,5 @@ Sandin
 1
 2
 sword
+Knight
 Lord Knight

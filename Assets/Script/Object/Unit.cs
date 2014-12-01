@@ -45,14 +45,13 @@ public class Unit : UnitStatus {
 		this.name = linesFromFile [0];
 		this.level = 1;
 		this.goldNeeded = int.Parse( linesFromFile [1]);
-		weapon = new Weapon (heroId,job ,linesFromFile[8].Trim(),float.Parse(linesFromFile[5]),float.Parse(linesFromFile[6]));
+		this.jobList.Add(linesFromFile[9].Trim());
+		this.jobList.Add(linesFromFile[10].Trim());
+		weapon = new Weapon (heroId,jobList[currentJob] ,linesFromFile[8].Trim(),float.Parse(linesFromFile[5]),float.Parse(linesFromFile[6]));
 		this.statsType = int.Parse(linesFromFile[7]);
 		this.str = int.Parse (linesFromFile [2]) + weapon.WeaponStats.Str;
 		this.agi = int.Parse( linesFromFile [3]) + weapon.WeaponStats.Agi;
 		this.vit = int.Parse( linesFromFile [4]) + weapon.WeaponStats.Vit;
-		this.jobList.Add(job);
-		this.jobList.Add(linesFromFile[9].Trim());
-
 		SetStats ();
 	
 	}
@@ -208,7 +207,7 @@ public class Unit : UnitStatus {
 					returnDamage = 0;
 			// jika sukses dan tidak crit
 				}
-//		Debug.Log(statsType + " digepuk sama " + dealerType + " damage " + multiplier + " hasl " + returnDamage); 
+		Debug.Log(statsType + " digepuk sama " + dealerType + " damage " + multiplier + " hasl " + returnDamage); 
 		return returnDamage;
 	}
 

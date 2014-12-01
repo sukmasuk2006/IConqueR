@@ -4,5 +4,5 @@ Staport
 0
 7
 1
-knight
-warrior
+Knight
+Warrior

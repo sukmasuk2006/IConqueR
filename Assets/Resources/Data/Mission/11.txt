@@ -4,6 +4,4 @@ Savanna
 0
 15
 2
-warrior
-warrior
-archer
+Knight

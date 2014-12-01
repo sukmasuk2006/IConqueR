@@ -7,4 +7,5 @@ Naruto
 1
 2
 knife
+Ninja
 Phantom Shadow

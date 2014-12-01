@@ -24,6 +24,7 @@ public class Skill
 	private float range;
 	private int price;
 	private string desc;
+	private int base_Price = 1000;
 
 	public Skill (int id, string nm)
 	{
@@ -40,7 +41,8 @@ public class Skill
 	private void InitializeSkill(){
 		linesFromFile = null;
 		TextAsset txt = (TextAsset)Resources.Load ("Data/Skill/"+ name.Trim(), typeof(TextAsset));
-		price = 1000 * (id+1);
+		base_Price = 1000 * (id+1); 
+		SetPrice();
 		string content = txt.text;
 		linesFromFile = content.Split ("\n" [0]);
 		heroesRequired = int.Parse (linesFromFile [0]);
@@ -54,12 +56,19 @@ public class Skill
 	public void Save(){
 		PlayerPrefs.SetInt ("Skill"+id+"isUnlocked" + GameData.tesId, isUnlocked ? 1:0);	
 		PlayerPrefs.SetInt ("Skill"+id+"isSelected" + GameData.tesId, isSelected ? 1 : 0);	
+		PlayerPrefs.SetInt ("Skill"+id+"level" + GameData.tesId, level);
 	}
 	
 	public void Load(){
 		isUnlocked  = (PlayerPrefs.GetInt ("Skill"+id+"isUnlocked" + GameData.tesId)!=0);	
 		isSelected = (PlayerPrefs.GetInt ("Skill"+id+"isSelected" + GameData.tesId)!=0);	
-//		Debug.Log ("slot u " + isUnlocked + " s " + isSelected);
+			level = PlayerPrefs.GetInt("Skill"+id+"level"+ GameData.tesId);
+		SetPrice();
+		//		Debug.Log ("slot u " + isUnlocked + " s " + isSelected);
+	}
+
+	private void SetPrice(){
+		price = base_Price * (level+1);
 	}
 
 	public void DoPassiveEffect(Unit u){
@@ -105,18 +114,19 @@ public class Skill
 		//foreach ( Uni
 		float damageRet = 0f;
 		switch (tipe) {
-			case 1 :  damageRet = ((activeEffect.Amount * level / 100)* heroDamage) + heroDamage;   // knight
+			case 1 :  damageRet = ((activeEffect.Amount * level / 200)* heroDamage) + heroDamage;   // atk
 				break; 
-			case 2 : damageRet = -((activeEffect.Amount * level / 100)* heroDamage) + heroDamage; // warrior
+			case 2 : damageRet = -((activeEffect.Amount * level / 200)* heroDamage) + heroDamage; // heal
 				break;
 		}
+//		Debug.Log("special damage " + damageRet);
 		return damageRet;
-		Debug.Log("special damage");
+
 	}
 
 	public bool IsInRange(float x1,float x2){
 		bool ret = false;
-		Debug.Log("special range " + Mathf.Abs(x1-x2));
+//		Debug.Log("special range " + Mathf.Abs(x1-x2));
 
 		if ( Mathf.Abs(x1-x2) <= range )
 			return true;
@@ -210,6 +220,7 @@ public class Skill
 		}
 		set {
 			level = value;
+			SetPrice();
 		}
 	}
 }

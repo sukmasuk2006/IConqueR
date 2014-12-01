@@ -4,7 +4,4 @@ Duhu
 0
 23
 2
-knight
-tribe
-archer
-thief
+Knight

@@ -7,4 +7,5 @@ Maorika
 5
 0
 boomerang
+Tribe
 Geomancer

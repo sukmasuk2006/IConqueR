@@ -7,4 +7,5 @@ Lina
 5
 1
 bow
+Archer
 Ranger

@@ -4,6 +4,4 @@ bown
 0
 7
 1
-warrior
-knight
-warrior
+Knight

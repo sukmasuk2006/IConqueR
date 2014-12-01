@@ -3,114 +3,163 @@ skeleton.png
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
+1
+  rotate: false
+  xy: 557, 211
+  size: 226, 62
+  orig: 579, 181
+  offset: 20, 37
+  index: -1
+2
+  rotate: false
+  xy: 583, 375
+  size: 419, 122
+  orig: 579, 181
+  offset: 0, 24
+  index: -1
+3
+  rotate: false
+  xy: 2, 226
+  size: 553, 125
+  orig: 579, 181
+  offset: 25, 26
+  index: -1
+4
+  rotate: false
+  xy: 2, 353
+  size: 579, 144
+  orig: 579, 181
+  offset: 0, 23
+  index: -1
+5
+  rotate: false
+  xy: 2, 2
+  size: 432, 98
+  orig: 579, 181
+  offset: 146, 30
+  index: -1
+6
+  rotate: false
+  xy: 2, 102
+  size: 491, 122
+  orig: 579, 181
+  offset: 0, 30
+  index: -1
+7
+  rotate: false
+  xy: 583, 275
+  size: 348, 98
+  orig: 579, 181
+  offset: 20, 27
+  index: -1
+8
+  rotate: true
+  xy: 933, 268
+  size: 105, 56
+  orig: 579, 181
+  offset: 215, 33
+  index: -1
 body
   rotate: false
-  xy: 398, 140
+  xy: 682, 95
   size: 86, 114
   orig: 86, 114
   offset: 0, 0
   index: -1
 head
   rotate: false
-  xy: 2, 72
+  xy: 495, 27
   size: 185, 182
   orig: 185, 183
   offset: 0, 0
   index: -1
 left_fist
   rotate: false
-  xy: 239, 101
+  xy: 436, 19
   size: 35, 33
   orig: 35, 33
   offset: 0, 0
   index: -1
 right_fist
   rotate: false
-  xy: 239, 101
+  xy: 436, 19
   size: 35, 33
   orig: 35, 33
   offset: 0, 0
   index: -1
 left_foot
   rotate: false
-  xy: 51, 2
+  xy: 682, 28
   size: 30, 16
   orig: 30, 16
   offset: 0, 0
   index: -1
 left_hand_lowef
   rotate: false
-  xy: 189, 88
+  xy: 436, 54
   size: 48, 46
   orig: 48, 46
   offset: 0, 0
   index: -1
 right_hand_lower
   rotate: false
-  xy: 189, 88
+  xy: 436, 54
   size: 48, 46
   orig: 48, 46
   offset: 0, 0
   index: -1
 left_hand_upper
-  rotate: true
-  xy: 2, 6
+  rotate: false
+  xy: 682, 46
   size: 30, 47
   orig: 30, 47
   offset: 0, 0
   index: -1
 right_hand_upper
-  rotate: true
-  xy: 2, 6
+  rotate: false
+  xy: 682, 46
   size: 30, 47
   orig: 30, 47
   offset: 0, 0
   index: -1
 left_leg_lower
   rotate: false
-  xy: 486, 182
+  xy: 1004, 465
   size: 16, 32
   orig: 16, 32
   offset: 0, 0
   index: -1
 left_leg_upper
   rotate: true
-  xy: 148, 45
+  xy: 785, 214
   size: 25, 38
   orig: 25, 38
   offset: 0, 0
   index: -1
 right_foot
   rotate: false
-  xy: 83, 2
+  xy: 714, 77
   size: 29, 16
   orig: 29, 16
   offset: 0, 0
   index: -1
 right_leg_lower
-  rotate: true
-  xy: 51, 20
+  rotate: false
+  xy: 557, 279
   size: 16, 32
   orig: 16, 32
   offset: 0, 0
   index: -1
 right_leg_upper
   rotate: false
-  xy: 486, 216
+  xy: 557, 313
   size: 24, 38
   orig: 24, 38
   offset: 0, 0
   index: -1
-weapon
-  rotate: false
-  xy: 189, 136
-  size: 207, 118
-  orig: 207, 118
-  offset: 0, 0
-  index: -1
 weapon_ksatria
   rotate: false
-  xy: 2, 38
+  xy: 785, 241
   size: 144, 32
   orig: 145, 32
   offset: 0, 0

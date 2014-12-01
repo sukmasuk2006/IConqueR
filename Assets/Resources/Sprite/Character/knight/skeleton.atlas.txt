@@ -4,129 +4,164 @@ format: RGBA8888
 filter: Linear,Linear
 repeat: none
 body
-  rotate: true
-  xy: 771, 93
+  rotate: false
+  xy: 888, 21
   size: 84, 99
   orig: 84, 99
   offset: 0, 0
   index: -1
+body2
+  rotate: true
+  xy: 888, 122
+  size: 83, 120
+  orig: 83, 120
+  offset: 0, 0
+  index: -1
 head
-  rotate: false
-  xy: 787, 601
+  rotate: true
+  xy: 787, 374
   size: 171, 197
   orig: 171, 197
   offset: 0, 0
   index: -1
+head2
+  rotate: true
+  xy: 771, 833
+  size: 187, 198
+  orig: 187, 198
+  offset: 0, 0
+  index: -1
 left_foot
   rotate: true
-  xy: 99, 10
+  xy: 299, 7
   size: 29, 15
   orig: 29, 15
   offset: 0, 0
   index: -1
 left_hand_finger
   rotate: false
-  xy: 992, 988
+  xy: 79, 2
   size: 30, 31
   orig: 30, 31
   offset: 0, 0
   index: -1
 left_hand_lowef
-  rotate: false
-  xy: 99, 41
+  rotate: true
+  xy: 111, 10
   size: 23, 39
   orig: 23, 39
   offset: 0, 0
   index: -1
 left_hand_upper
   rotate: false
-  xy: 953, 976
+  xy: 271, 38
   size: 37, 43
   orig: 37, 43
   offset: 0, 0
   index: -1
 left_leg_lower
-  rotate: false
-  xy: 832, 563
+  rotate: true
+  xy: 183, 9
   size: 24, 36
   orig: 24, 36
   offset: 0, 0
   index: -1
 left_leg_upper
-  rotate: false
-  xy: 953, 937
+  rotate: true
+  xy: 221, 10
   size: 23, 37
   orig: 23, 37
   offset: 0, 0
   index: -1
 right_fingers
   rotate: false
-  xy: 899, 146
+  xy: 152, 2
   size: 29, 31
   orig: 29, 31
   offset: 0, 0
   index: -1
+right_fingers2
+  rotate: true
+  xy: 2, 3
+  size: 30, 35
+  orig: 30, 35
+  offset: 0, 0
+  index: -1
 right_hand_lower
-  rotate: false
-  xy: 872, 139
+  rotate: true
+  xy: 39, 8
   size: 25, 38
   orig: 25, 38
   offset: 0, 0
   index: -1
 right_hand_upper
-  rotate: true
-  xy: 787, 559
+  rotate: false
+  xy: 229, 38
   size: 40, 43
   orig: 40, 43
   offset: 0, 0
   index: -1
 right_leg_upper
-  rotate: false
-  xy: 872, 100
+  rotate: true
+  xy: 260, 13
   size: 23, 37
   orig: 23, 37
   offset: 0, 0
   index: -1
 shield
   rotate: true
-  xy: 2, 2
+  xy: 316, 3
   size: 78, 95
   orig: 78, 95
   offset: 0, 0
   index: -1
-skill1
+shield2
   rotate: false
-  xy: 771, 179
+  xy: 787, 60
+  size: 99, 145
+  orig: 99, 145
+  offset: 0, 0
+  index: -1
+skill1
+  rotate: true
+  xy: 787, 207
   size: 165, 169
   orig: 873, 512
   offset: 1, 237
   index: -1
 skill2
-  rotate: false
-  xy: 787, 800
+  rotate: true
+  xy: 771, 667
   size: 164, 219
   orig: 873, 512
   offset: 112, 202
   index: -1
 skill3
   rotate: false
-  xy: 2, 82
+  xy: 2, 545
   size: 767, 475
   orig: 873, 512
   offset: 35, 37
   index: -1
 skill4
   rotate: false
-  xy: 2, 559
+  xy: 2, 83
   size: 783, 460
   orig: 873, 512
   offset: 86, 36
   index: -1
 weapon
-  rotate: true
-  xy: 771, 350
+  rotate: false
+  xy: 771, 547
   size: 207, 118
   orig: 207, 118
+  offset: 0, 0
+  index: -1
+weapon2
+  rotate: false
+  xy: 2, 35
+  size: 225, 46
+  orig: 225, 46
   offset: 0, 0
   index: -1
 

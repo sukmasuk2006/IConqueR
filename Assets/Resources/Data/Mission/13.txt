@@ -4,7 +4,4 @@ sedhtron
 0
 15
 2
-tribe
-warrior
-archer
-knight
+Knight

@@ -4,7 +4,4 @@ Kiserg
 0
 23
 3
-tribe
-tribe
-warrior
-knight
+Knight

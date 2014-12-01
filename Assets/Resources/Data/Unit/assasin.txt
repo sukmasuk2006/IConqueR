@@ -7,4 +7,5 @@ Arbi
 1
 1
 knife
-Phantom Assasin
+Assasin
+Phantom
