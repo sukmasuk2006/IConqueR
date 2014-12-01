@@ -75,7 +75,7 @@ public class HeroController : MonoBehaviour {
 		animator.skeletonDataAsset = GameData.skeleteonDataAssetList[stats.HeroId];
 		animator.calculateNormals = true;
 		animator.Awake ();
-		animator.skeleton.SetSkin(stats.Job);
+		animator.skeleton.SetSkin(stats.JobList[stats.CurrentJob]);
 		animator.state.AddAnimation (0, "run", true,0);
 		//	Debug.Log(" jum material " + animator.skeletonDataAsset.atlasAsset.materials.Length);
 		//animator.state.AddAnimation (1, "attack", false,0);

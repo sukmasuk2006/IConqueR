@@ -46,7 +46,64 @@
 	{ "name": "sk", "bone": "skill" }
 ],
 "skins": {
-	"hunter": {
+	"Gunner": {
+		"body": {
+			"bdf": { "name": "body2", "x": 19.35, "y": 4.92, "rotation": -90.45, "width": 79, "height": 95 }
+		},
+		"head": {
+			"h": { "name": "head2", "x": 84.23, "y": 32.53, "rotation": -89.54, "width": 235, "height": 196 }
+		},
+		"left_foot": {
+			"lf": { "name": "left_foot", "x": 5.42, "y": 1.73, "rotation": 10.67, "width": 30, "height": 15 }
+		},
+		"left_hand_finger": {
+			"lhf": { "name": "left_hand_finger", "x": 17.76, "y": -3.79, "rotation": 123.84, "width": 34, "height": 36 }
+		},
+		"left_hand_lowef": {
+			"lhl": { "name": "left_hand_lowef", "x": 14.72, "y": -2.27, "rotation": 78.41, "width": 25, "height": 49 }
+		},
+		"left_hand_upper": {
+			"lhu": { "name": "left_hand_upper", "x": 17.24, "y": -5.87, "rotation": 30.73, "width": 42, "height": 42 }
+		},
+		"left_leg_lower": {
+			"lll": { "name": "left_leg_lower", "x": 15.65, "y": -1.77, "rotation": 91.28, "width": 22, "height": 35 }
+		},
+		"left_leg_upper": {
+			"llu": { "name": "left_leg_upper", "x": 24.56, "y": -2.72, "scaleX": -0.899, "rotation": -68.89, "width": 25, "height": 39 }
+		},
+		"right hand": {
+			"w": { "name": "weapon_hunter2", "x": 53.42, "y": 45.9, "rotation": 48.22, "width": 242, "height": 99 }
+		},
+		"right_fingers": {
+			"rf": { "name": "right_fingers", "x": 15.59, "y": -1.59, "rotation": 48.97, "width": 36, "height": 36 }
+		},
+		"right_foot": {
+			"rf": { "name": "right_foot", "x": 10.04, "y": 0.14, "rotation": 8.1, "width": 30, "height": 15 }
+		},
+		"right_hand_lower": {
+			"rhl": { "name": "right_hand_lower", "x": 19.81, "y": 0.55, "rotation": 95.69, "width": 26, "height": 50 }
+		},
+		"right_hand_upper": {
+			"rhu": { "name": "right_hand_upper", "x": 22.9, "y": 2.57, "rotation": 146.8, "width": 42, "height": 42 }
+		},
+		"right_leg_lower": {
+			"rll": { "name": "right_leg_lower", "x": 11.7, "y": 3.23, "scaleX": -1, "rotation": 95.15, "width": 22, "height": 34 }
+		},
+		"right_leg_upper": {
+			"rlu": { "name": "right_leg_upper", "x": 21.04, "y": 0.81, "rotation": -70.13, "width": 25, "height": 39 }
+		},
+		"sk": {
+			"1": { "x": -0.36, "y": 49.39, "rotation": 0.45, "width": 186, "height": 121 },
+			"12": { "name": "2", "x": -0.36, "y": 49.39, "rotation": 0.45, "width": 186, "height": 121 },
+			"122": { "name": "3", "x": -0.36, "y": 49.39, "rotation": 0.45, "width": 186, "height": 121 },
+			"1222": { "name": "4", "x": -0.36, "y": 49.39, "rotation": 0.45, "width": 186, "height": 121 },
+			"12222": { "name": "5", "x": -0.36, "y": 49.39, "rotation": 0.45, "width": 186, "height": 121 },
+			"122222": { "name": "6", "x": -0.36, "y": 49.39, "rotation": 0.45, "width": 186, "height": 121 },
+			"1222222": { "name": "7", "x": -0.36, "y": 49.39, "rotation": 0.45, "width": 186, "height": 121 },
+			"12222222": { "name": "8", "x": -0.36, "y": 49.39, "rotation": 0.45, "width": 186, "height": 121 }
+		}
+	},
+	"Hunter": {
 		"body": {
 			"bdf": { "name": "body", "x": 19.35, "y": 4.92, "rotation": -90.45, "width": 79, "height": 87 }
 		},

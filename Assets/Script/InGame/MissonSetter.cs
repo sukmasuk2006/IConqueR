@@ -15,11 +15,12 @@ public class MissonSetter : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		render = gameObject.GetComponent<SpriteRenderer> ();
-		name.text = GameData.missionList [curr].Name;
 		if (curr > GameData.profile.NextMission) {
 			this.gameObject.SetActive(false);
 		}
+		render = gameObject.GetComponent<SpriteRenderer> ();
+//		Debug.Log("CURR " + curr);
+		name.text = GameData.missionList [curr].Name;
 		if (curr == GameData.profile.NextMission) {
 			if (missionType == "Camp" )
 				this.render.sprite = (Sprite)Resources.Load ("Sprite/Button/icon_attack_yellow", typeof(Sprite));

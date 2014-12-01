@@ -40,7 +40,7 @@
 	{ "name": "sk", "bone": "skil" }
 ],
 "skins": {
-	"ninja": {
+	"Ninja": {
 		"body": {
 			"bd": { "name": "body", "x": 21.96, "y": 6.33, "rotation": -90.84, "width": 97, "height": 95 }
 		},
@@ -82,6 +82,79 @@
 		},
 		"right hand": {
 			"rh": { "name": "right_fingers", "x": 19.33, "y": 6.77, "rotation": 65.41, "width": 36, "height": 37 }
+		},
+		"right hand2": {
+			"rh2": { "name": "weapon_ninja_shuriken", "x": 33.55, "y": 6.56, "rotation": -171.14, "width": 70, "height": 70 }
+		},
+		"right_foot": {
+			"right_fot": { "name": "right_foot", "x": 3.22, "y": 3.52, "scaleX": -1, "rotation": -5.02, "width": 31, "height": 16 }
+		},
+		"right_hand_lower": {
+			"rhl": { "name": "right_hand_lower", "x": 19.81, "y": 0.55, "rotation": 93.17, "width": 26, "height": 47 }
+		},
+		"right_hand_upper": {
+			"rhu": { "name": "right_hand_upper", "x": 26.65, "y": 5.35, "rotation": 129.24, "width": 44, "height": 42 }
+		},
+		"right_leg_lower": {
+			"rll": { "name": "right_leg_lower", "x": 9, "y": -1.25, "scaleX": -1, "rotation": 91.4, "width": 23, "height": 36 }
+		},
+		"right_leg_upper": {
+			"rlu": { "name": "right_leg_upper", "x": 15.85, "y": -2.34, "rotation": 104.65, "width": 26, "height": 40 }
+		},
+		"sk": {
+			"1": { "x": 51.59, "y": 2.02, "rotation": -87.74, "width": 650, "height": 526 },
+			"12": { "name": "2", "x": 51.59, "y": 2.02, "rotation": -87.74, "width": 650, "height": 526 },
+			"122": { "name": "3", "x": 51.59, "y": 2.02, "rotation": -87.74, "width": 650, "height": 526 },
+			"1222": { "name": "4", "x": 51.59, "y": 2.02, "rotation": -87.74, "width": 650, "height": 526 },
+			"12222": { "name": "5", "x": 51.59, "y": 2.02, "rotation": -87.74, "width": 650, "height": 526 },
+			"122222": { "name": "6", "x": 51.59, "y": 2.02, "rotation": -87.74, "width": 650, "height": 526 },
+			"1222222": { "name": "7", "x": 51.59, "y": 2.02, "rotation": -87.74, "width": 650, "height": 526 },
+			"12222222": { "name": "8", "x": 51.59, "y": 2.02, "rotation": -87.74, "width": 650, "height": 526 },
+			"122222222": { "name": "9", "x": 51.59, "y": 2.02, "rotation": -87.74, "width": 650, "height": 526 }
+		}
+	},
+	"Shinobi": {
+		"body": {
+			"bd": { "name": "body2", "x": 11.51, "y": 2.14, "rotation": -90.84, "width": 98, "height": 96 }
+		},
+		"head": {
+			"h": { "name": "head2", "x": 81.7, "y": 8.67, "rotation": -89.54, "width": 236, "height": 208 }
+		},
+		"head_syal": {
+			"hs": { "name": "head_syal2", "x": 37.78, "y": -1.24, "rotation": 160.59, "width": 106, "height": 150 }
+		},
+		"left hand": {
+			"lh": {
+				"name": "weapon_ninja_kunai",
+				"x": 50.39,
+				"y": -35.95,
+				"scaleX": 0.5,
+				"scaleY": 0.5,
+				"rotation": -45.49,
+				"width": 164,
+				"height": 80
+			}
+		},
+		"left_foot": {
+			"lf": { "name": "left_foot", "x": 5.42, "y": 1.73, "rotation": 10.67, "width": 31, "height": 16 }
+		},
+		"left_hand_finger": {
+			"lhf": { "name": "left_fist", "x": 17.76, "y": -3.79, "rotation": 100.88, "width": 37, "height": 39 }
+		},
+		"left_hand_lowef": {
+			"lhl": { "name": "left_hand_lowef", "x": 20.68, "y": -1.23, "rotation": 93.59, "width": 26, "height": 47 }
+		},
+		"left_hand_upper": {
+			"lhu": { "name": "left_hand_upper", "x": 21.6, "y": -3.71, "rotation": 63.37, "width": 44, "height": 43 }
+		},
+		"left_leg_lower": {
+			"lll": { "name": "left_leg_lower", "x": 12.75, "y": -1.83, "rotation": 91.28, "width": 23, "height": 35 }
+		},
+		"left_leg_upper": {
+			"llu": { "name": "left_leg_upper", "x": 18.79, "y": -7.34, "rotation": 99.89, "width": 25, "height": 40 }
+		},
+		"right hand": {
+			"rh": { "name": "right_fist", "x": 19.33, "y": 6.77, "rotation": 65.41, "width": 37, "height": 38 }
 		},
 		"right hand2": {
 			"rh2": { "name": "weapon_ninja_shuriken", "x": 33.55, "y": 6.56, "rotation": -171.14, "width": 70, "height": 70 }

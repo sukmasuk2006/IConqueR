@@ -155,7 +155,16 @@
 			"1222222": { "name": "7", "x": 50.58, "y": 10.35, "rotation": -78.43, "width": 595, "height": 253 }
 		},
 		"weapon_assassin": {
-			"wa": { "name": "weapon_assassin", "x": -3.14, "y": -64.71, "scaleX": -1, "rotation": 76.39, "width": 193, "height": 49 }
+			"wa": {
+				"name": "weapon_assassin2",
+				"x": -3.14,
+				"y": -64.71,
+				"scaleX": -0.954,
+				"scaleY": 0.914,
+				"rotation": 76.39,
+				"width": 264,
+				"height": 73
+			}
 		}
 	}
 },

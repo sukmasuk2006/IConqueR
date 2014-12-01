@@ -108,7 +108,7 @@
 			"pedangk": { "name": "weapon", "x": 100.85, "y": 0.37, "rotation": -22.76, "width": 207, "height": 118 }
 		}
 	},
-	"Rune Knight": {
+	"Lord Knight": {
 		"1": {
 			"1": { "name": "skill1", "x": 39.46, "y": 100.06, "rotation": -21.53, "width": 873, "height": 512 },
 			"2": { "name": "skill2", "x": 39.46, "y": 100.06, "rotation": -21.53, "width": 873, "height": 512 },

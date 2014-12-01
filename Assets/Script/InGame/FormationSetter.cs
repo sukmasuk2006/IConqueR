@@ -17,13 +17,15 @@ public class FormationSetter : MonoBehaviour {
 	private Vector3 tempPosition;
 	// Use this for initialization
 	void Start () {
-//		Debug.Log ("at slot  " + slot + " job " + GameData.profile.formationList [slot].Unit.HeroId);
-
-		if (GameData.profile.formationList [slot].IsUnlocked) {
+		FormationUnit u = GameData.profile.formationList [slot];
+		Debug.Log ("at slot  " + slot + " job " + GameData.profile.formationList [slot].UnitHeroId);
+		Debug.Log (" curr " + u.Unit.JobList[u.Unit.CurrentJob]);
+		if (u.IsUnlocked) {
 			heroLock.SetActive (false);
 		}
-		if ( GameData.profile.formationList[slot].UnitHeroId != 99 ) // kalau form slot idnya gk 99
-			ReloadSprite(GameData.unitSpriteList[GameData.profile.formationList[slot].Unit.HeroId]);
+		if ( u.UnitHeroId != 99 ) // kalau form slot idnya gk 99
+			ReloadSprite(u.Unit.JobList[u.Unit.CurrentJob]);
+
 		else{
 			ReloadSprite(null);
 		}
@@ -59,7 +61,7 @@ public class FormationSetter : MonoBehaviour {
 		GameData.readyToTween = true;
 	}
 
-	public void ReloadSprite(Sprite s){
-		spriteRend.sprite = s;
+	public void ReloadSprite(string path){
+		spriteRend.sprite = (Sprite)Resources.Load("Sprite/Character/Hero/"+path,typeof(Sprite));
 	}
 }

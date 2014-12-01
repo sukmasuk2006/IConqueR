@@ -78,6 +78,8 @@ public class Unit : UnitStatus {
 		this.nextExp = u.nextExp;
 		this.level = u.level;
 		this.statsType = u.statsType;
+		this.CurrentJob = u.CurrentJob;
+		this.JobList = u.JobList;
 		SetStats ();
 
 	}
@@ -111,11 +113,13 @@ public class Unit : UnitStatus {
 		PlayerPrefs.SetInt(job+"currentExp"+GameData.tesId,currentExp);
 //		Debug.Log ("save job " + job + " " + currentExp);
 		PlayerPrefs.SetInt(job+"isUnlocked"+GameData.tesId,(isUnlocked ? 1 : 0 ));
+		PlayerPrefs.SetInt(job+"currentJob"+GameData.tesId,CurrentJob);
 		PlayerPrefs.SetInt(job+"isActive"+GameData.tesId,(isActive ? 1 : 0 ));
 		weapon.Save();
 	}
 
 	public void Load(){
+	 	currentJob = PlayerPrefs.GetInt(job+"currentJob"+GameData.tesId);
 		LoadStatus (job); // load job status
 		currentExp = PlayerPrefs.GetInt(job+"currentExp"+GameData.tesId);
 	//	Debug.Log ("load job " + job + " " + currentExp);
@@ -332,6 +336,9 @@ public class Unit : UnitStatus {
 	public List<string> JobList {
 		get {
 			return jobList;
+		}
+		set {
+			jobList = value;
 		}
 	}
 }

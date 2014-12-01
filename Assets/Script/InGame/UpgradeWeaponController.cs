@@ -33,6 +33,7 @@ public class UpgradeWeaponController : MonoBehaviour {
 	private bool success;
 	public ParticleSystem particleSystem;
 	public TutorialPrefabList tutorialObject;
+	Unit u; 
 
 	void Start () {
 		success = false;
@@ -54,7 +55,9 @@ public class UpgradeWeaponController : MonoBehaviour {
 
 	public void InitializeWeapon(){
 		weaponData = GameData.profile.unitList [GameData.selectedToViewProfileId].Weapon;
-		spriteRenderer.sprite = GameData.weaponSpriteList [GameData.selectedToViewProfileId];
+		u = GameData.profile.unitList [GameData.selectedToViewProfileId];
+		spriteRenderer.sprite = (Sprite)Resources.Load("Sprite/Character/Hero/"+u.JobList[u.CurrentJob].Trim(),typeof(Sprite));
+			//GameData.weaponSpriteList [GameData.selectedToViewProfileId];
 		strText.text = weaponData.WeaponStats.Str + "";
 		agiText.text = weaponData.WeaponStats.Agi + "";
 		vitText.text = weaponData.WeaponStats.Vit +"";
@@ -76,7 +79,7 @@ public class UpgradeWeaponController : MonoBehaviour {
 		formationUnit.SetStats();
 		profileController.SetPictureAndStatsFromFormation ();
 
-		spriteRenderer.sprite = GameData.weaponSpriteList[weaponData.Id];
+		spriteRenderer.sprite = (Sprite)Resources.Load("Sprite/Character/Hero/"+u.JobList[u.CurrentJob].Trim(),typeof(Sprite));// GameData.weaponSpriteList[weaponData.Id];
 		damageText.text = weaponData.Damage.ToString();
 		fromText.text = weaponData.Rank.ToString();
 		toText.text = (weaponData.Rank + 1).ToString ();

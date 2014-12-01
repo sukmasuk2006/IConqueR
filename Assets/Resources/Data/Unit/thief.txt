@@ -8,4 +8,4 @@ Ponzi
 1
 knife
 Thief
-Master Thief
+Rogue

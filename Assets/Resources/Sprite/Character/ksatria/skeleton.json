@@ -37,7 +37,7 @@
 	{ "name": "skil", "bone": "skil" }
 ],
 "skins": {
-	"ksatria": {
+	"Ksatria": {
 		"body": {
 			"bd": { "name": "body", "x": 35.44, "y": 11.98, "rotation": -89.54, "width": 86, "height": 114 }
 		},
@@ -67,6 +67,63 @@
 		},
 		"right_hand_lower": {
 			"rhl": { "name": "right_hand_lower", "x": 19.65, "y": 3.69, "rotation": 50.17, "width": 48, "height": 46 }
+		},
+		"right_hand_upper": {
+			"rhu": { "name": "right_hand_upper", "x": 24.66, "y": -3.05, "rotation": 72.45, "width": 30, "height": 47 }
+		},
+		"right_leg_lower": {
+			"rll": { "name": "right_leg_lower", "x": 18.64, "y": 0.69, "rotation": 92.12, "width": 16, "height": 32 }
+		},
+		"right_leg_upper": {
+			"rlu": { "name": "right_leg_upper", "x": 17.44, "y": -1.78, "rotation": 121.67, "width": 24, "height": 38 }
+		},
+		"skil": {
+			"1": { "x": 189.69, "y": 28.45, "rotation": 1.8, "width": 579, "height": 181 },
+			"12": { "name": "2", "x": 169.21, "y": 31.35, "rotation": 1.8, "width": 579, "height": 181 },
+			"122": { "name": "3", "x": -9.97, "y": 7.13, "rotation": 1.8, "width": 579, "height": 181 },
+			"1222": { "name": "4", "x": 12.82, "y": 14.94, "rotation": 1.8, "width": 579, "height": 181 },
+			"12222": { "name": "5", "x": 64.16, "y": 17.43, "rotation": 1.8, "width": 579, "height": 181 },
+			"122222": { "name": "6", "x": 226.8, "y": 32.27, "rotation": 1.8, "width": 579, "height": 181 },
+			"1222222": { "name": "7", "x": 195.92, "y": 27.75, "rotation": 1.8, "width": 579, "height": 181 },
+			"12222222": { "name": "8", "x": 62.67, "y": 36.88, "rotation": 1.8, "width": 579, "height": 181 }
+		},
+		"telapak": {
+			"t": { "name": "left_fist", "x": 7.78, "y": 5.59, "rotation": 34.09, "width": 35, "height": 33 }
+		},
+		"weapon": {
+			"weapona": { "name": "weapon_ksatria", "x": 62.79, "y": 0.11, "rotation": 2.96, "width": 145, "height": 32 }
+		}
+	},
+	"Patih": {
+		"body": {
+			"bd": { "name": "body2", "x": 35.44, "y": 11.98, "rotation": -89.54, "width": 86, "height": 114 }
+		},
+		"head": {
+			"h": { "name": "head2", "x": 94.77, "y": 39.42, "rotation": -83.88, "width": 192, "height": 223 }
+		},
+		"left_foot": {
+			"lf": { "name": "left_foot", "x": 8.27, "y": 0.63, "rotation": -6.87, "width": 30, "height": 16 }
+		},
+		"left_hand_lowef": {
+			"lhl": { "name": "left_hand_lowef2", "x": 11.72, "y": -2.11, "rotation": 104.17, "width": 32, "height": 54 }
+		},
+		"left_hand_upper": {
+			"lhu": { "name": "left_hand_upper", "x": 17.89, "y": 0.91, "rotation": 62.37, "width": 30, "height": 47 }
+		},
+		"left_leg_lower": {
+			"lll": { "name": "left_leg_lower", "x": 16.62, "y": 2.64, "rotation": 101.97, "width": 16, "height": 32 }
+		},
+		"left_leg_upper": {
+			"llu": { "name": "left_leg_upper", "x": 18.77, "y": -1.88, "rotation": 70.43, "width": 25, "height": 38 }
+		},
+		"right_fingers": {
+			"rf": { "name": "right_fist", "x": 21.2, "y": 7.15, "rotation": 21.11, "width": 35, "height": 33 }
+		},
+		"right_foot": {
+			"rf": { "name": "right_foot", "x": 8.04, "y": -1.78, "scaleX": -1, "rotation": 15.95, "width": 29, "height": 16 }
+		},
+		"right_hand_lower": {
+			"rhl": { "name": "left_hand_lowef2", "x": 19.65, "y": 3.69, "rotation": 106.36, "width": 32, "height": 54 }
 		},
 		"right_hand_upper": {
 			"rhu": { "name": "right_hand_upper", "x": 24.66, "y": -3.05, "rotation": 72.45, "width": 30, "height": 47 }

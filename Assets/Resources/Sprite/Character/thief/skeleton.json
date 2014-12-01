@@ -20,25 +20,81 @@
 	{ "name": "bone", "parent": "left hand", "length": 52.16, "x": 20.39, "y": 1.08, "rotation": 97.62 }
 ],
 "slots": [
-	{ "name": "left_leg_lower", "bone": "left betis", "attachment": "lll" },
 	{ "name": "left_leg_upper", "bone": "left paha", "attachment": "llu" },
+	{ "name": "left_leg_lower", "bone": "left betis", "attachment": "lll" },
 	{ "name": "left_foot", "bone": "left kaki", "attachment": "lf" },
 	{ "name": "left_hand_finger", "bone": "left hand", "attachment": "lhf" },
 	{ "name": "left_hand_upper", "bone": "left shoulder", "attachment": "lhu" },
-	{ "name": "right_leg_lower", "bone": "right betis", "attachment": "rll" },
 	{ "name": "right_leg_upper", "bone": "right paha", "attachment": "rlu" },
+	{ "name": "right_leg_lower", "bone": "right betis", "attachment": "rll" },
 	{ "name": "weapon", "bone": "bone", "attachment": "weap" },
 	{ "name": "skil", "bone": "skill" },
-	{ "name": "body", "bone": "dada", "attachment": "bd" },
 	{ "name": "left_hand_lowef", "bone": "left elbow", "attachment": "lhl" },
+	{ "name": "body", "bone": "dada", "attachment": "bd" },
 	{ "name": "head", "bone": "head", "attachment": "h" },
 	{ "name": "right_fingers", "bone": "right hand", "attachment": "rf" },
 	{ "name": "right_foot", "bone": "right foot", "attachment": "rf" },
-	{ "name": "right_hand_lower", "bone": "right elbow", "attachment": "rhl" },
-	{ "name": "right_hand_upper", "bone": "right shoulder", "attachment": "rhu" }
+	{ "name": "right_hand_upper", "bone": "right shoulder", "attachment": "rhu" },
+	{ "name": "right_hand_lower", "bone": "right elbow", "attachment": "rhl" }
 ],
 "skins": {
-	"thief": {
+	"Rogue": {
+		"body": {
+			"bd": { "name": "body2", "x": 8.66, "y": 4.71, "rotation": -94.38, "width": 93, "height": 94 }
+		},
+		"head": {
+			"h": { "name": "head2", "x": 73.92, "y": 8.02, "rotation": -89.54, "width": 198, "height": 188 }
+		},
+		"left_foot": {
+			"lf": { "name": "right_foot2", "x": 5.42, "y": 1.73, "scaleX": -1, "rotation": 10.67, "width": 31, "height": 16 }
+		},
+		"left_hand_finger": {
+			"lhf": { "name": "left_hand_finger", "x": 17.76, "y": -3.79, "rotation": -36.23, "width": 36, "height": 34 }
+		},
+		"left_hand_lowef": {
+			"lhl": { "name": "right_hand_lower2", "x": 17.74, "y": -2.48, "scaleX": -1, "rotation": 87.8, "width": 27, "height": 46 }
+		},
+		"left_hand_upper": {
+			"lhu": { "name": "left_hand_upper", "x": 21.6, "y": -3.71, "rotation": 65.06, "width": 32, "height": 48 }
+		},
+		"left_leg_lower": {
+			"lll": { "name": "right_leg_lower2", "x": 12.75, "y": -1.83, "scaleX": -1, "rotation": 91.28, "width": 28, "height": 49 }
+		},
+		"left_leg_upper": {
+			"llu": { "name": "left_leg_upper", "x": 18.79, "y": -7.34, "rotation": 99.89, "width": 37, "height": 52 }
+		},
+		"right_fingers": {
+			"rf": { "name": "right_fist2", "x": 12.93, "y": -6.08, "rotation": 64.86, "width": 36, "height": 37 }
+		},
+		"right_foot": {
+			"rf": { "name": "right_foot2", "x": 7.59, "y": -4.18, "scaleX": -1, "rotation": 14.53, "width": 31, "height": 16 }
+		},
+		"right_hand_lower": {
+			"rhl": { "name": "right_hand_lower2", "x": 19.81, "y": 0.55, "rotation": 102.11, "width": 27, "height": 46 }
+		},
+		"right_hand_upper": {
+			"rhu": { "name": "right_hand_upper", "x": 25.78, "y": 6.28, "rotation": 129.24, "width": 41, "height": 42 }
+		},
+		"right_leg_lower": {
+			"rll": { "name": "right_leg_lower2", "x": 11.01, "y": -1.9, "scaleX": -1, "rotation": 99.15, "width": 28, "height": 49 }
+		},
+		"right_leg_upper": {
+			"rlu": { "name": "right_leg_upper", "x": 15.85, "y": -2.34, "rotation": 77.92, "width": 38, "height": 52 }
+		},
+		"skil": {
+			"skill": { "name": "1", "x": 51.57, "y": 2.44, "rotation": -87.29, "width": 571, "height": 253 },
+			"skill2": { "name": "2", "x": 51.57, "y": 2.44, "rotation": -87.29, "width": 571, "height": 253 },
+			"skill22": { "name": "3", "x": 51.57, "y": 2.44, "rotation": -87.29, "width": 571, "height": 253 },
+			"skill222": { "name": "4", "x": 51.57, "y": 2.44, "rotation": -87.29, "width": 571, "height": 253 },
+			"skill2222": { "name": "5", "x": 51.57, "y": 2.44, "rotation": -87.29, "width": 571, "height": 253 },
+			"skill22222": { "name": "6", "x": 51.57, "y": 2.44, "rotation": -87.29, "width": 571, "height": 253 },
+			"skill222222": { "name": "7", "x": 51.57, "y": 2.44, "rotation": -87.29, "width": 571, "height": 253 }
+		},
+		"weapon": {
+			"weap": { "name": "weapon", "x": 36.94, "y": -0.78, "rotation": -45.94, "width": 90, "height": 82 }
+		}
+	},
+	"Thief": {
 		"body": {
 			"bd": { "name": "body", "x": 21.96, "y": 6.33, "rotation": -94.38, "width": 92, "height": 92 }
 		},

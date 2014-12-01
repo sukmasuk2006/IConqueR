@@ -89,7 +89,7 @@ left_foot
   index: -1
 left_hand_finger
   rotate: false
-  xy: 883, 672
+  xy: 984, 985
   size: 36, 37
   orig: 36, 37
   offset: 0, 0
@@ -102,29 +102,29 @@ left_hand_lowef
   offset: 0, 0
   index: -1
 left_hand_upper
-  rotate: true
-  xy: 934, 854
+  rotate: false
+  xy: 137, 464
   size: 50, 43
   orig: 51, 43
   offset: 1, 0
   index: -1
 left_leg_lower
   rotate: false
-  xy: 984, 986
+  xy: 189, 471
   size: 23, 36
   orig: 23, 36
   offset: 0, 0
   index: -1
 left_leg_upper
   rotate: false
-  xy: 190, 467
+  xy: 812, 619
   size: 26, 40
   orig: 26, 40
   offset: 0, 0
   index: -1
 right_fingers
   rotate: false
-  xy: 812, 622
+  xy: 883, 672
   size: 36, 37
   orig: 36, 37
   offset: 0, 0
@@ -152,28 +152,28 @@ right_hand_lower2
   index: -1
 right_hand_upper
   rotate: true
-  xy: 979, 854
+  xy: 934, 854
   size: 50, 43
   orig: 51, 43
   offset: 0, 0
   index: -1
 right_hand_upper2
   rotate: false
-  xy: 137, 463
+  xy: 129, 133
   size: 51, 44
   orig: 51, 44
   offset: 0, 0
   index: -1
 right_leg_lower
   rotate: false
-  xy: 812, 585
+  xy: 934, 817
   size: 22, 35
   orig: 23, 35
   offset: 1, 0
   index: -1
 right_leg_upper
   rotate: false
-  xy: 934, 812
+  xy: 129, 91
   size: 25, 40
   orig: 25, 40
   offset: 0, 0
@@ -184,4 +184,11 @@ weapon_assassin
   size: 193, 49
   orig: 193, 49
   offset: 0, 0
+  index: -1
+weapon_assassin2
+  rotate: true
+  xy: 129, 179
+  size: 264, 72
+  orig: 264, 73
+  offset: 0, 1
   index: -1

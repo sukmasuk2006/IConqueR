@@ -27,8 +27,9 @@ public class SetHeroOnFormation : MonoBehaviour {
 		// SELECT UNIT
 		// ALGORITHM:
 		// jika unit ke slot tidak aktif, dan state select unit dan sudah terunlock 
-		if ( !GameData.profile.unitList[slot].IsActive && GameData.gameState == "SelectUnit" 
-		    && GameData.profile.unitList[slot].IsUnlocked) {
+		Unit u = GameData.profile.unitList[slot];
+		if ( !u.IsActive && GameData.gameState == "SelectUnit" 
+		    && u.IsUnlocked) {
 					
 					// cek apakah di formationSlot ke unitSlotYangDiSet ada hero yang aktif
 					int currentActiveUnitId = GameData.profile.formationList[GameData.unitSlotYangDiSet]
@@ -43,17 +44,18 @@ public class SetHeroOnFormation : MonoBehaviour {
 			}
 			GameData.profile.formationList [GameData.unitSlotYangDiSet].
 			SetUnit (slot,GameData.profile.unitList [slot]);  // isi slot dengan unit dan idnya
-			GameData.profile.unitList[slot].IsActive = true; // aktifkan unit
+
+			u.IsActive = true; // aktifkan unit
 			GameData.profile.activeHeroes++;
-			listForm [GameData.unitSlotYangDiSet].ReloadSprite (GameData.unitSpriteList[slot]);
+			listForm [GameData.unitSlotYangDiSet].ReloadSprite (u.JobList[u.CurrentJob]);
 					listDismissButton[GameData.unitSlotYangDiSet].SetActive(true);
 					infoText.text = "Select Unit";
 
-					Debug.Log("Cek FS");
-					foreach ( FormationUnit u in GameData.profile.formationList ){
-						Debug.Log(" u " + u.Unit.HeroId);
-				GameData.SaveData();
-					}
+				//	Debug.Log("Cek FS");
+				///	foreach ( FormationUnit j in GameData.profile.formationList ){
+				//		Debug.Log(" u " + j.UnitHeroId);
+				//	}
+			GameData.SaveData();
 			if (GameData.readyToTween ) {
 					GameData.readyToTween = false;
 					GameData.gameState = "Home";
@@ -61,7 +63,7 @@ public class SetHeroOnFormation : MonoBehaviour {
 				}
 		}
 		else{
-			if ( !GameData.profile.unitList[slot].IsUnlocked )
+			if ( !u.IsUnlocked )
 				infoText.text = "Unlock first!";
 			else{
 				if ( GameData.gameState == "SelectUnit" )

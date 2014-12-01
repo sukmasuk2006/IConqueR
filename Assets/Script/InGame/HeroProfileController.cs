@@ -33,7 +33,7 @@ public class HeroProfileController : MonoBehaviour {
 		job.text = u.Job;
 		lvl.text = "Level\n"+u.Level.ToString();
 		healthText.text = u.HealthPoint.ToString();
-		spriteRenderer.sprite = GameData.unitSpriteList[GameData.selectedToViewProfileId];	
+		spriteRenderer.sprite = (Sprite)Resources.Load("Sprite/Character/Hero/"+u.JobList[u.CurrentJob].Trim(),typeof(Sprite));
 		healthText.text = u.HealthPoint.ToString();
 		strText.text = u.Str.ToString() +" + "+ u.Weapon.WeaponStats.Str;
 		vitText.text = u.Vit.ToString()+" + "+ u.Weapon.WeaponStats.Vit;

@@ -38,19 +38,12 @@ repeat: none
   orig: 650, 526
   offset: 152, 181
   index: -1
-body
-  rotate: false
-  xy: 757, 47
-  size: 97, 95
-  orig: 97, 95
-  offset: 0, 0
-  index: -1
-head
+head2
   rotate: true
-  xy: 757, 144
-  size: 185, 176
-  orig: 185, 176
-  offset: 0, 0
+  xy: 757, 94
+  size: 235, 208
+  orig: 236, 208
+  offset: 1, 0
   index: -1
 head_syal
   rotate: true
@@ -59,16 +52,23 @@ head_syal
   orig: 91, 36
   offset: 0, 0
   index: -1
+left_fist
+  rotate: false
+  xy: 935, 490
+  size: 37, 39
+  orig: 37, 39
+  offset: 0, 0
+  index: -1
 left_foot
   rotate: false
-  xy: 112, 65
+  xy: 757, 76
   size: 31, 16
   orig: 31, 16
   offset: 0, 0
   index: -1
 left_hand_finger
   rotate: false
-  xy: 74, 44
+  xy: 935, 451
   size: 36, 37
   orig: 36, 37
   offset: 0, 0
@@ -89,7 +89,7 @@ left_hand_upper
   index: -1
 left_leg_lower
   rotate: false
-  xy: 902, 107
+  xy: 935, 333
   size: 23, 35
   orig: 23, 35
   offset: 0, 0
@@ -103,42 +103,49 @@ left_leg_upper
   index: -1
 right_fingers
   rotate: false
-  xy: 935, 538
+  xy: 935, 412
   size: 36, 37
   orig: 36, 37
   offset: 0, 0
   index: -1
+right_fist
+  rotate: false
+  xy: 684, 585
+  size: 37, 38
+  orig: 37, 38
+  offset: 0, 0
+  index: -1
 right_foot
   rotate: true
-  xy: 989, 942
+  xy: 989, 855
   size: 31, 16
   orig: 31, 16
   offset: 0, 0
   index: -1
 right_hand_lower
   rotate: false
-  xy: 856, 51
+  xy: 989, 926
   size: 26, 47
   orig: 26, 47
   offset: 0, 0
   index: -1
 right_hand_upper
-  rotate: false
-  xy: 856, 100
+  rotate: true
+  xy: 935, 531
   size: 44, 42
   orig: 44, 42
   offset: 0, 0
   index: -1
 right_leg_lower
-  rotate: true
-  xy: 684, 600
+  rotate: false
+  xy: 989, 888
   size: 23, 36
   orig: 23, 36
   offset: 0, 0
   index: -1
 right_leg_upper
   rotate: false
-  xy: 74, 2
+  xy: 935, 370
   size: 26, 40
   orig: 26, 40
   offset: 0, 0
@@ -152,7 +159,7 @@ weapon_ninja_kunai
   index: -1
 weapon_ninja_shuriken
   rotate: false
-  xy: 2, 11
+  xy: 2, 2
   size: 70, 70
   orig: 70, 70
   offset: 0, 0
@@ -189,4 +196,32 @@ repeat: none
   size: 437, 357
   orig: 650, 526
   offset: 142, 163
+  index: -1
+body
+  rotate: true
+  xy: 378, 537
+  size: 97, 95
+  orig: 97, 95
+  offset: 0, 0
+  index: -1
+body2
+  rotate: true
+  xy: 917, 717
+  size: 98, 96
+  orig: 98, 96
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 809, 817
+  size: 185, 176
+  orig: 185, 176
+  offset: 0, 0
+  index: -1
+head_syal2
+  rotate: false
+  xy: 809, 665
+  size: 106, 150
+  orig: 106, 150
+  offset: 0, 0
   index: -1

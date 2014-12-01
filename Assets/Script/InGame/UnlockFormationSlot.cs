@@ -19,7 +19,7 @@ public class UnlockFormationSlot : MonoBehaviour {
 			}
 		}
 		else if ( state == 1 ) {
-			Debug.Log ("at btn "+ name +" slot  " + slot + " heroid " + GameData.profile.formationList [slot].UnitHeroId);
+//			Debug.Log ("at btn "+ name +" slot  " + slot + " heroid " + GameData.profile.formationList [slot].UnitHeroId);
 			if ( GameData.profile.formationList[slot].UnitHeroId != 99 ){
 				this.gameObject.SetActive(true);
 			}

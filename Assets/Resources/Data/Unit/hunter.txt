@@ -8,4 +8,4 @@ Robin
 0
 gun
 Hunter
-Gunslinger
+Gunner

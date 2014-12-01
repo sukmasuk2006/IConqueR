@@ -64,7 +64,7 @@ public class GameData : MonoBehaviour {
 		profile.Gold = 299750;
 		profile.TutorialState = 22;
 		profile.Level = 15;
-		profile.NextMission = 40;
+		profile.NextMission = 10;
 
 	}
 

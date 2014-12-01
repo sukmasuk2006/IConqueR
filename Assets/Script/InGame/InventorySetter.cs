@@ -52,7 +52,7 @@ public class InventorySetter : MonoBehaviour {
 		try {
 		Item i = GameData.profile.inventoryList [(4 * data.corridorState) + slot];
 		tes = i is Gem ? true : false;
-			Debug.Log("masuk try");	
+//			Debug.Log("masuk try");	
 		if (tes)
 				UpdateGem ( GameData.profile.inventoryList);
 			else
@@ -153,7 +153,7 @@ public class InventorySetter : MonoBehaviour {
 
 	Color GetColor(string tipe){
 		Color ret = new Color();
-		Debug.Log ("UPDET COLOR " + tipe);
+//		Debug.Log ("UPDET COLOR " + tipe);
 		
 		switch (tipe.Trim()) {
 		case "Common" : ret = Color.white;break;//white

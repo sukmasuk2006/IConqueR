@@ -34,6 +34,7 @@ public class UnlockHero : MonoBehaviour {
 			teks.text = "Unlock";		
 		} */
 		if ( GameData.profile.unitList[slot].IsUnlocked ) teks.text = "Enhance";
+		if ( GameData.profile.unitList[slot].CurrentJob > 0 ) this.gameObject.SetActive(false);
 	}
 
 	void OnMouseDown(){

@@ -43,7 +43,7 @@
 			"bd": { "name": "body2", "x": 6.93, "y": 26.6, "rotation": -90.84, "width": 149, "height": 113 }
 		},
 		"head": {
-			"heh": { "name": "head", "x": 84.96, "y": 8.77, "rotation": -89.54, "width": 187, "height": 186 }
+			"heh": { "name": "head2", "x": 84.96, "y": 8.77, "rotation": -89.54, "width": 186, "height": 185 }
 		},
 		"left_foot": {
 			"lf": { "name": "left_foot", "x": 5.42, "y": 1.73, "rotation": 10.67, "width": 32, "height": 18 }

@@ -3,6 +3,7 @@ guid: f95928f709670d24fa5a20996185e07b
 TextureImporter:
   fileIDToRecycleName:
     21300000: archer
+    21300002: Archer
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -38,7 +39,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 65
+  spritePixelsToUnits: 60
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings:

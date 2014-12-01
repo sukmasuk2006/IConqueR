@@ -7,6 +7,7 @@ public class HeroSlotController : MonoBehaviour {
 	public int heroSlot;
 	private bool heroState = false;
 	public Sprite unlockedSprite;
+	public SpriteRenderer heroPicture;
 	public TextMesh nameText;
 	public TextMesh jobText;
 	public TextMesh lvlText;
@@ -45,6 +46,7 @@ public class HeroSlotController : MonoBehaviour {
 	public void ReloadData(){
 		Unit u = GameData.profile.unitList[heroSlot];
 		nameText.text = u.Name;
+		heroPicture.sprite = (Sprite)Resources.Load("Sprite/Character/Hero/"+u.JobList[u.CurrentJob].Trim(),typeof(Sprite));
 		jobText.text = u.JobList[u.CurrentJob];
 		lvlText.text = "Level " + u.Level.ToString();
 		str.text = "Str  "+u.Str.ToString();

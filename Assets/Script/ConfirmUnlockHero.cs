@@ -14,6 +14,7 @@ public class ConfirmUnlockHero : MonoBehaviour {
 	public List<GameObject> frameList;
 	public List<GameObject> buttonList;
 	public List<HeroSlotController> heroSlot;
+	public List<FormationSetter> formationSlot;
 
 	// Use this for initialization
 	void Start () {
@@ -53,12 +54,13 @@ public class ConfirmUnlockHero : MonoBehaviour {
 	}
 
 	void ConfirmingUpgradeJob(){
-		GameData.profile.unitList [slot].IsUnlocked = true;
+		Unit u = GameData.profile.unitList [slot];
+		u.IsUnlocked = true;
 		Debug.Log("Berhasil unlock hero " + slot + " "  + GameData.profile.unitList [slot].IsUnlocked);
 		frameList[slot].SetActive (false);
 		profileController.UpdateGoldAndDiamond(0,GameData.profile.unitList [slot].GoldNeeded);
-		GameData.profile.unitList [slot].CurrentJob++;
-		GameData.profile.unitList [slot].EnhanceJob();
+		u.EnhanceJob();
+		formationSlot[GameData.unitSlotYangDiSet].ReloadSprite(u.JobList[u.CurrentJob]);
 		buttonList[slot].SetActive(false); // temp
 		heroSlot[slot].ReloadData();
 
