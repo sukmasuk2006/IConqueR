@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿	using UnityEngine;
 using System.Collections;
 [RequireComponent(typeof(BoxCollider2D))]
 
@@ -16,15 +16,16 @@ public class Drag : MonoBehaviour {
 	public float slideMagnitudeX = 0.0f;
 	public float slideMagnitudeY = 0.0f;
 
+
 	void Start(){
-		isDrag =false;
+		Input.multiTouchEnabled = false;
 		gameObject.transform.position = GameData.profile.MapPos;
 		minX = 4.5f; // selama x lebih kecil dari minX
 		maxX = -23.2f; // selama x lebih besar dari maxX
 		minY = 16.8f; // selama y lebih kecil dari miny
 		maxY = 0.3f; // selama y lebih besar dari maxy
 	}
-	
+	/*
 	void OnMouseDown() {
 		Debug.Log(" DRag down " + GameData.gameState + " " + isDrag );
 		if( GameData.gameState == "Map" && !isDrag ){//&& GameData.profile.TutorialState > GameConstant.TOTAL_TUTORIAL && !isDrag){
@@ -54,42 +55,34 @@ public class Drag : MonoBehaviour {
 			isDrag = false;
 		}
 
-	}
+	}*/
 
 	void Update(){
-
+	//	dragcount.text = "Drag state " + dragstate;
+	//	isdragtext.text = "isdrag " + isDrag;
 		if( GameData.gameState == "Map"&& GameData.profile.TutorialState > GameConstant.TOTAL_TUTORIAL  ){
-			if (Input.touchCount == 1)
-			{
+			//		dragstate = 1;
 				Touch touchZero = Input.GetTouch(0);
 
 				if ( touchZero.phase == TouchPhase.Began ){
-					offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
-
+					offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(touchZero.position.x,touchZero.position.y, screenPoint.z));
 				}
-				else if ( touchZero.phase == TouchPhase.Moved ){
+				else if ( touchZero.phase == TouchPhase.Moved  ){
 				
 					pos = gameObject.transform.position;
 					if (pos.x < minX && pos.x > maxX && pos.y > maxY && pos.y < minY) {
-						Vector3 curScreenPoint = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+						Vector3 curScreenPoint = new Vector3 (touchZero.position.x, touchZero.position.y, screenPoint.z);
 						Vector3 curPosition = Camera.main.ScreenToWorldPoint (curScreenPoint) + offset;
 						transform.position = curPosition;
 					}
 				}
-				else if ( touchZero.phase == TouchPhase.Stationary){
-					leftLastPos = leftFingerPos;
-					leftFingerPos = touchZero.position;
-					
-					slideMagnitudeX = 0.0f;
-					slideMagnitudeY = 0.0f;
 
-				}
 				else if (touchZero.phase == TouchPhase.Ended || touchZero.phase == TouchPhase.Canceled)
 				{
 					StayOnTrack ();
 					GameData.profile.MapPos = gameObject.transform.position;
 				}
-			}
+
 		}
 	}
 	// biar gak keluar map

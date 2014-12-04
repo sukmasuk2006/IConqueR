@@ -16,7 +16,10 @@ public class ShopSlotSetter : MonoBehaviour {
 	public Sprite goldSprite;
 	public Sprite diamondSprite;
 	public SpriteRenderer priceTypeSprite;
+	public GameObject statsInfo;
+
 	private Color defaultColor;
+
 
 	// Use this for initialization
 	void Start () {
@@ -25,6 +28,7 @@ public class ShopSlotSetter : MonoBehaviour {
 	}
 	
 	public void UpdateSlotGem(){
+		statsInfo.SetActive(true);
 		Sprite s = null;
 		if (GameData.shopList.Count > (4 * data.corridorState)+slot) {
 			Gem g = (Gem)GameData.shopList[(4 * data.corridorState)+slot];
@@ -32,9 +36,9 @@ public class ShopSlotSetter : MonoBehaviour {
 				name.text = g.Name; 
 				grade.text = g.Grade;
 				grade.color = GetColor(g.Grade);
-				str.text = "Str + " + g.Stats.Str.ToString();
-				agi.text = "Agi + " + g.Stats.Agi.ToString();
-				vit.text = "Vit + " + g.Stats.Vit.ToString();
+				str.text =  g.Stats.Str.ToString();
+				agi.text =  g.Stats.Agi.ToString();
+				vit.text =  g.Stats.Vit.ToString();
 				price.text = g.Price.ToString(); 
 				if ( g.PriceType == 0 ) // gold
 					priceTypeSprite.sprite = goldSprite;
@@ -45,15 +49,16 @@ public class ShopSlotSetter : MonoBehaviour {
 	}
 
 	public void UpdateSlotCatalyst(){
+		statsInfo.SetActive(false);
 		Sprite s = null;
 		Catalyst g = (Catalyst)GameData.shopList[(4 * data.corridorState)+slot];
 		s = GameData.catalystSpriteList[g.Id];
 		name.text = g.Desc; 
 		grade.text = g.Name;
 		grade.color = GetColor(g.Name);
-		str.text = "Increase upgrade";
+		str.text = "Upgrade";
 		agi.text = "success rate";
-		vit.text = "by " + g.SuccessRate.ToString();
+		vit.text = "+" + g.SuccessRate.ToString();
 		price.text = g.Price.ToString(); 
 		priceTypeSprite.sprite = goldSprite;
 		spriteRenderer.sprite = s;

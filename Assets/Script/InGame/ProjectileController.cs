@@ -21,8 +21,10 @@ public class ProjectileController : MonoBehaviour {
 			HeroController h = coll.gameObject.GetComponent<HeroController> ();
 						//h.PushForward ();
 			isLaunch = false;
-			if ( heroController.controller.BatlleState == 0 )
+			if ( heroController.controller.BatlleState == 0 ){
+				heroController.IsAttack = false;
 				heroController.DoDamageToTarget (h,0f);
+			}
 					
 		}
 		transform.position = new Vector3(0f,-12f,-0.14f);

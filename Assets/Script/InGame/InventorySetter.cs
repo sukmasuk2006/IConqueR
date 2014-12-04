@@ -80,9 +80,9 @@ public class InventorySetter : MonoBehaviour {
 			nameTxt.text = g.Name; 
 			grade.text = g.Grade;
 			grade.color = GetColor(g.Grade);
-			str.text = "Str + " + g.Stats.Str.ToString();
-			agi.text = "Agi + " + g.Stats.Agi.ToString();
-			vit.text = "Vit + " + g.Stats.Vit.ToString();
+			str.text =  g.Stats.Str.ToString();
+			agi.text =  g.Stats.Agi.ToString();
+			vit.text =  g.Stats.Vit.ToString();
 			price.text = "";
 		}
 		catch{

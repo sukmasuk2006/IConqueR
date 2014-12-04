@@ -16,58 +16,62 @@ public class UnlockHero : MonoBehaviour {
 	public int profileLevelRequired = 1;
 	public GameObject confirmationScreen;
 	public ConfirmUnlockHero confirm;
+	private Unit u;
 
 	void Start(){
 		//Debug.Log ("awal2 slot " + slot + " isunlock " + GameData.skillList [slot].IsUnlocked + " selec " + GameData.skillList [slot].IsSelected);
 		// aktif dan terunlock
-		/*if (GameData.profile.unitList [slot].IsActive && GameData.profile.unitList [slot].IsUnlocked) {
+		/*if (u.IsActive && u.IsUnlocked) {
 			renderer.sprite = spriteKuning;
 			teks.text = "Deselect";
 			//tidak aktif tapi terunlock
-		} else if (!GameData.profile.unitList [slot].IsActive && GameData.profile.unitList [slot].IsUnlocked) {
+		} else if (!u.IsActive && u.IsUnlocked) {
 			renderer.sprite = spriteBiru;
 			teks.text = "Select";		
 		} 
 		// locked
-		else if (!GameData.profile.unitList [slot].IsUnlocked) {
+		else if (!u.IsUnlocked) {
 			renderer.sprite = spriteBiru;
 			teks.text = "Unlock";		
 		} */
-		if ( GameData.profile.unitList[slot].IsUnlocked ) teks.text = "Enhance";
-		if ( GameData.profile.unitList[slot].CurrentJob > 0 ) this.gameObject.SetActive(false);
+		u = GameData.profile.unitList[slot];
+		if ( u.IsUnlocked ) teks.text = "Enhance";
+		if ( u.CurrentJob > 0 ) this.gameObject.SetActive(false);
 	}
 
 	void OnMouseDown(){
 		// UNLOCK HERO
-		if ( GameData.profile.Level < profileLevelRequired && !GameData.profile.unitList [slot].IsUnlocked ) {
+		if ( GameData.profile.Level < profileLevelRequired && !u.IsUnlocked ) {
 			warningText.text = "Profile must at least level " + profileLevelRequired + ", fight more!";
 		}
-		else if (GameData.profile.Gold >= GameData.profile.unitList [slot].GoldNeeded 
-		         && !GameData.profile.unitList [slot].IsUnlocked) {
+		else if (GameData.profile.Gold >= u.GoldNeeded 
+		         && !u.IsUnlocked) {
 			GameData.readyToTween = false;
-			confirm.text1.text = "Unlock " + GameData.profile.unitList[slot].Name + " ? ";
-			confirm.text2.text = " " + GameData.profile.unitList[slot].GoldNeeded;
+			confirm.text1.text = "Unlock " + u.Name + " ? ";
+			confirm.text2.text = " " + u.GoldNeeded;
 			confirm.Slot = slot;
 			MusicManager.getMusicEmitter ().audio.PlayOneShot (sound);
 			GameData.prevGameState = GameData.gameState;
 			GameData.gameState = "UnlockHero";
 			iTween.MoveTo (confirmationScreen, iTween.Hash ("position", new Vector3(0,0,confirmationScreen.transform.position.z), "time", 0.1f, "oncomplete", "ReadyTween", "oncompletetarget", gameObject));
 		}
-		else if (GameData.profile.Gold >= GameData.profile.unitList [slot].GoldNeeded 
-		          && GameData.profile.unitList [slot].IsUnlocked) {
+		else if (GameData.profile.Gold >= u.GoldNeeded 
+		          && u.IsUnlocked && u.Level >= 10 ) {
 			GameData.readyToTween = false;
-			confirm.text1.text = "Upgrade " + GameData.profile.unitList[slot].Name + " Job ? ";
-			confirm.text2.text = " " + GameData.profile.unitList[slot].GoldNeeded;
+			confirm.text1.text = "Upgrade " + u.Name + " Job ? ";
+			confirm.text2.text = " " + u.GoldNeeded;
 			confirm.Slot = slot;
 			MusicManager.getMusicEmitter ().audio.PlayOneShot (sound);
 			GameData.prevGameState = GameData.gameState;
 			GameData.gameState = "UpgradeJob";
 			iTween.MoveTo (confirmationScreen, iTween.Hash ("position", new Vector3(0,0,confirmationScreen.transform.position.z), "time", 0.1f, "oncomplete", "ReadyTween", "oncompletetarget", gameObject));
 		}
-		else if ( GameData.profile.Gold < GameData.profile.unitList [slot].GoldNeeded 
-		         && !GameData.profile.unitList [slot].IsUnlocked ) {
+		else if ( GameData.profile.Gold < u.GoldNeeded 
+		         && !u.IsUnlocked ) {
 			warningText.text = "Not enough Gold to Unlock, fight more!";
 		} 
+		else if ( u.Level < 10 ) warningText.text = "unit level at least level 10";
+
 	}
 	
 	void ReadyTween(){

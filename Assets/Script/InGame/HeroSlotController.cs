@@ -48,10 +48,10 @@ public class HeroSlotController : MonoBehaviour {
 		nameText.text = u.Name;
 		heroPicture.sprite = (Sprite)Resources.Load("Sprite/Character/Hero/"+u.JobList[u.CurrentJob].Trim(),typeof(Sprite));
 		jobText.text = u.JobList[u.CurrentJob];
-		lvlText.text = "Level " + u.Level.ToString();
-		str.text = "Str  "+u.Str.ToString();
-		agi.text = "Agi  "+u.Agi.ToString();
-		vit.text = "Vit  "+u.Vit.ToString();
+		lvlText.text = "Lv. " + u.Level.ToString();
+		str.text = u.Str.ToString();
+		agi.text = u.Agi.ToString();
+		vit.text = u.Vit.ToString();
 		goldText.text = u.GoldNeeded.ToString();
 		
 		if (u.IsUnlocked) {

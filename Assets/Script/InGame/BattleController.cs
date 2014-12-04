@@ -192,9 +192,11 @@ public class BattleController : MonoBehaviour {
 			GameData.gameState = "Paused";	
 			GameData.readyToTween = false;	
 			Debug.Log("pause");
+			ActivateShade(0f,0.1f);
 		}
 		else if (Input.GetKeyDown (KeyCode.Escape) && GameData.readyToTween && GameData.gameState == "Paused") {
 			pauseScreen.GetComponentInChildren<Unpause>().UnPause();
+			DeactivateShade(0f,0.1f);
 		}
 	}
 

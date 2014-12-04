@@ -4,4 +4,4 @@ Sevillage
 0
 7
 1
-Knight
+Archer

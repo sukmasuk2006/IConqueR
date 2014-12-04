@@ -191,7 +191,7 @@ public class UpgradeWeaponController : MonoBehaviour {
 		/**
 tutorial
 		 */
-		if ( GameData.profile.TutorialState > 14 && GameData.profile.TutorialState <= GameConstant.TOTAL_TUTORIAL )
+		if ( GameData.profile.TutorialState > 13 && GameData.profile.TutorialState <= GameConstant.TOTAL_TUTORIAL )
 			tutorialObject.DestoryPrefab ();
 		/**/
 

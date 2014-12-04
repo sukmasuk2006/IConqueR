@@ -11,22 +11,21 @@ public class UnlockSkill : MonoBehaviour {
 	public TextMesh buttonInfo;
 	public SpriteRenderer renderer;
 	public TextMesh text;
-
 	public TextMesh priceText;
 	public TextMesh skillLevel;
-	public TextMesh skillEffect;
-
+	public List<TextMesh> skillEffect;
 	public AudioClip sound;
-
 	public ProfileController profileController;
 
+	private Skill s;
+
 	void Start(){
-		Skill s = GameData.profile.skillList [slot];
+		s = GameData.profile.skillList [slot];
 //		Debug.Log ("di button skill ke " + slot + " unlock " + s.IsUnlocked +
 //		           " selected " + s.IsSelected);
 		priceText.text =s.Price + "";
-		skillLevel.text = "Level " + s.Level + "";
-		//skillEffect.text = s.Effect.Amount + " % ";
+		skillLevel.text = "Lv " + s.Level;
+		UpdateText();
 		if (GameData.profile.skillList [slot].Level < 1 ) {
 			renderer.sprite = deselectedSprite;
 			buttonInfo.text = "Unlock";
@@ -75,7 +74,8 @@ public class UnlockSkill : MonoBehaviour {
 			priceText.text = "-";
 			text.text = "Max Level";
 		}
-		skillLevel.text = "Level " + GameData.profile.skillList[slot].Level;
+		UpdateText();
+		skillLevel.text = "Lv " + s.Level;
 
 //		Debug.Log("skil end");
 		StartCoroutine(alp());
@@ -87,5 +87,10 @@ public class UnlockSkill : MonoBehaviour {
 		yield return new WaitForSeconds(1.5f);
 		text.text = "";
 		
+	}
+
+	void UpdateText(){
+		foreach ( TextMesh t in skillEffect )
+			t.text = s.Effect.Amount + "%";
 	}
 }

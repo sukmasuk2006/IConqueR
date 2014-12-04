@@ -38,7 +38,7 @@ public class HeroController : MonoBehaviour {
 	public SkeletonAnimation animator;
 	private bool isDeath;
 	private HeroController targetUnit;
-	private const float MAXMANABAR = 0.37f;
+	private const float MAXMANABAR = 0.38f;
 	private bool isDoSpecial = false;
 	private Skill skill;
 
@@ -69,7 +69,7 @@ public class HeroController : MonoBehaviour {
 			manaBar = healthBar.transform;
 			InitializePosition(1);
 		}
-		manaBar.localScale =  new Vector3(0f,manaBar.localScale.y,manaBar.localScale.z);
+		manaBar.localScale =  new Vector3(GameData.profile.TutorialState < GameConstant.TOTAL_TUTORIAL ? MAXMANABAR - 0.025f : MAXMANABAR/2,manaBar.localScale.y,manaBar.localScale.z);
 		weaponSound = (AudioClip)Resources.Load("Music/"+stats.Weapon.SoundEffectName,typeof(AudioClip));
 		skillSound = (AudioClip)Resources.Load("Music/Skill/"+stats.Job+"Skill",typeof(AudioClip));
 		animator.skeletonDataAsset = GameData.skeleteonDataAssetList[stats.HeroId];
@@ -127,26 +127,26 @@ public class HeroController : MonoBehaviour {
 		}
 		// jika masih battle
 		if (controller.BatlleState == 0 && GameData.gameState != "Paused" && !isDeath ) {
-			attackSpeed -= Time.deltaTime;
-			if ( manaBar.localScale.x < MAXMANABAR )
-			{
-//				Debug.Log("update mana bar");
-				float scaleX = manaBar.localScale.x + 0.1f * Time.deltaTime;
-				manaBar.localScale = new Vector3(scaleX,manaBar.localScale.y,manaBar.localScale.z);
-			}
+			if ( !isAttack )
+				attackSpeed -= Time.deltaTime;
+
 //			animator.state.ClearTracks ();
 			// check attack time
 			if (attackType == 0) {		
 				// MELEE
-//				Debug.Log("melee " + attackSpeed + " isat " + isAttack);
-				if (attackSpeed <= 0 && !isAttack) {
-					// jika waktunya serang, SERANG!
-					animator.state.ClearTracks ();
+				if ( attackSpeed <= 0 && !isAttack ){
 					isAttack = true;
-					movementSpeed = stats.Movement;
+					attackSpeed = stats.AttackSpeed;
+					animator.state.ClearTracks ();
 					animator.state.AddAnimation (0, "run", true,0);
+				}
+//				Debug.Log("melee " + attackSpeed + " isat " + isAttack);
+				if (isAttack) {
+					// jika waktunya serang, SERANG!
+					//	isAttack = true;
+					movementSpeed = stats.Movement;
 					rigidbody2D.velocity = Vector2.zero;
-					PushForward (1f);
+					PushForward (0.75f);
 				} else {
 					DeceleratePullBack ();
 				}
@@ -161,6 +161,9 @@ public class HeroController : MonoBehaviour {
 					}
 
 					//DoDamageToTarget
+				}
+				else {
+					DeceleratePullBack ();
 				}
 			}//	Push();
 			
@@ -182,7 +185,7 @@ public class HeroController : MonoBehaviour {
 								rigidbody2D.velocity = Vector2.zero;
 								targetUnit = coll.gameObject.GetComponent<HeroController> ();
 								if (isAttack && attackType == 0) {
-										
+									isAttack = false;
 										if (animator.state.GetCurrent (1) == null) {
 					//							Debug.Log("name " + name + "dodmage 0");
 												animator.state.AddAnimation (1, "attack", false,0f);
@@ -256,8 +259,16 @@ public class HeroController : MonoBehaviour {
 		if (stats.HealthPoint > 0 && !h.isDoSpecial) {
 				// damage critical atau tidak, dimasukkan ke unit untuk dihitung evasion
 				float damage = h.stats.ReceiveDamage(stats.Damage,stats.IsCritical,stats.StatsType);
-				if ( damage > 0 )
+				if ( damage > 0 ){
 					MusicManager.getMusicPlayer().audio.PlayOneShot(weaponSound);
+					if ( manaBar.localScale.x < MAXMANABAR && GameData.profile.skillList[stats.HeroId].IsUnlocked )
+					{
+						//				Debug.Log("update mana bar");
+						float scaleX = manaBar.localScale.x + (stats.Agi * 0.005f);
+						if ( scaleX >= MAXMANABAR ) scaleX = MAXMANABAR;
+						manaBar.localScale = new Vector3(scaleX,manaBar.localScale.y,manaBar.localScale.z);
+					}
+				}
 				h.UpdateHealthBar ();
 //				Debug.Log(stats.Job +" nggepuk " + h.stats.Job + " damage asli " + stats.Damage + " hasil " + damage);
 				stats.IsCritical = false; // set critical ke semula, tapi chance tetep
@@ -300,6 +311,11 @@ public class HeroController : MonoBehaviour {
 				float dmgCalculated =  u.stats.ReceiveDamage(dmg,true,stats.StatsType);
 				u.UpdateHealthBar ();
 				Debug.Log(" hit by skill " + u.gameObject.name + " sisa healh " + u.stats.HealthPoint);
+				if ( !u.CheckIsCornered()  ) // jika gk kepepet nusuhnya, pukul mundur
+				{
+					float force = (stats.Str/100)+0.5f;
+					u.PushForward(-	force);
+				}
 				controller.ReceiveDamage (target, dmgCalculated);
 			}
 		}
@@ -314,7 +330,6 @@ public class HeroController : MonoBehaviour {
 
 
 	public void GetReadyForNextAttack(){
-		isAttack = false;
 		attackSpeed = stats.AttackSpeed;
 		movementSpeed = stats.Movement;
 		//animator.state.ClearTracks ();

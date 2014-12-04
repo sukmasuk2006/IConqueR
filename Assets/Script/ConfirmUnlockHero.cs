@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class ConfirmUnlockHero : MonoBehaviour {
 	
@@ -60,7 +61,10 @@ public class ConfirmUnlockHero : MonoBehaviour {
 		frameList[slot].SetActive (false);
 		profileController.UpdateGoldAndDiamond(0,GameData.profile.unitList [slot].GoldNeeded);
 		u.EnhanceJob();
-		formationSlot[GameData.unitSlotYangDiSet].ReloadSprite(u.JobList[u.CurrentJob]);
+		for ( int i = 0 ; i < 5 ; i++ ){
+			if ( GameData.profile.formationList[i].UnitHeroId == u.HeroId )
+				formationSlot[i].ReloadSprite(u.JobList[u.CurrentJob]);
+		}
 		buttonList[slot].SetActive(false); // temp
 		heroSlot[slot].ReloadData();
 
