@@ -7,7 +7,8 @@ public class GameData : MonoBehaviour {
 	// HERO STATS
 
 	public static ProfileData profile;
-	public static int tesId = 2;
+	public static int tesId = 3;
+	public static bool isDrag = false;
 
 	// GAME STATS
 	public static bool isPremium = true;
@@ -47,7 +48,7 @@ public class GameData : MonoBehaviour {
 		Reset();
 	//	profile.Gold = 150000;
 	//	profile.TutorialState = 22;
-		LoadData ();
+	//	LoadData ();
 		//profile.Gold = 99750;
 		//profile.Level = 15;
 	}
@@ -55,6 +56,7 @@ public class GameData : MonoBehaviour {
 	void Reset(){
 		InitializePersistent ();
 		InitializeGameData ();
+	//	profile.StoryCompleted = true;
 	//	Cheat();
 	}
 
@@ -62,7 +64,7 @@ public class GameData : MonoBehaviour {
 		//PlayerPrefs.DeleteAll ();
 		profile.StoryCompleted = true;
 		profile.Gold = 299750;
-		profile.TutorialState = 22;
+		profile.TutorialState = GameConstant.TOTAL_TUTORIAL + 1;
 		profile.Level = 15;
 		profile.NextMission = 10;
 

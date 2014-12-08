@@ -41,12 +41,13 @@ public class Mission
 	public Mission (int id)
 	{
 		this.id = id;
+		Debug.Log ("nama mision" + id);
 		InitializeMission ();
 	}
 
 	private void InitializeMission(){
 		enemyList = new List<Unit> ();
-//		Debug.Log ("nama " + id);
+		Debug.Log ("nama " + id);
 		enemyListName = "";
 		title = 0;
 		TextAsset txt = (TextAsset)Resources.Load ("Data/Mission/"+id, typeof(TextAsset));

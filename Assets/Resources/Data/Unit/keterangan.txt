@@ -6,3 +6,6 @@ VIT
 weaponbasedamage
 range
 tipe 0 str 1 agi 2 vit
+weaponname
+job
+job2

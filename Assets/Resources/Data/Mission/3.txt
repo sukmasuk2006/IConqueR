@@ -1,8 +1,7 @@
 Farfield
-50
-500
+45
+175
 0
-7
+4
 1
 Knight
-Warrior

@@ -41,7 +41,7 @@ public class SimpleButtonTween : MonoBehaviour {
 		catch{
 		}
 		Debug.Log (" Klik  " + GameData.readyToTween);
-		if (GameData.readyToTween  ) {
+		if (GameData.readyToTween && !GameData.isDrag  ) {
 			GameData.readyToTween = false;
 			if ( GameData.gameState == "ConfirmExit"){
 				iTween.MoveTo ( tweenedObject,iTween.Hash("position",new Vector3(0,-12f,0f),"time", 0.1f));

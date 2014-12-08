@@ -129,27 +129,26 @@ public class BattleController : MonoBehaviour {
 			s.Refresh();
 			enemyList[i].SetActive(true);	
 			tempStats.Add(new Unit(s.HeroId,s.Job.Trim()));
-			float level = 0; 
+			int level = 0; 
+			level = GameData.currentMission/3;
+
 			if ( GameData.missionType == "Camp") //boss
-				level = 1 + (GameData.currentMission/2)*0.65f;
+				level ++;
 			else if ( GameData.missionType == "Fortress") //boss
-				level = 1 + (GameData.currentMission/2)*0.75f;
+				level +=2;
 			else if ( GameData.missionType == "Castle") //boss
-				level = 1 + (GameData.currentMission/2)* 0.85f;
+				level +=3;
 
 			if ( GameData.profile.TutorialState < 5 ){
-				level = 1 + GameData.profile.TutorialState*0.125f;
-				Debug.Log("TUtorial coy " ) ;
-				if ( GameData.profile.TutorialState > 2 )
-					level += GameData.profile.TutorialState*0.25f;
+//				level+=2;
+//				if ( GameData.profile.TutorialState > 2 )
+//					level +=3;
 			}
-			level += (mission.Title * 0.25f);
-			s.Agi *= level;
-			s.Str *= level;
-			s.Vit *= level;
-			s.Weapon.WeaponStats.Str = s.Weapon.WeaponStats.Agi = s.Weapon.WeaponStats.Vit = 0;
-			s.Weapon.Damage = 1 * level;
-			s.SetStats();
+			level += mission.Title;
+			s.Level = level;	
+			s.Weapon.Damage = GameData.profile.unitList[i].Weapon.Damage/2f;
+			for ( int l = 1 ; l < level ; l++ )
+				s.LevelUp();
 			enemyTotalHealth += s.HealthPoint;
 
 		}

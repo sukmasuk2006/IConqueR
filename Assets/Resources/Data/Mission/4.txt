@@ -1,7 +1,8 @@
 gulmory
-90
-300
+50
+175
 0
-7
+4
 1
 Knight
+Warrior

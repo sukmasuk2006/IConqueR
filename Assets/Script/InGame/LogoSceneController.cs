@@ -11,10 +11,12 @@ public class LogoSceneController : MonoBehaviour {
 	public GameObject button;
 	public float time;
 	public AudioClip dor;
+	public GameObject logoShade;
 	// Use this for initialization
 	void Start () {
 	
-			TweenMainMenu ();
+		iTween.ColorTo (logoShade, iTween.Hash ("delay", 0f, "a", 0f, "time", 0.1f ));
+		TweenMainMenu ();
 		GameMusic.PlayMusic ("Music/royal");
 	}
 	
@@ -36,9 +38,10 @@ public class LogoSceneController : MonoBehaviour {
 						iTween.MoveTo (removedObject, iTween.Hash ("delay", 3f, "position", new Vector3 (0, 0, 5), "time", time, "EaseType", "linear"));
 
 						iTween.MoveTo (tweenedObject, iTween.Hash ("delay", 2f, "position", LogoTarget, "time", time, "EaseType", "linear"
-						));
+						                                           ));
+						iTween.ColorTo (logoShade, iTween.Hash ("delay", 2f, "a", 1f, "time", 1.5f));
 						iTween.MoveTo (button, iTween.Hash ("delay", 2f, "position", buttonTarget, "time", time, "EaseType", "linear"
-		                                           , "onComplete", "ReadyTween", "onCompleteTarget", gameObject));
+					                                           , "onComplete", "ReadyTween", "onCompleteTarget", gameObject));
 				}
 	}
 

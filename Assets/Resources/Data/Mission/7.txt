@@ -1,7 +1,9 @@
-bown
-200
-330
+gulmory
+65
+225
 0
-7
+4
 1
 Knight
+Warrior
+Warrior

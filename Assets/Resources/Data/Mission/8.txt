@@ -1,7 +1,9 @@
-Sentiyard
-110
-700
+gulmory
+50
+500
 0
-7
+6
 1
 Knight
+Knight
+Warrior

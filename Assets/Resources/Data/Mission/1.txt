@@ -1,8 +1,8 @@
 Staport
-25
-400
+30
+200
 0
-7
+4
 1
 Knight
 Warrior

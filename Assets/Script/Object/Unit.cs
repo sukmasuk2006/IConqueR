@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Unit : UnitStatus {
 
 	
-	const int STR = 0;
+	const int STR = 0; // MAX STATS 99
 	const int AGI = 1;
 	const int VIT = 2;
 
@@ -59,9 +59,9 @@ public class Unit : UnitStatus {
 	public void EnhanceJob(){
 		currentJob++;
 		goldNeeded *= 2;
-		str += (heroId *statsType == 0 ? 7 : 5);   
-		agi += (heroId * statsType == 1 ? 7 : 5);
-		vit +=  (heroId *statsType == 2 ? 7 : 5); 
+		str += (heroId *statsType == 0 ? 10 : 5);   
+		agi += (heroId * statsType == 1 ? 10 : 5);
+		vit +=  (heroId *statsType == 2 ? 10 : 5); 
 	}
 
 	/**/
@@ -97,14 +97,14 @@ public class Unit : UnitStatus {
 		attackPoint = tempStr/2 + weapon.Damage; // min 59 max 255
 		defensePoint = tempVit/2; // min 59 max 255
 		//
-		attackSpeed = float.Parse( Round(1f - (tempAgi - 1f) * 0.0050408f).ToString()); // min 2.5f max 0.5f  
+		attackSpeed = float.Parse( Round(1f - (tempAgi  * 0.0134f)).ToString()); // min 1f max 0.5f  
 		if (weapon.Range == 5)
 						AttackSpeed *= 0.75f;
-		critical =  float.Parse( Round(((tempStr + tempAgi *2 ) / 3)*0.55f).ToString()); // min 1 max 55 
+		critical =  float.Parse( Round(((tempStr + tempAgi * 2 ) / 3)*1.1f).ToString()); // min 1 max 55 
 		critChance = critical;
-		evasionRate = float.Parse(Round(((tempVit + tempAgi *2 ) / 3)*0.55f).ToString()); // min 1 max 55
+		evasionRate = float.Parse(Round(((tempVit + tempAgi *2 ) / 3)*1.1f).ToString()); // min 1 max 55
 		movement = float.Parse(Round(( (tempAgi * 2 ) + 200f )).ToString()); // 200f 400f
-		pushForce = (0.18f * tempAgi)+ 2f; // min 2f max 20 
+		pushForce = float.Parse( Round((tempStr  * 0.034f)).ToString());
 	}
 
 	public void Save ()
@@ -125,20 +125,18 @@ public class Unit : UnitStatus {
 	//	Debug.Log ("load job " + job + " " + currentExp);
 		isUnlocked = (PlayerPrefs.GetInt(job+"isUnlocked"+GameData.tesId) != 0);
 		isActive = (PlayerPrefs.GetInt(job+"isActive"+GameData.tesId) != 0);
-		nextExp = base_exp;
-		for (int i = 0; i < level; i++)
-			nextExp = ((nextExp * 2) - (nextExp/3));  // 1.1/3
+		nextExp = base_exp * level;
 		weapon.Load ();
 	}
 
-	private void LevelUp(){
+	public void LevelUp(){
 		currentExp -= nextExp;
 		level++;
-		nextExp = ((nextExp * 2) - (nextExp/3));
+		nextExp = base_exp * level;
 		// laju pertumbuhan status bergantung id
-		str += (heroId / 4)  + statsType == 0 ? 2 : 1;
-		agi += (heroId / 4) + statsType == 1 ? 2 : 1;
-		vit +=  (heroId / 4)  + statsType == 2 ? 2 : 1;
+		str += (heroId / 4)  + statsType == 0 ? 3 : 1;
+		agi += (heroId / 4) + statsType == 1 ? 3 : 1;
+		vit +=  (heroId / 4)  + statsType == 2 ? 3 : 1;
 		SetStats ();
 	}
 

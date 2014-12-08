@@ -91,6 +91,6 @@ public class UnlockSkill : MonoBehaviour {
 
 	void UpdateText(){
 		foreach ( TextMesh t in skillEffect )
-			t.text = s.Effect.Amount + "%";
+			t.text = (s.Effect.Amount * s.Level)+ "%";
 	}
 }

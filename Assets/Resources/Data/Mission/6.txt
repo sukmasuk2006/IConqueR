@@ -1,7 +1,8 @@
-behill
-100
-610
+gulmory
+60
+200
 0
-7
+4
 1
-Knight
+Warrior
+Warrior

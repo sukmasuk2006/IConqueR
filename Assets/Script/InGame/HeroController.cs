@@ -225,8 +225,7 @@ public class HeroController : MonoBehaviour {
 	void HandleComplete (Spine.AnimationState state, int trackIndex, int loopCount)
 	{
 		if ( attackType == 0 ){
-			float force = (stats.Str/100)+0.5f;
-			DoDamageToTarget (targetUnit,-force);
+			DoDamageToTarget (targetUnit,-stats.PushForce);
 		}
 		else
 			projectile.GetComponent<ProjectileController> ().Launch ();
@@ -313,8 +312,7 @@ public class HeroController : MonoBehaviour {
 				Debug.Log(" hit by skill " + u.gameObject.name + " sisa healh " + u.stats.HealthPoint);
 				if ( !u.CheckIsCornered()  ) // jika gk kepepet nusuhnya, pukul mundur
 				{
-					float force = (stats.Str/100)+0.5f;
-					u.PushForward(-	force);
+					u.PushForward(-stats.PushForce);
 				}
 				controller.ReceiveDamage (target, dmgCalculated);
 			}

@@ -1,7 +1,7 @@
 Sevillage
-65
-275
+40
+150
 0
-7
+3
 1
-Archer
+Warrior

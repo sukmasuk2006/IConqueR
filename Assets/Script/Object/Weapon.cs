@@ -6,7 +6,7 @@ public class Weapon : Item {
 	private float damage;
 	private float range;
 	private int rank;
-	private UnitStatus weaponStats;
+	private UnitStatus weaponStats; // MAX STATS 50
 	private string gemRequired;
 	private string soundEffectName;
 
@@ -65,26 +65,28 @@ public class Weapon : Item {
 		weaponStats.Agi += s.Agi;
 		weaponStats.Vit += s.Vit;
 		if (rank == 1 || rank == 2) {
-			damage += 2;
+			damage += 1;
 			if ( rank == 2 )
-				gemRequired = "Uncommon";
+				gemRequired = "Uncommon"; // change gem requirement
 		}
-		if (rank == 3 || rank == 4) {
-				damage += 3;
+		else if (rank == 3 || rank == 4) {
+				damage += 2;
 			if ( rank == 4 )
 				gemRequired = "Rare";
 		}
-		if (rank == 5 || rank == 6) {
-				damage += 6;
+		else if (rank == 5 || rank == 6) {
+				damage += 5;
 			if ( rank == 6 )
 				gemRequired = "Mythical";
 		}
-		if (rank == 7 || rank == 8) {
-			damage += 10;
+		else if (rank == 7 || rank == 8) {
+			damage += 7;
 			if ( rank == 8 )
 				gemRequired = "Legendary";
 		}
-		if (rank == 9 || rank == 10)
+		else if (rank == 9 )
+			damage += 10;
+		else if (rank == 10 )
 			damage += 15;
 	}
 

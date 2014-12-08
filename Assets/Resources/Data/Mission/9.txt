@@ -1,7 +1,9 @@
-Sentinel
-400
+gulmory
+90
 1000
-1
-15
+0
+7
 1
 Knight
+Warrior
+Archer
