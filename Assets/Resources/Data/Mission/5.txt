@@ -2,7 +2,7 @@ gulmory
 40
 450
 0
-4
+7
 1
-Knight
-Knight
+Warrior
+Warrior

@@ -3,6 +3,7 @@ guid: 2b06ded20aba92446aa095473d0384bc
 TextureImporter:
   fileIDToRecycleName:
     21300000: water stone
+    21300002: Water Stone
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

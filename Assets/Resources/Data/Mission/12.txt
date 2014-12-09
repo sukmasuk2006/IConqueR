@@ -1,7 +1,8 @@
-Gosert
-575
-450
+Savanna
+80
+500
 0
-15
+11
 2
 Knight
+Archer

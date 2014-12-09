@@ -23,7 +23,7 @@ public class ProjectileController : MonoBehaviour {
 			isLaunch = false;
 			if ( heroController.controller.BatlleState == 0 ){
 				heroController.IsAttack = false;
-				heroController.DoDamageToTarget (h,heroController.stats.PushForce);
+				heroController.DoDamageToTarget (h,-heroController.stats.PushForce);
 			}
 					
 		}

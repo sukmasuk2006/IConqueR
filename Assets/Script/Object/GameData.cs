@@ -113,14 +113,11 @@ public class GameData : MonoBehaviour {
 		linesFromFile = null;
 		shopList = new List<Item> ();
 		gemSpriteList = new List<Sprite> ();
-		TextAsset shopTxt = (TextAsset)Resources.Load ("Data/Gem/list", typeof(TextAsset));
-		string shopContent = shopTxt.text;
-		linesFromFile = shopContent.Split ("\n"[0]);
-		for (int i = 0; i < linesFromFile.Length; i++) {
+		for (int i = 0; i < 36; i++) {
 			//		Debug.Log ("len " + linesFromFile[i]);
-			shopList.Add(new Gem(i,linesFromFile[i]));
+			shopList.Add(new Gem(i));
 			Gem g = (Gem)shopList[i];
-			gemSpriteList.Add(LoadGemSprite(g.Grade.Trim()+"/"+linesFromFile[i].Trim()));
+			gemSpriteList.Add(LoadGemSprite(g.Grade.Trim()+"/"+g.Name.Trim()));
 		}
 
 //		Debug.Log ("Jumlah gambar gem " + gemSpriteList.Count);

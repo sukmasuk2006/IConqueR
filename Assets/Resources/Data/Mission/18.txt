@@ -1,7 +1,10 @@
-Nabut
-800
-500
+sedhtron
+100
+1200
 0
-19
+15
 2
+Warrior
 Knight
+Warrior
+Archer

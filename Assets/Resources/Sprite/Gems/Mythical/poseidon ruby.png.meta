@@ -3,6 +3,7 @@ guid: 2e1d3d2cf0c32064eb0213f659902940
 TextureImporter:
   fileIDToRecycleName:
     21300000: poseidon ruby
+    21300002: Poseidon Ruby
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

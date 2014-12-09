@@ -3,6 +3,7 @@ guid: 107ab65a300b71443b7f15a2c688b5c2
 TextureImporter:
   fileIDToRecycleName:
     21300000: sapphire
+    21300002: Sapphire
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

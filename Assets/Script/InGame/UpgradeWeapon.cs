@@ -41,7 +41,7 @@ public class UpgradeWeapon : MonoBehaviour {
 					bool rankreq = w.CheckUpgradeReq(gem.Grade);
 					Debug.Log(" weap rank " + w.Rank + " req " + w.GemRequired + " arankreq " + gem.Grade);
 					// kalau udah bisa up, cek gemnya bener nggak
-					if ( rankreq ){
+					if ( w.GemRequired == gem.Grade ){
 						CountingPercentages();
 					}
 					else

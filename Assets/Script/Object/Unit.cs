@@ -125,14 +125,14 @@ public class Unit : UnitStatus {
 	//	Debug.Log ("load job " + job + " " + currentExp);
 		isUnlocked = (PlayerPrefs.GetInt(job+"isUnlocked"+GameData.tesId) != 0);
 		isActive = (PlayerPrefs.GetInt(job+"isActive"+GameData.tesId) != 0);
-		nextExp = base_exp * level;
+		nextExp = base_exp * level * 2;
 		weapon.Load ();
 	}
 
 	public void LevelUp(){
 		currentExp -= nextExp;
 		level++;
-		nextExp = base_exp * level;
+		nextExp = base_exp * level * 2;
 		// laju pertumbuhan status bergantung id
 		str += (heroId / 4)  + statsType == 0 ? 3 : 1;
 		agi += (heroId / 4) + statsType == 1 ? 3 : 1;

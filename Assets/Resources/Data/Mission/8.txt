@@ -2,7 +2,7 @@ gulmory
 50
 600
 0
-6
+7
 1
 Knight
 Knight

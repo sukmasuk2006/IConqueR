@@ -7,25 +7,26 @@ public class Gem : Item {
 	protected UnitStatus stats;
 	//private ArrayList<int> requiremets;
 
-	public Gem(int id, string name):
-		base(id,name){
+	public Gem(int id):
+		base(id,""){
 		InitializeGem ();
 	}
 
 	private void InitializeGem(){
 		string[] linesFromFile = null;
-		TextAsset txt = (TextAsset)Resources.Load ("Data/Gem/"+ name.Trim(), typeof(TextAsset));
+		TextAsset txt = (TextAsset)Resources.Load ("Data/Gem/"+ id, typeof(TextAsset));
 		string content = txt.text;
 		linesFromFile = content.Split ("\n" [0]);
-		grade = linesFromFile [0].Trim();
-		Price = int.Parse(linesFromFile[1]);
-		PriceType = int.Parse (linesFromFile [2]);
+		name = linesFromFile[0].Trim();
+		grade = linesFromFile [1].Trim();
+		Price = int.Parse(linesFromFile[2]);
+		PriceType = int.Parse (linesFromFile [3]);
 		stats = new UnitStatus ();
-		stats.Str =  int.Parse( linesFromFile [3]);
-		stats.Agi = int.Parse (linesFromFile [4]);
-		stats.Vit = int.Parse (linesFromFile [5]);
-		SuccessRate = float.Parse(linesFromFile[6]);
-//		Debug.Log ("added " + name + " rate " + SuccessRate);
+		stats.Str =  int.Parse( linesFromFile [4]);
+		stats.Agi = int.Parse (linesFromFile [5]);
+		stats.Vit = int.Parse (linesFromFile [6]);
+		SuccessRate = float.Parse(linesFromFile[7]);
+		Debug.Log ("added " + name + " rate " + SuccessRate);
 	}
 	public string Grade {
 		get {

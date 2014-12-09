@@ -3,6 +3,7 @@ guid: ba77877e48ab8084d9d1b0bad21d2340
 TextureImporter:
   fileIDToRecycleName:
     21300000: dark gaia
+    21300002: Dark Gaia
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -26,9 +27,9 @@ TextureImporter:
   maxTextureSize: 256
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 1
     mipBias: -1
-    wrapMode: -1
+    wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50

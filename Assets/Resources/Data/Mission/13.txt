@@ -1,7 +1,9 @@
 sedhtron
-500
-900
+90
+550
 0
-15
+11
 2
 Knight
+Warrior
+Archer

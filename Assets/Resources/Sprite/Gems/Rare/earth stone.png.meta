@@ -3,6 +3,7 @@ guid: d18167702cb7df34db584744ccee987f
 TextureImporter:
   fileIDToRecycleName:
     21300000: earth stone
+    21300002: Earth Stone
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

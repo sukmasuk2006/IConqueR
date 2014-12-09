@@ -2,7 +2,7 @@ gulmory
 90
 1500
 5
-7
+11
 1
 Knight
 Warrior

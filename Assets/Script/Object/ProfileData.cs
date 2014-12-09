@@ -151,7 +151,8 @@ public class ProfileData
 			inventId = PlayerPrefs.GetInt("inventoryId"+l+"is"+GameData.tesId);
 			namaItem = PlayerPrefs.GetString("inventoryName"+l+"is"+GameData.tesId);
 			if ( namaItem.Contains("Gem") ){
-				inventoryList.Add(new Gem(inventId,namaItem.Split("\n"[0])[0]));
+
+				inventoryList.Add(new Gem(inventId));
 //				Debug.Log("added gem TO INVNET " + namaItem );
 			}
 			else{

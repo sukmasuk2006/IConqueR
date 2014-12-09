@@ -1,7 +1,9 @@
-Irahalak
-675
-475
+sedhtron
+120
+650
 0
-19
+15
 2
+Warrior
 Knight
+Archer

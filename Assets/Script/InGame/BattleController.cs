@@ -269,6 +269,7 @@ public class BattleController : MonoBehaviour {
 		// diamond kalau win doang + caslte + 1x doang dptnya
 		if (GameData.currentMission == GameData.profile.NextMission) {
 			diamondEarn = mission.DiamondReward;
+			GameData.profile.Diamond += diamondEarn;
 
 			if (GameData.missionType.Contains ("Fortress")){
 				var m = GameData.profile.questList.Where(x => x.Target.Contains("fortress")).ToList();
@@ -280,9 +281,8 @@ public class BattleController : MonoBehaviour {
 				foreach( Quest q in m )
 					q.CurrentQuantity++;
 				GameData.profile.Title++;
-				GameData.profile.Diamond += diamondEarn;
 			}
-			GameData.profile.NextMission++;
+		GameData.profile.NextMission++;
 		}
 
 		ShowOnReport ();

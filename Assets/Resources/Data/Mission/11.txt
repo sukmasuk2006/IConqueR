@@ -1,7 +1,8 @@
 Savanna
-555
-825
-0
-15
+60
+600
+1
+11
 2
-Knight
+Warrior
+Archer

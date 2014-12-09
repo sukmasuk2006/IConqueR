@@ -3,6 +3,7 @@ guid: 402010711e484394db3fbd0488e0e4ec
 TextureImporter:
   fileIDToRecycleName:
     21300000: fire stone
+    21300002: Fire Stone
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

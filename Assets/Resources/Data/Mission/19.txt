@@ -1,7 +1,10 @@
-Duhu
-1550
-2000
-0
-23
+Arcana
+180
+3000
+5
+19
 2
+Warrior
 Knight
+Tribe
+Archer
