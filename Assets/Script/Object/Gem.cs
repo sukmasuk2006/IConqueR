@@ -17,7 +17,7 @@ public class Gem : Item {
 		TextAsset txt = (TextAsset)Resources.Load ("Data/Gem/"+ name.Trim(), typeof(TextAsset));
 		string content = txt.text;
 		linesFromFile = content.Split ("\n" [0]);
-		grade = linesFromFile [0];
+		grade = linesFromFile [0].Trim();
 		Price = int.Parse(linesFromFile[1]);
 		PriceType = int.Parse (linesFromFile [2]);
 		stats = new UnitStatus ();

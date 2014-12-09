@@ -42,7 +42,7 @@ public class UnlockHero : MonoBehaviour {
 	void OnMouseDown(){
 		// UNLOCK HERO
 		if ( GameData.profile.Level < profileLevelRequired && !u.IsUnlocked ) {
-			warningText.text = "Profile must at least level " + profileLevelRequired + ", fight more!";
+			warningText.text = "Need Mada at level " + profileLevelRequired + ", fight more!";
 		}
 		else if (GameData.profile.Gold >= u.GoldNeeded 
 		         && !u.IsUnlocked) {
@@ -68,7 +68,7 @@ public class UnlockHero : MonoBehaviour {
 		}
 		else if ( GameData.profile.Gold < u.GoldNeeded 
 		         && !u.IsUnlocked ) {
-			warningText.text = "Not enough Gold to Unlock, fight more!";
+			warningText.text = "Not enough Gold";
 		} 
 		else if ( u.Level < 10 ) warningText.text = "unit level at least level 10";
 

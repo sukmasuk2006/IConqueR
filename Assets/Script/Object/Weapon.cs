@@ -1,21 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 [System.Serializable]
-public class Weapon : Item {
+	public class Weapon : Item {
 
 	private float damage;
 	private float range;
 	private int rank;
 	private UnitStatus weaponStats; // MAX STATS 50
-	private string gemRequired;
+	private string[] gemRequired;
 	private string soundEffectName;
-
-	public string GemRequired {
-		get {
-			return gemRequired;
-		}
-	}
-
+	
 	//private ArrayList<Item> equippedGem;
 
 	public Weapon(int id,string name,string soundEffName, float damage, float range):
@@ -26,7 +20,8 @@ public class Weapon : Item {
 		weaponStats = new UnitStatus ();
 		SuccessRate = 0;
 		rank = 0;
-		gemRequired = "Common";
+		gemRequired = new string[10]{"Common","Common","Uncommon","Uncommon","Rare","Rare"
+			,"Mythical","Mythical","Legendary","Legendary"};
 	}
 
 	public void Save(){
@@ -66,46 +61,36 @@ public class Weapon : Item {
 		weaponStats.Vit += s.Vit;
 		if (rank == 1 || rank == 2) {
 			damage += 1;
-			if ( rank == 2 )
-				gemRequired = "Uncommon"; // change gem requirement
 		}
 		else if (rank == 3 || rank == 4) {
 				damage += 2;
-			if ( rank == 4 )
-				gemRequired = "Rare";
 		}
 		else if (rank == 5 || rank == 6) {
 				damage += 5;
-			if ( rank == 6 )
-				gemRequired = "Mythical";
 		}
 		else if (rank == 7 || rank == 8) {
 			damage += 7;
-			if ( rank == 8 )
-				gemRequired = "Legendary";
 		}
 		else if (rank == 9 )
 			damage += 10;
-		else if (rank == 10 )
-			damage += 15;
 	}
 
 	public bool CheckUpgradeReq(string grade){
 		bool ret = false;
 		if (rank == 0 || rank == 1)
-			if ( grade.Contains("Common"))
+			if ( grade == "Common" )
 						ret = true;
-		if (rank == 2 || rank == 3)
-			if ( grade.Contains("Uncommon"))
+		else if (rank == 2 || rank == 3)
+			if ( grade == "Uncommon" )
 				ret = true;
-		if (rank == 4 || rank == 5)
-			if ( grade.Contains("Rare"))
+		else if (rank == 4 || rank == 5)
+			if ( grade == "Rare" )
 				ret = true;
-		if (rank == 6 || rank == 7)
-			if ( grade.Contains("Mythical"))
+		else if (rank == 6 || rank == 7)
+			if ( grade == "Mythical" )
 				ret = true;
-		if (rank == 8 || rank == 9)
-			if ( grade.Contains("Legendary"))
+		else if (rank == 8 || rank == 9)
+			if ( grade == "Legendary" )
 				ret = true;
 		return ret;
 	}
@@ -135,6 +120,12 @@ public class Weapon : Item {
 		}
 		set {
 			weaponStats = value;
+		}
+	}
+
+	public string GemRequired {
+		get {
+			return gemRequired[rank];
 		}
 	}
 }

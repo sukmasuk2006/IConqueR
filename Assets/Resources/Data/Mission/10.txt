@@ -1,7 +1,8 @@
-Greeasis
-500
-400
+gulmory
+65
+425
 0
-15
+4
 1
 Knight
+Warrior

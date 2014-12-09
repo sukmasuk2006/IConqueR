@@ -41,11 +41,12 @@ public class GameData : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+		Initialize();
+		LoadData();
 	}
 
 	void Awake(){
-		Reset();
+	//	Initialize();
 	//	profile.Gold = 150000;
 	//	profile.TutorialState = 22;
 	//	LoadData ();
@@ -53,7 +54,7 @@ public class GameData : MonoBehaviour {
 		//profile.Level = 15;
 	}
 
-	void Reset(){
+	void Initialize(){
 		InitializePersistent ();
 		InitializeGameData ();
 	//	profile.StoryCompleted = true;
@@ -63,10 +64,10 @@ public class GameData : MonoBehaviour {
 	private void Cheat(){
 		//PlayerPrefs.DeleteAll ();
 		profile.StoryCompleted = true;
-		profile.Gold = 299750;
+		profile.Gold = 5000;
 		profile.TutorialState = GameConstant.TOTAL_TUTORIAL + 1;
-		profile.Level = 15;
-		profile.NextMission = 10;
+//		profile.Level = 15;
+//		profile.NextMission = 10;
 
 	}
 
@@ -81,7 +82,6 @@ public class GameData : MonoBehaviour {
 	}
 
 	public void LoadData(){
-		Reset();
 		if (PlayerPrefs.HasKey ("level"+GameData.tesId)) {
 			profile.LoadData ();
 			Debug.Log("LOADED");
@@ -92,17 +92,13 @@ public class GameData : MonoBehaviour {
 		}
 		if ( GameData.profile.TutorialState < GameConstant.TOTAL_TUTORIAL ){
 			profile = null;
-			Reset();
+			Initialize();
 			SaveData();	Debug.Log("TUTORIAL NOT DONE");
 		}
 	}
 
 	void InitializePersistent(){
 		profile = new ProfileData ();
-		tutorialTextList = new List<TutorialText> ();
-		tutorialTextList.Add (new TutorialText (0, GameConstant.tutorialTextOne));
-		tutorialTextList.Add (new TutorialText(1,GameConstant.two));
-		tutorialTextList.Add (new TutorialText(4, GameConstant.three));
 
 		expList = new List<int> ();
 		TextAsset etxt = (TextAsset)Resources.Load ("Data/Exp/hero", typeof(TextAsset));
@@ -126,7 +122,7 @@ public class GameData : MonoBehaviour {
 			Gem g = (Gem)shopList[i];
 			gemSpriteList.Add(LoadGemSprite(g.Grade.Trim()+"/"+linesFromFile[i].Trim()));
 		}
-		GameData.profile.inventoryList.Add(new Gem(3,linesFromFile[3]));
+
 //		Debug.Log ("Jumlah gambar gem " + gemSpriteList.Count);
 		linesFromFile = null;
 		TextAsset shop2Txt = (TextAsset)Resources.Load ("Data/Catalyst/list", typeof(TextAsset));

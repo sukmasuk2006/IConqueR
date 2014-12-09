@@ -1,7 +1,8 @@
 Farfield
 45
-175
+275
 0
 4
 1
 Knight
+Warrior

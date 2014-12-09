@@ -130,7 +130,7 @@ public class BattleController : MonoBehaviour {
 			enemyList[i].SetActive(true);	
 			tempStats.Add(new Unit(s.HeroId,s.Job.Trim()));
 			int level = 0; 
-			level = GameData.currentMission/3;
+			level = GameData.currentMission/2;
 
 			if ( GameData.missionType == "Camp") //boss
 				level ++;
@@ -145,10 +145,13 @@ public class BattleController : MonoBehaviour {
 //					level +=3;
 			}
 			level += mission.Title;
-			s.Level = level;	
-			s.Weapon.Damage = GameData.profile.unitList[i].Weapon.Damage/2f;
-			for ( int l = 1 ; l < level ; l++ )
+			for ( int l = 1 ; l < level ; l++ ){
 				s.LevelUp();
+			}
+			//for ( int r = 1 ; r < s.Weapon.Rank ; r++ ){
+			//	s.Weapon.Upgrade(new UnitStatus());
+			//}
+
 			enemyTotalHealth += s.HealthPoint;
 
 		}

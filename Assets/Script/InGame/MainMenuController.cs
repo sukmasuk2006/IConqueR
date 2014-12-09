@@ -12,8 +12,10 @@ public class MainMenuController : MonoBehaviour {
 	void OnMouseDown(){
 		if ( GameData.profile.StoryCompleted )
 			fader.FadeOut("HomeScene");
-		else
+		else{
+			GameData.profile.inventoryList.Add(GameData.shopList[3]); // nambah gem ketika ulang
 			fader.FadeOut("StoryScene");
+		}
 	}
 
 

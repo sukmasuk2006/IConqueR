@@ -39,6 +39,7 @@ public class UpgradeWeapon : MonoBehaviour {
 					gem = (Gem)controller.SlotList [0];
 					// min senjata level = 2 x unit level
 					bool rankreq = w.CheckUpgradeReq(gem.Grade);
+					Debug.Log(" weap rank " + w.Rank + " req " + w.GemRequired + " arankreq " + gem.Grade);
 					// kalau udah bisa up, cek gemnya bener nggak
 					if ( rankreq ){
 						CountingPercentages();
