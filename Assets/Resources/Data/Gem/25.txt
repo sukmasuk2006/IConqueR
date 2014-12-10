@@ -2,7 +2,7 @@ Hermes Ruby
 Mythical
 5000
 0
-1
-0
-0
-50
+2
+4
+2
+30

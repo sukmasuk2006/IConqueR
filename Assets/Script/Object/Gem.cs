@@ -26,7 +26,7 @@ public class Gem : Item {
 		stats.Agi = int.Parse (linesFromFile [5]);
 		stats.Vit = int.Parse (linesFromFile [6]);
 		SuccessRate = float.Parse(linesFromFile[7]);
-		Debug.Log ("added " + name + " rate " + SuccessRate);
+//		Debug.Log ("added " + name + " rate " + SuccessRate);
 	}
 	public string Grade {
 		get {

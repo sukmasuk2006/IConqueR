@@ -14,6 +14,7 @@ public class HeroController : MonoBehaviour {
 	public BattleController controller;
 	public GameObject healthBar;
 	public Transform manaBar;
+	public Transform manaBgBar;
 	public SpriteRenderer lockSprite;
 	public Unit stats;
 	public GameObject projectile;
@@ -69,8 +70,11 @@ public class HeroController : MonoBehaviour {
 			manaBar = healthBar.transform;
 			InitializePosition(1);
 		}
-		manaBar.localScale =  new Vector3(GameData.profile.TutorialState < GameConstant.TOTAL_TUTORIAL ? MAXMANABAR - 0.025f : MAXMANABAR/2,manaBar.localScale.y,manaBar.localScale.z);
-		weaponSound = (AudioClip)Resources.Load("Music/"+stats.Weapon.SoundEffectName,typeof(AudioClip));
+		if ( GameData.profile.skillList[stats.HeroId].IsUnlocked ) {
+			manaBgBar.gameObject.SetActive(true);
+			manaBar.localScale =  new Vector3(GameData.profile.TutorialState < GameConstant.TOTAL_TUTORIAL ? MAXMANABAR - 0.025f : MAXMANABAR/2,manaBar.localScale.y,manaBar.localScale.z);
+		}
+        weaponSound = (AudioClip)Resources.Load("Music/"+stats.Weapon.SoundEffectName,typeof(AudioClip));
 		skillSound = (AudioClip)Resources.Load("Music/Skill/"+stats.Job+"Skill",typeof(AudioClip));
 		animator.skeletonDataAsset = GameData.skeleteonDataAssetList[stats.HeroId];
 		animator.calculateNormals = true;

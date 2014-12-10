@@ -18,8 +18,8 @@ public class FormationSetter : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		FormationUnit u = GameData.profile.formationList [slot];
-		Debug.Log ("at slot  " + slot + " job " + GameData.profile.formationList [slot].UnitHeroId);
-		Debug.Log (" curr " + u.Unit.JobList[u.Unit.CurrentJob]);
+//		Debug.Log ("at slot  " + slot + " job " + GameData.profile.formationList [slot].UnitHeroId);
+//		Debug.Log (" curr " + u.Unit.JobList[u.Unit.CurrentJob]);
 		if (u.IsUnlocked) {
 			heroLock.SetActive (false);
 		}

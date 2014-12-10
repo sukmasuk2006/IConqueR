@@ -67,7 +67,7 @@ public class UnlockSkill : MonoBehaviour {
 				text.text = "You must unlock " + GameData.profile.unitList[GameData.profile.skillList[slot].HeroesRequired].Name + " first!";		
 
 		}
-		else if ( GameData.profile.Gold < skill.Price * skill.Level )
+		else
 			text.text = "Not enough money..";
 		if ( skill.Level > 2 )
 		{

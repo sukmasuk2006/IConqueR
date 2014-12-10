@@ -209,7 +209,7 @@ public class Unit : UnitStatus {
 					returnDamage = 0;
 			// jika sukses dan tidak crit
 				}
-		Debug.Log(statsType + " digepuk sama " + dealerType + " damage " + multiplier + " hasl " + returnDamage); 
+//		Debug.Log(statsType + " digepuk sama " + dealerType + " damage " + multiplier + " hasl " + returnDamage); 
 		return returnDamage;
 	}
 
