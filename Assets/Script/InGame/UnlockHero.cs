@@ -70,7 +70,7 @@ public class UnlockHero : MonoBehaviour {
 		         && !u.IsUnlocked ) {
 			warningText.text = "Not enough Gold";
 		} 
-		else if ( u.Level < 10 ) warningText.text = "unit level at least level 10";
+		else if ( u.Level < 10 ) warningText.text = "Unit at least at level 10";
 
 	}
 	

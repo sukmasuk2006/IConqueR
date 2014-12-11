@@ -59,7 +59,7 @@ public class Drag : MonoBehaviour {
 	void Update(){
 	//	dragcount.text = "Drag state " + dragstate;
 	//	isdragtext.text = "isdrag " + GameData.isDrag;
-		if( GameData.gameState == "Map"&& GameData.profile.TutorialState > GameConstant.TOTAL_TUTORIAL  ){
+	/*	if( GameData.gameState == "Map"&& GameData.profile.TutorialState > GameConstant.TOTAL_TUTORIAL  ){
 			//		dragstate = 1;
 				Touch touchZero = Input.GetTouch(0);
 
@@ -84,7 +84,7 @@ public class Drag : MonoBehaviour {
 					GameData.profile.MapPos = gameObject.transform.position;
 				}
 
-		}
+		}*/
 	}
 	// biar gak keluar map
 	void StayOnTrack(){

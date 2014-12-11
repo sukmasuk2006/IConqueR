@@ -95,7 +95,8 @@ public class BattleController : MonoBehaviour {
 		i = 0;
 	//	if ( GameData.profile.TutorialState == 1 )
 		//	GameData.gameState = GameConstant.GAMEPLAY_SCENE;
-		GameData.profile.RefreshFormation();
+		GameData.profile.RefreshFormation(); // refresh stats
+
 		for ( i = 0 ; i < 5 ; i ++ ) {
 			FormationUnit u = GameData.profile.formationList[i];// ambil unit di formation ke-i
 			activeSkill.Add(GameData.profile.skillList[0]); // tambahkan skill default
@@ -107,14 +108,14 @@ public class BattleController : MonoBehaviour {
 							activeSkill[i] = GameData.profile.skillList[u.Unit.HeroId];
 							skillList[i].SetActive(true);
 						}
+						if ( GameData.profile.TutorialState == 2 ){
+							u.Unit.Str += 10;
+							u.Unit.Agi += 10;
+							u.Unit.Vit += 10;
+						}
 						heroList[i].SetActive(true);
 						totalHero++;
-						float level = 0; 
-						level = 1 + (GameData.profile.Level * 0.05f);
-						level += (GameData.profile.Title * 0.1f);
-						u.Unit.Agi *= level;
-						u.Unit.Str *= level;
-						u.Unit.Vit *= level;
+						Debug.Log("stas "+ u.Unit.Str + " " + u.Unit.Agi + " " + u.Unit.Vit);
 						u.Unit.SetStats();
 						Debug.Log("Hero ke " + i + " weapon lev " + u.Unit.Weapon.Rank);
 						heroTotalHealth += u.Unit.HealthPoint;
@@ -133,21 +134,21 @@ public class BattleController : MonoBehaviour {
 			level = GameData.currentMission/2;
 
 			if ( GameData.missionType == "Camp") //boss
-				level ++;
+				level +=1;
 			else if ( GameData.missionType == "Fortress") //boss
 				level +=2;
 			else if ( GameData.missionType == "Castle") //boss
-				level +=3;
+				level += 3;
 
-			if ( GameData.profile.TutorialState < 5 ){
-//				level+=2;
-//				if ( GameData.profile.TutorialState > 2 )
-//					level +=3;
+			if ( GameData.profile.TutorialState == 3 ){
+				level += 2;
 			}
 			level += mission.Title;
-			for ( int l = 1 ; l < level ; l++ ){
+			for ( int l = 0 ; l < level ; l++ ){
 				s.LevelUp();
+		//		Debug.Log("enemy job " + s.JobList[0] + " stas en"+ s.Str + " " + s.Agi + " " + s.Vit);
 			}
+			//Debug.Log("levl " + s.Level + " stas en"+ s.Str + " " + s.Agi + " " + s.Vit);
 			//for ( int r = 1 ; r < s.Weapon.Rank ; r++ ){
 			//	s.Weapon.Upgrade(new UnitStatus());
 			//}

@@ -1,7 +1,11 @@
-Ngetipas
-1250
-770
-0
-23
+Frostmourne
+500
+5500
+20
+27
 3
 Knight
+Warrior
+Tribe
+Thief
+Archer

@@ -46,7 +46,8 @@ public class SelectItem : MonoBehaviour {
 				//biar gak dobel pas nyari lagi di invent
 				GameData.profile.inventoryList.Remove (controller.queriedList [(4 * data.corridorState) + slot]);
 				// UPDATE SLOT DI CHOOSE GEM SCREEN ke slot
-				data.corridorState = 0;controller.UpdateSemuaGambarDiInventory ();
+				data.corridorState = 0;
+				controller.UpdateSemuaGambarDiInventory ();
 				data.maxCorridorState = (GameData.profile.inventoryList.Count / 4);
 				if (GameData.profile.inventoryList.Count % 4 == 0)
 					data.maxCorridorState--;
@@ -64,7 +65,7 @@ public class SelectItem : MonoBehaviour {
 				GameData.gameState = "ConfirmSell";	
 			}
 			//sound.audio.PlayOneShot (sound.audio.clip);
-			data.corridorState = 0;
+			//data.corridorState = 0;
 		}
 	}
 	

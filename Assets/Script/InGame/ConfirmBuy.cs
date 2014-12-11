@@ -6,8 +6,8 @@ public class ConfirmBuy : MonoBehaviour {
 	public TextMesh text1;
 	public TextMesh text2;
 	public ScreenData data;
-	public ProfileController profileController;
 	public ScreenData inventoryData;
+	public ProfileController profileController;
 	public int state = 0;
 	private  int slot;
 	public GameObject parent;
@@ -51,7 +51,7 @@ public class ConfirmBuy : MonoBehaviour {
 	}
 
 	void ConfirmingBuy(){
-		Debug.Log ("stae " + data.corridorState + " slot " + slot);
+		Debug.Log ("stae " + data.corridorState + " slot " + slot + " invdatastate " + inventoryData.corridorState);
 		Item i = GameData.shopList [(data.corridorState * 4) + slot];
 		int money = profileController.GetMoneyValue (i.PriceType);
 		if (money - i.Price >= 0) {
@@ -74,16 +74,19 @@ public class ConfirmBuy : MonoBehaviour {
 	}
 
 	void ConfirmSell(){
-		Debug.Log ("sell slot " + (inventoryData.corridorState * 4) + slot);
-		Item j = GameData.profile.inventoryList [(inventoryData.corridorState * 4) + slot];
+		int sellSlot = (inventoryData.corridorState * 4) + slot;
+		Debug.Log ("sell invdata " + inventoryData.corridorState + " slot " + slot + " sellslot " + sellSlot);
+		Item j = GameData.profile.inventoryList [sellSlot];
+		Debug.Log ("itemnya " + j.Name);
 		profileController.UpdateGoldAndDiamond (j.PriceType, -j.Price / 2); // - berarti menjual
-		GameData.profile.inventoryList.RemoveAt ((inventoryData.corridorState * 4) + slot);
+		GameData.profile.inventoryList.Remove(j);
 		for (int i = 0; i < inventoryList.Count; i++) {
 			inventoryList [i].UpdateSlotForSell ();
 		}
 		data.corridorState = 0;
 		GameData.gameState = "Sell";
 		audio.PlayOneShot(coinSound);
+		GameData.SaveData();
 	}
 
 	void ReadyTween(){

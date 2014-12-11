@@ -1,7 +1,10 @@
 Ojraodis
-300
-2000
-0
-23
+170
+1400
+5
+19
 2
+Warrior
 Knight
+Archer
+Tribe

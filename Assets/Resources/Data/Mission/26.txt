@@ -1,7 +1,10 @@
 Kiserg
-400
-2500
+290
+1300
 0
 23
 3
 Knight
+Knight
+Tribe
+Archer

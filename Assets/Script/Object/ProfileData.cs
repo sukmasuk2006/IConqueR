@@ -35,11 +35,11 @@ public class ProfileData
 
 	private const int base_exp = 50;
 	public ProfileData(){
-		NewData("FLoo");
+		NewData("Mada");
 	}
 
 	public void NewData(string n){
-		name = "Floo";
+		name = n;
 		title = 0;
 		level = 1;
 		nextMission = 0;
@@ -180,7 +180,7 @@ public class ProfileData
 	public void ProfileLevelUp(){
 		currentExp -= nextExp;
 		level++;
-		nextExp *= 3;//GameData.expList [level];
+		nextExp *= 2;//GameData.expList [level];
 		Debug.Log ("Profile level up " + level + " " + nextExp);
 	}
 

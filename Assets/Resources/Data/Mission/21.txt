@@ -1,7 +1,10 @@
 Ngalam
-800
-610
+210
+1000
 0
-23
-0
+19
+2
+Warrior
 Knight
+Archer
+Tribe

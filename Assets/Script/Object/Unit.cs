@@ -133,10 +133,13 @@ public class Unit : UnitStatus {
 		currentExp -= nextExp;
 		level++;
 		nextExp = base_exp * level * 2;
+		int multiplier = heroId/4 + 1;
 		// laju pertumbuhan status bergantung id
-		str += (heroId / 4)  + statsType == 0 ? 3 : 1;
-		agi += (heroId / 4) + statsType == 1 ? 3 : 1;
-		vit +=  (heroId / 4)  + statsType == 2 ? 3 : 1;
+		//Random.Range(1,2);
+		str += statsType == 0 ? 2 * multiplier : 1 * multiplier;
+		agi += statsType == 1 ? 2 * multiplier : 1 * multiplier;
+		vit +=  statsType == 2 ? 2 * multiplier : 1 * multiplier;
+	//	Debug.Log("job " + jobList[0] + " stas en"+ str + " " + agi + " " + vit);
 		SetStats ();
 	}
 

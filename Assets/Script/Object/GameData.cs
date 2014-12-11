@@ -7,7 +7,7 @@ public class GameData : MonoBehaviour {
 	// HERO STATS
 
 	public static ProfileData profile;
-	public static int tesId = 3;
+	public static int tesId = 0;
 	public static bool isDrag = false;
 
 	// GAME STATS

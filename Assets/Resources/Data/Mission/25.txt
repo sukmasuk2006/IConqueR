@@ -1,7 +1,10 @@
 Daer
-1020
-700
-0
+210
+1800
+5
 23
 3
+Warrior
 Knight
+Tribe
+Archer
