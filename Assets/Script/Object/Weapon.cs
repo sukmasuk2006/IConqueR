@@ -55,24 +55,26 @@ using System.Collections.Generic;
 	}
 
 	public void Upgrade(UnitStatus s){
+		int nextRank = rank+1;
+		if (nextRank == 1 || nextRank == 2) {
+			damage += 1;
+		}
+		else if (nextRank == 3 || nextRank == 4) {
+			damage += 2;
+		}
+		else if (nextRank == 5 || nextRank == 6) {
+			damage += 5;
+		}
+		else if (nextRank == 7 || nextRank == 8) {
+			damage += 7;
+		}
+		else if (nextRank > 8 )
+			damage += 10;
 		rank++;
 		weaponStats.Str += s.Str;
 		weaponStats.Agi += s.Agi;
 		weaponStats.Vit += s.Vit;
-		if (rank == 1 || rank == 2) {
-			damage += 1;
-		}
-		else if (rank == 3 || rank == 4) {
-				damage += 2;
-		}
-		else if (rank == 5 || rank == 6) {
-				damage += 5;
-		}
-		else if (rank == 7 || rank == 8) {
-			damage += 7;
-		}
-		else if (rank == 9 )
-			damage += 10;
+	
 	}
 
 	public bool CheckUpgradeReq(string grade){

@@ -1,8 +1,8 @@
 Water Stone
 Rare
-2500
+4500
 0
-1
+2
 1
 3
 50

@@ -63,31 +63,37 @@ public class UpgradeWeaponController : MonoBehaviour {
 		vitText.text = weaponData.WeaponStats.Vit +"";
 		//spriteRenderer.sprite = GameData.weaponSpriteList[weaponData.Id];
 		damageText.text = weaponData.Damage.ToString();
-		fromText.text = weaponData.Rank.ToString();
-		toText.text = (weaponData.Rank + 1).ToString ();
+		UpdateNextLevelUpgradeInfo();
 	}
 
 	public void UpdateWeaponInfo(){
 		// JIKA SUKSES UPDATE INFO SENJATA DI UNIT DAN FORMATION
 		GameData.profile.unitList [GameData.selectedToViewProfileId].Weapon = weaponData; 
-		Unit formationUnit = GameData.profile.formationList.
-			Where( x => x.UnitHeroId == GameData.selectedToViewProfileId ).ToArray()[0].Unit;
-		formationUnit.Weapon = weaponData;
 
 		// update stats unit
 		GameData.profile.unitList [GameData.selectedToViewProfileId].SetStats ();
-		formationUnit.SetStats();
+//		formationUnit.SetStats();
+		GameData.profile.RefreshFormation();
 		profileController.SetPictureAndStatsFromFormation ();
 
 		spriteRenderer.sprite = (Sprite)Resources.Load("Sprite/Character/Hero/"+u.JobList[u.CurrentJob].Trim(),typeof(Sprite));// GameData.weaponSpriteList[weaponData.Id];
 		damageText.text = weaponData.Damage.ToString();
-		fromText.text = weaponData.Rank.ToString();
-		toText.text = (weaponData.Rank + 1).ToString ();
+		UpdateNextLevelUpgradeInfo();
 		strText.text = weaponData.WeaponStats.Str.ToString();
 		agiText.text = weaponData.WeaponStats.Agi.ToString ();
 		vitText.text = weaponData.WeaponStats.Vit.ToString ();
 	}
 
+	void UpdateNextLevelUpgradeInfo(){
+		if ( weaponData.Rank < 10 ){
+			fromText.text = weaponData.Rank.ToString();
+			toText.text = ">> " + (weaponData.Rank + 1);
+		}
+		else{
+			fromText.text="Max";
+			toText.text = "";
+		}
+	}
 	// update gambar di slot upgrade
 	public void UpdateSlot(int slot){
 		try {

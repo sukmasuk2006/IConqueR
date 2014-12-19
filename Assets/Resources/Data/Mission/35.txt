@@ -1,7 +1,11 @@
 Ngetipas
-2200
-1305
+630
+3600
 0
-29
+31
 4
-Knight
+Warrior
+Archer
+Tribe
+Thief
+Monk

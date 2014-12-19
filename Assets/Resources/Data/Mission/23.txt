@@ -5,6 +5,6 @@ Hibel
 19
 3
 Warrior
-Warrior
+Thief
 Tribe
 Archer

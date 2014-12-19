@@ -5,5 +5,5 @@ sedhtron
 15
 2
 Knight
-Knight
+Tribe
 Archer

@@ -6,4 +6,5 @@ sedhtron
 2
 Warrior
 Archer
-Archer
+Tribe
+Tribe

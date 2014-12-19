@@ -4,8 +4,8 @@ Riggnip
 0
 23
 3
-Knight
-Warrior
-Warrior
 Archer
 Tribe
+Warrior
+Monk
+Knight

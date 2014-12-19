@@ -8,3 +8,4 @@ Warrior
 Knight
 Tribe
 Archer
+Thief

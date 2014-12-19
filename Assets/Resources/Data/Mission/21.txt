@@ -3,7 +3,7 @@ Ngalam
 1000
 0
 19
-2
+1
 Warrior
 Knight
 Archer

@@ -62,7 +62,7 @@ public class QuestController : MonoBehaviour {
 			break;
 		case "fortress" : ret = "Destroy\n"+num + "\nenemy fortress!";
 			break;
-		case "castle" :  ret = "Conquer\n"+num + "\nenemy Kingdoms!";
+		case "castle" :  ret = "Conquer\n"+num + "\nenemy Castle";
 			break;
 		case "gold" :  ret = "Have total\n"+num + "\nGold!";
 			break;

@@ -1,10 +1,10 @@
 sedhtron
 100
 1200
-0
+2
 15
 2
-Warrior
 Knight
-Warrior
+Knight
+Tribe
 Archer

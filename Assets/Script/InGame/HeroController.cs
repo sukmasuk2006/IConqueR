@@ -18,6 +18,7 @@ public class HeroController : MonoBehaviour {
 	public SpriteRenderer lockSprite;
 	public Unit stats;
 	public GameObject projectile;
+	public SpriteRenderer skillNotifier;
 	//private Animator animator;
 
 	public string target;
@@ -39,7 +40,7 @@ public class HeroController : MonoBehaviour {
 	public SkeletonAnimation animator;
 	private bool isDeath;
 	private HeroController targetUnit;
-	private const float MAXMANABAR = 0.38f;
+	private const float MAXMANABAR = 0.37f;
 	private bool isDoSpecial = false;
 	private Skill skill;
 
@@ -52,6 +53,7 @@ public class HeroController : MonoBehaviour {
 		Debug.Log ("HERO START");
 		isDeath = false;
 		attackSpeed = 0;
+		skillNotifier.enabled = false;	
 		if (gameObject.activeInHierarchy) {
 			healthBar.SetActive (true);
 			lockSprite.enabled = false;
@@ -86,6 +88,7 @@ public class HeroController : MonoBehaviour {
 		healthConstant = stats.HealthPoint;
 		healthScaleConstant = healthBar.transform.localScale;
 		movementSpeed = stats.Movement;
+		Debug.Log("aspd "+ stats.AttackSpeed);
 	}
 	
 	// Update is called once per frame
@@ -150,7 +153,8 @@ public class HeroController : MonoBehaviour {
 					//	isAttack = true;
 					movementSpeed = stats.Movement;
 					rigidbody2D.velocity = Vector2.zero;
-					PushForward (0.75f);
+					//if ( rigidbody2D.velocity.x < 2f * direction )
+					PushForward (rigidbody2D, stats.Movement);
 				} else {
 					DeceleratePullBack ();
 				}
@@ -184,7 +188,7 @@ public class HeroController : MonoBehaviour {
 						if (coll.gameObject.name.Contains ("wall")) {
 								// push dikit
 								rigidbody2D.velocity = Vector2.zero;
-								PushForward (0.1f);
+								PushForward (rigidbody2D,0.1f*stats.Movement);
 						} else if (coll.gameObject.name.Contains (target)) {
 								rigidbody2D.velocity = Vector2.zero;
 								targetUnit = coll.gameObject.GetComponent<HeroController> ();
@@ -206,10 +210,10 @@ public class HeroController : MonoBehaviour {
 						if (coll.gameObject.name.Contains ("wall")) {
 								// push dikit
 								rigidbody2D.velocity = Vector2.zero;
-								PushForward (0.1f);
+								PushForward (rigidbody2D,0.1f*stats.Movement);
 						} else if (coll.gameObject.name.Contains (target) && !CheckIsCornered ()) {
 								targetUnit = coll.gameObject.GetComponent<HeroController> ();
-								PushForward (-0.1f);
+								PushForward (rigidbody2D,-0.1f*stats.Movement);
 						} 
 				}	
 	}
@@ -249,9 +253,9 @@ public class HeroController : MonoBehaviour {
 
 	// jika F- => mundurin kita/musuh
 	// F + => majuin kita/musuh
-	public void PushForward(float f){
+	public void PushForward(Rigidbody2D body,float f){
 //		rigidbody2D.velocity = Vector2.zero;
-		rigidbody2D.AddForce (new Vector2 (stats.Movement* direction *f, 0f));
+		body.AddForce (new Vector2 (direction *f, 0f));
 		//		Debug.Log ("vel X " + rigidbody2D.angularVelocity);
 		
 	}
@@ -267,9 +271,14 @@ public class HeroController : MonoBehaviour {
 					if ( manaBar.localScale.x < MAXMANABAR && GameData.profile.skillList[stats.HeroId].IsUnlocked )
 					{
 						//				Debug.Log("update mana bar");
-						float scaleX = manaBar.localScale.x + (stats.Agi * 0.005f);
-						if ( scaleX >= MAXMANABAR ) scaleX = MAXMANABAR;
-						manaBar.localScale = new Vector3(scaleX,manaBar.localScale.y,manaBar.localScale.z);
+						float amount = stats.Agi * 0.005f;
+					if ( amount > 0.13f ) amount = 0.13f; // mana regen rate 
+					float scaleX = manaBar.localScale.x + amount;
+						if ( scaleX >= MAXMANABAR ) {
+							scaleX = MAXMANABAR;	
+							skillNotifier.enabled = true;	
+						}
+					manaBar.localScale = new Vector3(scaleX,manaBar.localScale.y,manaBar.localScale.z);
 					}
 				}
 				h.UpdateHealthBar ();
@@ -277,7 +286,7 @@ public class HeroController : MonoBehaviour {
 				stats.IsCritical = false; // set critical ke semula, tapi chance tetep
 				controller.ReceiveDamage (target, damage);
 				if ( !h.CheckIsCornered()  ) // jika gk kepepet nusuhnya, pukul mundur
-					h.PushForward(force);
+					h.PushForward(h.rigidbody2D,force);
 
 	//			GetReadyForNextAttack();
 		}
@@ -306,7 +315,7 @@ public class HeroController : MonoBehaviour {
 		animator.state.ClearTracks();
 		List<GameObject> unitList = skill.ActiveSkillEffect.Tipe == 1 ? 
 									controller.enemyList : controller.heroList;
-//		Debug.Log ( "ENEMT LIUT " + unitList.Count);
+		//Debug.Log ( "unit yg kena  " + unitList[0].name);
 		foreach( GameObject t in unitList ){
 			if ( skill.IsInRange(transform.position.x,t.transform.position.x) && t.activeInHierarchy ){
 				HeroController u = t.GetComponent<HeroController>();
@@ -314,11 +323,11 @@ public class HeroController : MonoBehaviour {
 				float dmgCalculated =  u.stats.ReceiveDamage(dmg,true,stats.StatsType);
 				u.UpdateHealthBar ();
 				Debug.Log(" hit by skill " + u.gameObject.name + " sisa healh " + u.stats.HealthPoint);
-				if ( !u.CheckIsCornered()  ) // jika gk kepepet nusuhnya, pukul mundur
+				if ( !u.CheckIsCornered() ) // jika gk kepepet nusuhnya, pukul mundur
 				{
-					u.PushForward(-stats.PushForce);
+					u.PushForward(u.rigidbody2D,-stats.PushForce*3f);
 				}
-				controller.ReceiveDamage (target, dmgCalculated);
+				controller.ReceiveDamage (skill.Target, dmgCalculated);
 			}
 		}
 		controller.BatlleState = 0;
@@ -326,6 +335,7 @@ public class HeroController : MonoBehaviour {
 		animator.state.SetAnimation(1,"idle",true);
 		animator.state.ClearTracks();
 		animator.state.SetAnimation(0,"idle",true);
+		skillNotifier.enabled = false;	
 		controller.DeactivateSkillShade(0f,0.1f);
 	}
 
@@ -348,8 +358,8 @@ public class HeroController : MonoBehaviour {
 
 	public void DeceleratePullBack(){
 		// semakin gede agi, semakin gede pushForce supaya gak jauh2 kebelakangnya.
-		if ( rigidbody2D.velocity.x < 0 && direction == 1 || rigidbody2D.velocity.x > 0 && direction == -1)
-			rigidbody2D.AddForce (new Vector2 (stats.PushForce * direction, 0f));
+	//	if ( rigidbody2D.velocity.x < 0 && direction == 1 || rigidbody2D.velocity.x > 0 && direction == -1)
+	//		rigidbody2D.AddForce (new Vector2 (stats.PushForce * direction, 0f));
 	}
 
 	public void UpdateHealthBar(){

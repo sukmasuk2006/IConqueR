@@ -1,10 +1,11 @@
 Ngetipas
-1000
-5000
+930
+3000
 0
 31
 4
-tribe
-knight
-tribe
-archer
+Archer
+Archer
+Knight
+Knight
+Hunter

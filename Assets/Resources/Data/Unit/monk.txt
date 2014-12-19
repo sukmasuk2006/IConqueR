@@ -1,11 +1,11 @@
-Samchong
+Long
 8000
-4
-4
-4
+7
+5
+3
 5
 5
-2
+0
 magic
 Monk
 High Monk

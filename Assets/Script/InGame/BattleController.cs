@@ -108,10 +108,14 @@ public class BattleController : MonoBehaviour {
 							activeSkill[i] = GameData.profile.skillList[u.Unit.HeroId];
 							skillList[i].SetActive(true);
 						}
+						u.Unit.Str += GameData.profile.Level;
+						u.Unit.Agi += GameData.profile.Level;
+						u.Unit.Vit += GameData.profile.Level;
+
 						if ( GameData.profile.TutorialState == 2 ){
-							u.Unit.Str += 10;
-							u.Unit.Agi += 10;
-							u.Unit.Vit += 10;
+							u.Unit.Str += 5;
+							u.Unit.Agi += 5;
+							u.Unit.Vit += 5;
 						}
 						heroList[i].SetActive(true);
 						totalHero++;
@@ -131,7 +135,7 @@ public class BattleController : MonoBehaviour {
 			enemyList[i].SetActive(true);	
 			tempStats.Add(new Unit(s.HeroId,s.Job.Trim()));
 			int level = 0; 
-			level = GameData.currentMission/2;
+			level = GameData.currentMission * 3 / 4;
 
 			if ( GameData.missionType == "Camp") //boss
 				level +=1;
@@ -199,7 +203,7 @@ public class BattleController : MonoBehaviour {
 		}
 		else if (Input.GetKeyDown (KeyCode.Escape) && GameData.readyToTween && GameData.gameState == "Paused") {
 			pauseScreen.GetComponentInChildren<Unpause>().UnPause();
-			DeactivateShade(0f,0.1f);
+
 		}
 	}
 
@@ -278,7 +282,7 @@ public class BattleController : MonoBehaviour {
 					q.CurrentQuantity++;
 			}
 			else if (GameData.missionType.Contains ("Castle")){
-				var m = GameData.profile.questList.Where(x => x.Target.Contains("Castle")).ToList();
+				var m = GameData.profile.questList.Where(x => x.Target.Contains("castle")).ToList();
 				foreach( Quest q in m )
 					q.CurrentQuantity++;
 				GameData.profile.Title++;

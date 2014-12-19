@@ -24,6 +24,7 @@ public class Skill
 	private float range;
 	private int price;
 	private string desc;
+	private string target;
 	private int base_Price = 1000;
 
 	public Skill (int id, string nm)
@@ -49,6 +50,7 @@ public class Skill
 		activeEffect = new SkillEffect(int.Parse(linesFromFile[1]),int.Parse(linesFromFile[2]));
 		passiveEffect = new SkillEffect (int.Parse(linesFromFile [3]),
 		                          int.Parse(linesFromFile [4]));
+		target = activeEffect.Tipe==1?"enemy":"hero";
 		range = float.Parse (linesFromFile [5]);
 
 	}
@@ -116,7 +118,7 @@ public class Skill
 		switch (tipe) {
 			case 1 :  damageRet = ((activeEffect.Amount * level / 200)* heroDamage) + heroDamage;   // atk
 				break; 
-			case 2 : damageRet = -((activeEffect.Amount * level / 200)* heroDamage) + heroDamage; // heal
+			case 2 : damageRet = ((activeEffect.Amount * level / 200)* heroDamage) + heroDamage;  
 				break;
 		}
 //		Debug.Log("special damage " + damageRet);
@@ -148,6 +150,12 @@ public class Skill
 		}
 		set {
 			passiveEffect = value;
+		}
+	}
+
+	public string Target {
+		get {
+			return target;
 		}
 	}
 

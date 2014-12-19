@@ -1,4 +1,4 @@
-using UnityEngine;
+ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -57,17 +57,17 @@ public class GameData : MonoBehaviour {
 	void Initialize(){
 		InitializePersistent ();
 		InitializeGameData ();
-	//	profile.StoryCompleted = true;
-	//	Cheat();
+//		profile.StoryCompleted = true;
+//		Cheat();
 	}
 
 	private void Cheat(){
 		//PlayerPrefs.DeleteAll ();
 		profile.StoryCompleted = true;
-		profile.Gold = 5000;
+		profile.Gold = 50000;
 		profile.TutorialState = GameConstant.TOTAL_TUTORIAL + 1;
-//		profile.Level = 15;
-//		profile.NextMission = 10;
+		profile.Level = 15;
+		profile.NextMission = 30;
 
 	}
 
@@ -268,7 +268,7 @@ public class GameData : MonoBehaviour {
 
 	public static bool UpdateGoldQuest(){
 		bool ret = false;
-		var m = profile.questList.Where (x => x.Target.Contains ("gold")).ToList ();
+		var m = profile.questList.Where (x => x.Target.Contains ("gold") && !x.IsRewardTaken ).ToList ();
 		foreach (Quest q in m){
 			q.CurrentQuantity = profile.Gold;
 			if ( q.IsCompleted  ) ret = true;

@@ -3,8 +3,8 @@ Ojraodis
 1400
 5
 19
-2
-Warrior
+1
 Knight
+Thief
 Archer
 Tribe

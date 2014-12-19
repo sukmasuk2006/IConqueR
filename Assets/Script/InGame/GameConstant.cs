@@ -2,8 +2,8 @@
 
 	/*	 CONSTANT   */
 	public static int UNLOCK_SLOT_PRICE = 500;
-	public static int MISSION_LIST = 30;
-	public static int TOTAL_TUTORIAL = 19;
+	public static int MISSION_LIST = 50;
+	public static int TOTAL_TUTORIAL = 18;
 
 	/*Screen state*/
 	public const string LOGO_STATE = "LOGO";

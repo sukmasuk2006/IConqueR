@@ -27,6 +27,9 @@ public class StartUpgrade : MonoBehaviour {
 			if ( GameData.gameState == "ConfirmExit"){
 				GameData.gameState = GameData.prevGameState;
 			}
+			else{
+				GameData.gameState = "Upgrade";
+			}
 		}
 		MusicManager.getMusicEmitter().audio.PlayOneShot(sound);
 		iTween.MoveTo (screen, iTween.Hash ("position", new Vector3 (0, -12f, -5f), "time", 0.1f, "oncomplete", "ReadyTween", "oncompletetarget", gameObject));

@@ -4,7 +4,8 @@ Daer
 5
 23
 3
-Warrior
 Knight
-Tribe
+Warrior
 Archer
+Tribe
+Monk

@@ -16,6 +16,7 @@ public class MainMenuController : MonoBehaviour {
 			GameData.profile.inventoryList.Add(GameData.shopList[3]); // nambah gem ketika ulang
 			fader.FadeOut("StoryScene");
 		}
+		GameData.SaveData();
 	}
 
 

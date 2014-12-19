@@ -1,7 +1,11 @@
 Ngetipas
-1500
-995
-0
-23
+510
+2800
+10
+27
 3
 Knight
+Hunter
+Hunter
+Hunter
+Monk

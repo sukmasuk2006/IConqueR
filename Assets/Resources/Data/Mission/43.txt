@@ -1,10 +1,11 @@
 Ngetipas
+1400
 4000
-2510
 0
-31
+35
 5
-tribe
-knight
-tribe
-archer
+Assasin
+Assasin
+Hunter
+Hunter
+Monk

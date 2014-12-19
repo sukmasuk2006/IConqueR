@@ -39,13 +39,13 @@ public class CorridorChanger : MonoBehaviour {
 								controller [i].GetComponent<InventorySetter> ().UpdateSlotForUpgrade ();
 								controller [i].GetComponent<InventorySetter> ().CheckButtonForUpgrade ();
 								corridorState.text = "Page " + (data.corridorState + 1).ToString ();
-								Debug.Log ("setupgrade");
+		//						Debug.Log ("setupgrade");
 						}
 				} else if (GameData.gameState.Contains ("Sell")) {
 						for (int i = 0; i < controller.Count; i++) {
 								controller [i].GetComponent<InventorySetter> ().UpdateSlotForSell ();
 								corridorState.text = "Page " + (data.corridorState + 1).ToString ();
-								Debug.Log ("set sell");
+//								Debug.Log ("set sell");
 						}
 				}
 			 else if (GameData.gameState.Contains ("Quest")) {

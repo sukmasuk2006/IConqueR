@@ -5,6 +5,7 @@ Hibel
 19
 3
 Knight
-Knight
-Knight
-Knight
+Monk
+Thief
+Tribe
+Warrior

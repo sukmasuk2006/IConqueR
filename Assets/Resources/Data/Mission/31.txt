@@ -1,7 +1,11 @@
 Ngetipas
-500
-3000
+630
+2000
 0
-24
+27
 3
-Knight
+Thief
+Thief
+Hunter
+Monk
+Monk

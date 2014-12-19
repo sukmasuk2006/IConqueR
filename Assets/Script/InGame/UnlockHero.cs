@@ -42,7 +42,11 @@ public class UnlockHero : MonoBehaviour {
 	void OnMouseDown(){
 		// UNLOCK HERO
 		if ( GameData.profile.Level < profileLevelRequired && !u.IsUnlocked ) {
-			warningText.text = "Need Mada at level " + profileLevelRequired + ", fight more!";
+			warningText.text = "Mada at least level " + profileLevelRequired + " to unlock";
+		}
+		else if ( GameData.profile.Gold < u.GoldNeeded 
+		    && !u.IsUnlocked ) {
+			warningText.text = "Not enough Gold";
 		}
 		else if (GameData.profile.Gold >= u.GoldNeeded 
 		         && !u.IsUnlocked) {
@@ -66,11 +70,8 @@ public class UnlockHero : MonoBehaviour {
 			GameData.gameState = "UpgradeJob";
 			iTween.MoveTo (confirmationScreen, iTween.Hash ("position", new Vector3(0,0,confirmationScreen.transform.position.z), "time", 0.1f, "oncomplete", "ReadyTween", "oncompletetarget", gameObject));
 		}
-		else if ( GameData.profile.Gold < u.GoldNeeded 
-		         && !u.IsUnlocked ) {
-			warningText.text = "Not enough Gold";
-		} 
-		else if ( u.Level < 10 ) warningText.text = "Unit at least at level 10";
+		 
+		else if ( u.Level < 10 ) warningText.text =  u.Name +" at least at level 10";
 
 	}
 	

@@ -1,7 +1,7 @@
 hero
 aktif tipe target
 aktif damage
-passive tipe skill
+passive tipe skill target
 passive amount
 range
 

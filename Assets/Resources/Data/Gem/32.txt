@@ -1,8 +1,8 @@
 Omega
 Legendary
-10
+25
 1
-8
-5
+9
 7
+8
 10

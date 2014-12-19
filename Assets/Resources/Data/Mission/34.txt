@@ -1,7 +1,11 @@
 Ngetipas
-1900
-1205
+750
+2400
 0
-29
+27
 4
 Knight
+Warrior
+Archer
+Hunter
+Monk

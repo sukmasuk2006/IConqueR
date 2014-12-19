@@ -1,7 +1,7 @@
 Poseidon
 Mythical
-10
-1
+10000
+0
 3
 1
 5

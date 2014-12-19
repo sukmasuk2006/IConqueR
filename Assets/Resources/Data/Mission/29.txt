@@ -4,8 +4,8 @@ Frostmourne
 20
 27
 3
-Knight
 Warrior
-Tribe
-Thief
 Archer
+Thief
+Monk
+Hunter

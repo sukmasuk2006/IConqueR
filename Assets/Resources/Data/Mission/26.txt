@@ -6,5 +6,6 @@ Kiserg
 3
 Knight
 Knight
+Monk
 Tribe
-Archer
+Thief

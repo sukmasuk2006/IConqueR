@@ -1,8 +1,8 @@
 Dark Poseidon
 Rare
-3000
+6000
 0
 2
-1
+2
 4
 50

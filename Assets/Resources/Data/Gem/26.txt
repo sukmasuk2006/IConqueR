@@ -1,8 +1,8 @@
-Poseidon Ruby
+Aqua Ruby
 Mythical
-5000
+8000
 0
+3
 2
-2
-4
+5
 30

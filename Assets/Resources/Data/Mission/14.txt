@@ -5,5 +5,5 @@ sedhtron
 11
 2
 Warrior
-Warrior
+Tribe
 Archer

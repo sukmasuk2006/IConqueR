@@ -1,7 +1,11 @@
 Ngetipas
-1700
-1105
+690
+2200
 0
-23
-4
+27
+3
 Knight
+Knight
+Monk
+Tribe
+Archer
