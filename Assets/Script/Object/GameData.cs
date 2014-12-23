@@ -42,7 +42,7 @@ public class GameData : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Initialize();
-		LoadData();
+	//	LoadData();
 	}
 
 	void Awake(){
@@ -57,8 +57,8 @@ public class GameData : MonoBehaviour {
 	void Initialize(){
 		InitializePersistent ();
 		InitializeGameData ();
-//		profile.StoryCompleted = true;
-//		Cheat();
+		profile.StoryCompleted = true;
+		Cheat();
 	}
 
 	private void Cheat(){

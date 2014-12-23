@@ -125,7 +125,7 @@ public class ProfileData
 		totalSkillUsed = GameData.CheckPrefs("totalSkillUsed"+GameData.tesId) ? PlayerPrefs.GetInt("totalSkillUsed"+GameData.tesId) : totalSkillUsed;
 		nextExp = base_exp;
 		for (int i = 0; i < level; i++)
-			nextExp = nextExp * 2 + nextExp * 4/5;
+			nextExp = nextExp * 2 + nextExp * 3/5;
 		for (int i = 0; i < 10; i++)
 			unitList [i].Load ();
 
@@ -180,7 +180,7 @@ public class ProfileData
 	public void ProfileLevelUp(){
 		currentExp -= nextExp;
 		level++;
-		nextExp = nextExp * 3;
+		nextExp = nextExp * 2 + nextExp * 3/5;
 		Debug.Log ("Profile level up " + level + " " + nextExp);
 	}
 

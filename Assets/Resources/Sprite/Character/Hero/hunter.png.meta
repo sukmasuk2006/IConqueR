@@ -3,6 +3,7 @@ guid: b3950b3f47d54db478f2e4b5e39f2b54
 TextureImporter:
   fileIDToRecycleName:
     21300000: Hunter
+    21300002: hunter
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

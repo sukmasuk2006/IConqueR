@@ -3,6 +3,7 @@ guid: c92a7224e0560db41980756cb430b9a1
 TextureImporter:
   fileIDToRecycleName:
     21300000: Monk
+    21300002: monk
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

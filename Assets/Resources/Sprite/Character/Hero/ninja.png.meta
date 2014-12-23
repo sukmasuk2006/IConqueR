@@ -3,6 +3,7 @@ guid: 0f1f4c11e35ab3b4da42c9bc60264815
 TextureImporter:
   fileIDToRecycleName:
     21300000: Ninja
+    21300002: ninja
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

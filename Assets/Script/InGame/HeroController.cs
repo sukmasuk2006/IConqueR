@@ -77,7 +77,7 @@ public class HeroController : MonoBehaviour {
 			manaBar.localScale =  new Vector3(GameData.profile.TutorialState < GameConstant.TOTAL_TUTORIAL ? MAXMANABAR - 0.025f : MAXMANABAR/2,manaBar.localScale.y,manaBar.localScale.z);
 		}
         weaponSound = (AudioClip)Resources.Load("Music/"+stats.Weapon.SoundEffectName,typeof(AudioClip));
-		skillSound = (AudioClip)Resources.Load("Music/Skill/"+stats.Job+"Skill",typeof(AudioClip));
+		skillSound = (AudioClip)Resources.Load("Music/Skill/"+stats.JobList[0]+"Skill",typeof(AudioClip));
 		animator.skeletonDataAsset = GameData.skeleteonDataAssetList[stats.HeroId];
 		animator.calculateNormals = true;
 		animator.Awake ();
