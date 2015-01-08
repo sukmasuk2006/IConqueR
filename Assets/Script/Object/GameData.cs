@@ -42,7 +42,7 @@ public class GameData : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Initialize();
-	//	LoadData();
+		LoadData();
 	}
 
 	void Awake(){
@@ -58,16 +58,16 @@ public class GameData : MonoBehaviour {
 		InitializePersistent ();
 		InitializeGameData ();
 		profile.StoryCompleted = true;
-		Cheat();
+	//	Cheat();
 	}
 
 	private void Cheat(){
 		//PlayerPrefs.DeleteAll ();
 		profile.StoryCompleted = true;
-		profile.Gold = 50000;
+		profile.Gold = 500000;
 		profile.TutorialState = GameConstant.TOTAL_TUTORIAL + 1;
 		profile.Level = 15;
-		profile.NextMission = 30;
+		profile.NextMission = 49;
 
 	}
 

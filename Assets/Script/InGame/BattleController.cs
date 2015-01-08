@@ -287,7 +287,8 @@ public class BattleController : MonoBehaviour {
 					q.CurrentQuantity++;
 				GameData.profile.Title++;
 			}
-		GameData.profile.NextMission++;
+		if ( GameData.profile.NextMission < 50 )
+			GameData.profile.NextMission++;
 		}
 
 		ShowOnReport ();

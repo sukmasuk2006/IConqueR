@@ -22,10 +22,10 @@ public class Drag : MonoBehaviour {
 			canMove = true;
 		//if ( canMove ){
 			gameObject.transform.position = GameData.profile.MapPos;
-			minX = 4.5f; // selama x lebih kecil dari minX
-			maxX = -23.2f; // selama x lebih besar dari maxX
-			minY = 13.8f; // selama y lebih kecil dari miny
-			maxY = 0.3f; // selama y lebih besar dari maxy
+			minX = 6.5f; // selama x lebih kecil dari minX
+			maxX = -21.2f; // selama x lebih besar dari maxX
+			minY = 18.8f; // selama y lebih kecil dari miny
+			maxY = -5.3f; // selama y lebih besar dari maxy
 		//}
 	}
 
